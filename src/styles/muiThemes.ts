@@ -185,11 +185,13 @@ const themesOptions = [
 declare module '@mui/material/styles' {
   interface Palette {
     draculaYellow: Palette['primary'];
+    draculaGreen: Palette['primary'];
   }
 
   // allow configuration using `createTheme`
   interface PaletteOptions {
     draculaYellow?: PaletteOptions['primary'];
+    draculaGreen?: PaletteOptions['primary'];
   }
 }
 
@@ -197,6 +199,7 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     draculaYellow: true;
+    draculaGreen: true;
   }
 }
 
