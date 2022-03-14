@@ -182,6 +182,24 @@ const themesOptions = [
   },
 ];
 
+declare module '@mui/material/styles' {
+  interface Palette {
+    draculaYellow: Palette['primary'];
+  }
+
+  // allow configuration using `createTheme`
+  interface PaletteOptions {
+    draculaYellow?: PaletteOptions['primary'];
+  }
+}
+
+// Update the Button's color prop options
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    draculaYellow: true;
+  }
+}
+
 export const createMuiTheme = (config: any = {}) => {
   let themeOptions = themesOptions.find(
     (theme) => theme.name === config.theme,
