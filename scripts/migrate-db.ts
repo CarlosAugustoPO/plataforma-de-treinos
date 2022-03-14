@@ -13,16 +13,16 @@ const db = mysql({
     database: process.env.MYSQL_DATABASE,
     user: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
-    port: parseInt(process.env.MYSQL_PORT),
+    port: parseInt(process.env.MYSQL_PORT as string),
   },
 });
 
-async function query(q) {
+async function query(q: any) {
   try {
     const results = await db.query(q);
     await db.end();
     return results;
-  } catch (e) {
+  } catch (e: any) {
     throw Error(e.message);
   }
 }
@@ -75,3 +75,5 @@ async function migrate() {
 }
 
 migrate().then(() => process.exit());
+
+export {};

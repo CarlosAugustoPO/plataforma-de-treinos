@@ -4,17 +4,17 @@ import styles from 'src/templates/Entrar/index.module.css';
 import { useState } from 'react';
 import LoadingTemplate from 'src/templates/Loading/index';
 import { useRouter } from 'next/router';
-import user from 'src/lib/methods/User';
 import Layout from 'src/components/Layout/index';
 import type { ReactElement } from 'react';
 import login from 'src/lib/fetchers/session/login';
 import MyHeader from 'src/components/MyHeader/index';
+import useStatus from 'src/lib/hooks/useStatus';
 
 export default function Entrar() {
   const router = useRouter();
   const [loginResult, setLoginResult] = useState('');
 
-  const status = user.session.status();
+  const status = useStatus();
   if (status === 'loading') {
     return <LoadingTemplate />;
   }

@@ -17,7 +17,7 @@ import {
 import styles from './styles.module.css';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import useSettings from 'src/lib/hooks/useSettings';
+import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
 type Props = {
@@ -86,14 +86,14 @@ export default function Layout({
     : (ogImageAlt = `Banner do APP ${APP_NAME}`);
   ogLocale ? (ogLocale = ogLocale) : (ogLocale = APP_LOCALE);
 
-  const { settings } = useSettings();
+  const theme = useTheme();
 
   useEffect(() => {
     const storedCookieConsent = window.localStorage.getItem(
       'cookies-consent',
     );
     if (storedCookieConsent == 'true') {
-      setCookieConsent('none');
+      // setCookieConsent('none');
     }
   }, []);
 
@@ -146,11 +146,10 @@ export default function Layout({
           key="ogLocale"
         />
         <link rel="icon" href="/logo-pdt.png" />
-        {settings.theme == 'light' ? (
-          <meta name="theme-color" content="#6272a4" />
-        ) : (
-          <meta name="theme-color" content="#282a36" />
-        )}
+        <meta
+          name="theme-color"
+          content={theme.palette.backgroundBrowserbar.main}
+        />
       </Head>
       <div className={styles.Layout}>{children}</div>
 
@@ -161,11 +160,8 @@ export default function Layout({
           padding: '2.5%',
           fontSize: '80%',
           width: '100%',
-          backgroundColor:
-            settings.theme === 'light'
-              ? '#6272a4EE'
-              : '#2a2f4aee',
-          color: '#f8f8f2',
+          backgroundColor: theme.palette.backgroundSnackbar.main,
+          color: theme.palette.textSnackbar.main,
           textAlign: 'center',
           display: cookieConsent,
         }}
@@ -176,11 +172,7 @@ export default function Layout({
           sx={{
             cursor: 'pointer',
           }}
-          color={
-            settings.theme === 'light'
-              ? 'draculaCyan.main'
-              : 'cookieConsentLinkDark.main'
-          }
+          color={theme.palette.linkSnackbar.main}
           fontSize="100%"
           onClick={() => setModalPolitcasDeCookiesOpen(true)}
           variant="caption"
@@ -194,11 +186,7 @@ export default function Layout({
             sx={{
               margin: '3%',
             }}
-            color={
-              settings.theme === 'light'
-                ? 'draculaYellow'
-                : 'draculaGreen'
-            }
+            color="buttonSnackbar"
             variant="outlined"
             size="small"
             onClick={closeAndAcceptCookieConsent}

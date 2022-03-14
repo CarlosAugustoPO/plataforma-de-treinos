@@ -8,7 +8,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
-    "migrate": "node src/lib/scripts/migrate-db.ts"
+    "migrate": "node scripts/migrate-db.ts"
   },
   "dependencies": {
     "@emotion/cache": "latest",

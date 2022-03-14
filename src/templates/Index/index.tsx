@@ -93,6 +93,7 @@ export default function IndexTemplate({ status }: Props) {
                 <Grid item xs={12} mt={2}>
                   <TextField
                     required
+                    color="warning"
                     fullWidth
                     id="email"
                     label="E-mail"

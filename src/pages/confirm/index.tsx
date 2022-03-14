@@ -15,7 +15,9 @@ export default function Confirm() {
   const isVerified = useVerification(email as string);
 
   if (status === 'loading') {
-    return <LoadingTemplate />;
+    return (
+      <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
+    );
   }
 
   if (isVerified.ok) {
