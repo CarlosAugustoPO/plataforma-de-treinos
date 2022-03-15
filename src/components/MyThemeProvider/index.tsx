@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'src/styles/muiThemes';
+import { createMuiTheme } from 'src/styles/themes/mui';
 import { ThemeProvider } from '@mui/material/styles';
 import useSettings from 'src/lib/hooks/useSettings';
 

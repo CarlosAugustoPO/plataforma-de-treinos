@@ -7,9 +7,8 @@ import { SettingsProvider } from 'src/lib/contexts/SettingsContext';
 import MyThemeProvider from 'src/components/MyThemeProvider/index';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import 'src/styles/themes.css';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import 'src/styles/globals.css';
+import 'src/styles/themes/variables.css';
 
 type AppPropsWithCache = AppProps & {
   Component: NextPage;

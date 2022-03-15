@@ -151,7 +151,7 @@ export default function Layout({
           content={theme.palette.backgroundBrowserbar.main}
         />
       </Head>
-      <div className={styles.Layout}>{children}</div>
+      <div data-theme={theme.palette.mode}>{children}</div>
 
       <div
         style={{
