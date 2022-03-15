@@ -22,6 +22,7 @@ import useRouter from 'src/lib/hooks/useRouter';
 import useSession from 'src/lib/hooks/useSession';
 import { useState } from 'react';
 import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
+import styles from './index.module.css';
 
 type Props = {
   status: string;

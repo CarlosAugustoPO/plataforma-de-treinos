@@ -1,11 +1,11 @@
-import type Ok from 'src/types/Ok';
+import type Result from 'src/types/Result';
 
 export default async function createUser(newUser: {
   fname: string;
   lname: string;
   email: string;
   password: string;
-}): Promise<Ok> {
+}): Promise<Result> {
   const signUp: any = await fetch('/api/auth/sign-up', {
     method: 'POST',
     headers: {

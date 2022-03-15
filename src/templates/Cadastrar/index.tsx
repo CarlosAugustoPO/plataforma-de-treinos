@@ -89,7 +89,7 @@ export default function CadastrarTemplate() {
       return;
     }
 
-    setSignUpResult(signUpJson.message);
+    setSignUpResult(signUpJson.ok);
   }
   return (
     <div className={styles.container}>

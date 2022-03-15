@@ -210,6 +210,7 @@ const getDesignTokens = (mode: any) => ({
       }),
 });
 
+//Update custon colors in pallete
 declare module '@mui/material/styles' {
   interface Palette {
     backgroundBrowserbar: Palette['primary'];
@@ -222,7 +223,8 @@ declare module '@mui/material/styles' {
   }
 }
 
-// Update the Button's color prop options
+// Update the Button's color prop options that is present in
+// Pallete
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     headerIcons: true;
