@@ -52,6 +52,8 @@ export default NextAuth({
       if (user) {
         token.id = user.id;
         token.fname = user.fname;
+        token.lname = user.lname;
+        token.email = user.email;
         token.is_verified = user.is_verified;
         token.fragment_hash_password =
           user.fragment_hash_password;
@@ -62,6 +64,8 @@ export default NextAuth({
     async session({ session, token }: SessionProps) {
       session.user.id = token.id;
       session.user.fname = token.fname;
+      session.user.lname = token.lname;
+      session.user.email = token.email;
       session.user.is_verified = token.is_verified;
       session.user.fragment_hash_password =
         token.fragment_hash_password;
