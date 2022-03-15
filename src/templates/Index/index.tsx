@@ -54,7 +54,6 @@ export default function IndexTemplate({ status }: Props) {
 
   return (
     <Main>
-      <h3 className={styles.teste}>Teste</h3>
       <MyCard>
         <AnnouncementTwoToneIcon
           color="warning"
