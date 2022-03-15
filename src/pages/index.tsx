@@ -1,12 +1,9 @@
 //Dependency imports
 import dynamic from 'next/dynamic';
 //shared components
-import Layout from 'src/components/Layout/index';
-import MyHeader from 'src/components/MyHeader/index';
+import MyHead from 'src/components/MyHead/index';
 //hooks
 import useStatus from 'src/lib/hooks/useStatus';
-//types
-import type { ReactElement } from 'react';
 
 //templates
 const LoadingTemplate = dynamic(
@@ -31,9 +28,7 @@ export default function Index() {
   const status = useStatus();
   if (status === 'loading') {
     return (
-      <MyHeader>
-        <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
-      </MyHeader>
+      <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
     );
   }
 
@@ -42,11 +37,9 @@ export default function Index() {
     status === 'authenticated'
   ) {
     return (
-      <Layout>
-        <MyHeader>
-          <IndexTemplate status={status} />
-        </MyHeader>
-      </Layout>
+      <MyHead>
+        <IndexTemplate status={status} />
+      </MyHead>
     );
   }
 }
