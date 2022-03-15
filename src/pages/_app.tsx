@@ -9,6 +9,9 @@ import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import 'src/styles/globals.css';
 import 'src/styles/themes/variables.css';
+import CookieConsent from 'src/components/CookieConsent/index';
+import MyHead from 'src/components/MyHead/index';
+import MyHeader from 'src/components/MyHeader/index';
 
 type AppPropsWithCache = AppProps & {
   Component: NextPage;
@@ -29,7 +32,14 @@ export default function MyApp({
         <SettingsProvider>
           <MyThemeProvider>
             <CssBaseline enableColorScheme />
-            <Component {...pageProps} />
+            <CookieConsent />
+            <MyHead>
+              {/* MyHead as layout component*/}
+              <MyHeader>
+                {/* Main as main wraper*/}
+                <Component {...pageProps} />
+              </MyHeader>
+            </MyHead>
           </MyThemeProvider>
         </SettingsProvider>
       </CacheProvider>

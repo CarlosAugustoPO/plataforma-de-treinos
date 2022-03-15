@@ -4,7 +4,6 @@ import styles from 'src/templates/Entrar/index.module.css';
 import { useState } from 'react';
 import LoadingTemplate from 'src/templates/Loading/index';
 import { useRouter } from 'next/router';
-import Layout from 'src/components/Layout/index';
 import type { ReactElement } from 'react';
 import login from 'src/lib/fetchers/session/login';
 import MyHeader from 'src/components/MyHeader/index';
@@ -45,59 +44,53 @@ export default function Entrar() {
   }
   return (
     <div className={styles.container}>
-      <MyHeader>
-        <main>
-          <Link href="/">
-            <a>
-              <Image
-                src="/logo-pdt-light.png"
-                alt="Vercel Logo"
-                width={75}
-                height={75}
-              />
-            </a>
-          </Link>
-          <h1>Entre na Plataforma de Treinos</h1>
-          <p>Coloque suas credenciais para entrar</p>
-          <form onSubmit={handleLogin}>
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                autoComplete="email"
-                defaultValue="prof.carlos.aug@gmail.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="senha">Senha: </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                autoComplete="current-password"
-                defaultValue="111111"
-              />
-            </div>
-            <div className={styles.buttonBox}>
-              <button type="submit">Entrar</button>
-            </div>
-          </form>
-          {loginResult}
-          <div className={styles.grid}>
-            {
-              <Link href="/cadastrar">
-                <a>cadastrar</a>
-              </Link>
-            }
+      <main>
+        <Link href="/">
+          <a>
+            <Image
+              src="/logo-pdt-light.png"
+              alt="Vercel Logo"
+              width={75}
+              height={75}
+            />
+          </a>
+        </Link>
+        <h1>Entre na Plataforma de Treinos</h1>
+        <p>Coloque suas credenciais para entrar</p>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              autoComplete="email"
+              defaultValue="prof.carlos.aug@gmail.com"
+            />
           </div>
-        </main>
-      </MyHeader>
+          <div>
+            <label htmlFor="senha">Senha: </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autoComplete="current-password"
+              defaultValue="111111"
+            />
+          </div>
+          <div className={styles.buttonBox}>
+            <button type="submit">Entrar</button>
+          </div>
+        </form>
+        {loginResult}
+        <div className={styles.grid}>
+          {
+            <Link href="/cadastrar">
+              <a>cadastrar</a>
+            </Link>
+          }
+        </div>
+      </main>
     </div>
   );
 }
-
-Entrar.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};

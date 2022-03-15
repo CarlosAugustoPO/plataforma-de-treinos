@@ -4,7 +4,10 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document';
-import { APP_LOCALE } from 'src/lib/utils/constants';
+import {
+  APP_CHARSET,
+  APP_LOCALE,
+} from 'src/lib/utils/constants';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from 'src/lib/vendor/mui/createEmotionCache';
 
@@ -22,6 +25,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap"
             rel="stylesheet"
           />
+          <meta charSet={APP_CHARSET} />
+          <link rel="icon" href="/logo-pdt.png" />
         </Head>
         <body>
           <Main />
