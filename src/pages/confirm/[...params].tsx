@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import verifyCode from 'src/lib/chains/verifyCode';
-import Layout from 'src/components/Layout/index';
-import type { ReactElement } from 'react';
 import LoadingTemplate from 'src/templates/Loading';
 
 export default function Confirm() {
@@ -51,7 +49,3 @@ export default function Confirm() {
 
   return <LoadingTemplate>{confirmStatus}</LoadingTemplate>;
 }
-
-Confirm.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};

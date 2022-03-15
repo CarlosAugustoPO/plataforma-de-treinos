@@ -3,7 +3,6 @@ import useSession from 'src/lib/hooks/useSession';
 import useStatus from 'src/lib/hooks/useStatus';
 import useVerification from 'src/lib/hooks/swr/useVerification';
 import LoadingTemplate from 'src/templates/Loading';
-import Layout from 'src/components/Layout/index';
 import type { ReactElement } from 'react';
 import ConfirmTemplate from 'src/templates/Confirm/index';
 
@@ -27,7 +26,3 @@ export default function Confirm() {
 
   return <ConfirmTemplate parentSession={parentSession} />;
 }
-
-Confirm.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
