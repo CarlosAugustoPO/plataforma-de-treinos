@@ -9,7 +9,7 @@ import verifyCode from 'src/lib/chains/verifyCode';
 //hooks
 import { useEffect, useState } from 'react';
 //tyopes
-import type Session from 'src/types/next-auth.d';
+import type Session from 'src/types/Session';
 
 type Props = {
   parentSession: Session;

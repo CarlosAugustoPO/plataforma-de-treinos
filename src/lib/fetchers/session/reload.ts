@@ -1,13 +1,12 @@
 import { signIn } from 'next-auth/react';
-import type User from 'src/types/User';
-import type Error from 'src/types/Error';
+import type Result from 'src/types/Result';
 
 export default async function login(userCredentials: {
   email: string;
   password: string;
   redirect: boolean;
   callBackUrl?: string;
-}): Promise<User | Error | undefined> {
+}): Promise<Result | undefined> {
   const signInResult = signIn('username-login', {
     ...userCredentials,
   });

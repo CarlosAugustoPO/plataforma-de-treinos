@@ -1,5 +1,5 @@
 import { query } from 'src/lib/utils/db';
-import type Result from 'src/types/Error';
+import type Result from 'src/types/Result';
 
 async function getMToken(email: string): Promise<Result> {
   try {
