@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 
 declare module 'next-auth' {
-  interface Session {
+  export interface Session {
     user: {
       id?: number;
       fname?: string;
@@ -13,3 +13,5 @@ declare module 'next-auth' {
     };
   }
 }
+
+export default Session;
