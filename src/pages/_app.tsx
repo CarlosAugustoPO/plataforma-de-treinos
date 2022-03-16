@@ -1,4 +1,3 @@
-import App, { AppContext } from 'next/app';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from 'src/lib/vendor/mui/createEmotionCache';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -46,26 +45,3 @@ export default function MyApp({
     </SessionProvider>
   );
 }
-
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
-  const req = appContext.ctx.req;
-  const visitor = {
-    remoteAdress: req?.connection.remoteAddress,
-    host: req?.headers['host'],
-    realIp: req?.headers['x-real-ip'],
-    forwarded: req?.headers['x-forwarded-for'],
-    forwardedVercel: req?.headers['x-vercel-forwarded-for'],
-    deployUrl: req?.headers['x-vercel-deployment-url'],
-    ipCountry: req?.headers['x-vercel-ip-country'],
-    ipCountryRegion: req?.headers['x-vercel-ip-country-region'],
-    vercelId: req?.headers['x-vercel-id'],
-    ipCity: req?.headers['x-vercel-ip-city'],
-  };
-  console.log(visitor);
-  return {
-    pageProps: {
-      ...appProps.pageProps,
-    },
-  };
-};
