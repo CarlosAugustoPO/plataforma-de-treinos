@@ -49,14 +49,15 @@ export default function Index() {
 export async function getServerSideProps(context: any) {
   const req = context.req;
   const visitor = {
-    host: req?.headers['host'],
+    deployUrl: req?.headers['x-vercel-deployment-url'],
+    deployFriendlyUrl: req?.headers['host'],
     visited_url:
       process.env.NEXT_PUBLIC_URL + context?.resolvedUrl,
+    user_agent: req.headers['user-agent'],
     remoteAdress: req?.connection.remoteAddress,
     realIp: req?.headers['x-real-ip'],
     forwarded: req?.headers['x-forwarded-for'],
     forwardedVercel: req?.headers['x-vercel-forwarded-for'],
-    deployUrl: req?.headers['x-vercel-deployment-url'],
     ipCountry: req?.headers['x-vercel-ip-country'],
     ipCountryRegion: req?.headers['x-vercel-ip-country-region'],
     vercelId: req?.headers['x-vercel-id'],
