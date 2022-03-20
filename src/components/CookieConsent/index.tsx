@@ -27,7 +27,7 @@ export default function CookieConsent() {
       'cookies-consent',
     );
     if (storedCookieConsent == 'true') {
-      setCookieConsent('none');
+      // setCookieConsent('none');
     }
   }, []);
 

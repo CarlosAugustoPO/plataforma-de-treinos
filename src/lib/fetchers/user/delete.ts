@@ -1,15 +1,18 @@
-import type Result from 'src/types/Result';
+import type Ok from 'src/types/Ok';
 
 export default async function deleteUser(
   email: string,
-): Promise<Result> {
-  const deleteUserResult: any = await fetch('/api/user/delete', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+): Promise<Ok> {
+  const deleteUserQuery: Response = await fetch(
+    '/api/user/delete',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(email),
     },
-    body: JSON.stringify(email),
-  });
-  const deleteUserJson = await deleteUserResult.json();
-  return deleteUserJson;
+  );
+  const deleteResult = await deleteUserQuery.json();
+  return deleteResult;
 }

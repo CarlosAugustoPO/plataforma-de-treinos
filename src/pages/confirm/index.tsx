@@ -3,7 +3,6 @@ import useSession from 'src/lib/hooks/useSession';
 import useStatus from 'src/lib/hooks/useStatus';
 import useVerification from 'src/lib/hooks/swr/useVerification';
 import LoadingTemplate from 'src/templates/Loading';
-import type { ReactElement } from 'react';
 import ConfirmTemplate from 'src/templates/Confirm/index';
 
 export default function Confirm() {
@@ -24,5 +23,9 @@ export default function Confirm() {
     return null;
   }
 
+  if (status === 'unauthenticated') {
+    router.push('/');
+    return null;
+  }
   return <ConfirmTemplate parentSession={parentSession} />;
 }

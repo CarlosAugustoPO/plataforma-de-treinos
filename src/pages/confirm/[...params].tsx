@@ -5,47 +5,44 @@ import LoadingTemplate from 'src/templates/Loading';
 
 export default function Confirm() {
   const router = useRouter();
-  const getUrl = router.query;
-  const params = getUrl.params || [];
-  const email = params[0];
-  const verificationCode = params[1];
-  const hashFragment = params[2];
-  const magicToken = params[3];
-  const [confirmStatus, setConfirmStatus] = useState(
-    'Aguarde, validando e-mail',
-  );
+  const [confirmStatus, setConfirmStatus] =
+    useState('Carregando...');
+
+  const params = router.query.params;
   useEffect(() => {
+    if (!params) {
+      return;
+    }
+    const email = params[0];
+    const verificationCode = params[1];
+    const hashFragment = params[2];
+    const magicToken = params[3];
+    let messageTimeout: any;
+
     verifyCode({
       verificationCode,
       hashFragment,
       email,
       magicToken,
     }).then((result) => {
-      if (
-        !verificationCode ||
-        !email ||
-        !magicToken ||
-        !hashFragment
-      ) {
-        return;
-      }
-      if (result.error) {
-        setConfirmStatus(
-          'Falha em utilizar link de validação de e-mail, redirecionando para validação manual',
-        );
-        router.push('/painel');
+      if (result?.error) {
+        console.error(result.error);
+        setConfirmStatus(result.error);
+        messageTimeout = setTimeout(() => {
+          router.push('/confirm');
+        }, 1500);
         return;
       }
       setConfirmStatus('E-mail validado com sucesso');
-      router.push('/painel');
+      clearTimeout(messageTimeout);
+      messageTimeout = setTimeout(() => {
+        router.push('/painel');
+      }, 1500);
+      return () => {
+        clearTimeout(messageTimeout);
+      };
     });
-  }, [
-    verificationCode,
-    hashFragment,
-    email,
-    magicToken,
-    router,
-  ]);
+  }, [params, router]);
 
   return <LoadingTemplate>{confirmStatus}</LoadingTemplate>;
 }

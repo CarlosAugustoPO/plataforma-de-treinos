@@ -1,5 +1,7 @@
 import { NextApiHandler } from 'next';
 import insertUser from 'src/lib/models/insertUser';
+import digestPassword from 'src/lib/utils/digestPassword';
+import formatDate from 'src/lib/utils/formatDate';
 
 const signUp: NextApiHandler = async (req, res) => {
   const { fname, lname, email, password } = req.body;
@@ -10,11 +12,24 @@ const signUp: NextApiHandler = async (req, res) => {
     });
   }
 
+  const digestPasswordResult = await digestPassword(password);
+  const verificationCode =
+    Math.floor(Math.random() * 87539) + 13251;
+  const digestedPassword = digestPasswordResult.return as string;
+  let fragmentHashPassword = digestedPassword!.slice(-25);
+  fragmentHashPassword = fragmentHashPassword.replaceAll(
+    '/',
+    '-',
+  );
+  let createdAtBr = formatDate(new Date());
   const insertUserResult = await insertUser({
     fname,
     lname,
     email,
-    password,
+    verificationCode,
+    digestedPassword,
+    fragmentHashPassword,
+    createdAtBr,
   });
 
   if (insertUserResult.error) {

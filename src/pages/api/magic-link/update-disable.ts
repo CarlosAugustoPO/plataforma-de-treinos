@@ -11,7 +11,7 @@ export default async function User(
       error: 'Falha em adquirir email',
     });
   }
-  const result: any = await updateDisabledMagicLink(email);
+  const result: any = await updateDisabledMagicLink({ email });
   if (result.error) {
     return res.status(400).json({ error: result.error });
   }

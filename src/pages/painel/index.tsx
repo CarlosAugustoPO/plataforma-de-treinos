@@ -12,8 +12,9 @@ export default function Painel() {
   const router = useRouter();
   const session = useSession();
   function handleSignOut() {
-    logout();
-    router.push('/');
+    logout({ redirect: false, callbackUrl: '/' }).then((e) =>
+      router.push(e.url),
+    );
   }
   const status = useStatus();
   const email = session?.user?.email;

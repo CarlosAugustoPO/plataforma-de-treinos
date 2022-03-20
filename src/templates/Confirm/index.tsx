@@ -8,6 +8,7 @@ import styles from 'src/templates/Confirm/index.module.css';
 import verifyCode from 'src/lib/chains/verifyCode';
 //hooks
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 //tyopes
 import type Session from 'src/types/Session';
 
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export default function Confirm({ parentSession }: Props) {
+  const router = useRouter();
   const [confirmResult, setConfirmResult] = useState('');
   const [session, setSession] = useState<Session | undefined>(
     parentSession,
@@ -43,7 +45,7 @@ export default function Confirm({ parentSession }: Props) {
       hashFragment,
       email,
     });
-    setConfirmResult(verifyCodeResult.message);
+    setConfirmResult(verifyCodeResult.ok as string);
   }
 
   return (
@@ -81,7 +83,14 @@ export default function Confirm({ parentSession }: Props) {
         </form>
         {confirmResult}
         <div className={styles.grid}>
-          <button type="button" onClick={() => logout()}>
+          <button
+            type="button"
+            onClick={() =>
+              logout({ redirect: false, callbackUrl: '/' }).then(
+                (result) => router.push(result.url),
+              )
+            }
+          >
             sair de {session?.user?.email}
           </button>
         </div>

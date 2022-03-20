@@ -1,19 +1,19 @@
-import { query } from 'src/lib/utils/db';
-import type Result from 'src/types/Result';
+import prisma from 'src/lib/vendor/prisma/index';
+import type Ok from 'src/types/Ok';
 
-async function deleteUser(email: string): Promise<Result> {
+async function deleteUser(queryParams: {
+  email: string;
+}): Promise<Ok> {
   try {
-    await query(
-      `
-        DELETE
-        FROM users
-        WHERE email = ?
-      `,
-      email,
-    );
-    return { ok: 'sucess' };
+    await prisma.users.delete({
+      where: {
+        email: queryParams.email,
+      },
+    });
+    return { ok: 'deleted' };
   } catch (e: any) {
-    return { error: e.message };
+    console.log('In deleteUser: ', e.message, e.code);
+    return { error: 'PDT6020' };
   }
 }
 

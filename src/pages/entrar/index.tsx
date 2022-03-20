@@ -4,9 +4,7 @@ import styles from 'src/templates/Entrar/index.module.css';
 import { useState } from 'react';
 import LoadingTemplate from 'src/templates/Loading/index';
 import { useRouter } from 'next/router';
-import type { ReactElement } from 'react';
 import login from 'src/lib/fetchers/session/login';
-import MyHeader from 'src/components/MyHeader/index';
 import useStatus from 'src/lib/hooks/useStatus';
 
 export default function Entrar() {

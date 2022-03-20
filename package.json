@@ -8,7 +8,8 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
-    "migrate": "node scripts/migrate-db.ts"
+    "migrate": "node prisma/migrate-db.ts",
+    "truncate": "node prisma/truncate.js"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -17,10 +18,12 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@prisma/client": "^3.11.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "next": "latest",
     "next-auth": "^4.2.1",
+    "nprogress": "^0.2.0",
     "prop-types": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -46,6 +49,7 @@
     "husky": "^7.0.4",
     "jest": "27.4.5",
     "lint-staged": "^12.3.4",
+    "prisma": "^3.11.0",
     "typescript": "4.5.4"
   },
   "lint-staged": {

@@ -18,36 +18,32 @@ export default async function verifyCode({
   magicToken,
 }: Props) {
   const user = await userGet({
-    email,
-    fieldsToGet: ['verification_code'],
+    email: email,
+    select: { verification_code: true },
   });
-
-  if (magicToken) {
-    const magicTokenInDB = await getToken(email);
-    if (magicTokenInDB.error) {
-      return {
-        ok: false,
-        error: true,
-        message: magicTokenInDB.error,
-      };
-    }
-    const mTokenInDB = magicTokenInDB.result;
-    if (mTokenInDB != magicToken) {
-      return {
-        ok: false,
-        error: true,
-        message:
-          'Falha em verificar email, magic token inválido',
-      };
-    }
+  if (user.error) {
+    return {
+      error: user.error,
+    };
   }
 
-  const verificationCodeInDB = user.verification_code;
+  const magicTokenInDB = await getToken(email);
+  if (magicTokenInDB.error) {
+    return {
+      error: magicTokenInDB.error,
+    };
+  }
+  const mTokenInDB = magicTokenInDB.data?.magic_token;
+  if (mTokenInDB != magicToken) {
+    return {
+      error: 'Falha em verificar email, magic token inválido',
+    };
+  }
+
+  const verificationCodeInDB = user.data?.verification_code;
   if (verificationCode != verificationCodeInDB) {
     return {
-      ok: false,
-      error: true,
-      message:
+      error:
         'Falha em verificar email, verifique o código inserido e tente novamente',
     };
   }
@@ -55,41 +51,30 @@ export default async function verifyCode({
   const updateIsVerifiedResult = await updateIsVerified(email);
   if (updateIsVerifiedResult.error) {
     return {
-      ok: false,
-      error: true,
-      message: updateIsVerifiedResult.error,
+      error: updateIsVerifiedResult.error,
     };
   }
 
-  if (magicToken) {
-    const disableMagicLinkResult = await disableMagicLink(email);
-    if (disableMagicLinkResult.error) {
-      return {
-        ok: false,
-        error: true,
-        message: disableMagicLinkResult.error,
-      };
-    }
+  const disableMagicLinkResult = await disableMagicLink(email);
+  if (disableMagicLinkResult.error) {
+    return {
+      error: disableMagicLinkResult.error,
+    };
   }
-  if (typeof window !== 'undefined') {
-    const reloadSession = await reload({
-      email,
-      password: `${hashFragment}`,
-      redirect: false,
-    });
+  const reloadSession = await reload({
+    email,
+    password: `${hashFragment}`,
+    redirect: false,
+  });
 
-    if (reloadSession?.error) {
-      return {
-        ok: false,
-        error: true,
-        message: reloadSession.error,
-      };
-    }
+  if (reloadSession?.error) {
+    return {
+      error: reloadSession.error,
+    };
   }
 
   return {
-    ok: true,
-    error: false,
-    message: 'Código validado com sucesso',
+    ok: 'Código validado com sucesso',
+    error: null,
   };
 }

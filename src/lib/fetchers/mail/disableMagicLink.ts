@@ -1,9 +1,9 @@
-import type Result from 'src/types/Result';
+import type Ok from 'src/types/Ok';
 
 export default async function disableMagicLink(
   email: string,
-): Promise<Result> {
-  const result = await fetch(
+): Promise<Ok> {
+  const result: Response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/magic-link/update-disable`,
     {
       method: 'POST',

@@ -1,9 +1,9 @@
-import type Result from 'src/types/Result';
+import type MagicTokenResult from 'src/types/MagicTokenResult';
 
 export default async function magicLink(
   email: string,
-): Promise<Result> {
-  const createMagicLink: any = await fetch(
+): Promise<MagicTokenResult> {
+  const createMagicLink: Response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/magic-link/create`,
     {
       method: 'POST',

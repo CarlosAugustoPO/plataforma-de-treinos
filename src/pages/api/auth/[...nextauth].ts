@@ -28,7 +28,7 @@ export default NextAuth({
           headers: { 'Content-Type': 'application/json' },
         });
         const user = await res.json();
-        if (user.message) throw Error(user.message);
+        if (user.error) throw Error(user.error);
         if (res.ok && user) {
           return user;
         }

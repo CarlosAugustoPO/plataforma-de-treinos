@@ -1,8 +1,10 @@
+import type UserData from 'src/types/UserData';
+
 export default async function userGet(userRequest: {
   email: string;
-  fieldsToGet: string[];
-}) {
-  const result = await fetch(
+  select: object;
+}): Promise<UserData> {
+  const getUser: Response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/user/get`,
     {
       method: 'POST',
@@ -10,6 +12,6 @@ export default async function userGet(userRequest: {
       body: JSON.stringify({ ...userRequest }),
     },
   );
-  const user = await result.json();
+  const user = await getUser.json();
   return user;
 }

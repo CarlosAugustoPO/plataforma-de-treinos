@@ -6,7 +6,7 @@ export default async function User(
   res: NextApiResponse,
 ) {
   const email = req.body;
-  const deleteUserResult: any = await deleteUser(email);
+  const deleteUserResult: any = await deleteUser({ email });
   if (deleteUserResult.error) {
     return res
       .status(400)

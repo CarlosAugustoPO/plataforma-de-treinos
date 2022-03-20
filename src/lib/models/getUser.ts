@@ -1,32 +1,58 @@
-import { query } from 'src/lib/utils/db';
+import prisma from 'src/lib/vendor/prisma/index';
 import formatDate from 'src/lib/utils/formatDate';
-import type User from 'src/types/User';
+import type UserData from 'src/types/UserData';
 
-async function getUser(
-  email: string,
-  fieldsToGet: string[],
-): Promise<User> {
-  const fieldsToGetList = fieldsToGet?.toString();
+async function getUser(queryParams: {
+  email: string;
+  select?: object;
+}): Promise<UserData> {
+  if (!queryParams.select) {
+    try {
+      const user = () => {};
+      user.data = await prisma.users.findUnique({
+        where: {
+          email: queryParams.email,
+        },
+      });
+      if (!user) {
+        return { error: 'Falha em localizar usuário' };
+      }
+      if (user.data?.is_verified != null) {
+        user.data.is_verified = formatDate(
+          user.data.is_verified,
+        );
+      }
+      user.ok = 'Usuário localizado com sucesso';
+      return user;
+    } catch (e: any) {
+      console.log(
+        'In getUser whitout fields: ',
+        e.message,
+        e.code,
+      );
+      return { error: e.message };
+    }
+  }
+
   try {
-    const findUser: any = await query(
-      `
-      SELECT ${fieldsToGetList}
-      FROM users
-      WHERE email = ?
-    `,
-      email,
-    );
-    const user: any = findUser[0];
-    if (!user) {
+    const user = () => {};
+    user.data = await prisma.users.findUnique({
+      where: {
+        email: queryParams.email,
+      },
+      select: queryParams.select,
+    });
+    if (!user.data) {
       return { error: 'Falha em localizar usuário' };
     }
-    if (user.is_verified != null) {
-      user.is_verified = formatDate(user.is_verified);
+    if (user.data.is_verified != null) {
+      user.data.is_verified = formatDate(user.data.is_verified);
     }
+    user.ok = 'Usuário localizado com sucesso';
     return user;
   } catch (e: any) {
+    console.log('In getUser whit fields: ', e.message, e.code);
     return { error: e.message };
   }
 }
-
 export default getUser;

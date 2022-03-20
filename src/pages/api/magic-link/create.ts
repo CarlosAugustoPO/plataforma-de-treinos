@@ -9,7 +9,9 @@ const createToken: NextApiHandler = async (req, res) => {
         'Falha interna de comunicação. Tente novamente mais tarde ou informe o serviço técnico através do email suporte@plataformadetreinos.com.br',
     });
   }
-  const insertMagicTokenResult = await insertMagicToken(email);
+  const insertMagicTokenResult = await insertMagicToken({
+    email,
+  });
   if (insertMagicTokenResult.error) {
     return res.status(400).json({
       ...insertMagicTokenResult,

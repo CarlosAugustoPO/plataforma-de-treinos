@@ -1,11 +1,9 @@
 import Head from 'next/head';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
-import styles from './styles.module.css';
 import {
   APP_NAME,
   APP_DESCRIPTION,
-  APP_CHARSET,
   APP_LOCALE,
   APP_TYPE,
 } from 'src/lib/utils/constants';
@@ -67,6 +65,15 @@ export default function Layout({
     : (ogImageAlt = `Banner do APP ${APP_NAME}`);
   ogLocale ? (ogLocale = ogLocale) : (ogLocale = APP_LOCALE);
 
+  if (typeof window !== 'undefined') {
+    if (theme.palette.mode == 'dark') {
+      document.documentElement.dataset.theme = 'dark';
+    }
+    if (theme.palette.mode == 'light') {
+      document.documentElement.dataset.theme = 'light';
+    }
+  }
+
   return (
     <>
       <Head>
@@ -120,12 +127,7 @@ export default function Layout({
           key="themeColor"
         />
       </Head>
-      <div
-        className={styles.layout}
-        data-theme={theme.palette.mode}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </>
   );
 }

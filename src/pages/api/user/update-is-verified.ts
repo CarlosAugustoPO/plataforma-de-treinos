@@ -11,7 +11,7 @@ export default async function User(
       error: 'Falha em adquirir email',
     });
   }
-  const result: any = await updateUserIsVerified(email);
+  const result: any = await updateUserIsVerified({ email });
   if (result.message) {
     return res.status(400).json({ error: result.message });
   }

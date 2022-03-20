@@ -2,8 +2,11 @@ import sendMail from 'src/lib/fetchers/mail/sender';
 import getUser from 'src/lib/fetchers/user/get';
 import getMagicToken from 'src/lib/fetchers/mail/getMagicToken';
 import capitalize from 'src/lib/utils/tratarNome';
+import Ok from 'src/types/Ok';
 
-export async function sendVerificationMail(email: string) {
+export async function sendVerificationMail(
+  email: string,
+): Promise<Ok> {
   const emailTratado = email.toLowerCase();
 
   const magicToken = await getMagicToken(emailTratado);
@@ -15,11 +18,11 @@ export async function sendVerificationMail(email: string) {
 
   const user = await getUser({
     email: emailTratado,
-    fieldsToGet: [
-      'verification_code',
-      'fname',
-      'fragment_hash_password',
-    ],
+    select: {
+      verification_code: true,
+      fname: true,
+      fragment_hash_password: true,
+    },
   });
   if (user.error) {
     return {
@@ -27,14 +30,14 @@ export async function sendVerificationMail(email: string) {
     };
   }
 
-  const verificationCode = user.verification_code;
-  const hashFragment = user.fragment_hash_password;
+  const verificationCode = user.data?.verification_code;
+  const hashFragment = user.data?.fragment_hash_password;
 
-  const fname = user.fname;
-  const firstnameTratado = capitalize(fname);
+  const fname = user.data?.fname;
+  const firstnameTratado = capitalize(fname as string);
 
   const url = process.env.NEXT_PUBLIC_URL;
-  const confirmationUrl = `${url}/confirm/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.result}`;
+  const confirmationUrl = `${url}/confirm/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.data?.magic_token}`;
 
   const sender =
     'Plataforma de Treinos <cadastro@plataformadetreinos.com.br>';
@@ -132,6 +135,6 @@ export async function sendVerificationMail(email: string) {
     };
   }
   return {
-    ok: 'Email enviado com sucesso',
+    ...queryMailSender,
   };
 }

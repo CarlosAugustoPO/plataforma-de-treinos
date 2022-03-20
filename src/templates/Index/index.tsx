@@ -22,7 +22,6 @@ import useRouter from 'src/lib/hooks/useRouter';
 import useSession from 'src/lib/hooks/useSession';
 import { useState } from 'react';
 import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
-import styles from './index.module.css';
 
 type Props = {
   status: string;
@@ -250,7 +249,14 @@ export default function IndexTemplate({ status }: Props) {
             >
               Acessar sua área de usuário
             </button>
-            <button type="button" onClick={() => logout()}>
+            <button
+              type="button"
+              onClick={() =>
+                logout({
+                  redirect: false,
+                })
+              }
+            >
               sair de {session!.user!.fname}
             </button>
           </div>

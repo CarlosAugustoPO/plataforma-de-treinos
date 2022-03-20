@@ -6,9 +6,9 @@ export default async function User(
   res: NextApiResponse,
 ) {
   const email = req.body;
-  const result: any = await getMagicToken(email);
+  const result: any = await getMagicToken({ email });
   if (result.error) {
     return res.status(400).json({ error: result.error });
   }
-  return res.status(200).json({ result });
+  return res.status(200).json({ ...result });
 }

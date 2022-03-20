@@ -18,7 +18,7 @@ export default async function handler(
   });
 
   if (verifyCodeResult.error) {
-    res.json(verifyCodeResult.message);
+    res.json(verifyCodeResult.error);
   }
   res.redirect(307, '/painel');
 }

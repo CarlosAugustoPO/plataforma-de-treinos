@@ -1,7 +1,7 @@
 :root {
-  --bg-color: #f8f8f2;
+  --nprogress-color: #6272a4;
 }
 
 [data-theme='dark'] {
-  --bg-color: #282a36;
+  --nprogress-color: #bd93f9;
 }

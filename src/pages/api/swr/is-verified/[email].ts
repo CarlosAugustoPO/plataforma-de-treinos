@@ -6,8 +6,10 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const email = req.query.email as string;
-  const getUserResult = await getUser(email, ['is_verified']);
-  if (getUserResult.is_verified != null) {
+  const select = { is_verified: true };
+
+  const user = await getUser({ email, select });
+  if (user.data?.is_verified != null) {
     return res.json({ ok: true });
   }
   return res.json({ ok: false });

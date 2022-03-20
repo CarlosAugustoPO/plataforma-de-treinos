@@ -1,20 +1,26 @@
-import { query } from 'src/lib/utils/db';
+import prisma from 'src/lib/vendor/prisma/index';
+import type Ok from 'src/types/Ok';
 
-const updateIsVerified = async (email: string) => {
-  const emailTratado = email.toLowerCase();
+const updateIsVerified = async (queryParams: {
+  email: string;
+}): Promise<Ok> => {
+  const emailTratado = queryParams.email.toLowerCase();
   try {
-    await query(
-      `
-      UPDATE users
-      SET is_verified = CURRENT_TIMESTAMP
-      WHERE email = ?
-      `,
-      emailTratado,
-    );
+    let dateNow = new Date();
+    await prisma.users.update({
+      where: {
+        email: emailTratado,
+      },
+      data: {
+        is_verified: dateNow,
+      },
+    });
+
     return {
-      ok: true,
+      ok: 'Update is verified com sucesso',
     };
   } catch (e: any) {
+    console.log('In updateUserIsVerified: ', e.message, e.code);
     return {
       error: e.message,
     };

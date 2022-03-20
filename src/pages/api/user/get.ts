@@ -5,8 +5,8 @@ export default async function User(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { email, fieldsToGet } = req.body;
-  const getUserDB: any = await getUser(email, fieldsToGet);
+  const { email, select } = req.body;
+  const getUserDB: any = await getUser({ email, select });
   if (getUserDB.message) {
     return res.status(400).json({ message: getUserDB.message });
   }

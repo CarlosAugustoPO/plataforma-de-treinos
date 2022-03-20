@@ -1,20 +1,30 @@
-import { query } from 'src/lib/utils/db';
+import prisma from 'src/lib/vendor/prisma/index';
+import Ok from 'src/types/Ok';
 
-const magicLinkUpdateDisabled = async (email: string) => {
-  const emailTratado = email.toLowerCase();
+const magicLinkUpdateDisabled = async (queryParams: {
+  email: string;
+}): Promise<Ok> => {
+  const emailTratado = queryParams.email.toLowerCase();
   try {
-    await query(
-      `
-        UPDATE magic_links
-        SET is_disabled = CURRENT_TIMESTAMP
-        WHERE user_email = ?
-      `,
-      emailTratado,
-    );
+    let dateNow = new Date();
+    await prisma.magic_links.update({
+      where: {
+        user_email: emailTratado,
+      },
+      data: {
+        is_disabled: dateNow,
+      },
+    });
+
     return {
-      ok: true,
+      ok: 'magic link disabled updated no banco de dados com sucesso',
     };
   } catch (e: any) {
+    console.log(
+      'In magicLinkUpdateDisabled: ',
+      e.message,
+      e.code,
+    );
     return {
       error: e.message,
     };

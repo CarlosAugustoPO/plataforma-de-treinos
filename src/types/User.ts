@@ -8,6 +8,7 @@ type User = {
   jwtKey?: string;
   password?: string;
   error?: string;
+  ok?: string;
 };
 
 export default User;
