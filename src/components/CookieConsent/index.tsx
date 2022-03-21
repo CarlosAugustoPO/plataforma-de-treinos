@@ -8,17 +8,23 @@ import {
   BootstrapDialog,
   BootstrapDialogTitle,
 } from 'src/components/vendor/mui/Modal/index';
+import { useAppSelector } from 'src/lib/hooks/useRedux';
+import { selectVisit } from 'src/reducers/visit/index';
 
-export default function CookieConsent() {
+export default function CookieConsent(props: {
+  children: React.ReactNode;
+}) {
   const theme = useTheme();
   const [cookieConsent, setCookieConsent] = useState('block');
   const [
     politicasDeCookiesModal,
     setModalPolitcasDeCookiesOpen,
   ] = useState(false);
+  const visit = useAppSelector(selectVisit);
 
   const closeAndAcceptCookieConsent = () => {
     setCookieConsent('none');
+    console.log('in Store:', visit);
     window.localStorage.setItem('cookies-consent', 'true');
   };
 
@@ -28,6 +34,7 @@ export default function CookieConsent() {
     );
     if (storedCookieConsent == 'true') {
       // setCookieConsent('none');
+      // console.log('Cookie consent:' lvisit.id)
     }
   }, []);
 
@@ -306,6 +313,7 @@ export default function CookieConsent() {
           </Button>
         </DialogActions>
       </BootstrapDialog>
+      <div>{props.children}</div>
     </div>
   );
 }
