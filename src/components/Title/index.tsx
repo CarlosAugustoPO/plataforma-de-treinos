@@ -1,5 +1,4 @@
 import Typography from '@mui/material/Typography';
-import styles from './styles.module.css';
 
 type Props = {
   children: React.ReactNode;
@@ -31,7 +30,6 @@ export default function Title({
 }: Props) {
   return (
     <Typography
-      className={styles.title}
       variant={variant}
       color={color}
       component={component}
