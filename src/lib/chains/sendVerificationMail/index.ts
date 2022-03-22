@@ -1,6 +1,6 @@
 import sendMail from 'src/lib/fetchers/mail/sender';
 import getUser from 'src/lib/fetchers/user/get';
-import getMagicToken from 'src/lib/fetchers/mail/getMagicToken';
+import getMagicToken from 'src/lib/fetchers/magic-link/get/';
 import capitalize from 'src/lib/utils/tratarNome';
 import Ok from 'src/types/Ok';
 

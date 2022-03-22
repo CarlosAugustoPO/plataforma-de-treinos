@@ -6,7 +6,7 @@ import {
   useSelector,
 } from 'react-redux';
 
-import type { AppDispatch, AppState } from './store';
+import type { AppDispatch, AppState } from 'src/store/index';
 
 export const useForm =
   <TContent>(defaultValues: TContent) =>

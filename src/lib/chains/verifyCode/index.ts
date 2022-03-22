@@ -1,8 +1,8 @@
 import userGet from 'src/lib/fetchers/user/get';
 import updateIsVerified from 'src/lib/fetchers/user/update/isVerified';
 import reload from 'src/lib/fetchers/session/reload';
-import getToken from 'src/lib/fetchers/mail/getMagicToken';
-import disableMagicLink from 'src/lib/fetchers/mail/disableMagicLink';
+import getToken from 'src/lib/fetchers/magic-link/get/index';
+import disableMagicLink from 'src/lib/fetchers/magic-link/disable/index';
 
 type Props = {
   verificationCode: string;
