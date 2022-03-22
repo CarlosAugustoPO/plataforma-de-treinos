@@ -11,7 +11,7 @@ import {
 type Props = {
   title?: string;
   description?: string;
-  robots?: string;
+  robots?: 'noindex' | 'nofollow' | 'none' | 'all';
   canonicalUrl?: string;
   ogTitle?: string;
   ogDescription?: string;
@@ -44,9 +44,13 @@ export default function Layout({
   const theme = useTheme();
 
   title ? (title = title) : (title = APP_NAME);
+  title == 'replaceThis' ? (title = APP_NAME) : (title = title);
   description
     ? (description = description)
     : (description = APP_DESCRIPTION);
+  description == 'replaceThis'
+    ? (description = APP_DESCRIPTION)
+    : (description = description);
   robots ? (robots = robots) : (robots = 'none');
   canonicalUrl
     ? (canonicalUrl = canonicalUrl)
