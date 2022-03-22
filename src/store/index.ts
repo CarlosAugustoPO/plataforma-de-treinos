@@ -1,26 +1,3 @@
-// import { createStore } from 'redux';
-// ///aqui
-// ////
-// ////
-// ////
-// const INITAL_STATE = {
-//   store: {
-//     visit: {},
-//   },
-// };
-//
-// const data = (state = INITAL_STATE, action) => {
-//   switch (action.type) {
-//     case 'ADD_VISIT':
-//       return { ...state, store: { visit: action.visitData } };
-//     default:
-//       return state;
-//   }
-// };
-// const store = createStore(data);
-//
-// export default store;
-
 import {
   configureStore,
   ThunkAction,
