@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from 'src/templates/Cadastrar/index.module.css';
 import Head from 'next/head';
 import createUser from 'src/lib/fetchers/user/create';
-import createMagicLink from 'src/lib/fetchers/mail/magicLink';
+import createMagicLink from 'src/lib/fetchers/magic-link/create/index';
 import deleteUser from 'src/lib/fetchers/user/delete';
 import login from 'src/lib/fetchers/session/login';
 import { sendVerificationMail } from 'src/lib/chains/sendVerificationMail';
