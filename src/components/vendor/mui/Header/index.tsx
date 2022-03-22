@@ -1,4 +1,4 @@
-import { APP_NAME } from 'src/lib/utils/constants.js';
+import { APP_NAME } from 'src/lib/utils/constants/index';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
