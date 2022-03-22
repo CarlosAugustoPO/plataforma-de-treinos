@@ -1,4 +1,4 @@
-import Header from 'src/components/vendor/mui/Header';
+import Header from 'src/components/vendor/mui/Header/index';
 import styles from './styles.module.css';
 
 type Props = {
