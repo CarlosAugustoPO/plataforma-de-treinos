@@ -16,13 +16,13 @@ const createVisit: NextApiHandler = async (req, res) => {
       req.headers['x-real-ip'] ||
       req.connection.remoteAddress?.replace('::ffff:', ''),
     visitId: visitId,
+    vercelId: req.headers['x-vercel-id'] || 'undefined',
     visitedDomain: visitedDomain,
     protocol: protocol,
     dataHora: dateNow,
     visitedUrl: visitedUrl,
     visitedPagePath: visitedPagePath,
     userAgent: req.headers['user-agent'],
-    vercelId: req.headers['x-vercel-id'] || 'undefined',
     forwardedIPv4:
       req.headers['x-vercel-forwarded-for'] || 'undefined',
     deployUrl:
