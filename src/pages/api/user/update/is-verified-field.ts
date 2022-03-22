@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import updateUserIsVerified from 'src/lib/models/updateUserIsVerified';
+import updateUserIsVerified from 'src/lib/models/users/update/is-verified-field';
 
 export default async function User(
   req: NextApiRequest,

@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import deleteUser from 'src/lib/models/deleteUser';
+import deleteUser from 'src/lib/models/users/delete/index';
 
 export default async function User(
   req: NextApiRequest,

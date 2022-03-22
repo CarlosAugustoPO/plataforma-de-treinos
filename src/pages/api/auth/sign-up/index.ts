@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import insertUser from 'src/lib/models/insertUser';
+import insertUser from 'src/lib/models/users/insert/index';
 import digestPassword from 'src/lib/utils/digestPassword';
 import formatDate from 'src/lib/utils/formatDate';
 

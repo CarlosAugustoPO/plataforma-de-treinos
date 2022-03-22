@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import getUser from 'src/lib/models/getUser';
+import getUser from 'src/lib/models/users/get/index';
 
 export default async function User(
   req: NextApiRequest,

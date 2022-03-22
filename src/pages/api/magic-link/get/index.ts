@@ -1,17 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import updateDisabledMagicLink from 'src/lib/models/magicLinkUpdateDisable';
+import getMagicToken from 'src/lib/models/magic-links/get/index';
 
 export default async function User(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   const email = req.body;
-  if (!email) {
-    return res.status(200).json({
-      error: 'Falha em adquirir email',
-    });
-  }
-  const result: any = await updateDisabledMagicLink({ email });
+  const result: any = await getMagicToken({ email });
   if (result.error) {
     return res.status(400).json({ error: result.error });
   }

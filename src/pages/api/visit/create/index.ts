@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import insertVisit from 'src/lib/models/insertVisit';
+import insertVisit from 'src/lib/models/visit/insert/index';
 import formatDate from 'src/lib/utils/formatDate';
 import { v4 as uuidv4 } from 'uuid'; // npm module
 

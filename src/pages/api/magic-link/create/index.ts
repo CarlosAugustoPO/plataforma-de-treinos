@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import insertMagicToken from 'src/lib/models/insertMagicToken';
+import insertMagicToken from 'src/lib/models/magic-links/insert/index';
 
 const createToken: NextApiHandler = async (req, res) => {
   const email = req.body;
