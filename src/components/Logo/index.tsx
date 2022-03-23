@@ -2,8 +2,8 @@ import Image from 'next/image';
 import useSettings from 'src/lib/hooks/useSettings';
 
 export default function Logo(props: {
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }): JSX.Element {
   const { settings } = useSettings();
   let width = props.width;
