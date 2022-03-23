@@ -8,7 +8,7 @@ export default function LoadingTemplate(Props: {
     <div className={styles.container}>
       <main>
         <Image
-          src="/logo-pdt-light.png"
+          src="/logo-pdt-blue.png"
           alt="Pdt Logo"
           width={75}
           height={75}

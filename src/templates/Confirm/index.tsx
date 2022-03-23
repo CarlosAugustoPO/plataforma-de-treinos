@@ -53,7 +53,7 @@ export default function Confirm({ parentSession }: Props) {
       <Link href="/">
         <a>
           <Image
-            src="/logo-pdt-light.png"
+            src="/logo-pdt-blue.png"
             alt="pdt Logo"
             width={75}
             height={75}

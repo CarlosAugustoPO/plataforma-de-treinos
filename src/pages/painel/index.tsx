@@ -35,7 +35,7 @@ export default function Painel() {
         <Link href="/">
           <a>
             <Image
-              src="/logo-pdt-light.png"
+              src="/logo-pdt-blue.png"
               alt="Vercel Logo"
               width={75}
               height={75}

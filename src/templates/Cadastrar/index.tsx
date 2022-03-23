@@ -101,7 +101,7 @@ export default function CadastrarTemplate() {
         <Link href="/">
           <a>
             <Image
-              src="/logo-pdt-light.png"
+              src="/logo-pdt-purple.png"
               alt="Vercel Logo"
               width={75}
               height={75}
