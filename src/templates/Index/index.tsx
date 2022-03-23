@@ -13,7 +13,7 @@ import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
 import type VisitData from 'src/types/VisitData';
 import ModalTermos from 'src/components/Modals/Termos/index';
 
-export default function IndexTemplate(pageProps: {
+export default function IndexTemplate(_pageProps: {
   status: string;
   visit?: VisitData;
 }) {
