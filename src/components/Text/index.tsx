@@ -1,6 +1,11 @@
 import Typography from '@mui/material/Typography';
 
 export default function Text(props: {
+  m?: number;
+  mt?: number;
+  mb?: number;
+  ml?: number;
+  mr?: number;
   gutterBottom?: boolean;
   noWrap?: boolean;
   paragraph?: boolean;
@@ -22,8 +27,10 @@ export default function Text(props: {
     | 'button'
     | 'overline'
     | 'inherit';
+  fontSize?: string;
   component?: React.ElementType;
   children?: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }): JSX.Element {
   return <Typography {...props}>{props.children}</Typography>;
 }
