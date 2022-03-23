@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <meta charSet={APP_CHARSET} />
-          <link rel="icon" href="/logo-pdt-dark-blue.png" />
+          <link rel="icon" href="/logo-pdt-blue.png" />
         </Head>
         <body>
           <Main />
