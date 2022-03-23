@@ -2,11 +2,9 @@ import NProgress from 'nprogress';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-export default function LoadingBar({ children }: Props) {
+export default function LoadingBar(props: {
+  children: React.ReactNode;
+}): JSX.Element {
   const router = useRouter();
   useEffect(() => {
     const handleStart = (url: any) => {
@@ -27,5 +25,5 @@ export default function LoadingBar({ children }: Props) {
       router.events.off('routeChangeError', handleStop);
     };
   }, [router]);
-  return <>{children}</>;
+  return <>{props.children}</>;
 }

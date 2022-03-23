@@ -22,7 +22,7 @@ export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export const BootstrapDialogTitle = (
   props: DialogTitleProps,
-) => {
+): JSX.Element => {
   const { children, onClose, ...other } = props;
 
   return (

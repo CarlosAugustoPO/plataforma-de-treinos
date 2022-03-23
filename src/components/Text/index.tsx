@@ -1,9 +1,12 @@
 import Typography from '@mui/material/Typography';
-import styles from './styles.module.css';
 
-type Props = {
-  children: React.ReactNode;
+export default function Text(props: {
   gutterBottom?: boolean;
+  noWrap?: boolean;
+  paragraph?: boolean;
+  sx?: object;
+  color?: string;
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   variant?:
     | 'h1'
     | 'h2'
@@ -15,20 +18,12 @@ type Props = {
     | 'subtitle2'
     | 'body1'
     | 'body2'
-    | 'button'
     | 'caption'
-    | 'inherit'
+    | 'button'
     | 'overline'
-    | undefined;
-  color?: string;
-  onClick?: any;
-  component?: any | undefined;
-  align?: 'left' | 'center' | 'right';
-  fontSize?: string;
-  sx?: object;
-  mt?: number;
-};
-
-export default function Text(props: Props) {
+    | 'inherit';
+  component?: React.ElementType;
+  children?: React.ReactNode;
+}): JSX.Element {
   return <Typography {...props}>{props.children}</Typography>;
 }

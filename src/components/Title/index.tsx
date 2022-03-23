@@ -1,7 +1,12 @@
 import Typography from '@mui/material/Typography';
 
-type Props = {
-  children: React.ReactNode;
+export default function Title(props: {
+  gutterBottom?: boolean;
+  noWrap?: boolean;
+  paragraph?: boolean;
+  sx?: object;
+  color?: string;
+  align?: 'inherit' | 'left' | 'center' | 'right' | 'justify';
   variant?:
     | 'h1'
     | 'h2'
@@ -13,28 +18,12 @@ type Props = {
     | 'subtitle2'
     | 'body1'
     | 'body2'
-    | 'button'
     | 'caption'
-    | 'inherit'
+    | 'button'
     | 'overline'
-    | undefined;
-  color?: string;
-  component?: any | undefined;
-};
-
-export default function Title({
-  children,
-  variant,
-  component,
-  color,
-}: Props) {
-  return (
-    <Typography
-      variant={variant}
-      color={color}
-      component={component}
-    >
-      {children}
-    </Typography>
-  );
+    | 'inherit';
+  component?: React.ElementType;
+  children?: React.ReactNode;
+}): JSX.Element {
+  return <Typography {...props}>{props.children}</Typography>;
 }

@@ -8,7 +8,11 @@ import {
   APP_TYPE,
 } from 'src/lib/utils/constants';
 
-type Props = {
+type Robots = {
+  robots?: 'noindex' | 'nofollow' | 'none' | 'all';
+};
+
+export default function MyHead(props: {
   title?: string;
   description?: string;
   robots?: 'noindex' | 'nofollow' | 'none' | 'all';
@@ -20,54 +24,35 @@ type Props = {
   ogImage?: string;
   ogImageAlt?: string;
   ogLocale?: string;
-  children?: React.ReactNode;
-};
-
-export default function Layout({
-  title,
-  description,
-  robots,
-  canonicalUrl,
-  ogTitle,
-  ogDescription,
-  ogType,
-  ogUrl,
-  ogImage,
-  ogImageAlt,
-  ogLocale,
-  children,
-}: Props) {
+  children: React.ReactNode;
+}): JSX.Element {
   const router = useRouter();
   const publicUrl = process.env.NEXT_PUBLIC_URL;
   const urlComplement = router.pathname;
   const thisUrl = `${publicUrl + urlComplement}`;
   const theme = useTheme();
 
-  title ? (title = title) : (title = APP_NAME);
+  let title = (props.title as string) || APP_NAME;
+  let description =
+    (props.description as string) || APP_DESCRIPTION;
+  const robots = (props.robots as Robots) || 'none';
+  const canonicalUrl = (props.canonicalUrl as string) || thisUrl;
+  const ogTitle = (props.ogTitle as string) || title;
+  const ogDescription =
+    (props.ogDescription as string) || description;
+  const ogType = (props.ogType as string) || APP_TYPE;
+  const ogUrl = (props.ogUrl as string) || thisUrl;
+  const ogImage =
+    (props.ogImage as string) || `${publicUrl}/banner.png`;
+  const ogImageAlt =
+    (props.ogImageAlt as string) || `Banner do APP ${APP_NAME}`;
+  const ogLocale = (props.ogLocale as string) || APP_LOCALE;
+  const children = props.children;
+
   title == 'replaceThis' ? (title = APP_NAME) : (title = title);
-  description
-    ? (description = description)
-    : (description = APP_DESCRIPTION);
   description == 'replaceThis'
     ? (description = APP_DESCRIPTION)
     : (description = description);
-  robots ? (robots = robots) : (robots = 'none');
-  canonicalUrl
-    ? (canonicalUrl = canonicalUrl)
-    : (canonicalUrl = thisUrl);
-  ogTitle ? (ogTitle = ogTitle) : (ogTitle = title);
-  ogDescription
-    ? (ogDescription = ogDescription)
-    : (ogDescription = description);
-  ogType ? (ogType = ogType) : (ogType = APP_TYPE);
-  ogUrl ? (ogUrl = ogUrl) : (ogUrl = thisUrl);
-  ogImage
-    ? (ogImage = ogImage)
-    : (ogImage = `${publicUrl}/banner.png`);
-  ogImageAlt
-    ? (ogImageAlt = ogImageAlt)
-    : (ogImageAlt = `Banner do APP ${APP_NAME}`);
-  ogLocale ? (ogLocale = ogLocale) : (ogLocale = APP_LOCALE);
 
   if (typeof window !== 'undefined') {
     if (theme.palette.mode == 'dark') {
@@ -92,7 +77,11 @@ export default function Layout({
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           key="viewport"
         />
-        <meta name="robots" content={robots} key="robots" />
+        <meta
+          name="robots"
+          content={robots as string}
+          key="robots"
+        />
         <link
           rel="canonical"
           href={canonicalUrl}

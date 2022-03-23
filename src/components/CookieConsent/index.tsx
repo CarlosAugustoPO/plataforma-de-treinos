@@ -13,7 +13,7 @@ import { selectVisit } from 'src/reducers/visit/index';
 
 export default function CookieConsent(props: {
   children: React.ReactNode;
-}) {
+}): JSX.Element {
   const theme = useTheme();
   const [cookieConsent, setCookieConsent] = useState('block');
   const [

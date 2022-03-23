@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import useSettings from 'src/lib/hooks/useSettings';
 
-type Props = {
-  width?: number;
-  height?: number;
-};
-
-export default function Logo({ width, height }: Props) {
+export default function Logo(props: {
+  width: number;
+  height: number;
+}): JSX.Element {
   const { settings } = useSettings();
+  let width = props.width;
+  let height = props.width;
 
   if (!width) {
     width = 30;

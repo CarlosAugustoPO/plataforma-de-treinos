@@ -18,13 +18,7 @@ import { THEMES } from 'src/lib/utils/constants';
 import Logo from 'src/components/Logo/index';
 import { useRouter } from 'next/router';
 
-declare module '@mui/material/AppBar' {
-  interface AppBarPropsColorOverrides {
-    appbar: true;
-  }
-}
-
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar(): JSX.Element {
   const router = useRouter();
   const { settings, saveSettings } = useSettings();
   const [anchorEl, setAnchorEl] =

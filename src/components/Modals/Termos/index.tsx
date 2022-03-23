@@ -7,7 +7,9 @@ import {
 } from 'src/components/vendor/mui/Modal/index';
 import { useState } from 'react';
 import Text from 'src/components/Text/index';
-export default function Termos(state: { open: boolean }) {
+export default function Termos(state: {
+  open: boolean;
+}): JSX.Element {
   const [termosModal, setModalTermosOpen] = useState(state.open);
   return (
     <BootstrapDialog
