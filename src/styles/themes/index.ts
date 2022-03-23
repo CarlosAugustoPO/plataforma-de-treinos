@@ -239,6 +239,12 @@ declare module '@mui/material/IconButton' {
   }
 }
 
+declare module '@mui/material/AppBar' {
+  interface AppBarPropsColorOverrides {
+    appbar: true;
+  }
+}
+
 export const createMuiTheme = (config: any = {}) => {
   const themeOptions = getDesignTokens(config.theme);
 

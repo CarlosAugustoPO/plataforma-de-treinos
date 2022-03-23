@@ -1,10 +1,9 @@
 import Image from 'next/image';
 import styles from './index.module.css';
-type Props = {
-  children?: React.ReactNode;
-};
 
-export default function LoadingTemplate({ children }: Props) {
+export default function LoadingTemplate(Props: {
+  children?: React.ReactNode;
+}) {
   return (
     <div className={styles.container}>
       <main>
@@ -14,7 +13,7 @@ export default function LoadingTemplate({ children }: Props) {
           width={75}
           height={75}
         />
-        <div>{children}</div>
+        <div>{Props.children}</div>
       </main>
     </div>
   );

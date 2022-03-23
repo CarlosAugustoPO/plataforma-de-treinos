@@ -7,13 +7,6 @@ import MyCard from 'src/components/Card/index';
 import Text from 'src/components/Text/index';
 import AnnouncementTwoToneIcon from '@mui/icons-material/AnnouncementTwoTone';
 import CreateIcon from '@mui/icons-material/Create';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import {
-  BootstrapDialog,
-  BootstrapDialogTitle,
-} from 'src/components/vendor/mui/Modal/index';
-//Hooks
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
