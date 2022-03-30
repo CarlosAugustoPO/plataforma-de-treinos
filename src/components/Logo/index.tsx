@@ -20,7 +20,7 @@ export default function Logo(props: {
   if (settings.theme == 'light') {
     return (
       <Image
-        src="/logo-pdt-blue.png"
+        src="/logo-pdt-light-theme.png"
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}
@@ -31,7 +31,7 @@ export default function Logo(props: {
   if (settings.theme == 'dark') {
     return (
       <Image
-        src="/logo-pdt-purple.png"
+        src="/logo-pdt-dark-theme.png"
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}

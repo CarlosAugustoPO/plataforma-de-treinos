@@ -10,15 +10,12 @@ type VisitData = {
     user_agent: string;
     vercel_id: string;
     forwarded_ipv4: string;
-    deploy_url: string;
     ip_city: string;
     ip_country: string;
     created_at_br: string;
     created_at: string;
     updated_at: string;
   };
-  ok?: string;
-  error?: string;
 };
 
 export default VisitData;

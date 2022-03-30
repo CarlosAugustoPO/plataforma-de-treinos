@@ -10,9 +10,9 @@ import CookieConsent from 'src/components/CookieConsent/index';
 import MyHead from 'src/components/MyHead/index';
 import MyHeader from 'src/components/MyHeader/index';
 import LoadingBar from 'src/components/LoadingBar/index';
-import 'src/styles/globals.css';
 import 'src/styles/themes/variables.css';
 import 'src/styles/nprogress.css';
+import 'src/styles/globals.css';
 import store from 'src/store/index';
 import { Provider } from 'react-redux';
 
@@ -36,17 +36,16 @@ export default function MyApp({
           <SettingsProvider>
             <MyThemeProvider>
               <CssBaseline enableColorScheme />
-              <CookieConsent>
-                <MyHead>
-                  {/* MyHead as layout component*/}
-                  <LoadingBar>
-                    <MyHeader>
-                      {/* Main as main wraper*/}
-                      <Component {...pageProps} />
-                    </MyHeader>
-                  </LoadingBar>
-                </MyHead>
-              </CookieConsent>
+              <MyHead>
+                <CookieConsent />
+                {/* MyHead as layout component*/}
+                <LoadingBar>
+                  <MyHeader>
+                    {/* Main as main wraper*/}
+                    <Component {...pageProps} />
+                  </MyHeader>
+                </LoadingBar>
+              </MyHead>
             </MyThemeProvider>
           </SettingsProvider>
         </CacheProvider>

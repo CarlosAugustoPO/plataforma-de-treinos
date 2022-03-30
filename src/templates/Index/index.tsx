@@ -1,22 +1,22 @@
-//fetchers
-import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+//My components
+import Caption from 'src/components/Caption/index';
+import TextButton from 'src/components/TextButton/index';
+import Form from 'src/components/Form/index';
+import EmailField from 'src/components/Form/EmailField/index';
+import SendButton from 'src/components/Form/SendButton/index';
+import FullNameField from 'src/components/Form/FullNameField/index';
 import Title from 'src/components/Title/index';
-import MyCard from 'src/components/Card/index';
 import Text from 'src/components/Text/index';
+import ModalPoliticasDeDados from 'src/components/Modals/PoliticasDeDados/index';
+import ModalTermosPreUser from 'src/components/Modals/TermosPreUser/index';
+import MyCard from 'src/components/Card/index';
+//Mui Components
 import AnnouncementTwoToneIcon from '@mui/icons-material/AnnouncementTwoTone';
-import CreateIcon from '@mui/icons-material/Create';
+//Hooks
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
-import type VisitData from 'src/types/VisitData';
-import ModalTermos from 'src/components/Modals/Termos/index';
 
-export default function IndexTemplate(_pageProps: {
-  status: string;
-  visit?: VisitData;
-}) {
+export default function IndexTemplate() {
   const {
     register,
     clearErrors,
@@ -30,260 +30,76 @@ export default function IndexTemplate(_pageProps: {
 
   async function handleSignIn(data: any) {
     const email = data.email;
-    const name = data.name;
-    console.log(email, name);
+    const fullName = data.fullName;
+    const preUser = {
+      email,
+      fullName,
+    };
+    console.log(preUser);
   }
+
   const [modalTermos, setModalTermos] = useState(false);
+  const [modalPoliticas, setModalPoliticas] = useState(false);
   return (
-    <>
-      {/*content*/}
-      <ModalTermos open={modalTermos} />
-      {/*{{{ Card*/}
-      <MyCard>
-        <AnnouncementTwoToneIcon
-          color="warning"
-          sx={{ fontSize: 75 }}
+    <MyCard>
+      <ModalTermosPreUser
+        isOpen={modalTermos}
+        setOpen={setModalTermos}
+      />
+      <ModalPoliticasDeDados
+        isOpen={modalPoliticas}
+        setOpen={setModalPoliticas}
+      />
+      <AnnouncementTwoToneIcon
+        color="warning"
+        sx={{ fontSize: 75 }}
+      />
+      <Title gutterBottom>Site em construção</Title>
+      <Text paragraph>
+        A Plataforma de Treinos está em construção, mas falta bem
+        pouquinho para você poder utiliza-la! Essa nova versão da
+        consultoria em exercício físico está com novidades
+        incríveis, estamos trabalhando bastante para oferecer a
+        melhor experiência para você.
+      </Text>
+      <Text>
+        Assine a lista de lançamento para ficar sabendo assim que
+        a Plataforma de Treinos estiver pronta.
+      </Text>
+      <Form
+        handleSubmit={handleSubmit}
+        handleSignIn={handleSignIn}
+      >
+        <EmailField
+          errors={errors.email?.type}
+          clearErrors={clearErrors}
+          register={register}
         />
-        <Title variant="h3" component="h1" color="title.main">
-          Site em construção
-        </Title>
-        <>
-          <Text
-            variant="body1"
-            component="p"
-            color="text.secodary"
-          >
-            A Plataforma de Treinos está em construção, mas falta
-            bem pouquinho para você poder utiliza-la! Essa nova
-            versão da consultoria em exercício físico está com
-            novidades incríveis, estamos trabalhando bastante
-            para oferecer a melhor experiência para você.
-          </Text>
-          <Text
-            variant="body1"
-            component="p"
-            color="text.secodary"
-          >
-            Assine a lista de lançamento para ficar sabendo assim
-            que a Plataforma de Treinos estiver pronta.
-          </Text>
-
-          {/* {{{ Form */}
-          <form
-            style={{ maxWidth: '600px', width: '90%' }}
-            noValidate
-            onSubmit={handleSubmit(handleSignIn)}
-          >
-            <Grid container rowSpacing={3} p={2}>
-              <Grid item xs={12} mt={2}>
-                {/* email text field */}
-                <TextField
-                  required
-                  color="warning"
-                  fullWidth
-                  id="email"
-                  label="E-mail"
-                  variant="standard"
-                  error={errors.email ? true : false}
-                  autoComplete="email"
-                  inputProps={{
-                    style: {
-                      textTransform: 'lowercase',
-                    },
-                  }}
-                  onClick={() => clearErrors('email')}
-                  onKeyUp={(e) => changeWhiteSpace(e)}
-                  {...register('email', {
-                    required: true,
-                    pattern:
-                      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi,
-                  })}
-                />
-                {errors.email?.type === 'required' && (
-                  <Text
-                    color="error"
-                    variant="subtitle2"
-                    align="left"
-                    fontSize="80%"
-                  >
-                    O campo e-mail é obrigatório
-                  </Text>
-                )}
-                {errors.email?.type === 'pattern' && (
-                  <Text
-                    color="error"
-                    align="left"
-                    variant="subtitle2"
-                    fontSize="80%"
-                  >
-                    Preencha com um e-mail válido
-                  </Text>
-                )}
-              </Grid>
-
-              {/* name text field */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="name"
-                  label="Nome"
-                  variant="standard"
-                  error={errors.name ? true : false}
-                  onClick={() => clearErrors('name')}
-                  {...register('name', {
-                    required: true,
-                    minLength: 2,
-                    maxLength: 80,
-                    pattern: /^[^0-9]*$/gm,
-                  })}
-                />
-                {errors.name?.type === 'required' && (
-                  <Text
-                    color="error"
-                    fontSize="80%"
-                    align="left"
-                    variant="subtitle2"
-                  >
-                    O campo nome é obrigatório
-                  </Text>
-                )}
-                {errors.name?.type === 'minLength' && (
-                  <Text
-                    color="error"
-                    fontSize="80%"
-                    align="left"
-                    variant="subtitle2"
-                  >
-                    Preencha seu nome com no mínimo 2 letras
-                  </Text>
-                )}
-                {errors.name?.type === 'maxLength' && (
-                  <Text
-                    color="error"
-                    fontSize="80%"
-                    align="left"
-                    variant="subtitle2"
-                  >
-                    Preencha seu nome com no máximo 80 letras
-                  </Text>
-                )}
-                {errors.name?.type === 'pattern' && (
-                  <Text
-                    color="error"
-                    fontSize="80%"
-                    align="left"
-                    variant="subtitle2"
-                  >
-                    Preencha seu nome apenas com letras
-                  </Text>
-                )}
-              </Grid>
-
-              <Grid item xs={12}>
-                {/* send button*/}
-                <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  onClick={handleErrors}
-                  endIcon={
-                    <CreateIcon
-                      sx={{
-                        marginTop: '-5px',
-                      }}
-                    />
-                  }
-                >
-                  Inscrever-se
-                </Button>
-              </Grid>
-              <Grid item xs={12} fontSize="80%">
-                <Text color="text.secondary" variant="caption">
-                  Ao inscrever-se você está de acordo com as
-                  seguintes e com os seguintes{' '}
-                  <Text
-                    color="discretLink.main"
-                    onClick={() => setModalTermos(true)}
-                    variant="caption"
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    <a>termos de uso</a>
-                  </Text>
-                  .
-                </Text>
-              </Grid>
-            </Grid>
-          </form>
-          {/* }}} */}
-        </>
-        {/*Index for unauthenticated
-        {pageProps.status === 'authenticated' && (
-          <div>
-            <h3>Seja bem vindo {session!.user!.fname}</h3>
-            <button
-              type="button"
-              onClick={() => router.push('/painel')}
-            >
-              Acessar sua área de usuário
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                logout({
-                  redirect: false,
-                })
-              }
-            >
-              sair de {session!.user!.fname}
-            </button>
-          </div>
-        )}
-          */}
-      </MyCard>
-      {/*}}} Card*/}
-      {/* Modal Politia {{{*/}
-      {/*Dialog content
-      // <BootstrapDialog
-      //   onClose={() => setModalPoliticaDeDadosOpen(false)}
-      //   aria-labelledby="politicas-de-dados"
-      //   open={politicasDeDadosModal}
-      // >
-      //   <BootstrapDialogTitle
-      //     id="politicas-de-dados"
-      //     color="primary"
-      //     sx={{ textTransform: 'uppercase' }}
-      //   >
-      //     Política de dados - pré usuário
-      //   </BootstrapDialogTitle>
-      //   <DialogContent dividers>
-      //     <Text gutterBottom>
-      //       Cras mattis consectetur purus sit amet fermentum.
-      //       Cras justo odio, dapibus ac facilisis in, egestas
-      //       eget quam. Morbi leo risus, porta ac consectetur ac,
-      //       vestibulum at eros.
-      //     </Text>
-      //     <Text gutterBottom>
-      //       Praesent commodo cursus magna, vel scelerisque nisl
-      //       consectetur et. Vivamus sagittis lacus vel augue
-      //       laoreet rutrum faucibus dolor auctor.
-      //     </Text>
-      //     <Text gutterBottom>
-      //       Aenean lacinia bibendum nulla sed consectetur.
-      //       Praesent commodo cursus magna, vel scelerisque nisl
-      //       consectetur et. Donec sed odio dui. Donec ullamcorper
-      //       nulla non metus auctor fringilla.
-      //     </Text>
-      //   </DialogContent>
-      //   <DialogActions>
-      //     <Button
-      //       onClick={() => setModalPoliticaDeDadosOpen(false)}
-      //     >
-      //       Ok
-      //     </Button>
-      //   </DialogActions>
-      // </BootstrapDialog>
-      */}
-    </>
+        <FullNameField
+          errors={errors.fullName?.type}
+          clearErrors={clearErrors}
+          register={register}
+        />
+        <SendButton
+          sx={{ marginTop: '2%' }}
+          cta="INSCREVA-SE"
+          onClick={handleErrors}
+        />
+        <Caption mt={3}>
+          Ao inscrever-se você está de acordo com as seguintes e
+          com os seguintes{' '}
+          <TextButton
+            cta="termos de uso"
+            onClick={() => setModalTermos(true)}
+          />{' '}
+          e com nossas{' '}
+          <TextButton
+            cta="politicas de dados"
+            onClick={() => setModalPoliticas(true)}
+          />
+          .
+        </Caption>
+      </Form>
+    </MyCard>
   );
 }

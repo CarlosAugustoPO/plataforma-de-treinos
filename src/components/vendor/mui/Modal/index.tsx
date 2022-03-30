@@ -12,6 +12,16 @@ export interface DialogTitleProps {
 }
 
 export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialog-container': {
+    maxWidth: '100%',
+    width: '640px',
+    margin: 'auto',
+    borderRadius: '15%',
+  },
+  '& .MuiDialog-paper': {
+    borderRadius: '10px',
+    maxWidth: '90%',
+  },
   '& .MuiDialogContent-root': {
     padding: theme.spacing(2),
   },

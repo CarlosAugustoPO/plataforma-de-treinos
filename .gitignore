@@ -36,6 +36,6 @@ yarn-error.log*
 
 # MyFiles
 TODO.md
-
+tmux-pdt.sh
 # typescript
 *.tsbuildinfo

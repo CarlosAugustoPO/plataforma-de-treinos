@@ -4,8 +4,6 @@ import type VisitData from 'src/types/VisitData';
 
 const initialState: VisitData = {
   data: undefined,
-  ok: undefined,
-  error: undefined,
 };
 
 export const visitSlice = createSlice({
@@ -14,8 +12,6 @@ export const visitSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<VisitData>) => {
       state.data = action.payload.data;
-      state.ok = action.payload.ok;
-      state.error = action.payload.error;
     },
   },
 });

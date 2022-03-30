@@ -3,92 +3,122 @@ import {
   responsiveFontSizes,
 } from '@mui/material/styles';
 
+const colors = {
+  light: {
+    purple: '#423768',
+    gray: '#000b',
+    white: '#f8f8f2',
+    red: '#c93939',
+    pink: '#ff4db3',
+    green: '#26bd4c',
+    greenLighter: '#00ff80',
+    yellow: '#f1fa8c',
+  },
+  dark: {
+    purple: '#cba7ff',
+    gray: '#44475a',
+    white: '#f8f8f2',
+    red: '#ff5555',
+    pink: '#ff79c6',
+    green: '#50fa7b',
+    blueDarker: '#282a36',
+    blueMedium: '#2a2f4a',
+    blue: '#6272a4',
+    yellow: '#f1fa8c',
+    orange: '#ffb86c',
+  },
+};
 const getDesignTokens = (mode: any) => ({
+  // {{{ Light Palette
   ...(mode === 'light'
     ? {
         palette: {
           mode: mode,
           background: {
-            default: '#cbd0e1',
-            paper: '#f8f8f2',
+            default: colors.light.purple + '20',
+            paper: colors.light.white,
           },
           backgroundBrowserbar: {
-            main: '#6272a4',
+            main: colors.light.purple,
           },
           backgroundSnackbar: {
-            main: '#6272a4EE',
+            main: colors.light.purple + 'f6',
           },
-          textSnackbar: {
-            main: '#f8f8f2',
-          },
-          linkSnackbar: {
-            main: '#8be9fd',
-          },
-          buttonSnackbar: {
-            main: '#f1fa8c',
+          backgroundSettingsBox: {
+            main: colors.light.purple,
           },
           headerTitle: {
-            main: '#6272a4',
+            main: colors.light.purple,
           },
           headerIcons: {
-            main: '#6272a4',
-          },
-          headerText: {
-            main: '#44475a',
+            main: colors.light.purple,
           },
           primary: {
-            main: '#6272a4',
+            main: colors.light.purple,
           },
           title: {
-            main: '#6272a4',
+            main: colors.light.purple,
           },
-          discretLink: {
-            main: '#394a7d',
+          backgroundModalBar: {
+            main: colors.light.purple,
+          },
+          backgroundModalBody: {
+            main: colors.light.white,
+          },
+          cookieConsentTitle: {
+            main: colors.light.white,
+          },
+          text: {
+            primary: colors.light.gray,
+          },
+          error: {
+            main: colors.light.red,
+            contrastText: colors.light.white,
           },
           appbar: {
-            main: '#f8f8f2',
+            main: colors.light.white,
           },
-          textAlert: {
-            main: '#444',
-            contrastText: '#f8f8f2',
+          textSnackbar: {
+            main: colors.light.white,
           },
-          textPs: {
-            main: '#394a7d',
-            contrastText: '#f8f8f2',
+          dividerSnackbar: {
+            main: colors.light.white + '66',
           },
-          bottomLinks: {
-            main: '#ff4db3',
-            contrastText: '#f8f8f2',
+          borderModal: {
+            main: colors.light.purple + '44',
           },
-          fakedreamWhite: {
-            main: '#f8f8f2',
+          textSettingsBox: {
+            main: colors.light.white,
           },
-          draculaForeground: {
-            main: '#f8f8f2',
+          modalTitle: {
+            main: colors.light.white,
           },
-          cookieConsentLinkDark: {
-            main: '#90a2db',
+          modalVersion: {
+            main: colors.light.white,
           },
-          fakedreamGreen: {
-            main: '#66bb6a',
+          buttonSnackbarOk: {
+            main: colors.light.greenLighter,
+            contrastText: colors.light.purple,
           },
-          draculaGreen: {
-            main: '#50fa7b',
+          buttonSnackbarCancel: {
+            main: colors.light.yellow,
+            contrastText: colors.light.yellow,
           },
-          draculaYellow: {
-            main: '#f1fa8c',
+          sendButton: {
+            main: colors.light.green,
+            contrastText: colors.light.white,
           },
-          draculaCyan: {
-            main: '#8be9fd',
+          buttonModal: {
+            main: colors.light.greenLighter,
           },
         },
         components: {
           MuiFormLabel: {
             styleOverrides: {
               asterisk: {
-                color: '#ff4db3',
+                color: colors.light.pink,
                 '&$error': {
-                  color: '#ff5555',
+                  color: colors.light.red,
                 },
               },
             },
@@ -100,90 +130,140 @@ const getDesignTokens = (mode: any) => ({
                   transitionDelay: '9999s',
                   transitionProperty: 'background-color',
                 },
+              },
+            },
+          },
+          MuiButton: {
+            styleOverrides: {
+              outlined: {
+                border: '0.10rem solid',
+                '&:hover': {
+                  border: '0.10rem solid',
+                },
+              },
+            },
+          },
+          MuiCssBaseline: {
+            styleOverrides: {
+              '*': {
+                scrollbarWidth: 'thin',
+                scrollbarColor: `${colors.light.purple}90 ${colors.light.gray}30`,
+              },
+              '*::-webkit-scrollbar': {
+                width: '4px',
+              },
+              '*::-webkit-scrollbar-track': {
+                background: colors.light.purple + '30',
+              },
+              '*::-webkit-scrollbar-thumb': {
+                backgroundColor: colors.light.purple + 'aa',
+                border: `3px solid ${colors.light.purple}aa`,
               },
             },
           },
         },
       }
-    : {
+    : //}}} Light Pallet
+      //{{{ Dark Pallet
+      {
         palette: {
           mode: mode,
           background: {
-            default: '#44475a',
-            paper: '#282a36',
+            default: colors.dark.gray,
+            paper: colors.dark.blueDarker,
           },
           backgroundBrowserbar: {
-            main: '#282a36',
+            main: colors.dark.blueDarker,
           },
           backgroundSnackbar: {
-            main: '#2a2f4aEE',
+            main: colors.dark.blueMedium + 'f6',
+          },
+          backgroundSettingsBox: {
+            main: colors.dark.blueMedium,
           },
           textSnackbar: {
-            main: '#f8f8f2',
+            main: colors.dark.white,
           },
-          linkSnackbar: {
-            main: '#90a2db',
+          dividerSnackbar: {
+            main: colors.light.white + '22',
           },
-          buttonSnackbar: {
-            main: '#50fa7b',
+          borderModal: {
+            main: colors.light.white + '22',
+          },
+          textSettingsBox: {
+            main: colors.dark.white,
+          },
+          buttonSnackbarOk: {
+            main: colors.dark.green,
+          },
+          buttonSnackbarCancel: {
+            main: colors.dark.yellow,
+          },
+          buttonSettingsBoxOk: {
+            main: colors.dark.green,
+          },
+          buttonSettingsBoxCancel: {
+            main: colors.dark.yellow,
+          },
+          sendButton: {
+            main: colors.dark.green,
+            contrastText: colors.dark.blueDarker,
           },
           primary: {
-            main: '#bd93f9',
-            contrastText: '#282a36',
+            main: colors.dark.purple,
+            contrastText: colors.dark.blueDarker,
           },
           headerTitle: {
-            main: '#bd93f9',
-          },
-          discretLink: {
-            main: '#6272a4',
+            main: colors.dark.purple,
           },
           headerIcons: {
-            main: '#bd93f9',
+            main: colors.dark.purple,
           },
           appbar: {
-            main: '#282a36',
+            main: colors.dark.blueDarker,
+          },
+          backgroundModalBar: {
+            main: colors.dark.blueMedium,
+          },
+          backgroundModalBody: {
+            main: colors.dark.blueMedium,
           },
           headerText: {
-            main: '#f8f8f2',
+            main: colors.dark.white,
+          },
+          warning: {
+            main: colors.dark.orange,
           },
           error: {
-            main: '#ff5555',
-            contrastText: '#f8f8f2',
+            main: colors.dark.red,
+            contrastText: colors.dark.white,
           },
           title: {
-            main: '#bd93f9',
+            main: colors.dark.purple,
           },
-          textAlert: {
-            main: '#f8f8f2',
+          cookieConsentTitle: {
+            main: colors.dark.purple,
           },
-          textPs: {
-            main: '#6272a4',
-            contrastText: '#f8f8f2',
+          cookieConsentVersion: {
+            main: colors.dark.purple,
           },
-          bottomLinks: {
-            main: '#ff79c6',
-            contrastText: '#f8f8f2',
+          modalTitle: {
+            main: colors.dark.purple,
           },
-          fakedreamGreen: {
-            main: '#66bb6a',
+          modalVersion: {
+            main: colors.dark.purple,
           },
-          draculaGreen: {
-            main: '#50fa7b',
-          },
-          draculaYellow: {
-            main: '#f1fa8c',
-          },
-          cookieConsentLinkDark: {
-            main: '#90a2db',
+          buttonModal: {
+            main: colors.dark.green,
           },
         },
         components: {
           MuiFormLabel: {
             styleOverrides: {
               asterisk: {
-                color: '#ff79c6',
+                color: colors.dark.pink,
                 '&$error': {
-                  color: '#ff5555',
+                  color: colors.dark.red,
                 },
               },
             },
@@ -194,6 +274,16 @@ const getDesignTokens = (mode: any) => ({
                 '&:-webkit-autofill': {
                   transitionDelay: '9999s',
                   transitionProperty: 'background-color',
+                },
+              },
+            },
+          },
+          MuiButton: {
+            styleOverrides: {
+              outlined: {
+                border: '0.10rem solid',
+                '&:hover': {
+                  border: '0.10rem solid',
                 },
               },
             },
@@ -206,20 +296,44 @@ const getDesignTokens = (mode: any) => ({
               },
             },
           },
+          MuiCssBaseline: {
+            styleOverrides: {
+              '*': {
+                scrollbarWidth: 'thin',
+                scrollbarColor: `${colors.dark.blue}60 ${colors.light.gray}30`,
+              },
+              '*::-webkit-scrollbar': {
+                width: '4px',
+              },
+              '*::-webkit-scrollbar-track': {
+                background: colors.dark.blue + '30',
+              },
+              '*::-webkit-scrollbar-thumb': {
+                backgroundColor: colors.dark.blue + '60',
+                border: `3px solid ${colors.dark.blue}60`,
+              },
+            },
+          },
         },
       }),
 });
+// }}}Dark Pallet
 
 //Update custon colors in pallete
 declare module '@mui/material/styles' {
   interface Palette {
     backgroundBrowserbar: Palette['primary'];
     backgroundSnackbar: Palette['primary'];
+    backgroundSettingsBox: Palette['primary'];
     textSnackbar: Palette['primary'];
-    linkSnackbar: Palette['primary'];
-    buttonSnackbar: Palette['primary'];
-    headerIcons: Palette['primary'];
+    sendButton: Palette['primary'];
     appbar: Palette['primary'];
+    headerIcons: Palette['primary'];
+    buttonSnackbarOk: Palette['primary'];
+    buttonSettingsBoxOk: Palette['primary'];
+    buttonSettingsBoxOkCancel: Palette['primary'];
+    buttonSnackbarCancel: Palette['primary'];
+    buttonModal: Palette['primary'];
   }
 }
 
@@ -228,7 +342,11 @@ declare module '@mui/material/styles' {
 declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     headerIcons: true;
-    buttonSnackbar: true;
+    buttonSnackbarOk: true;
+    buttonSnackbarCancel: true;
+    buttonSettingsBoxCancel: true;
+    sendButton: true;
+    buttonModal: true;
   }
 }
 
@@ -244,7 +362,6 @@ declare module '@mui/material/AppBar' {
     appbar: true;
   }
 }
-
 export const createMuiTheme = (config: any = {}) => {
   const themeOptions = getDesignTokens(config.theme);
 

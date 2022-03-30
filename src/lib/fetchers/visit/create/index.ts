@@ -1,9 +1,9 @@
-import type VisitData from 'src/types/VisitData';
+import type VisitDataOrError from 'src/types/VisitDataOrError';
 
-export default async function createVisit(
+export default async function fetchCreateVisit(
   visitedPagePath: string,
-): Promise<VisitData> {
-  const createVisit: Response = await fetch(
+): Promise<VisitDataOrError> {
+  const createVisitResponse = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/visit/create`,
     {
       method: 'POST',
@@ -13,6 +13,13 @@ export default async function createVisit(
       body: JSON.stringify(visitedPagePath),
     },
   );
-  const visit = await createVisit.json();
+  if (createVisitResponse.status !== 200) {
+    return {
+      error:
+        'Falha em comunicar com a API de visitantes, tente novamente mais tarde ou entre em contato com nossa equipe através do email suporte@plataformadetreinos.com.br',
+    };
+  }
+  const visit: VisitDataOrError =
+    await createVisitResponse.json();
   return visit;
 }

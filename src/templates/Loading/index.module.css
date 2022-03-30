@@ -1,9 +1,9 @@
 .container {
-  min-height: 95vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-items: center;
   align-items: center;
-  text-align: center;
+  align-content: center;
+  font-size: 1.6em;
 }
