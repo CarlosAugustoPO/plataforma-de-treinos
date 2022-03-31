@@ -36,6 +36,9 @@ model visits {
     protocol String
     visited_domain String
     visited_page_path String
+    cookies_consent_accepted String
+    cookies_consent_version String
+    cookies_consent_save String
     created_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

@@ -9,6 +9,9 @@ type VisitParams = {
   forwardedIPv4: string | string[] | undefined;
   ipCity: string | string[] | undefined;
   ipCountry: string | string[] | undefined;
+  cookiesConsentVersion: string;
+  cookiesConsentAccepted: string;
+  cookiesConsentSave: string;
   createdAtBr: string;
 };
 

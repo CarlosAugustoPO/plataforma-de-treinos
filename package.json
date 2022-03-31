@@ -8,7 +8,7 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
-    "migrate": "node prisma/migrate-db.ts",
+    "cdb": "npx prisma db push",
     "truncate": "node prisma/truncate.js"
   },
   "dependencies": {

@@ -32,6 +32,9 @@ const createVisit: NextApiHandler = async (
       req.headers['x-vercel-forwarded-for'] || 'undefined',
     ipCity: req.headers['x-vercel-ip-city'] || 'Santos',
     ipCountry: req.headers['x-vercel-ip-country-region'] || 'SP',
+    cookiesConsentVersion: 'undefined',
+    cookiesConsentAccepted: 'undefined',
+    cookiesConsentSave: 'undefined',
     createdAtBr: dateNow,
   };
   try {

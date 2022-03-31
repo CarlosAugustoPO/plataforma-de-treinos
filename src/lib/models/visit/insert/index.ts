@@ -11,7 +11,10 @@ async function insertVisit(visitParams: {
   vercelId: string | string[] | undefined;
   forwardedIPv4: string | string[] | undefined;
   ipCity: string | string[] | undefined;
-  ipCountry: string | string[] | undefined;
+  ipCountry?: string | string[];
+  cookiesConsentVersion: string;
+  cookiesConsentAccepted: string;
+  cookiesConsentSave: string;
   createdAtBr: string;
 }): Promise<VisitData> {
   try {
@@ -29,6 +32,11 @@ async function insertVisit(visitParams: {
           forwarded_ipv4: visitParams.forwardedIPv4,
           ip_city: visitParams.ipCity,
           ip_country: visitParams.ipCountry,
+          cookies_consent_accepted:
+            visitParams.cookiesConsentAccepted,
+          cookies_consent_version:
+            visitParams.cookiesConsentVersion,
+          cookies_consent_save: visitParams.cookiesConsentSave,
         },
       }),
     };
