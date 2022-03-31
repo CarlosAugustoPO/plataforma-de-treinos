@@ -36,7 +36,7 @@ export default function OwnerCookies() {
       </Grid>
 
       <Grid item xs={4}>
-        <Caption sx={{ fontWeight: 600 }}>Funcão:</Caption>{' '}
+        <Caption sx={{ fontWeight: 600 }}>Função:</Caption>{' '}
       </Grid>
       <Grid item xs={8}>
         <Caption>Salvar a preferência de cookies</Caption>{' '}
@@ -69,7 +69,7 @@ export default function OwnerCookies() {
         <Caption>Plataforma de Treinos</Caption>{' '}
       </Grid>
       <Grid item xs={4}>
-        <Caption sx={{ fontWeight: 600 }}>Funcão:</Caption>{' '}
+        <Caption sx={{ fontWeight: 600 }}>Função:</Caption>{' '}
       </Grid>
       <Grid item xs={8}>
         <Caption>
