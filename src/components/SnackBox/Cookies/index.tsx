@@ -51,6 +51,12 @@ export default function CookiesSnackBox(props: {
           onClick={() => props.setCookieConsentModalOpen(true)}
           linkColor="cyan"
           cta="política de cookies"
+          tabIndex={0}
+          onKeyPress={(e) =>
+            e.key === 'Enter' || e.key === ' '
+              ? props.setCookieConsentModalOpen(true)
+              : e.preventDefault
+          }
         />
         . Você também pode personaliza-los, basta clicar no botão
         configurar. Ao continuar navegando sem aceitar os cookies

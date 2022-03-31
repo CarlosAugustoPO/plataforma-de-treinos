@@ -9,6 +9,8 @@ export interface DialogTitleProps {
   sx?: object;
   fontSize?: string;
   onClose?: () => void;
+  disableBackdropClick?: boolean;
+  disableEscapeKeyDown?: boolean;
 }
 
 export const BootstrapDialog = styled(Dialog)(({ theme }) => ({

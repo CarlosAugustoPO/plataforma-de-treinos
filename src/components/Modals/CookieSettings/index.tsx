@@ -9,6 +9,7 @@ import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 /*}}} UtilsImport  */
 // MuiImports {{{
 import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CookieConsentModal from 'src/components/Modals/CookieConsent/index';
 import FormGroup from '@mui/material/FormGroup';
@@ -149,6 +150,7 @@ export default function CookieSettingsModal(props: {
             props.setCookieSettingsModalOpen(false);
           }
         }}
+        disableEscapeKeyDown
         aria-labelledby="cookies-settings"
         open={props.isCookieSettingsModalOpen}
       >
@@ -201,20 +203,23 @@ export default function CookieSettingsModal(props: {
                   </>
                 }
               />
-              <ExpandMoreIcon
-                sx={{
-                  transform: `${
-                    essentialsAccordionState
-                      ? 'rotate(180deg)'
-                      : 'rotate(0deg)'
-                  }`,
-                }}
+              <IconButton
                 onClick={() =>
                   toggleEssentialsAccordion(
                     !essentialsAccordionState,
                   )
                 }
-              />
+              >
+                <ExpandMoreIcon
+                  sx={{
+                    transform: `${
+                      essentialsAccordionState
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)'
+                    }`,
+                  }}
+                />
+              </IconButton>
             </div>
             {/*}}}*/}
             {/* {{{ EssentialCookies collapsed */}
@@ -268,18 +273,21 @@ export default function CookieSettingsModal(props: {
                   </>
                 }
               />
-              <ExpandMoreIcon
-                sx={{
-                  transform: `${
-                    ownerAccordionState
-                      ? 'rotate(180deg)'
-                      : 'rotate(0deg)'
-                  }`,
-                }}
+              <IconButton
                 onClick={() =>
                   toggleOwnerAccordion(!ownerAccordionState)
                 }
-              />
+              >
+                <ExpandMoreIcon
+                  sx={{
+                    transform: `${
+                      ownerAccordionState
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)'
+                    }`,
+                  }}
+                />
+              </IconButton>
             </div>
             {/*}}}*/}
             {/* {{{  OwnerCookies collapsed */}
@@ -331,20 +339,23 @@ export default function CookieSettingsModal(props: {
                   </div>
                 }
               />
-              <ExpandMoreIcon
-                sx={{
-                  transform: `${
-                    analyticsAccordionState
-                      ? 'rotate(180deg)'
-                      : 'rotate(0deg)'
-                  }`,
-                }}
+              <IconButton
                 onClick={() =>
                   toggleAnalyticsAccordion(
                     !analyticsAccordionState,
                   )
                 }
-              />
+              >
+                <ExpandMoreIcon
+                  sx={{
+                    transform: `${
+                      analyticsAccordionState
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)'
+                    }`,
+                  }}
+                />
+              </IconButton>
             </div>
 
             {/*}}}*/}
@@ -409,6 +420,12 @@ export default function CookieSettingsModal(props: {
                   linkColor="modal"
                   cta="política de cookies"
                   onClick={() => setCookieConsentModalOpen(true)}
+                  tabIndex={0}
+                  onKeyPress={(e) =>
+                    e.key === 'Enter' || e.key === ' '
+                      ? setCookieConsentModalOpen(true)
+                      : e.preventDefault
+                  }
                 >
                   política de cookies
                 </TextButton>
