@@ -14,6 +14,11 @@
   --text-button-modal-hover: #00c933;
   --text-button-modal: #00559d;
   --text-button-modal-visited: #00559d;
+
+  --text-button-pinkLinkInt-active: #00c933;
+  --text-button-pinkLinkInt-hover: #00c933;
+  --text-button-pinkLinkInt: #cd5f9e;
+  --text-button-pinkLinkInt-visited: #cd5f9e;
 }
 
 [data-theme='dark'] {
@@ -32,4 +37,9 @@
   --text-button-modal-hover: #50fa7b;
   --text-button-modal: #8be9fd;
   --text-button-modal-visited: #8be9fd;
+
+  --text-button-pinkLinkInt-active: #50fa7b;
+  --text-button-pinkLinkInt-hover: #50fa7b;
+  --text-button-pinkLinkInt: #ff79c6;
+  --text-button-pinkLinkInt-visited: #ff79c6;
 }

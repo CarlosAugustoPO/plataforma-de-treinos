@@ -2,11 +2,15 @@ import Text from 'src/components/Text/index';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
+import preventWhiteSpace from 'src/lib/utils/preventWhiteSpace';
+import type { Dispatch, SetStateAction } from 'react';
 
 export default function EmailField(props: {
   errors: string;
   clearErrors: (email: 'email') => void;
   register: (email: 'email', validation: {}) => void;
+  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
+  setOkResult: Dispatch<SetStateAction<string | undefined>>;
   sx?: {};
 }) {
   return (
@@ -21,7 +25,16 @@ export default function EmailField(props: {
         variant="standard"
         autoComplete="email"
         onKeyUp={(e) => changeWhiteSpace(e)}
-        onClick={() => props.clearErrors('email')}
+        onKeyDown={(e) => {
+          preventWhiteSpace(e);
+          props.setGeneralError('');
+          props.setOkResult('');
+        }}
+        onClick={() => {
+          props.clearErrors('email');
+          props.setGeneralError('');
+          props.setOkResult('');
+        }}
         autoFocus={false}
         sx={{ ...props.sx }}
         inputProps={{

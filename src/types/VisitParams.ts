@@ -12,6 +12,7 @@ type VisitParams = {
   cookiesConsentVersion: string;
   cookiesConsentAccepted: string;
   cookiesConsentSave: string;
+  loggedAs: string;
   createdAtBr: string;
 };
 

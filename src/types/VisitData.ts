@@ -12,6 +12,10 @@ type VisitData = {
     forwarded_ipv4: string;
     ip_city: string;
     ip_country: string;
+    logged_as: string;
+    cookies_consent_version: string;
+    cookies_consent_accepted: string;
+    cookies_consent_save: string;
     created_at_br: string;
     created_at: string;
     updated_at: string;

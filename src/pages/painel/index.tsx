@@ -25,7 +25,7 @@ export default function Painel() {
   }
 
   if (!isVerified.ok) {
-    router.push('/confirm');
+    router.push('/confirmar');
     return null;
   }
 

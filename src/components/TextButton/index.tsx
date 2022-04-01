@@ -1,12 +1,13 @@
 import styles from 'src/components/TextButton/index.module.css';
 import Typography from '@mui/material/Typography';
 import { TypographyProps } from '@mui/material/Typography';
+import Link from 'next/link';
 
 type PlusOptions = {
   component?: React.ElementType;
   cta: string;
-  linkColor?: 'cyan' | 'default' | 'modal';
-  href?: string;
+  linkColor?: 'cyan' | 'default' | 'modal' | 'pinkLinkInt';
+  href?: any;
   target?: string;
   rel?: string;
 };
@@ -63,6 +64,11 @@ export default function SnackBoxLink({
         >
           {cta}
         </a>
+      )}
+      {linkColor === 'pinkLinkInt' && (
+        <Link href={href}>
+          <a className={styles.pinkLinkInt}>{cta}</a>
+        </Link>
       )}
     </Typography>
   );

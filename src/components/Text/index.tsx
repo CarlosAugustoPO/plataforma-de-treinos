@@ -8,7 +8,7 @@ type PlusComponent = {
 type TypographyPropsPlusComponent = TypographyProps &
   PlusComponent;
 
-export default function Title({
+export default function Text({
   variant = 'body1',
   component = 'p',
   color = 'text.primary',

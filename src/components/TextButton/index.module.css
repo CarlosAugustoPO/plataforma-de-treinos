@@ -36,3 +36,16 @@
 .modal:hover {
   color: var(--text-button-modal-hover);
 }
+
+.pinkLinkInt {
+  color: var(--text-button-pinkLinkInt);
+}
+.pinkLinkInt:active {
+  color: var(--text-button-pinkLinkInt-active);
+}
+.pinkLinkInt:visited {
+  color: var(--text-button-pinkLinkInt-visited);
+}
+.pinkLinkInt:hover {
+  color: var(--text-button-pinkLinkInt-hover);
+}

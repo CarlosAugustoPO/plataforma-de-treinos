@@ -24,6 +24,15 @@ model users {
     updated_at DateTime @updatedAt
 }
 
+model pre_users {
+    id String @id @default(uuid())
+    name String
+    email String @unique
+    created_at_br String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
 model visits {
     visit_id String @id @default(uuid())
     visited_url String
@@ -39,6 +48,7 @@ model visits {
     cookies_consent_accepted String
     cookies_consent_version String
     cookies_consent_save String
+    logged_as String
     created_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

@@ -29,11 +29,11 @@ export default async function sendMail(mailProps: {
   }
 
   return {
-    ok: (queryMailSenderResponse.errorMessage as string)
+    ok: (queryMailSenderResponse?.errorMessage as string)
       ? undefined
       : 'E-mail enviado com sucesso',
     error:
-      (queryMailSenderResponse.errorMessage as string) ||
+      (queryMailSenderResponse?.errorMessage as string) ||
       undefined,
   };
 }

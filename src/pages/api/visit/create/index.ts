@@ -3,6 +3,7 @@ import {
   NextApiRequest,
   NextApiResponse,
 } from 'next';
+import { getSession } from 'next-auth/react';
 import insertVisit from 'src/lib/models/visit/insert/index';
 import formatDate from 'src/lib/utils/formatDate';
 import type VisitDataOrError from 'src/types/VisitDataOrError';
@@ -19,6 +20,7 @@ const createVisit: NextApiHandler = async (
   const visitedDomain = req.headers.host;
   const visitedUrl = `${protocol}${visitedDomain}${visitedPagePath}`;
   const cookies = nookies.get({ req });
+  const session = await getSession({ req });
 
   let cookiesConsent;
   if (cookies.consent) {
@@ -43,6 +45,7 @@ const createVisit: NextApiHandler = async (
     cookiesConsentAccepted:
       cookiesConsent.accepted || 'undefined',
     cookiesConsentSave: cookiesConsent.save || 'undefined',
+    loggedAs: session?.user.email || 'guest',
     createdAtBr: dateNow,
   };
   try {

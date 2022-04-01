@@ -15,6 +15,7 @@ async function insertVisit(visitParams: {
   cookiesConsentVersion: string;
   cookiesConsentAccepted: string;
   cookiesConsentSave: string;
+  loggedAs: string;
   createdAtBr: string;
 }): Promise<VisitData> {
   try {
@@ -32,6 +33,7 @@ async function insertVisit(visitParams: {
           forwarded_ipv4: visitParams.forwardedIPv4,
           ip_city: visitParams.ipCity,
           ip_country: visitParams.ipCountry,
+          logged_as: visitParams.loggedAs,
           cookies_consent_accepted:
             visitParams.cookiesConsentAccepted,
           cookies_consent_version:

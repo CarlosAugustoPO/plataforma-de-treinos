@@ -7,7 +7,6 @@ export default async function login(userCredentials: {
   redirect: boolean;
   callBackUrl?: string;
 }): Promise<SignInResponse> {
-  // if (typeof window !== 'undefined') {
   const signInResult: SignInResponse | any = await signIn(
     'username-login',
     {
@@ -16,15 +15,13 @@ export default async function login(userCredentials: {
   );
 
   if (signInResult?.error) {
-    console.log('In login signInResult:', signInResult.error);
     return {
-      error: 'Falha em realizar login',
+      error:
+        'Falha em realizar login verifique suas credenciais e tente novamente',
       status: signInResult.status,
       url: signInResult.url,
       ok: signInResult.ok,
     };
   }
   return signInResult;
-  // }
-  //Return undefined case typeof window undefined
 }

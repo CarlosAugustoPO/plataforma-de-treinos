@@ -26,6 +26,13 @@ export default async function signIn(
     return res.status(401).json({ error: user.error });
   }
 
+  if (!user.data?.password) {
+    return res.status(401).json({
+      error:
+        'Falha em realizar login, verifique suas credenciais e tente novamente',
+    });
+  }
+
   const match = await compare(password, user.data?.password);
   const fragmentHashPasswordWithSalt: string = `${password}plus${process.env.NEXTAUTH_SECRET}`;
   const fragmentHashPasswordInDbWithSalt: string = `${user.data?.fragment_hash_password}plus${process.env.NEXTAUTH_SECRET}`;
@@ -35,7 +42,7 @@ export default async function signIn(
       fragmentHashPasswordWithSalt
   ) {
     return res.status(401).json({
-      message:
+      error:
         'Falha em realizar login, verifique suas credenciais e tente novamente',
     });
   }

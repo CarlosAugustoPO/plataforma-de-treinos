@@ -7,9 +7,11 @@ const colors = {
   light: {
     purple: '#423768',
     gray: '#000b',
+    grayLighter: '#00000033',
     white: '#f8f8f2',
     red: '#c93939',
     pink: '#ff4db3',
+    darkPink: '#cd5f9e',
     green: '#26bd4c',
     greenLighter: '#00ff80',
     yellow: '#f1fa8c',
@@ -17,6 +19,7 @@ const colors = {
   dark: {
     purple: '#cba7ff',
     gray: '#44475a',
+    grayLighter: '#f8f8f266',
     white: '#f8f8f2',
     red: '#ff5555',
     pink: '#ff79c6',
@@ -55,6 +58,9 @@ const getDesignTokens = (mode: any) => ({
           },
           primary: {
             main: colors.light.purple,
+          },
+          success: {
+            main: colors.light.green,
           },
           title: {
             main: colors.light.purple,
@@ -110,6 +116,12 @@ const getDesignTokens = (mode: any) => ({
           },
           buttonModal: {
             main: colors.light.greenLighter,
+          },
+          mainIcon: {
+            main: colors.light.darkPink,
+          },
+          disabled: {
+            main: colors.light.grayLighter,
           },
         },
         components: {
@@ -213,6 +225,9 @@ const getDesignTokens = (mode: any) => ({
             main: colors.dark.purple,
             contrastText: colors.dark.blueDarker,
           },
+          success: {
+            main: colors.dark.green,
+          },
           headerTitle: {
             main: colors.dark.purple,
           },
@@ -230,6 +245,9 @@ const getDesignTokens = (mode: any) => ({
           },
           headerText: {
             main: colors.dark.white,
+          },
+          mainIcon: {
+            main: colors.dark.pink,
           },
           warning: {
             main: colors.dark.orange,
@@ -255,6 +273,9 @@ const getDesignTokens = (mode: any) => ({
           },
           buttonModal: {
             main: colors.dark.green,
+          },
+          disabled: {
+            main: colors.dark.grayLighter,
           },
         },
         components: {
