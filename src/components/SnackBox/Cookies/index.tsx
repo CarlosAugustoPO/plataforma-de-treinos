@@ -1,3 +1,4 @@
+import fetcherUpdateVisitCookiesConsentFields from 'src/lib/fetcherUpdateVisitCookiesConsent/index';
 import Button from '@mui/material/Button';
 import SnackBox from 'src/components/SnackBox/index';
 import Caption from 'src/components/Caption/index';
@@ -7,6 +8,10 @@ import CookieIcon from '@mui/icons-material/CookieTwoTone';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 import formatDate from 'src/lib/utils/formatDate';
 import type { Dispatch, SetStateAction } from 'react';
+import { useAppSelector } from 'src/lib/hooks/useRedux';
+import { selectVisit } from 'src/reducers/visit/index';
+import type VisitData from 'src/types/VisitData';
+import { setCookie } from 'nookies';
 
 export default function CookiesSnackBox(props: {
   isCookieSnackBoxOpen: 'none' | 'block';
@@ -16,16 +21,25 @@ export default function CookiesSnackBox(props: {
   setCookieConsentModalOpen: Dispatch<SetStateAction<boolean>>;
   openSettingAndCloseSnack: () => void;
 }) {
+  const visit: VisitData = useAppSelector(selectVisit);
   const timeNow = formatDate(new Date());
+
   const closeAndAcceptDefaultCookieConsent = () => {
     props.setCookieSnackBoxOpen('none');
-    window.localStorage.setItem(
-      'cookies-consent',
+    setCookie(
+      null,
+      'consent',
       `{"version": "${COOKIE_CONSENT_VERSION}", "accepted":
-          "${timeNow}", "save": "all"}`,
+              "${timeNow}", "save": "essentials,owner,analytics"}`,
+      { maxAge: 86400 * 365, path: '/' },
     );
 
-    // updateVisitCookiesConsentFields(cookieContentObject);
+    fetcherUpdateVisitCookiesConsentFields({
+      cookiesConsentAccepted: timeNow,
+      cookiesConsentVersion: COOKIE_CONSENT_VERSION,
+      cookiesConsentSave: 'essentials,owners,analytics',
+      visitId: visit.data?.visit_id as string,
+    });
   };
   return (
     <SnackBox display={props.isCookieSnackBoxOpen}>

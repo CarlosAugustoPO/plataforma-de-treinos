@@ -5,6 +5,7 @@ import EssentialsCookies from 'src/components/cookiesinuse/Essentials/index';
 // }}}
 /*{{{ UtilsImport */
 import formatDate from 'src/lib/utils/formatDate';
+import fetcherUpdateVisitCookiesConsentFields from 'src/lib/fetcherUpdateVisitCookiesConsent/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 /*}}} UtilsImport  */
 // MuiImports {{{
@@ -27,12 +28,17 @@ import {
 // }}}
 import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
+import { useAppSelector } from 'src/lib/hooks/useRedux';
+import { selectVisit } from 'src/reducers/visit/index';
+import type VisitData from 'src/types/VisitData';
+import { setCookie, destroyCookie } from 'nookies';
 
 export default function CookieSettingsModal(props: {
   isCookieSettingsModalOpen: boolean;
   setCookieSettingsModalOpen: Dispatch<SetStateAction<boolean>>;
   closeSettings: () => void;
 }): JSX.Element {
+  const visit: VisitData = useAppSelector(selectVisit);
   const timeNow = formatDate(new Date());
 
   /* {{{ StatesDeclatation 2 */
@@ -73,22 +79,38 @@ export default function CookieSettingsModal(props: {
       cookieSettings.analytics === 'rejected'
     ) {
       props.setCookieSettingsModalOpen(false);
-      window.localStorage.setItem(
-        'cookies-consent',
+      setCookie(
+        null,
+        'consent',
         `{"version": "${COOKIE_CONSENT_VERSION}", "accepted":
-          "${timeNow}", "save": "custom"}`,
+          "${timeNow}", "save": "essentials,owners"}`,
+        { maxAge: 86400 * 365, path: '/' },
       );
+      fetcherUpdateVisitCookiesConsentFields({
+        cookiesConsentAccepted: timeNow,
+        cookiesConsentVersion: COOKIE_CONSENT_VERSION,
+        cookiesConsentSave: 'essentials,owners',
+        visitId: visit.data?.visit_id as string,
+      });
     }
     if (
       cookieSettings.owner === 'accepted' &&
       cookieSettings.analytics === 'accepted'
     ) {
       props.setCookieSettingsModalOpen(false);
-      window.localStorage.setItem(
-        'cookies-consent',
+      setCookie(
+        null,
+        'consent',
         `{"version": "${COOKIE_CONSENT_VERSION}", "accepted":
-          "${timeNow}", "save": "all"}`,
+          "${timeNow}", "save": "essentials,owners,analytics"}`,
+        { maxAge: 86400 * 365, path: '/' },
       );
+      fetcherUpdateVisitCookiesConsentFields({
+        cookiesConsentAccepted: timeNow,
+        cookiesConsentVersion: COOKIE_CONSENT_VERSION,
+        cookiesConsentSave: 'essentials,owners,analytics',
+        visitId: visit.data?.visit_id as string,
+      });
     }
 
     if (
@@ -96,6 +118,12 @@ export default function CookieSettingsModal(props: {
       cookieSettings.analytics === 'rejected'
     ) {
       props.setCookieSettingsModalOpen(false);
+      fetcherUpdateVisitCookiesConsentFields({
+        cookiesConsentAccepted: timeNow,
+        cookiesConsentVersion: COOKIE_CONSENT_VERSION,
+        cookiesConsentSave: 'essentials',
+        visitId: visit.data?.visit_id as string,
+      });
     }
 
     if (
@@ -103,16 +131,20 @@ export default function CookieSettingsModal(props: {
       cookieSettings.analytics === 'accepted'
     ) {
       props.setCookieSettingsModalOpen(false);
+      fetcherUpdateVisitCookiesConsentFields({
+        cookiesConsentAccepted: timeNow,
+        cookiesConsentVersion: COOKIE_CONSENT_VERSION,
+        cookiesConsentSave: 'essentials,analytics',
+        visitId: visit.data?.visit_id as string,
+      });
     }
-
-    // updateVisitCookiesConsentFields(cookieContentObject);
   };
 
   //}}}
 
   // Handle functions {{{
   function toggleOwner() {
-    window.localStorage.removeItem('cookies-consent');
+    destroyCookie(null, 'consent');
     cookieSettings.owner === 'rejected'
       ? setCookieSettings({
           ...cookieSettings,
@@ -125,7 +157,7 @@ export default function CookieSettingsModal(props: {
   }
 
   function toggleAnalytics() {
-    window.localStorage.removeItem('cookies-consent');
+    destroyCookie(null, 'consent');
     cookieSettings.analytics === 'rejected'
       ? setCookieSettings({
           ...cookieSettings,

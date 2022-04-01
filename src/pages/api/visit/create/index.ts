@@ -7,6 +7,7 @@ import insertVisit from 'src/lib/models/visit/insert/index';
 import formatDate from 'src/lib/utils/formatDate';
 import type VisitDataOrError from 'src/types/VisitDataOrError';
 import type VisitParams from 'src/types/VisitParams';
+import nookies from 'nookies';
 
 const createVisit: NextApiHandler = async (
   req: NextApiRequest,
@@ -17,6 +18,12 @@ const createVisit: NextApiHandler = async (
   const protocol = req.headers['x-forwarded-proto'] || 'http://';
   const visitedDomain = req.headers.host;
   const visitedUrl = `${protocol}${visitedDomain}${visitedPagePath}`;
+  const cookies = nookies.get({ req });
+
+  let cookiesConsent;
+  if (cookies.consent) {
+    cookiesConsent = JSON.parse(cookies.consent);
+  }
 
   const visitParams: VisitParams = {
     IPv4:
@@ -32,9 +39,10 @@ const createVisit: NextApiHandler = async (
       req.headers['x-vercel-forwarded-for'] || 'undefined',
     ipCity: req.headers['x-vercel-ip-city'] || 'Santos',
     ipCountry: req.headers['x-vercel-ip-country-region'] || 'SP',
-    cookiesConsentVersion: 'undefined',
-    cookiesConsentAccepted: 'undefined',
-    cookiesConsentSave: 'undefined',
+    cookiesConsentVersion: cookiesConsent.version || 'undefined',
+    cookiesConsentAccepted:
+      cookiesConsent.accepted || 'undefined',
+    cookiesConsentSave: cookiesConsent.save || 'undefined',
     createdAtBr: dateNow,
   };
   try {

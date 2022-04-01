@@ -3,9 +3,7 @@ import CookieSettingsModal from 'src/components/Modals/CookieSettings/index';
 import CookiesSnackBox from 'src/components/SnackBox/Cookies/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 import { useState, useEffect } from 'react';
-import { useAppSelector } from 'src/lib/hooks/useRedux';
-import { selectVisit } from 'src/reducers/visit/index';
-import type VisitData from 'src/types/VisitData';
+import { parseCookies, destroyCookie } from 'nookies';
 
 export default function CookieConsent(): JSX.Element {
   /*{{{ StatesDeclatation */
@@ -18,27 +16,25 @@ export default function CookieConsent(): JSX.Element {
     useState(false);
   /*}}} StatedDeclaration */
 
-  /*{{{ Consts and Var Declarations and Types Assigns */
-  const visit: VisitData = useAppSelector(selectVisit);
-  /*}}} Const and Var Declarations */
-
   /*{{{ GetStoredCookieConsentLogic */
   useEffect(() => {
-    const storedCookieConsent = window.localStorage.getItem(
-      'cookies-consent',
-    );
-    const storedCookieConsentObj: {
-      version: string;
-      accepted: string;
-      save: string;
-    } = JSON.parse(storedCookieConsent as string);
-    if (
-      storedCookieConsentObj?.version === COOKIE_CONSENT_VERSION
-    ) {
-      // setCookieSnackBoxOpen('none');
-      return;
+    const storedCookies = parseCookies();
+    const storedCookieConsent = storedCookies.consent;
+    if (storedCookieConsent) {
+      const storedCookieConsentObj: {
+        version: string;
+        accepted: string;
+        save: string;
+      } = JSON.parse(storedCookieConsent);
+      if (
+        storedCookieConsentObj?.version ===
+        COOKIE_CONSENT_VERSION
+      ) {
+        setCookieSnackBoxOpen('none');
+        return;
+      }
     }
-    window.localStorage.removeItem('cookies-consent');
+    destroyCookie(null, 'consent');
   }, []);
   /*}}} GetStoredCookieConsentLogic */
 
