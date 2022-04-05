@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import verifyCode from 'src/lib/chains/verifyCode';
 
-export default async function handler(
+export default async function ConfirmApi(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {

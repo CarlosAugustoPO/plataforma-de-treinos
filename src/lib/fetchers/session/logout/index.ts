@@ -1,7 +1,7 @@
 import { SignOutResponse } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
 
-export default async function logout(options: {
+export default async function logoutSession(options: {
   redirect?: boolean;
   callbackUrl?: string;
 }): Promise<SignOutResponse> {
@@ -9,9 +9,9 @@ export default async function logout(options: {
    * to redirect, pass callbackUrl via params and
    * then call useRouter().push(sair.url)
    *****/
-  const sair: SignOutResponse | any = await signOut({
+  const response: SignOutResponse | any = await signOut({
     redirect: options?.redirect || false,
     callbackUrl: options?.callbackUrl || '/',
   });
-  return sair;
+  return response;
 }

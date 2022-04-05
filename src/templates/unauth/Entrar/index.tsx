@@ -3,20 +3,25 @@ import Form from 'src/components/Form/index';
 import TextButton from 'src/components/TextButton/index';
 import Caption from 'src/components/Caption/index';
 import EmailField from 'src/components/Form/EmailField/index';
-import PasswordField from 'src/components/PasswordField/index';
+import PasswordField from 'src/components/Form/PasswordField/index';
 import SendButton from 'src/components/Form/SendButton/index';
 import Title from 'src/components/Title';
 import Text from 'src/components/Text';
-import MyCard from 'src/components/Card/index';
+import MyCard from 'src/components/MyCard/index';
 import ModalPoliticasDeDados from 'src/components/Modals/PoliticasDeDados/index';
 import ModalTermosPreUser from 'src/components/Modals/TermosPreUser/index';
 import LoginIcon from '@mui/icons-material/LoginRounded';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import login from 'src/lib/fetchers/session/login';
 import { useForm } from 'react-hook-form';
 
-export default function Entrar() {
+export default function EntrarUnauthTemplate() {
   const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    return () => {
+      setSubmitting(false); // This worked for me
+    };
+  }, []);
   const [generalError, setGeneralError] = useState<
     undefined | string
   >(undefined);
@@ -73,7 +78,7 @@ export default function Entrar() {
       </Text>
       <Form
         handleSubmit={handleSubmit}
-        handleSignIn={handleSignIn}
+        handleAction={handleSignIn}
       >
         <EmailField
           errors={errors.email?.type}
@@ -89,26 +94,6 @@ export default function Entrar() {
           setGeneralError={setGeneralError}
           register={register}
         />
-        {generalError && (
-          <Text
-            color="error"
-            align="left"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {generalError}
-          </Text>
-        )}
-        {okResult && (
-          <Text
-            color="success"
-            align="left"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {okResult}
-          </Text>
-        )}
         <SendButton
           sx={{ marginTop: '2%' }}
           enviar="Entrar"
@@ -116,6 +101,31 @@ export default function Entrar() {
           submitting={submitting}
           onClick={handleErrors}
         />
+        {generalError && (
+          <Text
+            mt={1}
+            color="error"
+            align="center"
+            variant="subtitle2"
+            width="100%"
+            fontSize="80%"
+          >
+            {generalError}
+          </Text>
+        )}
+        {okResult && (
+          <Text
+            mt={1}
+            color="success"
+            align="center"
+            variant="subtitle2"
+            width="100%"
+            fontSize="80%"
+          >
+            {okResult}
+          </Text>
+        )}
+
         <Caption mt={3}>
           Ao utilizar nosso produto você está de acordo com os
           nossos{' '}

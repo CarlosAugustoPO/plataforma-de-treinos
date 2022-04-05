@@ -1,14 +1,15 @@
-import userGet from 'src/lib/fetchers/user/get';
-import updateIsVerified from 'src/lib/fetchers/user/update/isVerified';
-import reload from 'src/lib/fetchers/session/reload';
-import getToken from 'src/lib/fetchers/magic-link/get/index';
-import disableMagicLink from 'src/lib/fetchers/magic-link/disable/index';
+import readUser from 'src/lib/fetchers/users/read/index';
+import reloginSession from 'src/lib/fetchers/session/relogin/index';
+import readMagicLink from 'src/lib/fetchers/magic-links/read/index';
+import updateUserIsVerifiedField from 'src/lib/fetchers/users/update/isVerifiedField/index';
+import updateMakicLinkIsDisabledField from 'src/lib/fetchers/magic-links/update/isDisabledField/index';
 
 type Props = {
   verificationCode: string;
   email: string;
   hashFragment: string;
   magicToken?: string;
+  fromLink?: boolean;
 };
 
 export default async function verifyCode({
@@ -16,8 +17,9 @@ export default async function verifyCode({
   email,
   hashFragment,
   magicToken,
+  fromLink,
 }: Props) {
-  const user = await userGet({
+  const user = await readUser({
     email: email,
     select: { verification_code: true },
   });
@@ -27,19 +29,21 @@ export default async function verifyCode({
     };
   }
 
-  const magicTokenInDB = await getToken(email);
-  if (magicTokenInDB.error) {
-    return {
-      error: magicTokenInDB.error,
-    };
-  }
-  const mTokenInDB = magicTokenInDB.data?.magic_token;
-  if (mTokenInDB != magicToken) {
-    return {
-      error: 'Falha em verificar email, magic token inválido',
-    };
-  }
+  if (fromLink) {
+    const magicTokenInDB = await readMagicLink(email);
+    if (magicTokenInDB.error) {
+      return {
+        error: magicTokenInDB.error,
+      };
+    }
 
+    const mTokenInDB = magicTokenInDB.data?.magic_token;
+    if (mTokenInDB != magicToken) {
+      return {
+        error: 'Falha em verificar email, magic token inválido',
+      };
+    }
+  }
   const verificationCodeInDB = user.data?.verification_code;
   if (verificationCode != verificationCodeInDB) {
     return {
@@ -48,28 +52,31 @@ export default async function verifyCode({
     };
   }
 
-  const updateIsVerifiedResult = await updateIsVerified(email);
+  const updateIsVerifiedResult = await updateUserIsVerifiedField(
+    email,
+  );
   if (updateIsVerifiedResult.error) {
     return {
       error: updateIsVerifiedResult.error,
     };
   }
 
-  const disableMagicLinkResult = await disableMagicLink(email);
+  const disableMagicLinkResult =
+    await updateMakicLinkIsDisabledField(email);
   if (disableMagicLinkResult.error) {
     return {
       error: disableMagicLinkResult.error,
     };
   }
-  const reloadSession = await reload({
+  const reloginSessionResult = await reloginSession({
     email,
     password: `${hashFragment}`,
     redirect: false,
   });
 
-  if (reloadSession?.error) {
+  if (reloginSessionResult?.error) {
     return {
-      error: reloadSession.error,
+      error: reloginSessionResult.error,
     };
   }
 

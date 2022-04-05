@@ -20,6 +20,7 @@ model users {
     password String
     fragment_hash_password String
     created_at_br String
+    updated_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
@@ -29,6 +30,7 @@ model pre_users {
     name String
     email String @unique
     created_at_br String
+    updated_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
@@ -50,6 +52,7 @@ model visits {
     cookies_consent_save String
     logged_as String
     created_at_br String
+    updated_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
@@ -60,6 +63,7 @@ model magic_links {
     magic_token String
     is_disabled DateTime?
     created_at_br String
+    updated_at_br String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import getUser from 'src/lib/models/users/get/index';
+import getUserModel from 'src/lib/models/users/get/index';
 import { compare } from 'bcrypt';
 
-export default async function signIn(
+export default async function signInApi(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
@@ -21,7 +21,7 @@ export default async function signIn(
     });
   }
 
-  const user: any = await getUser({ email });
+  const user: any = await getUserModel({ email });
   if (user.error) {
     return res.status(401).json({ error: user.error });
   }

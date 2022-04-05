@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from 'src/templates/Painel/index.module.css';
-import LoadingTemplate from 'src/templates/Loading/index';
+import LoadingTemplate from 'src/templates/commons/Loading/index';
 import { useRouter } from 'next/router';
 import useVerification from 'src/lib/hooks/swr/useVerification';
 import useStatus from 'src/lib/hooks/useStatus';

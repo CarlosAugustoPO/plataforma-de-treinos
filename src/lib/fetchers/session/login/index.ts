@@ -1,27 +1,27 @@
 import { signIn } from 'next-auth/react';
 import type { SignInResponse } from 'next-auth/react';
 
-export default async function login(userCredentials: {
+export default async function loginSession(userCredentials: {
   email: string;
   password: string;
   redirect: boolean;
   callBackUrl?: string;
 }): Promise<SignInResponse> {
-  const signInResult: SignInResponse | any = await signIn(
+  const response: SignInResponse | any = await signIn(
     'username-login',
     {
       ...userCredentials,
     },
   );
 
-  if (signInResult?.error) {
+  if (response?.error) {
     return {
       error:
         'Falha em realizar login verifique suas credenciais e tente novamente',
-      status: signInResult.status,
-      url: signInResult.url,
-      ok: signInResult.ok,
+      status: response.status,
+      url: response.url,
+      ok: response.ok,
     };
   }
-  return signInResult;
+  return response;
 }

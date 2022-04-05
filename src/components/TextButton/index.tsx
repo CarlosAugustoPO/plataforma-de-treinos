@@ -6,7 +6,12 @@ import Link from 'next/link';
 type PlusOptions = {
   component?: React.ElementType;
   cta: string;
-  linkColor?: 'cyan' | 'default' | 'modal' | 'pinkLinkInt';
+  linkColor?:
+    | 'disabled'
+    | 'cyan'
+    | 'default'
+    | 'modal'
+    | 'pinkLinkInt';
   href?: any;
   target?: string;
   rel?: string;
@@ -19,7 +24,7 @@ type TypographyPropsPlusOptions = TypographyProps & PlusOptions;
  * variables
  */
 
-export default function SnackBoxLink({
+export default function TextButton({
   variant = 'caption',
   sx = {},
   cta = 'Abrir modal',
@@ -35,6 +40,9 @@ export default function SnackBoxLink({
       sx={{ cursor: 'pointer', ...sx }}
       {...props}
     >
+      {linkColor === 'disabled' && (
+        <span className={styles.disabled}>{cta}</span>
+      )}
       {linkColor === 'cyan' && (
         <a
           href={href}

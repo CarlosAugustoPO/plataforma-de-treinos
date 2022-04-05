@@ -4,11 +4,11 @@ import DialogContent from '@mui/material/DialogContent';
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
-} from 'src/components/vendor/mui/Modal/index';
+} from 'src/components/Modals/index';
 import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
 
-export default function Termos(props: {
+export default function TermosPreUserModal(props: {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {

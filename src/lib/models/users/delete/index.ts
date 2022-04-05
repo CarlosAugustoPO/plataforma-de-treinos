@@ -1,7 +1,7 @@
 import prisma from 'src/lib/vendor/prisma/index';
 import type Ok from 'src/types/Ok';
 
-async function deleteUser(queryParams: {
+async function deleteUserModel(queryParams: {
   email: string;
 }): Promise<Ok> {
   try {
@@ -17,4 +17,4 @@ async function deleteUser(queryParams: {
   }
 }
 
-export default deleteUser;
+export default deleteUserModel;

@@ -5,6 +5,7 @@ import useSettings from 'src/lib/hooks/useSettings';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { THEMES } from 'src/lib/utils/constants';
+
 export default function DarkModeToggle(): JSX.Element | null {
   const [mounted, setMounted] = useState(false);
   // const { theme, setTheme } = useTheme();

@@ -1,0 +1,25 @@
+.errorText {
+  font-size: 75%;
+  text-align: left;
+  color: var(--fakedream-red);
+  float: left;
+}
+
+.sucessText {
+  font-size: 75%;
+  text-align: left;
+  margin: auto;
+  color: var(--fakedream-green);
+  float: left;
+}
+
+.bottomLinks {
+  color: var(--bottom-links);
+  font-size: 75%;
+}
+.timerSpam {
+  margin-left: 0.3em;
+}
+.hidden {
+  display: none;
+}

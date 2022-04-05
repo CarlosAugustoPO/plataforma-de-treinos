@@ -4,25 +4,26 @@ import DialogContent from '@mui/material/DialogContent';
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
-} from 'src/components/vendor/mui/Modal/index';
+} from 'src/components/Modals/index';
 import type { Dispatch, SetStateAction } from 'react';
-
 import Text from 'src/components/Text/index';
-export default function Termos(props: {
+
+export default function PoliticasDeDadosModal(props: {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
   return (
     <BootstrapDialog
       onClose={() => props.setOpen(false)}
-      aria-labelledby="politicas-de-dados"
+      aria-labelledby="termos-pre-user"
       open={props.isOpen}
     >
       <BootstrapDialogTitle
-        id="politicas-de-dados"
+        id="termos-pre-user"
         color="primary"
         sx={{
           fontFamily: 'Carter One',
+          backgroundColor: 'backgroundModalBar.main',
           color: 'modalTitle.main',
         }}
       >
@@ -32,9 +33,7 @@ export default function Termos(props: {
         <Text
           gutterBottom
           color="primary"
-          sx={{
-            fontWeight: 600,
-          }}
+          sx={{ fontWeight: 600 }}
         >
           Última atualização: 27/03/2020
         </Text>
@@ -58,6 +57,7 @@ export default function Termos(props: {
       </DialogContent>
       <DialogActions
         sx={{
+          backgroundColor: 'backgroundModalBar.main',
           display: 'flex',
           justifyContent: 'space-between',
         }}

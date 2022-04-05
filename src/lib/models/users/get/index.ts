@@ -2,7 +2,7 @@ import prisma from 'src/lib/vendor/prisma/index';
 import formatDate from 'src/lib/utils/formatDate';
 import type UserData from 'src/types/UserData';
 
-async function getUser(queryParams: {
+async function getUserModel(queryParams: {
   email: string;
   select?: object;
 }): Promise<UserData> {
@@ -26,7 +26,7 @@ async function getUser(queryParams: {
       return user;
     } catch (e: any) {
       console.log(
-        'In getUser whitout fields: ',
+        'In getUsers whitout fields: ',
         e.message,
         e.code,
       );
@@ -55,4 +55,4 @@ async function getUser(queryParams: {
     return { error: e.message };
   }
 }
-export default getUser;
+export default getUserModel;

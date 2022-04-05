@@ -49,3 +49,17 @@
 .pinkLinkInt:hover {
   color: var(--text-button-pinkLinkInt-hover);
 }
+
+.disabled {
+  color: var(--text-button-disabled);
+  cursor: initial;
+}
+.disabled:active {
+  color: var(--text-button-disabled-active);
+}
+.disabled:visited {
+  color: var(--text-button-disabled-visited);
+}
+.disabled:hover {
+  color: var(--text-button-disabled-hover);
+}

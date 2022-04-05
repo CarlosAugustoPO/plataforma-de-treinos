@@ -1,9 +1,9 @@
-import type MagicTokenData from 'src/types/MagicTokenData';
+import type MagicLinkData from 'src/types/MagicLinksData';
 import prisma from 'src/lib/vendor/prisma/index';
 
-async function getMToken(queryParams: {
+async function getMagicLinkModel(queryParams: {
   email: string;
-}): Promise<MagicTokenData> {
+}): Promise<MagicLinkData> {
   try {
     const magicToken = () => {};
     magicToken.data = await prisma.magic_links.findUnique({
@@ -37,9 +37,9 @@ async function getMToken(queryParams: {
     magicToken.ok = 'magic token localizado com sucesso';
     return magicToken;
   } catch (e: any) {
-    console.log('In getMagicToken: ', e.message, e.code);
+    console.log('In getMagicLinkModel: ', e.message, e.code);
     return { error: e.message };
   }
 }
 
-export default getMToken;
+export default getMagicLinkModel;

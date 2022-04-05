@@ -1,6 +1,6 @@
-import sendMail from 'src/lib/fetchers/mail/sender';
-import getUser from 'src/lib/fetchers/user/get';
-import getMagicToken from 'src/lib/fetchers/magic-link/get/';
+import sendMail from 'src/lib/fetchers/mail/send/index';
+import readUser from 'src/lib/fetchers/users/read/index';
+import readMagicLink from 'src/lib/fetchers/magic-links/read/index';
 import capitalize from 'src/lib/utils/tratarNome';
 import Ok from 'src/types/Ok';
 
@@ -9,14 +9,14 @@ export async function sendVerificationMail(
 ): Promise<Ok> {
   const emailTratado = email.toLowerCase();
 
-  const magicToken = await getMagicToken(emailTratado);
+  const magicToken = await readMagicLink(emailTratado);
   if (magicToken.error) {
     return {
       error: magicToken.error,
     };
   }
 
-  const user = await getUser({
+  const user = await readUser({
     email: emailTratado,
     select: {
       verification_code: true,
@@ -37,7 +37,7 @@ export async function sendVerificationMail(
   const firstnameTratado = capitalize(fname as string);
 
   const url = process.env.NEXT_PUBLIC_URL;
-  const confirmationUrl = `${url}/confirm/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.data?.magic_token}`;
+  const confirmationUrl = `${url}/confirmar/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.data?.magic_token}`;
 
   const sender =
     'Plataforma de Treinos <cadastro@plataformadetreinos.com.br>';

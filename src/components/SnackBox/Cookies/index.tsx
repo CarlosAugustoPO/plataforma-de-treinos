@@ -1,4 +1,4 @@
-import fetcherUpdateVisitCookiesConsentFields from 'src/lib/fetcherUpdateVisitCookiesConsent/index';
+import updateVisitCookiesConsentFields from 'src/lib/fetchers/visits/update/cookiesConsentFields/index';
 import Button from '@mui/material/Button';
 import SnackBox from 'src/components/SnackBox/index';
 import Caption from 'src/components/Caption/index';
@@ -34,7 +34,7 @@ export default function CookiesSnackBox(props: {
       { maxAge: 86400 * 365, path: '/' },
     );
 
-    fetcherUpdateVisitCookiesConsentFields({
+    updateVisitCookiesConsentFields({
       cookiesConsentAccepted: timeNow,
       cookiesConsentVersion: COOKIE_CONSENT_VERSION,
       cookiesConsentSave: 'essentials,owners,analytics',

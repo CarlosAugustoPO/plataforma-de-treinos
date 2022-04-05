@@ -1,15 +1,15 @@
 //shared components
 import MyHead from 'src/components/MyHead/index';
 //General Pages templates
-import LoadingTemplate from 'src/templates/Loading';
+import LoadingTemplate from 'src/templates/commons/Loading';
 //Dynamic Pages templates
 import dynamic from 'next/dynamic';
 const IndexAuthTemplate = dynamic(
-  () => import('src/templates/Index'),
+  () => import('src/templates/auth/Index'),
   { loading: () => <LoadingTemplate /> },
 );
 const IndexUnauthTemplate = dynamic(
-  () => import('src/templates/Index'),
+  () => import('src/templates/unauth/Index'),
   { loading: () => <LoadingTemplate /> },
 );
 //hooks
@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 //fetcher
-import createVisit from 'src/lib/fetchers/visit/create/index';
+import createVisit from 'src/lib/fetchers/visits/create/index';
 //reducers
 import { add } from 'src/reducers/visit/index';
 //types

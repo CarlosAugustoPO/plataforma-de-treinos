@@ -1,20 +1,55 @@
-import { useRouter } from 'next/router';
+//shared components
+import MyHead from 'src/components/MyHead/index';
+//General Pages templates
+import LoadingTemplate from 'src/templates/commons/Loading';
+//Dynamic Pages templates
+import dynamic from 'next/dynamic';
+const CadastrarUnauthTemplate = dynamic(
+  () => import('src/templates/unauth/Cadastrar'),
+  { loading: () => <LoadingTemplate /> },
+);
+//hooks
 import useStatus from 'src/lib/hooks/useStatus';
-import LoadingTemplate from 'src/templates/Loading/index';
-import CadastrarTemplate from 'src/templates/Cadastrar/index';
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+//fetcher
+import createVisit from 'src/lib/fetchers/visits/create/index';
+//reducers
+import { add } from 'src/reducers/visit/index';
+//types
+import type VisitData from 'src/types/VisitData';
 
 export default function Cadastrar() {
-  const router = useRouter();
   const status = useStatus();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const visitedPagePath = router.pathname;
+  const [_visit, setVisit] = useState<VisitData>();
 
-  if (status === 'loading') {
-    return <LoadingTemplate />;
-  }
+  useEffect(() => {
+    createVisit(visitedPagePath).then((visitResult) => {
+      if (visitResult) {
+        dispatch(add(visitResult)), setVisit(visitResult);
+      }
+    });
+  }, [dispatch, visitedPagePath]);
+
   if (status === 'authenticated') {
     router.push('/painel');
-    return <LoadingTemplate />;
+    return (
+      <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+    );
   }
-  if (status === 'unauthenticated') {
-    return <CadastrarTemplate />;
-  }
+
+  return (
+    <MyHead>
+      {status === 'loading' && (
+        <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+      )}
+      {status === 'unauthenticated' && (
+        <CadastrarUnauthTemplate />
+      )}
+    </MyHead>
+  );
 }

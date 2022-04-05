@@ -1,7 +1,7 @@
 //shared components
 import MyHead from 'src/components/MyHead/index';
 //General Pages templates
-import LoadingTemplate from 'src/templates/Loading';
+import LoadingTemplate from 'src/templates/commons/Loading';
 //Dynamic Pages templates
 import dynamic from 'next/dynamic';
 const EntrarUnauthTemplate = dynamic(
@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 //fetcher
-import createVisit from 'src/lib/fetchers/visit/create/index';
+import createVisit from 'src/lib/fetchers/visits/create/index';
 //reducers
 import { add } from 'src/reducers/visit/index';
 //types
@@ -37,6 +37,9 @@ export default function Entrar() {
 
   if (status === 'authenticated') {
     router.push('/painel');
+    return (
+      <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+    );
   }
 
   return (

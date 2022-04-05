@@ -5,7 +5,7 @@ import EssentialsCookies from 'src/components/cookiesinuse/Essentials/index';
 // }}}
 /*{{{ UtilsImport */
 import formatDate from 'src/lib/utils/formatDate';
-import fetcherUpdateVisitCookiesConsentFields from 'src/lib/fetcherUpdateVisitCookiesConsent/index';
+import updateVisitCookiesConsentFields from 'src/lib/fetchers/visits/update/cookiesConsentFields/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 /*}}} UtilsImport  */
 // MuiImports {{{
@@ -24,7 +24,7 @@ import DialogContent from '@mui/material/DialogContent';
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
-} from 'src/components/vendor/mui/Modal/index';
+} from 'src/components/Modals/index';
 // }}}
 import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
@@ -86,7 +86,7 @@ export default function CookieSettingsModal(props: {
           "${timeNow}", "save": "essentials,owners"}`,
         { maxAge: 86400 * 365, path: '/' },
       );
-      fetcherUpdateVisitCookiesConsentFields({
+      updateVisitCookiesConsentFields({
         cookiesConsentAccepted: timeNow,
         cookiesConsentVersion: COOKIE_CONSENT_VERSION,
         cookiesConsentSave: 'essentials,owners',
@@ -105,7 +105,7 @@ export default function CookieSettingsModal(props: {
           "${timeNow}", "save": "essentials,owners,analytics"}`,
         { maxAge: 86400 * 365, path: '/' },
       );
-      fetcherUpdateVisitCookiesConsentFields({
+      updateVisitCookiesConsentFields({
         cookiesConsentAccepted: timeNow,
         cookiesConsentVersion: COOKIE_CONSENT_VERSION,
         cookiesConsentSave: 'essentials,owners,analytics',
@@ -118,7 +118,7 @@ export default function CookieSettingsModal(props: {
       cookieSettings.analytics === 'rejected'
     ) {
       props.setCookieSettingsModalOpen(false);
-      fetcherUpdateVisitCookiesConsentFields({
+      updateVisitCookiesConsentFields({
         cookiesConsentAccepted: timeNow,
         cookiesConsentVersion: COOKIE_CONSENT_VERSION,
         cookiesConsentSave: 'essentials',
@@ -131,7 +131,7 @@ export default function CookieSettingsModal(props: {
       cookieSettings.analytics === 'accepted'
     ) {
       props.setCookieSettingsModalOpen(false);
-      fetcherUpdateVisitCookiesConsentFields({
+      updateVisitCookiesConsentFields({
         cookiesConsentAccepted: timeNow,
         cookiesConsentVersion: COOKIE_CONSENT_VERSION,
         cookiesConsentSave: 'essentials,analytics',

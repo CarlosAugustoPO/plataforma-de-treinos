@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import verifyCode from 'src/lib/chains/verifyCode';
-import LoadingTemplate from 'src/templates/Loading';
+import LoadingTemplate from 'src/templates/commons/Loading';
 
-export default function Confirm() {
+export default function Confirmar() {
   const router = useRouter();
   const [confirmStatus, setConfirmStatus] =
     useState('Carregando...');
@@ -24,6 +24,7 @@ export default function Confirm() {
       hashFragment,
       email,
       magicToken,
+      fromLink: true,
     }).then((result) => {
       if (result?.error) {
         console.error(result.error);
