@@ -27,7 +27,7 @@ export default function TermosPreUserModal(props: {
           color: 'modalTitle.main',
         }}
       >
-        Politicas de Dados da Plataforma de Treinos
+        Termos de pré usuário da Plataforma de Treinos
       </BootstrapDialogTitle>
       <DialogContent dividers>
         <Text
