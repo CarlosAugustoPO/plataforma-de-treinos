@@ -16,11 +16,10 @@ const postUserApi: NextApiHandler = async (req, res) => {
   const digestPasswordResult = await digestPassword(password);
   const verificationCode =
     Math.floor(Math.random() * 87539) + 13251;
-  const digestedPassword =
-    digestPasswordResult?.return as string;
-  let fragmentHashPassword = digestedPassword?.slice(-25);
-  fragmentHashPassword = fragmentHashPassword?.replaceAll(
-    '/',
+  const digestedPassword = digestPasswordResult.return as string;
+  let fragmentHashPassword = digestedPassword.slice(-25);
+  fragmentHashPassword = fragmentHashPassword.replace(
+    /\//g,
     '-',
   );
   let createdAtBr = formatDate(new Date());
