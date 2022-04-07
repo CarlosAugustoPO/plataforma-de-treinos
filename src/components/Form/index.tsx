@@ -12,11 +12,16 @@ export default function Form(props: {
 }) {
   return (
     <form
-      style={{ maxWidth: '600px', width: '90%', ...props.style }}
+      style={{
+        maxWidth: '600px',
+        width: '100%',
+        margin: 'auto',
+        ...props.style,
+      }}
       noValidate
       onSubmit={props.handleSubmit(props.handleAction)}
     >
-      <Grid container rowSpacing={3} p={2}>
+      <Grid container rowSpacing={3} p={1}>
         {props.children}
       </Grid>
     </form>

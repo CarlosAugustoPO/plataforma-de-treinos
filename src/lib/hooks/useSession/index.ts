@@ -7,7 +7,7 @@ export default function useSession(required?: 'required') {
     const { data: session } = NextAuthSession({
       required: true,
       onUnauthenticated() {
-        router.push('/');
+        router.push('/entrar');
         return null;
       },
     });

@@ -13,8 +13,12 @@ export default function EmailFieldWithConfirm(props: {
   emailExistsError: undefined | string;
   clearErrors: (id: string) => void;
   register: (id: string, validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
+  lastFieldError: string;
+  fieldLabelEmail?: string;
+  fieldLabelEmailConfirm?: string;
   getValues: any;
   setEmailExistsError: Dispatch<
     SetStateAction<string | undefined>
@@ -47,7 +51,7 @@ export default function EmailFieldWithConfirm(props: {
               ? true
               : false
           }
-          label="E-mail"
+          label={props.fieldLabelEmail || 'E-mail'}
           variant="standard"
           autoComplete="email"
           onInput={() => {
@@ -59,13 +63,11 @@ export default function EmailFieldWithConfirm(props: {
           onKeyUp={(e) => changeWhiteSpace(e)}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
-            props.setGeneralError('');
+            props.setLastFieldError('');
             props.setEmailExistsError('');
-            props.setOkResult('');
           }}
           autoFocus={false}
           sx={{ ...props.sx }}
@@ -149,7 +151,9 @@ export default function EmailFieldWithConfirm(props: {
               ? true
               : false
           }
-          label="Confirme seu e-mail"
+          label={
+            props.fieldLabelEmailConfirm || 'Confirme seu e-mail'
+          }
           onPaste={preventEmailPaste}
           variant="standard"
           onInput={() => {
@@ -161,13 +165,11 @@ export default function EmailFieldWithConfirm(props: {
           onKeyUp={(e) => changeWhiteSpace(e)}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
             props.setEmailExistsError('');
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           autoFocus={false}
           sx={{ ...props.sx }}

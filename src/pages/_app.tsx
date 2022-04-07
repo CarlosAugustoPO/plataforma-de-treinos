@@ -15,6 +15,7 @@ import 'src/styles/nprogress.css';
 import 'src/styles/globals.css';
 import store from 'src/store/index';
 import { Provider } from 'react-redux';
+import MyAlertProvider from 'src/components/MyAlertProvider/index';
 
 type AppPropsWithCache = AppProps & {
   Component: NextPage;
@@ -41,8 +42,10 @@ export default function MyApp({
                 {/* MyHead as layout component*/}
                 <LoadingBar>
                   <MyHeader>
-                    {/* Main as main wraper*/}
-                    <Component {...pageProps} />
+                    <MyAlertProvider>
+                      {/* Main as main wraper*/}
+                      <Component {...pageProps} />
+                    </MyAlertProvider>
                   </MyHeader>
                 </LoadingBar>
               </MyHead>

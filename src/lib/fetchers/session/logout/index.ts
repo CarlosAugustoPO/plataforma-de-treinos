@@ -11,7 +11,7 @@ export default async function logoutSession(options: {
    *****/
   const response: SignOutResponse | any = await signOut({
     redirect: options?.redirect || false,
-    callbackUrl: options?.callbackUrl || '/',
+    callbackUrl: options?.callbackUrl || '/entrar',
   });
   return response;
 }

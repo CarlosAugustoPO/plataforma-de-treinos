@@ -30,6 +30,10 @@ export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogActions-root': {
     padding: theme.spacing(1),
   },
+  '& .MuiDialogTitle-root': {
+    fontSize: '110%',
+    padding: '3%',
+  },
 }));
 
 export const BootstrapDialogTitle = (

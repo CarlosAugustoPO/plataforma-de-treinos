@@ -7,14 +7,30 @@ import useVerification from 'src/lib/hooks/swr/useVerification';
 import useStatus from 'src/lib/hooks/useStatus';
 import useSession from 'src/lib/hooks/useSession';
 import logout from 'src/lib/fetchers/session/logout';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+import { putAlert } from 'src/reducers/alert/index';
 
 export default function Painel() {
   const router = useRouter();
   const session = useSession();
-  function handleSignOut() {
-    logout({ redirect: false, callbackUrl: '/' }).then((e) =>
-      router.push(e.url),
+  const dispatch = useAppDispatch();
+
+  async function handleSignOut() {
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Saindo da área de usuário...',
+          severity: 'warning',
+          duration: 3000,
+          show: true,
+        },
+      }),
     );
+    const result = await logout({
+      redirect: false,
+      callbackUrl: '/entrar',
+    });
+    router.push(result.url);
   }
   const status = useStatus();
   const email = session?.user?.email;
@@ -24,11 +40,12 @@ export default function Painel() {
     return <LoadingTemplate />;
   }
 
-  if (!isVerified.ok) {
-    router.push('/confirmar');
-    return null;
+  if (status === 'authenticated') {
+    if (!isVerified.ok) {
+      router.push('/confirmar');
+      return null;
+    }
   }
-
   return (
     <div className={styles.container}>
       <main>

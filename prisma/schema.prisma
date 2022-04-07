@@ -25,16 +25,6 @@ model users {
     updated_at DateTime @updatedAt
 }
 
-model pre_users {
-    id String @id @default(uuid())
-    name String
-    email String @unique
-    created_at_br String
-    updated_at_br String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
-}
-
 model visits {
     visit_id String @id @default(uuid())
     visited_url String

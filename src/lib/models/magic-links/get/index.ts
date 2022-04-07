@@ -26,15 +26,14 @@ async function getMagicLinkModel(queryParams: {
       return { error: 'Link mágico expirado' };
     }
     if (!mToken) {
-      return { error: 'Falha em localizar magic token' };
+      return { error: 'Falha em localizar token' };
     }
     if (isDisabled != null) {
       return {
-        error:
-          'Esse link já foi utilizado antes e só pode ser utilizado uma vez',
+        error: 'Esse link não é mais válido',
       };
     }
-    magicToken.ok = 'magic token localizado com sucesso';
+    magicToken.ok = 'Token localizado com sucesso';
     return magicToken;
   } catch (e: any) {
     console.log('In getMagicLinkModel: ', e.message, e.code);

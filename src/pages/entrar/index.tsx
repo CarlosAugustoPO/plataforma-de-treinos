@@ -13,10 +13,10 @@ import useStatus from 'src/lib/hooks/useStatus';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
-//fetcher
-import createVisit from 'src/lib/fetchers/visits/create/index';
 //reducers
 import { add } from 'src/reducers/visit/index';
+//fetcher
+import createVisit from 'src/lib/fetchers/visits/create/index';
 //types
 import type VisitData from 'src/types/VisitData';
 

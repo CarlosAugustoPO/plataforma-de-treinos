@@ -7,8 +7,10 @@ export default function LastNameField(props: {
   errors: string;
   clearErrors: (lastName: 'lastName') => void;
   register: (lastName: 'lastName', validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
+  lastFieldError: string;
 }) {
   return (
     <Grid item xs={12}>
@@ -22,13 +24,11 @@ export default function LastNameField(props: {
           variant="standard"
           error={props.errors ? true : false}
           onKeyDown={() => {
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
             props.clearErrors('lastName');
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           {...props.register('lastName', {
             required: true,

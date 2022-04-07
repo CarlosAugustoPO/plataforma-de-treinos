@@ -41,10 +41,11 @@ const postVisitApi: NextApiHandler = async (
       req.headers['x-vercel-forwarded-for'] || 'undefined',
     ipCity: req.headers['x-vercel-ip-city'] || 'Santos',
     ipCountry: req.headers['x-vercel-ip-country-region'] || 'SP',
-    cookiesConsentVersion: cookiesConsent.version || 'undefined',
+    cookiesConsentVersion:
+      cookiesConsent?.version || 'undefined',
     cookiesConsentAccepted:
-      cookiesConsent.accepted || 'undefined',
-    cookiesConsentSave: cookiesConsent.save || 'undefined',
+      cookiesConsent?.accepted || 'undefined',
+    cookiesConsentSave: cookiesConsent?.save || 'undefined',
     loggedAs: session?.user.email || 'guest',
     createdAtBr: dateNow,
   };

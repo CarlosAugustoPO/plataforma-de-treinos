@@ -20,7 +20,7 @@ import { add } from 'src/reducers/visit/index';
 //types
 import type VisitData from 'src/types/VisitData';
 import useSession from 'src/lib/hooks/useSession';
-import useVerification from 'src/lib/hooks/swr/useVerification';
+import useVerification from 'src/lib/hooks/swr/useVerification/index';
 
 export default function Confirmar() {
   const status = useStatus();
@@ -40,15 +40,17 @@ export default function Confirmar() {
     });
   }, [dispatch, visitedPagePath]);
 
-  if (isVerified.ok) {
-    router.push('/painel');
-    return (
-      <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
-    );
+  if (status === 'authenticated') {
+    if (isVerified.ok) {
+      router.push('/painel');
+      return (
+        <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+      );
+    }
   }
 
   if (status === 'unauthenticated') {
-    router.push('/');
+    router.push('/entrar');
     return (
       <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
     );

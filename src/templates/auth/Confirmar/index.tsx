@@ -1,5 +1,5 @@
 import updateMagicToken from 'src/lib/fetchers/magic-links/update/magicTokenFields/index';
-// import updateVerificationCode from 'src/lib/fetchers/users/update/verificationCodeField/index';
+import updateVerificationCode from 'src/lib/fetchers/users/update/verificationCodeField/index';
 import { sendVerificationMail } from 'src/lib/chains/sendVerificationMail/index';
 import TimerTextButton from 'src/components/TimerTextButton/index';
 import { useRouter } from 'next/router';
@@ -17,11 +17,16 @@ import { useForm } from 'react-hook-form';
 import logout from 'src/lib/fetchers/session/logout';
 import verifyCode from 'src/lib/chains/verifyCode';
 import type Session from 'src/types/Session';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+import { putAlert } from 'src/reducers/alert/index';
+import ChangeEmailModal from 'src/components/Modals/ChangeEmail/index';
 
 export default function ConfirmarAuthTemplate(props: {
   session: Session;
 }) {
   const [submitting, setSubmitting] = useState(false);
+  const [isChangeEmailModalOpen, setChangeEmailModalOpen] =
+    useState(false);
 
   useEffect(() => {
     return () => {
@@ -29,12 +34,9 @@ export default function ConfirmarAuthTemplate(props: {
     };
   }, []);
 
-  const [generalError, setGeneralError] = useState<
+  const [lastFieldError, setLastFieldError] = useState<
     undefined | string
   >(undefined);
-  const [okResult, setOkResult] = useState<undefined | string>(
-    undefined,
-  );
   const {
     register,
     clearErrors,
@@ -42,15 +44,36 @@ export default function ConfirmarAuthTemplate(props: {
     formState: { errors },
   } = useForm();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
+  const openChangeEmailModal = () => {
+    setChangeEmailModalOpen(true);
+  };
+  const handleLogout = async () => {
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Saindo da área de usuário...',
+          severity: 'warning',
+          duration: 3000,
+          show: true,
+        },
+      }),
+    );
+    const result = await logout({
+      redirect: false,
+      callbackUrl: '/entrar',
+    });
+    router.push(result.url);
+  };
   function handleErrors() {
-    setGeneralError('');
     clearErrors();
   }
 
   async function handleConfirm(data: any) {
     setSubmitting(true);
     const verificationCode = data.verificationCode;
+
     const email = props.session?.user?.email as string;
     const hashFragment = props.session?.user
       ?.fragment_hash_password as string;
@@ -61,12 +84,21 @@ export default function ConfirmarAuthTemplate(props: {
       email,
     });
     if (verifyCodeResult.error) {
-      setGeneralError(verifyCodeResult.error.toString());
+      setLastFieldError(verifyCodeResult.error.toString());
       setSubmitting(false); //cause non-op error, cause try change when as unmouunt cause redirect, put this on useeFfect
       return;
     }
 
-    setOkResult(verifyCodeResult.ok);
+    dispatch(
+      putAlert({
+        content: {
+          message: verifyCodeResult.ok as string,
+          severity: 'success',
+          duration: 6000,
+          show: true,
+        },
+      }),
+    );
     setSubmitting(false);
     return;
   }
@@ -75,29 +107,43 @@ export default function ConfirmarAuthTemplate(props: {
     handleErrors();
     const email = props.session?.user?.email as string;
 
-    // const updateVerificationCodeResult =
-    //   await updateVerificationCode(email);
-    // if (updateVerificationCodeResult.error) {
-    //   setGeneralError(
-    //     'Falha em gerar novo código de verificação',
-    //   );
-    //   return;
-    // }
+    const updateVerificationCodeResult =
+      await updateVerificationCode(email);
 
+    if (updateVerificationCodeResult.error) {
+      setLastFieldError(
+        'Falha em gerar novo código de verificação, tente novamente mais tarde',
+      );
+      return;
+    }
     const updateMagicTokenResult = await updateMagicToken(email);
     if (updateMagicTokenResult.error) {
-      setGeneralError('Falha em gerar novo link mágico');
+      setLastFieldError(
+        'Falha em gerar novo link mágico, tente novamente mais tarde',
+      );
       return;
     }
 
-    // const updateMagicTokenResult;
     const sendVerificationMailResult =
       await sendVerificationMail(email);
+
     if (sendVerificationMailResult.error) {
-      setGeneralError('Falha em reenviar código');
+      setLastFieldError(
+        'Falha em reenviar código de verificação, tente novamente mais tarde',
+      );
       return;
     }
-    setOkResult('Código enviado com sucesso');
+
+    dispatch(
+      putAlert({
+        content: {
+          message: `Código reenviado com sucesso para ${email}`,
+          severity: 'success',
+          duration: 6000,
+          show: true,
+        },
+      }),
+    );
     return;
   }
 
@@ -113,178 +159,68 @@ export default function ConfirmarAuthTemplate(props: {
         Digite o número de 5 dígitos enviado ao email{' '}
         {props.session?.user?.email}
       </Text>
-      <Form
-        handleSubmit={handleSubmit}
-        handleAction={handleConfirm}
-      >
-        <VerificationCodeField
-          errors={errors.verificationCode?.type}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-        {generalError && (
-          <Text
-            color="error.main"
-            align="left"
-            width="100%"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {generalError}
-          </Text>
-        )}
-        {okResult && (
-          <Text
-            color="success.main"
-            align="left"
-            width="100%"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {okResult}
-          </Text>
-        )}
-        <SendButton
-          sx={{ marginTop: '2%' }}
-          enviar="Verificar"
-          enviando="Verificando"
-          submitting={submitting}
-          onClick={handleErrors}
-        />
-      </Form>
+      <Grid style={{ width: '90%' }}>
+        <Form
+          handleSubmit={handleSubmit}
+          handleAction={handleConfirm}
+        >
+          <VerificationCodeField
+            errors={errors.verificationCode?.type}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
+          />
+          {lastFieldError && (
+            <Text
+              color="error.main"
+              align="left"
+              width="100%"
+              variant="subtitle2"
+              fontSize="80%"
+            >
+              {lastFieldError}
+            </Text>
+          )}
+          <SendButton
+            sx={{ marginTop: '2%' }}
+            enviar="Verificar"
+            enviando="Verificando"
+            submitting={submitting}
+            onClick={handleErrors}
+          />
+        </Form>
+      </Grid>
       <Grid container justifyContent="center" spacing={1}>
         <Grid item xs={12}>
           <TimerTextButton
             onClick={handleResendVerificationEmail}
             cta={`Reenviar email de confirmação`}
             initialTime={45000}
+            fontSize="90%"
           />
         </Grid>
         <Grid item xs={12}>
           <TextButton
-            linkColor="pinkLinkInt"
-            id="logoutButton"
+            linkColor="pinkLinkWithoutRouter"
             sx={{ fontSize: '90%' }}
-            onClick={() =>
-              logout({
-                redirect: false,
-                callbackUrl: '/entrar',
-              }).then((result) => router.push(result.url))
-            }
+            onClick={openChangeEmailModal}
+            cta={`Corrigir endereço de e-mail`}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextButton
+            linkColor="pinkLinkWithoutRouter"
+            sx={{ fontSize: '90%' }}
+            onClick={handleLogout}
             cta={`Sair de ${props.session?.user?.email}`}
-            href="#logoutButton"
           />
         </Grid>
       </Grid>
+      <ChangeEmailModal
+        isChangeEmailModalOpen={isChangeEmailModalOpen}
+        setChangeEmailModalOpen={setChangeEmailModalOpen}
+      />
     </MyCard>
   );
 }
-
-// <TimerButton
-//   onClick={resendVerificationMail}
-//   cta={`Reenviar código de confirmção`}
-//   initialTime={75000}
-// />
-
-// //fetchers
-// import logout from 'src/lib/fetchers/session/logout';
-// //components
-// import Link from 'next/link';
-// import Image from 'next/image';
-// //style
-// import styles from 'src/templates/Confirm/index.module.css';
-// import verifyCode from 'src/lib/chains/verifyCode';
-// //hooks
-// import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
-// //tyopes
-// import type Session from 'src/types/Session';
-//
-// type Props = {
-//   parentSession: Session;
-// };
-//
-// export default function Confirm({ parentSession }: Props) {
-//   const router = useRouter();
-//   const [confirmResult, setConfirmResult] = useState('');
-//   const [session, setSession] = useState<Session | undefined>(
-//     parentSession,
-//   );
-//
-//   useEffect(() => {
-//     return () => {
-//       setConfirmResult('');
-//       setSession(undefined);
-//     };
-//   }, []);
-//
-//   async function handleConfirm(submitEvent: any) {
-//     setConfirmResult('');
-//     submitEvent.preventDefault();
-//
-//     const verificationCode = submitEvent.target.verificationCode
-//       .value as string;
-//     const email = session?.user?.email as string;
-//     const hashFragment = session?.user
-//       ?.fragment_hash_password as string;
-//
-//     const verifyCodeResult = await verifyCode({
-//       verificationCode,
-//       hashFragment,
-//       email,
-//     });
-//     setConfirmResult(verifyCodeResult.ok as string);
-//   }
-//
-//   return (
-//     <div className={styles.container}>
-//       <Link href="/">
-//         <a>
-//           <Image
-//             src="/logo-pdt-blue.png"
-//             alt="pdt Logo"
-//             width={75}
-//             height={75}
-//           />
-//         </a>
-//       </Link>
-//       <main>
-//         <h1>Confirme sua conta na Plataforma de Treinos</h1>
-//         <p>
-//           Digite o número de 5 dígitos enviado ao email{' '}
-//           {session?.user?.email}
-//         </p>
-//         <form onSubmit={handleConfirm}>
-//           <div>
-//             <label htmlFor="verificationCode">
-//               Código de verificação:
-//             </label>
-//             <input
-//               type="text"
-//               id="verificationCode"
-//               name="verificationCode"
-//             />
-//           </div>
-//           <div className={styles.buttonBox}>
-//             <button type="submit">Enviar</button>
-//           </div>
-//         </form>
-//         {confirmResult}
-//         <div className={styles.grid}>
-//           <button
-//             type="button"
-//             onClick={() =>
-//               logout({ redirect: false, callbackUrl: '/' }).then(
-//                 (result) => router.push(result.url),
-//               )
-//             }
-//           >
-//             sair de {session?.user?.email}
-//           </button>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// }

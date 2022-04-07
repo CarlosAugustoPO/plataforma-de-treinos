@@ -5,10 +5,12 @@ import type { Dispatch, SetStateAction } from 'react';
 
 export default function FirstNameField(props: {
   errors: string;
+  lastFieldError: string;
   clearErrors: (firstName: 'firstName') => void;
   register: (firstName: 'firstName', validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
 }) {
   return (
     <Grid item xs={12}>
@@ -22,13 +24,11 @@ export default function FirstNameField(props: {
           variant="standard"
           error={props.errors ? true : false}
           onKeyDown={() => {
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
             props.clearErrors('firstName');
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           {...props.register('firstName', {
             required: true,

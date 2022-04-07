@@ -32,7 +32,13 @@ import { useAppSelector } from 'src/lib/hooks/useRedux';
 import { selectVisit } from 'src/reducers/visit/index';
 import type VisitData from 'src/types/VisitData';
 import { setCookie, destroyCookie } from 'nookies';
+import Slide, { SlideProps } from '@mui/material/Slide';
 
+type TransitionProps = Omit<SlideProps, 'direction'>;
+
+function TransitionDown(props: TransitionProps) {
+  return <Slide {...props} direction="down" />;
+}
 export default function CookieSettingsModal(props: {
   isCookieSettingsModalOpen: boolean;
   setCookieSettingsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -183,6 +189,7 @@ export default function CookieSettingsModal(props: {
           }
         }}
         disableEscapeKeyDown
+        TransitionComponent={TransitionDown}
         aria-labelledby="cookies-settings"
         open={props.isCookieSettingsModalOpen}
       >

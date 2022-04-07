@@ -20,7 +20,8 @@ import SignUpIcon from '@mui/icons-material/HowToReg';
 import { useState, useEffect } from 'react';
 import login from 'src/lib/fetchers/session/login';
 import { useForm } from 'react-hook-form';
-
+import { useAppDispatch } from 'src/lib/hooks/useRedux/index';
+import { putAlert } from 'src/reducers/alert/index';
 export default function CadastrarUnauthTemplate() {
   const [submitting, setSubmitting] = useState(false);
 
@@ -33,12 +34,9 @@ export default function CadastrarUnauthTemplate() {
   const [emailExistsError, setEmailExistsError] = useState<
     undefined | string
   >(undefined);
-  const [generalError, setGeneralError] = useState<
+  const [lastFieldError, setLastFieldError] = useState<
     undefined | string
   >(undefined);
-  const [okResult, setOkResult] = useState<undefined | string>(
-    undefined,
-  );
   const {
     register,
     clearErrors,
@@ -46,9 +44,10 @@ export default function CadastrarUnauthTemplate() {
     getValues,
     formState: { errors },
   } = useForm();
+  const dispatch = useAppDispatch();
 
   function handleErrors() {
-    setGeneralError('');
+    setLastFieldError('');
     clearErrors();
   }
 
@@ -70,19 +69,28 @@ export default function CadastrarUnauthTemplate() {
         signUpJson.error.toString() ===
         'Esse e-mail já existe em nosso banco de dados'
       ) {
-        setGeneralError('Falha em realizar cadastro');
         setEmailExistsError(signUpJson.error.toString());
+        dispatch(
+          putAlert({
+            content: {
+              message: 'Falha em realizar cadastro',
+              severity: 'error',
+              duration: 5000,
+              show: true,
+            },
+          }),
+        );
         setSubmitting(false);
         return;
       }
-      setGeneralError(signUpJson.error.toString());
+      setLastFieldError(signUpJson.error.toString());
       setSubmitting(false); //cause non-op error, cause try change when as unmouunt cause redirect, put this on useeFfect
       return;
     }
 
     const createMagicLinkResult = await createMagicLink(email);
     if (createMagicLinkResult.error) {
-      setGeneralError(createMagicLinkResult.error.toString());
+      setLastFieldError(createMagicLinkResult.error.toString());
       setSubmitting(false);
       return;
     }
@@ -91,7 +99,7 @@ export default function CadastrarUnauthTemplate() {
       await sendVerificationMail(email);
     if (sendVerificationMailResult.error) {
       await deleteUser(email);
-      setGeneralError(sendVerificationMailResult.error);
+      setLastFieldError(sendVerificationMailResult.error);
       setSubmitting(false);
       return;
     }
@@ -102,12 +110,21 @@ export default function CadastrarUnauthTemplate() {
       redirect: false,
     });
     if (loginResult?.error) {
-      setGeneralError(loginResult.error);
+      setLastFieldError(loginResult.error);
       setSubmitting(false);
       return;
     }
 
-    setOkResult(signUpJson.ok);
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Cadastro criado com sucesso',
+          severity: 'success',
+          duration: 8000,
+          show: true,
+        },
+      }),
+    );
     setSubmitting(false);
     return;
   }
@@ -135,100 +152,90 @@ export default function CadastrarUnauthTemplate() {
         Informe seus dados para criar sua conta na Plataforma de
         Treinos
       </Text>
-      <Form
-        handleSubmit={handleSubmit}
-        handleAction={handleSignUp}
-      >
-        <FirstNameField
-          errors={errors.firstName?.type}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-        <LastNameField
-          errors={errors.lastName?.type}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-        <EmailFieldWithConfirm
-          emailErrors={errors.email?.type}
-          confirmEmailErrors={errors.confirmEmail?.type}
-          getValues={getValues}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          emailExistsError={emailExistsError}
-          setEmailExistsError={setEmailExistsError}
-          register={register}
-        />
-        <PasswordFieldWithConfirm
-          passwordErrors={errors.password?.type}
-          confirmPasswordErrors={errors.confirmPassword?.type}
-          getValues={getValues}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-
-        <SendButton
-          sx={{ marginTop: '2%' }}
-          enviar="Registrar"
-          enviando="Registrando"
-          submitting={submitting}
-          onClick={handleErrors}
-        />
-        {generalError && (
-          <Text
-            mt={1}
-            color="error"
-            align="center"
-            width="100%"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {generalError}
-          </Text>
-        )}
-        {okResult && (
-          <Text
-            mt={1}
-            color="success"
-            align="center"
-            width="100%"
-            variant="subtitle2"
-            fontSize="80%"
-          >
-            {okResult}
-          </Text>
-        )}
-        <Caption mt={3}>
-          Ao criar uma conta você está de acordo com os nossos{' '}
-          <TextButton
-            cta="termos de uso"
-            onClick={() => setModalTermos(true)}
-          />{' '}
-          e com nossas{' '}
-          <TextButton
-            cta="politicas de dados"
-            onClick={() => setModalPoliticas(true)}
+      <Grid sx={{ maxWidth: '90%' }}>
+        <Form
+          handleSubmit={handleSubmit}
+          handleAction={handleSignUp}
+        >
+          <FirstNameField
+            errors={errors.firstName?.type}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
           />
-          .
-        </Caption>
-        <Grid container mt={3} justifyContent="center">
-          <Grid item>
+          <LastNameField
+            errors={errors.lastName?.type}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
+          />
+          <EmailFieldWithConfirm
+            emailErrors={errors.email?.type}
+            confirmEmailErrors={errors.confirmEmail?.type}
+            getValues={getValues}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            emailExistsError={emailExistsError}
+            setEmailExistsError={setEmailExistsError}
+            register={register}
+          />
+          <PasswordFieldWithConfirm
+            passwordErrors={errors.password?.type}
+            confirmPasswordErrors={errors.confirmPassword?.type}
+            getValues={getValues}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
+          />
+          {lastFieldError && (
+            <Text
+              mt={1}
+              color="error"
+              align="left"
+              width="100%"
+              variant="subtitle2"
+              fontSize="80%"
+            >
+              {lastFieldError}
+            </Text>
+          )}
+          <SendButton
+            sx={{ marginTop: '2%' }}
+            enviar="Registrar"
+            enviando="Registrando"
+            submitting={submitting}
+            onClick={handleErrors}
+          />
+
+          <Caption mt={3}>
+            Ao criar uma conta você está de acordo com os nossos{' '}
             <TextButton
-              linkColor="pinkLinkInt"
-              cta="Já tem uma conta? Entrar"
-              sx={{ fontSize: '90%' }}
-              href="/entrar"
+              cta="termos de uso"
+              onClick={() => setModalTermos(true)}
+            />{' '}
+            e com nossas{' '}
+            <TextButton
+              cta="politicas de dados"
+              onClick={() => setModalPoliticas(true)}
             />
+            .
+          </Caption>
+          <Grid container mt={3} justifyContent="center">
+            <Grid item>
+              <TextButton
+                linkColor="pinkLinkInt"
+                cta="Já tem uma conta? Entrar"
+                sx={{ fontSize: '90%' }}
+                href="/entrar"
+              />
+            </Grid>
           </Grid>
-        </Grid>
-      </Form>
+        </Form>
+      </Grid>
     </MyCard>
   );
 }

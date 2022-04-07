@@ -1,3 +1,4 @@
+import CircularProgress from '@mui/material/CircularProgress';
 import Caption from 'src/components/Caption/index';
 import TextButton from 'src/components/TextButton/index';
 import { useEffect, useState } from 'react';
@@ -7,8 +8,11 @@ export default function TimerTextButton(props: {
   initialTime: number;
   onClick: any;
   cta: string;
+  submitting?: string;
+  fontSize?: string;
 }) {
   const [deadLine, setDeadLine] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [initialTime, setInitialTime] = useState(
     props.initialTime,
   );
@@ -17,9 +21,12 @@ export default function TimerTextButton(props: {
   >(undefined);
 
   async function handleOnClick() {
-    props.onClick();
-    setRestartCounter(true);
-    setInitialTime(props.initialTime);
+    setDisabled(true);
+    await props.onClick().then(() => {
+      setDisabled(false);
+      setRestartCounter(true);
+      setInitialTime(props.initialTime);
+    });
   }
 
   useEffect(() => {
@@ -37,36 +44,54 @@ export default function TimerTextButton(props: {
 
   return (
     <>
-      {deadLine && (
+      {deadLine && !disabled && (
         <TextButton
-          linkColor="pinkLinkInt"
+          linkColor="pinkLinkWithoutRouter"
           cta={props.cta}
           onClick={handleOnClick}
-          href=""
-          fontSize="90%"
+          fontSize={props.fontSize || '95%'}
         />
       )}
-      {!deadLine && (
+      {(!deadLine || disabled) && (
         <>
-          <TextButton
-            linkColor="disabled"
-            cta={props.cta}
-            fontSize="90%"
-          />
-          <Caption
-            sx={{
-              fontSize: '80%',
-              color: 'disabled.main',
-            }}
-          >
-            {' '}
-            (
-            <Timer
-              restartCounter={restartCounter}
-              initialTime={initialTime}
-            />
-            )
-          </Caption>
+          {!disabled && (
+            <>
+              <TextButton
+                linkColor="disabled"
+                cta={props.cta}
+                fontSize={props.fontSize || '95%'}
+              />
+              <Caption
+                sx={{
+                  fontSize: '80%',
+                  color: 'disabled.main',
+                }}
+              >
+                {' '}
+                (
+                <Timer
+                  restartCounter={restartCounter}
+                  initialTime={initialTime}
+                />
+                )
+              </Caption>
+            </>
+          )}
+          {disabled && (
+            <>
+              <TextButton
+                linkColor="disabled"
+                cta={props.submitting || 'Enviando, aguarde...'}
+                fontSize={props.fontSize || '95%'}
+              />{' '}
+              <CircularProgress
+                size={12}
+                sx={{
+                  color: 'disabled.main',
+                }}
+              />
+            </>
+          )}
         </>
       )}
     </>

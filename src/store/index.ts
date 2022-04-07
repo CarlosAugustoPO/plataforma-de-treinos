@@ -5,10 +5,11 @@ import {
 } from '@reduxjs/toolkit';
 
 import visitReducer from 'src/reducers/visit/index';
+import alertReducer from 'src/reducers/alert/index';
 
 export function makeStore() {
   return configureStore({
-    reducer: { visit: visitReducer },
+    reducer: { visit: visitReducer, alert: alertReducer },
   });
 }
 

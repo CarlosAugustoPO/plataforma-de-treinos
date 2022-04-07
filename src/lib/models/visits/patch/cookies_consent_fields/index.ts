@@ -27,7 +27,7 @@ const patchVisitsCookiesConsentFieldsModel = async (props: {
     };
   } catch (e: any) {
     console.log(
-      'in update cookies-consent-fields(e): ',
+      'in model cookies-consent-fields(e): ',
       e.message,
       e.code,
     );

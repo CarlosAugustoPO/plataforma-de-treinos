@@ -63,3 +63,11 @@
 .disabled:hover {
   color: var(--text-button-disabled-hover);
 }
+
+.pureTextLinkButton {
+  color: var(--text-button-pinkLinkInt);
+}
+
+.pureTextLinkButton:hover {
+  color: var(--text-button-pinkLinkInt-hover);
+}

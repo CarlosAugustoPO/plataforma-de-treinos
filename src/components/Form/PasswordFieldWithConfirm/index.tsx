@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import changeWhiteSpace from 'src/lib/utils/changeWhiteSpace';
 import preventWhiteSpace from 'src/lib/utils/preventWhiteSpace';
 import type { Dispatch, SetStateAction } from 'react';
-import type { UseFormWatch, FieldValues } from 'react-hook-form';
 import { useState } from 'react';
 import useDebounce from 'src/lib/utils/debounce/index';
 
@@ -16,8 +15,10 @@ export default function PassWordFieldWithConfirm(props: {
   confirmPasswordErrors: string;
   clearErrors: (id: string) => void;
   register: (id: string, validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
+  lastFieldError: string;
   getValues: any;
   sx?: {};
 }) {
@@ -69,12 +70,10 @@ export default function PassWordFieldWithConfirm(props: {
           }}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           autoFocus={false}
           sx={{ ...props.sx }}
@@ -177,15 +176,13 @@ export default function PassWordFieldWithConfirm(props: {
           onKeyUp={(e) => changeWhiteSpace(e)}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
             props.confirmPasswordErrors === 'validate'
               ? ''
               : props.clearErrors('confirmPassword');
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           autoFocus={false}
           sx={{ ...props.sx }}

@@ -6,7 +6,7 @@ async function fetcher(url: string) {
 
 export default function useVerification(email: string): any {
   const { data, error } = useSWR(
-    `/api/user/get/swr/is-verified-field/${email}`,
+    `/api/users/get/swr/is-verified-field/${email}`,
     fetcher,
     {
       refreshInterval: 1000,

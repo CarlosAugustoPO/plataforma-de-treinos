@@ -14,20 +14,19 @@ import LoginIcon from '@mui/icons-material/LoginRounded';
 import { useState, useEffect } from 'react';
 import login from 'src/lib/fetchers/session/login';
 import { useForm } from 'react-hook-form';
-
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+import { putAlert } from 'src/reducers/alert/index';
 export default function EntrarUnauthTemplate() {
+  const dispatch = useAppDispatch();
   const [submitting, setSubmitting] = useState(false);
   useEffect(() => {
     return () => {
       setSubmitting(false); // This worked for me
     };
   }, []);
-  const [generalError, setGeneralError] = useState<
+  const [lastFieldError, setLastFieldError] = useState<
     undefined | string
   >(undefined);
-  const [okResult, setOkResult] = useState<undefined | string>(
-    undefined,
-  );
   const {
     register,
     clearErrors,
@@ -36,7 +35,7 @@ export default function EntrarUnauthTemplate() {
   } = useForm();
 
   function handleErrors() {
-    setGeneralError('');
+    setLastFieldError('');
     clearErrors();
   }
 
@@ -50,11 +49,20 @@ export default function EntrarUnauthTemplate() {
       password,
     });
     if (result?.error) {
-      setGeneralError(result.error);
+      setLastFieldError(result.error);
       setSubmitting(false);
       return;
     }
-    setOkResult('Login com sucesso');
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Login realizado com sucesso',
+          severity: 'success',
+          duration: 6000,
+          show: true,
+        },
+      }),
+    );
     setSubmitting(false);
   }
 
@@ -76,81 +84,70 @@ export default function EntrarUnauthTemplate() {
         Coloque suas credenciais para entrar na sua área de
         usuário
       </Text>
-      <Form
-        handleSubmit={handleSubmit}
-        handleAction={handleSignIn}
-      >
-        <EmailField
-          errors={errors.email?.type}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-        <PasswordField
-          errors={errors.password?.type}
-          clearErrors={clearErrors}
-          setOkResult={setOkResult}
-          setGeneralError={setGeneralError}
-          register={register}
-        />
-        <SendButton
-          sx={{ marginTop: '2%' }}
-          enviar="Entrar"
-          enviando="Entrando"
-          submitting={submitting}
-          onClick={handleErrors}
-        />
-        {generalError && (
-          <Text
-            mt={1}
-            color="error"
-            align="center"
-            variant="subtitle2"
-            width="100%"
-            fontSize="80%"
-          >
-            {generalError}
-          </Text>
-        )}
-        {okResult && (
-          <Text
-            mt={1}
-            color="success"
-            align="center"
-            variant="subtitle2"
-            width="100%"
-            fontSize="80%"
-          >
-            {okResult}
-          </Text>
-        )}
-
-        <Caption mt={3}>
-          Ao utilizar nosso produto você está de acordo com os
-          nossos{' '}
-          <TextButton
-            cta="termos de uso"
-            onClick={() => setModalTermos(true)}
-          />{' '}
-          e com nossas{' '}
-          <TextButton
-            cta="politicas de dados"
-            onClick={() => setModalPoliticas(true)}
+      <Grid style={{ width: '90%' }}>
+        <Form
+          handleSubmit={handleSubmit}
+          handleAction={handleSignIn}
+        >
+          <EmailField
+            errors={errors.email?.type}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
           />
-          .
-        </Caption>
-        <Grid container mt={3} justifyContent="center">
-          <Grid item>
+          <PasswordField
+            errors={errors.password?.type}
+            clearErrors={clearErrors}
+            setLastFieldError={setLastFieldError}
+            lastFieldError={lastFieldError as string}
+            register={register}
+          />
+          {lastFieldError && (
+            <Text
+              mb={-2}
+              color="error"
+              align="left"
+              variant="subtitle2"
+              width="100%"
+              fontSize="80%"
+            >
+              {lastFieldError}
+            </Text>
+          )}
+          <SendButton
+            sx={{ marginTop: '2%' }}
+            enviar="Entrar"
+            enviando="Entrando"
+            submitting={submitting}
+            onClick={handleErrors}
+          />
+          <Caption mt={3}>
+            Ao utilizar nosso produto você está de acordo com os
+            nossos{' '}
             <TextButton
-              linkColor="pinkLinkInt"
-              cta="Não tem uma conta? Registre-se"
-              sx={{ fontSize: '90%' }}
-              href="/cadastrar"
+              cta="termos de uso"
+              onClick={() => setModalTermos(true)}
+            />{' '}
+            e com nossas{' '}
+            <TextButton
+              cta="politicas de dados"
+              onClick={() => setModalPoliticas(true)}
             />
+            .
+          </Caption>
+          <Grid container mt={3} justifyContent="center">
+            <Grid item>
+              <TextButton
+                linkColor="pinkLinkInt"
+                cta="Não tem uma conta? Registre-se"
+                sx={{ fontSize: '90%' }}
+                href="/cadastrar"
+              />
+            </Grid>
           </Grid>
-        </Grid>
-      </Form>
+        </Form>
+      </Grid>
     </MyCard>
   );
 }

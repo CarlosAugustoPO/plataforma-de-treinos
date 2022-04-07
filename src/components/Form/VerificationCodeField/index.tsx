@@ -10,11 +10,13 @@ export default function VerificationCodeField(props: {
     verificationCode: 'verificationCode',
     validation: {},
   ) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
+  lastFieldError: string;
 }) {
   return (
-    <Grid item xs={12}>
+    <>
       {/* email text field */}
       <Grid item xs={12}>
         <TextField
@@ -23,15 +25,15 @@ export default function VerificationCodeField(props: {
           id="verificationCode"
           label="Código de verificação"
           variant="standard"
-          error={props.errors ? true : false}
+          error={
+            props.errors || props.lastFieldError ? true : false
+          }
           onKeyDown={() => {
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           onClick={() => {
             props.clearErrors('verificationCode');
-            props.setGeneralError('');
-            props.setOkResult('');
+            props.setLastFieldError('');
           }}
           {...props.register('verificationCode', {
             required: true,
@@ -82,7 +84,7 @@ export default function VerificationCodeField(props: {
             (apenas números)
           </Text>
         )}
-      </Grid>{' '}
-    </Grid>
+      </Grid>
+    </>
   );
 }

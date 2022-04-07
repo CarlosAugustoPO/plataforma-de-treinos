@@ -7,10 +7,13 @@ import type { Dispatch, SetStateAction } from 'react';
 
 export default function EmailField(props: {
   errors: string;
+  lastFieldError: string;
+  fieldLabel?: string;
   clearErrors: (email: 'email') => void;
   register: (email: 'email', validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
   sx?: {};
 }) {
   return (
@@ -20,20 +23,20 @@ export default function EmailField(props: {
         required
         fullWidth
         id="email"
-        error={props.errors ? true : false}
-        label="E-mail"
+        error={
+          props.errors || props.lastFieldError ? true : false
+        }
+        label={props.fieldLabel || 'E-mail'}
         variant="standard"
         autoComplete="email"
         onKeyUp={(e) => changeWhiteSpace(e)}
         onKeyDown={(e) => {
           preventWhiteSpace(e);
-          props.setGeneralError('');
-          props.setOkResult('');
+          props.setLastFieldError('');
         }}
         onClick={() => {
           props.clearErrors('email');
-          props.setGeneralError('');
-          props.setOkResult('');
+          props.setLastFieldError('');
         }}
         autoFocus={false}
         sx={{ ...props.sx }}

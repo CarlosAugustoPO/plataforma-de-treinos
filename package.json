@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "docker start mysql_server_pdt_db | next dev",
+    "dev": "next dev",
     "lint": "next lint",
     "build": "next build",
     "start": "next start",

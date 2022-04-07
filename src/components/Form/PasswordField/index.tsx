@@ -11,10 +11,12 @@ import type { Dispatch, SetStateAction } from 'react';
 
 export default function PasswordField(props: {
   errors: string;
+  lastFieldError: string;
   clearErrors: (password: 'password') => void;
   register: (password: 'password', validation: {}) => void;
-  setGeneralError: Dispatch<SetStateAction<string | undefined>>;
-  setOkResult: Dispatch<SetStateAction<string | undefined>>;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
   sx?: {};
 }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +32,9 @@ export default function PasswordField(props: {
         required
         fullWidth
         id="password"
-        error={props.errors ? true : false}
+        error={
+          props.errors || props.lastFieldError ? true : false
+        }
         label="Senha"
         variant="standard"
         type={showPassword ? 'text' : 'password'} // <-- This is where the magic happens
@@ -38,13 +42,11 @@ export default function PasswordField(props: {
         onKeyUp={(e) => changeWhiteSpace(e)}
         onKeyDown={(e) => {
           preventWhiteSpace(e);
-          props.setGeneralError('');
-          props.setOkResult('');
+          props.setLastFieldError('');
         }}
         onClick={() => {
           props.clearErrors('password');
-          props.setGeneralError('');
-          props.setOkResult('');
+          props.setLastFieldError('');
         }}
         autoFocus={false}
         sx={{ ...props.sx }}

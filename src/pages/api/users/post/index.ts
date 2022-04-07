@@ -2,6 +2,7 @@ import { NextApiHandler } from 'next';
 import postUserModel from 'src/lib/models/users/post/index';
 import digestPassword from 'src/lib/utils/digestPassword';
 import formatDate from 'src/lib/utils/formatDate';
+import tratarNome from 'src/lib/utils/tratarNome';
 
 const postUserApi: NextApiHandler = async (req, res) => {
   const { fname, lname, email, password } = req.body;
@@ -22,9 +23,11 @@ const postUserApi: NextApiHandler = async (req, res) => {
     '-',
   );
   let createdAtBr = formatDate(new Date());
+  const fnameTratado = tratarNome(fname);
+  const lnameTratado = tratarNome(lname);
   const insertUserResult = await postUserModel({
-    fname,
-    lname,
+    fname: fnameTratado,
+    lname: lnameTratado,
     email,
     verificationCode,
     digestedPassword,

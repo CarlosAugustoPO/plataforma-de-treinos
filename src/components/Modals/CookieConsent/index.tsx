@@ -13,6 +13,13 @@ import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
 import Title from 'src/components/Title/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
+import Slide, { SlideProps } from '@mui/material/Slide';
+
+type TransitionProps = Omit<SlideProps, 'direction'>;
+
+function TransitionDown(props: TransitionProps) {
+  return <Slide {...props} direction="down" />;
+}
 
 export default function CookieConsentModal(props: {
   isOpen: boolean;
@@ -26,6 +33,7 @@ export default function CookieConsentModal(props: {
   return (
     <BootstrapDialog
       onClose={() => props.setOpen(false)}
+      TransitionComponent={TransitionDown}
       aria-labelledby="politicas-de-cookies"
       open={props.isOpen}
     >
@@ -35,7 +43,6 @@ export default function CookieConsentModal(props: {
           fontFamily: 'Carter One',
           backgroundColor: 'backgroundModalBar.main',
           color: 'cookieConsentTitle.main',
-          fontSize: '85%',
         }}
       >
         Políticas de Cookies e de Armazenamento Local da
@@ -77,12 +84,7 @@ export default function CookieConsentModal(props: {
           />{' '}
           com qualquer questão adicional.
         </Text>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+        <Title gutterBottom component="h3" variant="body1">
           O que são os cookies, tags e os itens de armazenamento
           local?
         </Title>
@@ -98,12 +100,7 @@ export default function CookieConsentModal(props: {
           contribuir para que a Plataforma de Treinos tenha
           recursos mais relevantes e otimizados para você.
         </Text>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+        <Title gutterBottom component="h3" variant="body1">
           Como e por que utilizamos os cookies?
         </Title>
         <Text paragraph fontSize="85%">
@@ -121,12 +118,7 @@ export default function CookieConsentModal(props: {
           informações pessoais, assim como informações não
           identificáveis e atividades suspeitas.
         </Text>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+        <Title gutterBottom component="h3" variant="body1">
           Cookies essenciais
         </Title>
         <Text paragraph fontSize="85%">
@@ -144,12 +136,8 @@ export default function CookieConsentModal(props: {
         <div style={{ border: '1px solid', marginBottom: '4%' }}>
           <EssentialsCookies />
         </div>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+
+        <Title gutterBottom component="h3" variant="body1">
           Cookies de configurações
         </Title>
         <Text paragraph fontSize="85%">
@@ -167,12 +155,8 @@ export default function CookieConsentModal(props: {
         <div style={{ border: '1px solid', marginBottom: '4%' }}>
           <OwnerCookies />
         </div>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+
+        <Title gutterBottom component="h3" variant="body1">
           Cookies de desempenho e de análise
         </Title>
         <Text paragraph fontSize="85%">
@@ -188,12 +172,8 @@ export default function CookieConsentModal(props: {
         <div style={{ border: '1px solid', marginBottom: '4%' }}>
           <AnalyticsCookies />
         </div>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+
+        <Title gutterBottom component="h3" variant="body1">
           Saiba mais sobre cookies
         </Title>
         <Text
@@ -261,12 +241,8 @@ export default function CookieConsentModal(props: {
           lembre-se, desabilitar os cookies pode impactar
           negativamente a sua experiência de uso neste site.
         </Text>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+
+        <Title gutterBottom component="h3" variant="body1">
           Alterações dessa política de cookies
         </Title>
         <Text paragraph fontSize="85%">
@@ -279,12 +255,8 @@ export default function CookieConsentModal(props: {
           visita sob um novo termo de cookies você será avisado e
           seu concentimento será pedido novamente.
         </Text>
-        <Title
-          gutterBottom
-          component="h3"
-          variant="h6"
-          fontSize="85%"
-        >
+
+        <Title gutterBottom component="h3" variant="body1">
           Informações de contato
         </Title>
         <Text

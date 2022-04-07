@@ -7,6 +7,13 @@ import {
 } from 'src/components/Modals/index';
 import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
+import Slide, { SlideProps } from '@mui/material/Slide';
+
+type TransitionProps = Omit<SlideProps, 'direction'>;
+
+function TransitionDown(props: TransitionProps) {
+  return <Slide {...props} direction="down" />;
+}
 
 export default function PoliticasDeDadosModal(props: {
   isOpen: boolean;
@@ -15,12 +22,12 @@ export default function PoliticasDeDadosModal(props: {
   return (
     <BootstrapDialog
       onClose={() => props.setOpen(false)}
-      aria-labelledby="termos-pre-user"
+      aria-labelledby="politicas-de-dados"
+      TransitionComponent={TransitionDown}
       open={props.isOpen}
     >
       <BootstrapDialogTitle
-        id="termos-pre-user"
-        color="primary"
+        id="politicas-de-dados"
         sx={{
           fontFamily: 'Carter One',
           backgroundColor: 'backgroundModalBar.main',
@@ -29,26 +36,30 @@ export default function PoliticasDeDadosModal(props: {
       >
         Politicas de Dados da Plataforma de Treinos
       </BootstrapDialogTitle>
-      <DialogContent dividers>
+      <DialogContent
+        dividers
+        sx={{ backgroundColor: 'backgroundModalBody.main' }}
+      >
         <Text
           gutterBottom
           color="primary"
           sx={{ fontWeight: 600 }}
+          fontSize="85%"
         >
           Última atualização: 27/03/2020
         </Text>
-        <Text paragraph>
+        <Text paragraph fontSize="85%">
           Cras mattis consectetur purus sit amet fermentum. Cras
           justo odio, dapibus ac facilisis in, egestas eget quam.
           Morbi leo risus, porta ac consectetur ac, vestibulum at
           eros.
         </Text>
-        <Text paragraph>
+        <Text paragraph fontSize="85%">
           Praesent commodo cursus magna, vel scelerisque nisl
           consectetur et. Vivamus sagittis lacus vel augue
           laoreet rutrum faucibus dolor auctor.
         </Text>
-        <Text paragraph>
+        <Text paragraph fontSize="85%">
           Aenean lacinia bibendum nulla sed consectetur. Praesent
           commodo cursus magna, vel scelerisque nisl consectetur
           et. Donec sed odio dui. Donec ullamcorper nulla non

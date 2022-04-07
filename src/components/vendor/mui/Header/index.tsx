@@ -1,3 +1,6 @@
+import sleep from 'src/lib/utils/sleep/index';
+import LogoutIcon from '@mui/icons-material/Logout';
+import logout from 'src/lib/fetchers/session/logout/index';
 import { APP_NAME } from 'src/lib/utils/constants/index';
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
@@ -17,9 +20,13 @@ import useSettings from 'src/lib/hooks/useSettings';
 import { THEMES } from 'src/lib/utils/constants';
 import Logo from 'src/components/Logo/index';
 import { useRouter } from 'next/router';
+import useStatus from 'src/lib/hooks/useStatus';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+import { putAlert } from 'src/reducers/alert/index';
 
 export default function PrimarySearchAppBar(): JSX.Element {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { settings, saveSettings } = useSettings();
   const [anchorEl, setAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -28,7 +35,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const status = useStatus();
   const handleProfileMenuOpen = (
     event: React.MouseEvent<HTMLElement>,
   ) => {
@@ -66,6 +73,26 @@ export default function PrimarySearchAppBar(): JSX.Element {
     handleMenuClose();
   };
 
+  const handleLogout = async () => {
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Saindo da área de usuário...',
+          severity: 'warning',
+          duration: 3000,
+          show: true,
+        },
+      }),
+    );
+    const result = await logout({
+      redirect: false,
+      callbackUrl: '/entrar',
+    });
+    router.push(result.url);
+    handleMobileMenuClose();
+    handleMenuClose();
+  };
+
   const handleEntrar = () => {
     router.push('/entrar');
     handleMobileMenuClose();
@@ -93,14 +120,23 @@ export default function PrimarySearchAppBar(): JSX.Element {
         <IconButton size="large" color="headerIcons">
           <LoginItem />
         </IconButton>
-        Entrar
+        {status === 'unauthenticated' ? 'Entrar' : 'Acessar'}
       </MenuItem>
-      <MenuItem onClick={handleCadastar}>
-        <IconButton size="large" color="headerIcons">
-          <RegItem />
-        </IconButton>
-        Cadastrar
-      </MenuItem>
+      {status === 'unauthenticated' ? (
+        <MenuItem onClick={handleCadastar}>
+          <IconButton size="large" color="headerIcons">
+            <RegItem />
+          </IconButton>
+          Cadastrar
+        </MenuItem>
+      ) : (
+        <MenuItem onClick={handleLogout}>
+          <IconButton size="large" color="headerIcons">
+            <LogoutIcon />
+          </IconButton>
+          Sair
+        </MenuItem>
+      )}
     </Menu>
   );
 

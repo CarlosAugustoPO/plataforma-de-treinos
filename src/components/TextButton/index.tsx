@@ -1,5 +1,5 @@
+import Caption from 'src/components/Caption';
 import styles from 'src/components/TextButton/index.module.css';
-import Typography from '@mui/material/Typography';
 import { TypographyProps } from '@mui/material/Typography';
 import Link from 'next/link';
 
@@ -11,7 +11,8 @@ type PlusOptions = {
     | 'cyan'
     | 'default'
     | 'modal'
-    | 'pinkLinkInt';
+    | 'pinkLinkInt'
+    | 'pinkLinkWithoutRouter';
   href?: any;
   target?: string;
   rel?: string;
@@ -35,7 +36,7 @@ export default function TextButton({
   ...props
 }: Omit<TypographyPropsPlusOptions, 'color'>): JSX.Element {
   return (
-    <Typography
+    <Caption
       variant={variant}
       sx={{ cursor: 'pointer', ...sx }}
       {...props}
@@ -78,6 +79,9 @@ export default function TextButton({
           <a className={styles.pinkLinkInt}>{cta}</a>
         </Link>
       )}
-    </Typography>
+      {linkColor === 'pinkLinkWithoutRouter' && (
+        <span className={styles.pureTextLinkButton}>{cta}</span>
+      )}
+    </Caption>
   );
 }

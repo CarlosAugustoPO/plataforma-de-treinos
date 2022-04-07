@@ -1,7 +1,7 @@
 import sendMail from 'src/lib/fetchers/mail/send/index';
 import readUser from 'src/lib/fetchers/users/read/index';
 import readMagicLink from 'src/lib/fetchers/magic-links/read/index';
-import capitalize from 'src/lib/utils/tratarNome';
+import tratarNome from 'src/lib/utils/tratarNome';
 import Ok from 'src/types/Ok';
 
 export async function sendVerificationMail(
@@ -34,7 +34,7 @@ export async function sendVerificationMail(
   const hashFragment = user.data?.fragment_hash_password;
 
   const fname = user.data?.fname;
-  const firstnameTratado = capitalize(fname as string);
+  const firstnameTratado = tratarNome(fname as string);
 
   const url = process.env.NEXT_PUBLIC_URL;
   const confirmationUrl = `${url}/confirmar/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.data?.magic_token}`;
