@@ -29,7 +29,7 @@ async function postUserModel(newUser: {
 
     return { ok: 'Usuário inserido com sucesso' };
   } catch (e: any) {
-    console.log('In postUser: ', e.message, e.code);
+    console.log('In postUser: ', e);
     if (e.code === 'P2002') {
       return {
         error: 'Esse e-mail já existe em nosso banco de dados',
