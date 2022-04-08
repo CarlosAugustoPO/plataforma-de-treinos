@@ -3,16 +3,13 @@ import type VisitDataOrError from 'src/types/VisitDataOrError';
 export default async function createVisit(
   visitedPagePath: string,
 ): Promise<VisitDataOrError> {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/visits/post`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(visitedPagePath),
+  const response = await fetch(`/api/visits/post`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-  );
+    body: JSON.stringify(visitedPagePath),
+  });
   if (response.status !== 200) {
     return {
       error:
