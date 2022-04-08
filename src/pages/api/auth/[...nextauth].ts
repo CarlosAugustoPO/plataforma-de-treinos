@@ -18,7 +18,7 @@ export default NextAuth({
       async authorize(credentials) {
         const email = credentials?.email;
         const password = credentials?.password;
-        const url = process.env.NEXT_PUBLIC_URL;
+        const url = process.env.VERCEL_URL;
         const res = await fetch(`${url}/api/auth/sign-in`, {
           method: 'POST',
           body: JSON.stringify({

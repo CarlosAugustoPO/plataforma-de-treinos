@@ -4,7 +4,7 @@ export default async function updateUserIsVerifiedField(
   email: string,
 ): Promise<Ok> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/users/patch/is-verified-field`,
+    `/api/users/patch/is-verified-field`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
