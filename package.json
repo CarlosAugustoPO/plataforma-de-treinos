@@ -9,7 +9,8 @@
     "test:ci": "jest --ci",
     "prepare": "husky install",
     "cdb": "npx prisma db push",
-    "truncate": "node prisma/truncate.js"
+    "truncate": "node prisma/truncate.js",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@emotion/cache": "latest",
