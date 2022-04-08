@@ -4,13 +4,12 @@
     "dev": "next dev",
     "lint": "next lint",
     "build": "next build",
-    "start": "next start",
+    "start": "npx prisma db push | next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
     "cdb": "npx prisma db push",
-    "truncate": "node prisma/truncate.js",
-    "postinstall": "prisma generate"
+    "truncate": "node prisma/truncate.js"
   },
   "dependencies": {
     "@emotion/cache": "latest",
