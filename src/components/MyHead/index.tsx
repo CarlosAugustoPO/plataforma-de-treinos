@@ -29,7 +29,11 @@ export default function MyHead(props: {
   const router = useRouter();
   const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
   const urlComplement = router.pathname;
-  const thisUrl = `${publicUrl + urlComplement}`;
+  const protocol =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+      ? 'http://'
+      : 'https://';
+  const thisUrl = `${protocol + publicUrl + urlComplement}`;
   const theme = useTheme();
 
   let title = (props.title as string) || APP_NAME;
