@@ -36,7 +36,13 @@ export async function sendVerificationMail(
   const fname = user.data?.fname;
   const firstnameTratado = tratarNome(fname as string);
 
-  const url = process.env.NEXT_PUBLIC_URL;
+  const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const protocol =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+      ? 'http://'
+      : 'https://';
+  const url = `${protocol + publicUrl}`;
+
   const confirmationUrl = `${url}/confirmar/${emailTratado}/${verificationCode}/${hashFragment}/${magicToken.data?.magic_token}`;
 
   const sender =
