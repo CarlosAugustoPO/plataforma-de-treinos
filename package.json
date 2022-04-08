@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "lint": "next lint",
-    "build": "npx prisma db push && next build",
+    "build": "next build",
     "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",

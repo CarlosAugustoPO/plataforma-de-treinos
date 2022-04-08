@@ -16,8 +16,7 @@ export default async function loginSession(userCredentials: {
 
   if (response?.error) {
     return {
-      error:
-        'Falha em realizar login verifique suas credenciais e tente novamente',
+      error: response.error,
       status: response.status,
       url: response.url,
       ok: response.ok,
