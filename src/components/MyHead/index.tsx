@@ -27,13 +27,15 @@ export default function MyHead(props: {
   children: React.ReactNode;
 }): JSX.Element {
   const router = useRouter();
-  const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
-  const urlComplement = router.pathname;
+
   const protocol =
     process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
       ? 'http://'
       : 'https://';
+  const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+  const urlComplement = router.pathname;
   const thisUrl = `${protocol + publicUrl + urlComplement}`;
+
   const theme = useTheme();
 
   let title = (props.title as string) || APP_NAME;
@@ -47,7 +49,8 @@ export default function MyHead(props: {
   const ogType = (props.ogType as string) || APP_TYPE;
   const ogUrl = (props.ogUrl as string) || thisUrl;
   const ogImage =
-    (props.ogImage as string) || `${publicUrl}/banner.png`;
+    (props.ogImage as string) ||
+    `${protocol + publicUrl}/banner.png`;
   const ogImageAlt =
     (props.ogImageAlt as string) || `Banner do APP ${APP_NAME}`;
   const ogLocale = (props.ogLocale as string) || APP_LOCALE;
