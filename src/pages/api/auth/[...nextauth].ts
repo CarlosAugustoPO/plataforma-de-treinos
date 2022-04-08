@@ -22,7 +22,6 @@ export default NextAuth({
           req?.headers?.['x-forwarded-proto'] || 'http';
         const visitedDomain = req?.headers?.host;
         const visitedUrl = `${protocol}://${visitedDomain}`;
-        console.log('aqui: ', visitedUrl);
         const res = await fetch(
           `${visitedUrl}/api/auth/sign-in`,
           {
