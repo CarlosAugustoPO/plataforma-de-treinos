@@ -26,6 +26,7 @@ export default async function signInApi(
     return res.status(401).json({ error: user.error });
   }
 
+  console.log('aqui:', user);
   if (!user.data?.password) {
     return res.status(401).json({
       error:
