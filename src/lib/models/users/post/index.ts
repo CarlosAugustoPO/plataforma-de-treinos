@@ -9,6 +9,7 @@ async function postUserModel(newUser: {
   digestedPassword: string;
   fragmentHashPassword: string;
   createdAtBr: string;
+  createdAt: Date;
 }): Promise<Ok> {
   try {
     await prisma.users.create({
@@ -21,6 +22,8 @@ async function postUserModel(newUser: {
         fragment_hash_password: newUser.fragmentHashPassword,
         created_at_br: newUser.createdAtBr,
         updated_at_br: newUser.createdAtBr,
+        created_at: newUser.createdAt,
+        updated_at: newUser.createdAt,
       },
     });
 

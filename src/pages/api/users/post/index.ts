@@ -23,6 +23,7 @@ const postUserApi: NextApiHandler = async (req, res) => {
     '-',
   );
   let createdAtBr = formatDate(new Date());
+  let createdAt = new Date();
   const fnameTratado = tratarNome(fname);
   const lnameTratado = tratarNome(lname);
   const insertUserResult = await postUserModel({
@@ -33,6 +34,7 @@ const postUserApi: NextApiHandler = async (req, res) => {
     digestedPassword,
     fragmentHashPassword,
     createdAtBr,
+    createdAt,
   });
 
   if (insertUserResult.error) {
