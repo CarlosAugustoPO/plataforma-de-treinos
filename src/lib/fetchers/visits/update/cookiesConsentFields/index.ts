@@ -7,7 +7,7 @@ export default async function updateVisitCookiesConsentFields(props: {
   cookiesConsentSave: string;
 }): Promise<Ok> {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/api/visits/patch/cookies-consent-fields`,
+    `/api/visits/patch/cookies-consent-fields`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

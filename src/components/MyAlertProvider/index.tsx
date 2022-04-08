@@ -6,16 +6,24 @@ import { selectAlert } from 'src/reducers/alert/index';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 //reducers
 import { putAlert } from 'src/reducers/alert/index';
-import Slide, { SlideProps } from '@mui/material/Slide';
-type TransitionProps = Omit<SlideProps, 'direction'>;
 import useMediaQuery from '@mui/material/useMediaQuery';
+import {
+  TransitionUp,
+  TransitionLeft,
+} from 'src/components/Transitions/index';
+// const TransitionUp = forwardRef<HTMLDivElement, TransitionProps>(
+//   function TransitionLeft(props, ref) {
+//     return <Slide {...props} ref={ref} direction="up" />;
+//   },
+// );
+//
+// const TransitionLeft = forwardRef<
+//   HTMLDivElement,
+//   TransitionProps
+// >(function TransitionLeft(props, ref) {
+//   return <Slide {...props} ref={ref} direction="left" />;
+// });
 
-function TransitionUp(props: TransitionProps) {
-  return <Slide {...props} direction="up" />;
-}
-function TransitionLeft(props: TransitionProps) {
-  return <Slide {...props} direction="left" />;
-}
 const Alert = forwardRef<HTMLDivElement, AlertProps>(
   function Alert(props, ref) {
     return (

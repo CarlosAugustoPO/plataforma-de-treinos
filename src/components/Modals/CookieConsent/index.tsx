@@ -13,14 +13,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
 import Title from 'src/components/Title/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
-import Slide, { SlideProps } from '@mui/material/Slide';
-
-type TransitionProps = Omit<SlideProps, 'direction'>;
-
-function TransitionDown(props: TransitionProps) {
-  return <Slide {...props} direction="down" />;
-}
-
+import { TransitionDown } from 'src/components/Transitions/index';
 export default function CookieConsentModal(props: {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;

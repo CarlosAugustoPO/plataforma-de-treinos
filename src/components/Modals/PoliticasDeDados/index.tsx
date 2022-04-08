@@ -7,13 +7,7 @@ import {
 } from 'src/components/Modals/index';
 import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
-import Slide, { SlideProps } from '@mui/material/Slide';
-
-type TransitionProps = Omit<SlideProps, 'direction'>;
-
-function TransitionDown(props: TransitionProps) {
-  return <Slide {...props} direction="down" />;
-}
+import { TransitionDown } from 'src/components/Transitions/index';
 
 export default function PoliticasDeDadosModal(props: {
   isOpen: boolean;

@@ -1,5 +1,4 @@
 import EmailFieldWithConfirm from 'src/components/Form/EmailFieldWithConfirm/index';
-import Grid from '@mui/material/Grid';
 import Text from 'src/components/Text/index';
 import Form from 'src/components/Form/index';
 import PasswordField from 'src/components/Form/PasswordField/index';
@@ -7,7 +6,6 @@ import PasswordField from 'src/components/Form/PasswordField/index';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
@@ -16,14 +14,7 @@ import {
 import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import { useForm } from 'react-hook-form';
-import Slide, { SlideProps } from '@mui/material/Slide';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-type TransitionProps = Omit<SlideProps, 'direction'>;
-
-function TransitionDown(props: TransitionProps) {
-  return <Slide {...props} direction="down" />;
-}
+import { TransitionDown } from 'src/components/Transitions/index';
 
 export default function CookieSettingsModal(props: {
   isChangeEmailModalOpen: boolean;
