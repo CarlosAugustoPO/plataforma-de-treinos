@@ -27,7 +27,7 @@ export default function MyHead(props: {
   children: React.ReactNode;
 }): JSX.Element {
   const router = useRouter();
-  const publicUrl = process.env.NEXT_PUBLIC_URL;
+  const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
   const urlComplement = router.pathname;
   const thisUrl = `${publicUrl + urlComplement}`;
   const theme = useTheme();
