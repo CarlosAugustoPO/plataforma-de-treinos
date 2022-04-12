@@ -25,6 +25,7 @@ export default function ConfirmarAuthTemplate(props: {
   session: Session;
 }) {
   const [submitting, setSubmitting] = useState(false);
+  const [resetTimer, setResetTimer] = useState(false);
   const [isChangeEmailModalOpen, setChangeEmailModalOpen] =
     useState(false);
 
@@ -116,6 +117,7 @@ export default function ConfirmarAuthTemplate(props: {
       );
       return;
     }
+
     const updateMagicTokenResult = await updateMagicToken(email);
     if (updateMagicTokenResult.error) {
       setLastFieldError(
@@ -182,13 +184,15 @@ export default function ConfirmarAuthTemplate(props: {
               {lastFieldError}
             </Text>
           )}
-          <SendButton
-            sx={{ marginTop: '2%' }}
-            enviar="Verificar"
-            enviando="Verificando"
-            submitting={submitting}
-            onClick={handleErrors}
-          />
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Verificar"
+              enviando="Verificando"
+              submitting={submitting}
+              onClick={handleErrors}
+              customIcon="verifyEmail"
+            />
+          </Grid>
         </Form>
       </Grid>
       <Grid container justifyContent="center" spacing={1}>
@@ -197,6 +201,8 @@ export default function ConfirmarAuthTemplate(props: {
             onClick={handleResendVerificationEmail}
             cta={`Reenviar email de confirmação`}
             initialTime={45000}
+            resetTimer={resetTimer}
+            setResetTimer={setResetTimer}
             fontSize="90%"
           />
         </Grid>
@@ -220,6 +226,8 @@ export default function ConfirmarAuthTemplate(props: {
       <ChangeEmailModal
         isChangeEmailModalOpen={isChangeEmailModalOpen}
         setChangeEmailModalOpen={setChangeEmailModalOpen}
+        setResetTimer={setResetTimer}
+        resendVerificationMail={handleResendVerificationEmail}
       />
     </MyCard>
   );

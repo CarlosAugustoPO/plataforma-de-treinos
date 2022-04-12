@@ -9,9 +9,11 @@ export default function Form(props: {
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   style?: {};
   children: React.ReactNode;
+  id?: string;
 }) {
   return (
     <form
+      id={props.id || 'form'}
       style={{
         maxWidth: '600px',
         width: '100%',

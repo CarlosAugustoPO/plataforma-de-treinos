@@ -7,8 +7,8 @@ export default async function getUserApi(
 ) {
   const { email, select } = req.body;
   const getUserDB: any = await getUserModel({ email, select });
-  if (getUserDB.message) {
-    return res.status(400).json({ message: getUserDB.message });
+  if (getUserDB.error) {
+    return res.status(400).json({ error: getUserDB.error });
   }
   return res.status(200).json({ ...getUserDB });
 }

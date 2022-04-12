@@ -32,7 +32,6 @@ export default function VerificationCodeField(props: {
             props.setLastFieldError('');
           }}
           onClick={() => {
-            props.clearErrors('verificationCode');
             props.setLastFieldError('');
           }}
           {...props.register('verificationCode', {

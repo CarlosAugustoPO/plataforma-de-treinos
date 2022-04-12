@@ -1,3 +1,6 @@
+import Grid from '@mui/material/Grid';
+import PolicyIcon from '@mui/icons-material/Policy';
+import LabelIcon from '@mui/icons-material/LabelImportantTwoTone';
 import EssentialsCookies from 'src/components/cookiesinuse/Essentials/index';
 import OwnerCookies from 'src/components/cookiesinuse/Owner/index';
 import AnalyticsCookies from 'src/components/cookiesinuse/Analytics/index';
@@ -5,6 +8,7 @@ import TextButton from 'src/components/TextButton/index';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DialogContent from '@mui/material/DialogContent';
+import DoneIcon from '@mui/icons-material/Done';
 import {
   BootstrapDialog,
   BootstrapDialogTitle,
@@ -14,6 +18,7 @@ import Text from 'src/components/Text/index';
 import Title from 'src/components/Title/index';
 import { COOKIE_CONSENT_VERSION } from 'src/lib/utils/constants/index';
 import { TransitionDown } from 'src/components/Transitions/index';
+
 export default function CookieConsentModal(props: {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
@@ -35,12 +40,25 @@ export default function CookieConsentModal(props: {
         sx={{
           fontFamily: 'Carter One',
           backgroundColor: 'backgroundModalBar.main',
-          color: 'cookieConsentTitle.main',
+          color: 'modalTitle.main',
         }}
       >
-        Políticas de Cookies e de Armazenamento Local da
-        Plataforma de Treinos
-      </BootstrapDialogTitle>
+        <Title
+          variant="body1"
+          fontSize="110%"
+          sx={{ color: 'modalTitle.main' }}
+        >
+          <LabelIcon
+            sx={{
+              marginRight: '1%',
+              fontSize: '65%',
+              transform: 'scale(170%)',
+              color: 'modalTitleIcon.main',
+            }}
+          />{' '}
+          Políticas de cookies da Plataforma de Treinos
+        </Title>
+      </BootstrapDialogTitle>{' '}
       <DialogContent
         dividers
         sx={{ backgroundColor: 'backgroundModalBody.main' }}
@@ -274,19 +292,30 @@ export default function CookieConsentModal(props: {
           justifyContent: 'space-between',
         }}
       >
-        <Text
-          sx={{
-            color: 'cookieConsentTitle.main',
-            float: 'left',
-          }}
-          fontSize="85%"
-        >
-          Versão: {COOKIE_CONSENT_VERSION}
-        </Text>
+        <Grid container>
+          <PolicyIcon
+            sx={{
+              marginTop: '-2px',
+              marginRight: '1%',
+              color: 'modalVersionIcon.main',
+            }}
+          />
+
+          <Text
+            sx={{
+              color: 'cookieConsentTitle.main',
+              float: 'left',
+            }}
+            fontSize="85%"
+          >
+            Versão: {COOKIE_CONSENT_VERSION}
+          </Text>
+        </Grid>
         <Button
           color="buttonSnackbarOk"
           variant="outlined"
           onClick={() => props.setOpen(false)}
+          endIcon={<DoneIcon sx={{ marginTop: '-2px' }} />}
         >
           Ok
         </Button>

@@ -1,8 +1,12 @@
 // {{{ MyOwnImports
 import AnalyticsCookies from 'src/components/cookiesinuse/Analytics/index';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 import OwnerCookies from 'src/components/cookiesinuse/Owner/index';
+import CloseIcon from '@mui/icons-material/CloseOutlined';
 import EssentialsCookies from 'src/components/cookiesinuse/Essentials/index';
 // }}}
+import Title from 'src/components/Title/index';
+import LabelIcon from '@mui/icons-material/LabelImportantTwoTone';
 /*{{{ UtilsImport */
 import formatDate from 'src/lib/utils/formatDate';
 import updateVisitCookiesConsentFields from 'src/lib/fetchers/visits/update/cookiesConsentFields/index';
@@ -183,6 +187,7 @@ export default function CookieSettingsModal(props: {
             props.setCookieSettingsModalOpen(false);
           }
         }}
+        scroll="body"
         disableEscapeKeyDown
         TransitionComponent={TransitionDown}
         aria-labelledby="cookies-settings"
@@ -196,10 +201,23 @@ export default function CookieSettingsModal(props: {
             fontFamily: 'Carter One',
             backgroundColor: 'backgroundModalBar.main',
             color: 'cookieConsentTitle.main',
-            fontSize: '85%',
           }}
         >
-          Configurações de Cookies
+          <Title
+            variant="body1"
+            fontSize="110%"
+            sx={{ color: 'modalTitle.main' }}
+          >
+            <LabelIcon
+              sx={{
+                marginRight: '1%',
+                fontSize: '65%',
+                color: 'modalTitleIcon.main',
+                transform: 'scale(170%)',
+              }}
+            />{' '}
+            Configurações de Cookies
+          </Title>
         </BootstrapDialogTitle>
         {/*}}}*/}
 
@@ -501,6 +519,9 @@ export default function CookieSettingsModal(props: {
             color="buttonSnackbarOk"
             variant="outlined"
             onClick={closeAndAcceptCustonCookieConsent}
+            endIcon={
+              <DoneOutlinedIcon sx={{ marginTop: '-2px' }} />
+            }
           >
             Salvar
           </Button>
@@ -511,6 +532,7 @@ export default function CookieSettingsModal(props: {
             color="buttonSnackbarCancel"
             variant="outlined"
             onClick={proxyCloseSettings}
+            endIcon={<CloseIcon sx={{ marginTop: '-2px' }} />}
           >
             Cancelar
           </Button>

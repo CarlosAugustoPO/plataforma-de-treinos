@@ -123,6 +123,12 @@ const getDesignTokens = (mode: any) => ({
           disabled: {
             main: colors.light.grayLighter,
           },
+          modalTitleIcon: {
+            main: colors.light.pink,
+          },
+          modalVersionIcon: {
+            main: colors.light.white,
+          },
         },
         components: {
           MuiFormLabel: {
@@ -265,9 +271,6 @@ const getDesignTokens = (mode: any) => ({
           cookieConsentVersion: {
             main: colors.dark.purple,
           },
-          modalTitle: {
-            main: colors.dark.purple,
-          },
           modalVersion: {
             main: colors.dark.purple,
           },
@@ -276,6 +279,15 @@ const getDesignTokens = (mode: any) => ({
           },
           disabled: {
             main: colors.dark.grayLighter,
+          },
+          modalTitle: {
+            main: colors.dark.purple,
+          },
+          modalTitleIcon: {
+            main: colors.dark.pink,
+          },
+          modalVersionIcon: {
+            main: colors.dark.purple,
           },
         },
         components: {

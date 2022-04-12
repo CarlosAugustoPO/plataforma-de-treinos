@@ -1,3 +1,7 @@
+import Grid from '@mui/material/Grid';
+import LabelIcon from '@mui/icons-material/LabelImportantTwoTone';
+import DoneIcon from '@mui/icons-material/Done';
+import Title from 'src/components/Title';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,6 +12,7 @@ import {
 import type { Dispatch, SetStateAction } from 'react';
 import Text from 'src/components/Text/index';
 import { TransitionDown } from 'src/components/Transitions/index';
+import PolicyIcon from '@mui/icons-material/Policy';
 
 export default function TermposPreUserModal(props: {
   isOpen: boolean;
@@ -28,7 +33,21 @@ export default function TermposPreUserModal(props: {
           color: 'modalTitle.main',
         }}
       >
-        Termos de uso do pré usuário da Plataforma de Treinos
+        <Title
+          variant="body1"
+          fontSize="110%"
+          sx={{ color: 'modalTitle.main' }}
+        >
+          <LabelIcon
+            sx={{
+              marginRight: '1%',
+              fontSize: '65%',
+              color: 'modalTitleIcon.main',
+              transform: 'scale(170%)',
+            }}
+          />{' '}
+          Termos de uso do pré usuário da Plataforma de Treinos
+        </Title>
       </BootstrapDialogTitle>
       <DialogContent
         dividers
@@ -67,17 +86,29 @@ export default function TermposPreUserModal(props: {
           justifyContent: 'space-between',
         }}
       >
-        <Text
-          sx={{
-            color: 'modalVersion.main',
-          }}
-        >
-          Versão: 0.0.0/Dev
-        </Text>
+        <Grid container>
+          <PolicyIcon
+            sx={{
+              marginTop: '-2px',
+              marginRight: '1%',
+              color: 'modalVersionIcon.main',
+            }}
+          />
+          <Text
+            sx={{
+              color: 'cookieConsentTitle.main',
+              float: 'left',
+            }}
+            fontSize="85%"
+          >
+            Versão: 0.0.0
+          </Text>
+        </Grid>
         <Button
           color="buttonModal"
           variant="outlined"
           onClick={() => props.setOpen(false)}
+          endIcon={<DoneIcon sx={{ marginTop: '-2px' }} />}
         >
           Ok
         </Button>

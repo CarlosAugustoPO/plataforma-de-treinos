@@ -20,8 +20,8 @@ const patchVisitsCookiesConsentFieldsApi = async (
       visitId,
     },
   );
-  if (result.message) {
-    return res.status(400).json({ error: result.message });
+  if (result.error) {
+    return res.status(400).json({ error: result.error });
   }
   return res.status(200).json({ ...result });
 };

@@ -27,7 +27,6 @@ export default function LastNameField(props: {
             props.setLastFieldError('');
           }}
           onClick={() => {
-            props.clearErrors('lastName');
             props.setLastFieldError('');
           }}
           {...props.register('lastName', {

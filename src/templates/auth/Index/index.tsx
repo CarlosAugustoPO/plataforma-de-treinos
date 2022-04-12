@@ -29,7 +29,7 @@ export default function IndexAuthTemplate() {
       </Text>
       <Grid container justifyContent="center" m={2}>
         <Grid item>
-          <LinkButton cta="Registre-se" href="/cadastrar" />
+          <LinkButton cta="Acessar Painel" href="/cadastrar" />
         </Grid>
       </Grid>
     </MyCard>

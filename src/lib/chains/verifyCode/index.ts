@@ -63,11 +63,13 @@ export default async function verifyCode({
 
   const disableMagicLinkResult =
     await updateMakicLinkIsDisabledField(email);
+
   if (disableMagicLinkResult.error) {
     return {
       error: disableMagicLinkResult.error,
     };
   }
+
   const reloginSessionResult = await reloginSession({
     email,
     password: `${hashFragment}`,

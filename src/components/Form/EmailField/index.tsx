@@ -35,7 +35,6 @@ export default function EmailField(props: {
           props.setLastFieldError('');
         }}
         onClick={() => {
-          props.clearErrors('email');
           props.setLastFieldError('');
         }}
         autoFocus={false}

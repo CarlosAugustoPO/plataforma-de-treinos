@@ -1,4 +1,6 @@
 import updateVisitCookiesConsentFields from 'src/lib/fetchers/visits/update/cookiesConsentFields/index';
+import DoneOutlineOutlinedIcon from '@mui/icons-material/DoneOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import Button from '@mui/material/Button';
 import SnackBox from 'src/components/SnackBox/index';
 import Caption from 'src/components/Caption/index';
@@ -82,7 +84,13 @@ export default function CookiesSnackBox(props: {
           margin: '2%',
         }}
       />
-      <div style={{ margin: '3%' }}>
+      <div
+        style={{
+          margin: '3%',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         <Button
           sx={{
             transform: 'scale(87%)',
@@ -90,6 +98,9 @@ export default function CookiesSnackBox(props: {
           color="buttonSnackbarCancel"
           variant="outlined"
           onClick={props.openSettingAndCloseSnack}
+          endIcon={
+            <SettingsOutlinedIcon sx={{ marginTop: '-2px' }} />
+          }
         >
           Configurar
         </Button>
@@ -100,8 +111,13 @@ export default function CookiesSnackBox(props: {
           color="buttonSnackbarOk"
           variant="outlined"
           onClick={closeAndAcceptDefaultCookieConsent}
+          endIcon={
+            <DoneOutlineOutlinedIcon
+              sx={{ marginTop: '-2px' }}
+            />
+          }
         >
-          Aceitar Cookies
+          Aceitar
         </Button>
       </div>
     </SnackBox>

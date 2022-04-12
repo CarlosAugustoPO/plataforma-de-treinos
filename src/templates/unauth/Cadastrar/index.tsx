@@ -203,15 +203,15 @@ export default function CadastrarUnauthTemplate() {
               {lastFieldError}
             </Text>
           )}
-          <SendButton
-            sx={{ marginTop: '2%' }}
-            enviar="Registrar"
-            enviando="Registrando"
-            submitting={submitting}
-            onClick={handleErrors}
-          />
-
-          <Caption mt={3}>
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Cadastrar"
+              enviando="Cadastrando"
+              submitting={submitting}
+              onClick={handleErrors}
+            />
+          </Grid>
+          <Caption mt={2}>
             Ao criar uma conta você está de acordo com os nossos{' '}
             <TextButton
               cta="termos de uso"

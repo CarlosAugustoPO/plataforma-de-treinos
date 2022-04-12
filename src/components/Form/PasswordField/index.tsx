@@ -12,9 +12,13 @@ import type { Dispatch, SetStateAction } from 'react';
 export default function PasswordField(props: {
   errors: string;
   lastFieldError: string;
+  wrongPasswordError?: string;
   clearErrors: (password: 'password') => void;
   register: (password: 'password', validation: {}) => void;
   setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
+  setWrongPasswordError?: Dispatch<
     SetStateAction<string | undefined>
   >;
   sx?: {};
@@ -33,7 +37,11 @@ export default function PasswordField(props: {
         fullWidth
         id="password"
         error={
-          props.errors || props.lastFieldError ? true : false
+          props.wrongPasswordError ||
+          props.errors ||
+          props.lastFieldError
+            ? true
+            : false
         }
         label="Senha"
         variant="standard"
@@ -43,10 +51,15 @@ export default function PasswordField(props: {
         onKeyDown={(e) => {
           preventWhiteSpace(e);
           props.setLastFieldError('');
+          props.setWrongPasswordError
+            ? props.setWrongPasswordError('')
+            : null;
         }}
         onClick={() => {
-          props.clearErrors('password');
           props.setLastFieldError('');
+          props.setWrongPasswordError
+            ? props.setWrongPasswordError('')
+            : null;
         }}
         autoFocus={false}
         sx={{ ...props.sx }}

@@ -3,6 +3,7 @@ import Caption from 'src/components/Caption/index';
 import TextButton from 'src/components/TextButton/index';
 import { useEffect, useState } from 'react';
 import Timer from 'src/components/Timer/index';
+import type { Dispatch, SetStateAction } from 'react';
 
 export default function TimerTextButton(props: {
   initialTime: number;
@@ -10,6 +11,8 @@ export default function TimerTextButton(props: {
   cta: string;
   submitting?: string;
   fontSize?: string;
+  resetTimer?: boolean;
+  setResetTimer: Dispatch<SetStateAction<boolean>>;
 }) {
   const [deadLine, setDeadLine] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -35,12 +38,18 @@ export default function TimerTextButton(props: {
     timeout = setTimeout(() => {
       setDeadLine(true);
     }, initialTime);
+    if (props.resetTimer === true) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setDeadLine(true);
+      }, initialTime);
+    }
     return () => {
       clearTimeout(timeout);
       setDeadLine(false);
       setRestartCounter(undefined);
     };
-  }, [restartCounter, initialTime]);
+  }, [restartCounter, initialTime, props.resetTimer]);
 
   return (
     <>
@@ -72,6 +81,9 @@ export default function TimerTextButton(props: {
                 <Timer
                   restartCounter={restartCounter}
                   initialTime={initialTime}
+                  resetTimer={props.resetTimer}
+                  setResetTimer={props.setResetTimer}
+                  setDisabled={setDisabled}
                 />
                 )
               </Caption>

@@ -116,14 +116,16 @@ export default function EntrarUnauthTemplate() {
               {lastFieldError}
             </Text>
           )}
-          <SendButton
-            sx={{ marginTop: '2%' }}
-            enviar="Entrar"
-            enviando="Entrando"
-            submitting={submitting}
-            onClick={handleErrors}
-          />
-          <Caption mt={3}>
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Entrar"
+              enviando="Entrando"
+              submitting={submitting}
+              onClick={handleErrors}
+              customIcon="login"
+            />
+          </Grid>
+          <Caption mt={2}>
             Ao utilizar nosso produto você está de acordo com os
             nossos{' '}
             <TextButton

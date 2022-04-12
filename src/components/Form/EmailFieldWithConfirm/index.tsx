@@ -63,6 +63,7 @@ export default function EmailFieldWithConfirm(props: {
           onKeyUp={(e) => changeWhiteSpace(e)}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
+            props.setEmailExistsError('');
             props.setLastFieldError('');
           }}
           onClick={() => {
@@ -165,6 +166,7 @@ export default function EmailFieldWithConfirm(props: {
           onKeyUp={(e) => changeWhiteSpace(e)}
           onKeyDown={(e) => {
             preventWhiteSpace(e);
+            props.setEmailExistsError('');
             props.setLastFieldError('');
           }}
           onClick={() => {
