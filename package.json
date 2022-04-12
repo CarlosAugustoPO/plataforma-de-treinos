@@ -8,7 +8,8 @@
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "prepare": "husky install",
-    "migrate": "node scripts/migrate-db.ts"
+    "cdb": "npx prisma db push",
+    "truncate": "node prisma/truncate.js"
   },
   "dependencies": {
     "@emotion/cache": "latest",
@@ -17,14 +18,20 @@
     "@emotion/styled": "latest",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
+    "@prisma/client": "^3.12.0",
+    "@reduxjs/toolkit": "^1.8.0",
+    "@types/material-ui": "^0.21.12",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "next": "latest",
     "next-auth": "^4.2.1",
+    "nookies": "^2.5.2",
+    "nprogress": "^0.2.0",
     "prop-types": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.27.1",
+    "react-redux": "^7.2.6",
     "serverless-mysql": "^1.5.4",
     "swr": "^1.2.2",
     "uuid": "^8.3.2"
@@ -37,6 +44,7 @@
     "@testing-library/user-event": "13.5.0",
     "@types/bcrypt": "^5.0.0",
     "@types/react": "17.0.38",
+    "@types/react-redux": "^7.1.23",
     "@types/uuid": "^8.3.4",
     "babel-jest": "27.4.5",
     "eslint": "8.5.0",
@@ -46,6 +54,7 @@
     "husky": "^7.0.4",
     "jest": "27.4.5",
     "lint-staged": "^12.3.4",
+    "prisma": "^3.12.0",
     "typescript": "4.5.4"
   },
   "lint-staged": {

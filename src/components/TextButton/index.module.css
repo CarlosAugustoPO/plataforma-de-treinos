@@ -1,0 +1,73 @@
+.cyan {
+  color: var(--text-button-cyan);
+}
+.cyan:active {
+  color: var(--text-button-cyan-active);
+}
+.cyan:visited {
+  color: var(--text-button-cyan-visited);
+}
+.cyan:hover {
+  color: var(--text-button-cyan-hover);
+}
+
+.default {
+  color: var(--text-button-default);
+}
+.default:active {
+  color: var(--text-button-default-active);
+}
+.default:visited {
+  color: var(--text-button-default-visited);
+}
+.default:hover {
+  color: var(--text-button-default-hover);
+}
+
+.modal {
+  color: var(--text-button-modal);
+}
+.modal:active {
+  color: var(--text-button-modal-active);
+}
+.modal:visited {
+  color: var(--text-button-modal-visited);
+}
+.modal:hover {
+  color: var(--text-button-modal-hover);
+}
+
+.pinkLinkInt {
+  color: var(--text-button-pinkLinkInt);
+}
+.pinkLinkInt:active {
+  color: var(--text-button-pinkLinkInt-active);
+}
+.pinkLinkInt:visited {
+  color: var(--text-button-pinkLinkInt-visited);
+}
+.pinkLinkInt:hover {
+  color: var(--text-button-pinkLinkInt-hover);
+}
+
+.disabled {
+  color: var(--text-button-disabled);
+  cursor: initial;
+}
+.disabled:active {
+  color: var(--text-button-disabled-active);
+}
+.disabled:visited {
+  color: var(--text-button-disabled-visited);
+}
+.disabled:hover {
+  color: var(--text-button-disabled-hover);
+}
+
+.pureTextLinkButton {
+  color: var(--text-button-pinkLinkInt);
+}
+
+.pureTextLinkButton:hover {
+  color: var(--text-button-pinkLinkInt-hover);
+}

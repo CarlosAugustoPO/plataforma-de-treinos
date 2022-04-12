@@ -1,42 +1,28 @@
 import Typography from '@mui/material/Typography';
-import styles from './styles.module.css';
+import { TypographyProps } from '@mui/material/Typography';
 
-type Props = {
-  children: React.ReactNode;
-  variant?:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'body1'
-    | 'body2'
-    | 'button'
-    | 'caption'
-    | 'inherit'
-    | 'overline'
-    | undefined;
-  color?: string;
-  component?: any | undefined;
+type PlusComponent = {
+  component?: React.ElementType;
 };
 
+type TypographyPropsPlusComponent = TypographyProps &
+  PlusComponent;
+
 export default function Title({
-  children,
-  variant,
-  component,
-  color,
-}: Props) {
+  variant = 'h4',
+  component = 'h2',
+  color = 'title.main',
+  ...props
+}: TypographyPropsPlusComponent): JSX.Element {
   return (
     <Typography
-      className={styles.title}
       variant={variant}
-      color={color}
       component={component}
+      color={color}
+      fontFamily="Carter One"
+      {...props}
     >
-      {children}
+      {props.children}
     </Typography>
   );
 }

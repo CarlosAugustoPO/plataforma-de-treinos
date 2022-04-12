@@ -1,15 +1,13 @@
-import Header from 'src/components/vendor/mui/Header';
+import Header from 'src/components/vendor/mui/Header/index';
 import styles from './styles.module.css';
 
-type Props = {
-  children?: React.ReactNode;
-};
-
-export default function MyHeader({ children }: Props) {
+export default function MyHeader(props: {
+  children: React.ReactNode;
+}): JSX.Element {
   return (
     <>
       <Header />
-      <main className={styles.main}>{children}</main>
+      <main className={styles.main}>{props.children}</main>
     </>
   );
 }

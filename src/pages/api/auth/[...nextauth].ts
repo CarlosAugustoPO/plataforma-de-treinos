@@ -15,20 +15,26 @@ export default NextAuth({
         email: { label: 'Email', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        const email = credentials!.email;
-        const password = credentials!.password;
-        const url = process.env.NEXTAUTH_URL;
-        const res = await fetch(`${url}/api/auth/sign-in`, {
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-          headers: { 'Content-Type': 'application/json' },
-        });
+      async authorize(credentials, req) {
+        const email = credentials?.email;
+        const password = credentials?.password;
+        const protocol =
+          req?.headers?.['x-forwarded-proto'] || 'http';
+        const visitedDomain = req?.headers?.host;
+        const visitedUrl = `${protocol}://${visitedDomain}`;
+        const res = await fetch(
+          `${visitedUrl}/api/auth/sign-in`,
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+            headers: { 'Content-Type': 'application/json' },
+          },
+        );
         const user = await res.json();
-        if (user.message) throw Error(user.message);
+        if (user.error) throw Error(user.error);
         if (res.ok && user) {
           return user;
         }

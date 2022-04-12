@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import useSettings from 'src/lib/hooks/useSettings';
 
-type Props = {
+export default function Logo(props: {
   width?: number;
   height?: number;
-};
-
-export default function Logo({ width, height }: Props) {
+}): JSX.Element {
   const { settings } = useSettings();
+  let width = props.width;
+  let height = props.width;
 
   if (!width) {
     width = 30;
@@ -20,8 +20,7 @@ export default function Logo({ width, height }: Props) {
   if (settings.theme == 'light') {
     return (
       <Image
-        // src="/logo-pdt-light.png"
-        src="/logo-pdt-blue.png"
+        src="/logo-pdt-light-theme.png"
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}
@@ -32,7 +31,7 @@ export default function Logo({ width, height }: Props) {
   if (settings.theme == 'dark') {
     return (
       <Image
-        src="/logo-pdt-purple.png"
+        src="/logo-pdt-dark-theme.png"
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}
@@ -42,7 +41,7 @@ export default function Logo({ width, height }: Props) {
 
   return (
     <Image
-      src="/logo-pdt-light.png"
+      src="/logo-pdt-blue.png"
       alt="Logo da Plataforma de Treinos"
       width={width}
       height={height}

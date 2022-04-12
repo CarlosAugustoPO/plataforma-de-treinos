@@ -1,4 +1,3 @@
-import App, { AppContext } from 'next/app';
 import { CacheProvider } from '@emotion/react';
 import createEmotionCache from 'src/lib/vendor/mui/createEmotionCache';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,11 +6,16 @@ import { SettingsProvider } from 'src/lib/contexts/SettingsContext';
 import MyThemeProvider from 'src/components/MyThemeProvider/index';
 import { NextPage } from 'next';
 import type { AppProps } from 'next/app';
-import 'src/styles/globals.css';
-import 'src/styles/themes/variables.css';
 import CookieConsent from 'src/components/CookieConsent/index';
 import MyHead from 'src/components/MyHead/index';
 import MyHeader from 'src/components/MyHeader/index';
+import LoadingBar from 'src/components/LoadingBar/index';
+import 'src/styles/themes/variables.css';
+import 'src/styles/nprogress.css';
+import 'src/styles/globals.css';
+import store from 'src/store/index';
+import { Provider } from 'react-redux';
+import MyAlertProvider from 'src/components/MyAlertProvider/index';
 
 type AppPropsWithCache = AppProps & {
   Component: NextPage;
@@ -27,45 +31,28 @@ export default function MyApp({
   pageProps: { session, ...pageProps },
 }: AppPropsWithCache) {
   return (
-    <SessionProvider session={session}>
-      <CacheProvider value={emotionCache}>
-        <SettingsProvider>
-          <MyThemeProvider>
-            <CssBaseline enableColorScheme />
-            <CookieConsent />
-            <MyHead>
-              {/* MyHead as layout component*/}
-              <MyHeader>
-                {/* Main as main wraper*/}
-                <Component {...pageProps} />
-              </MyHeader>
-            </MyHead>
-          </MyThemeProvider>
-        </SettingsProvider>
-      </CacheProvider>
-    </SessionProvider>
+    <Provider store={store}>
+      <SessionProvider session={session}>
+        <CacheProvider value={emotionCache}>
+          <SettingsProvider>
+            <MyThemeProvider>
+              <CssBaseline enableColorScheme />
+              <MyHead>
+                <CookieConsent />
+                {/* MyHead as layout component*/}
+                <LoadingBar>
+                  <MyHeader>
+                    <MyAlertProvider>
+                      {/* Main as main wraper*/}
+                      <Component {...pageProps} />
+                    </MyAlertProvider>
+                  </MyHeader>
+                </LoadingBar>
+              </MyHead>
+            </MyThemeProvider>
+          </SettingsProvider>
+        </CacheProvider>
+      </SessionProvider>
+    </Provider>
   );
 }
-
-MyApp.getInitialProps = async (appContext: AppContext) => {
-  const appProps = await App.getInitialProps(appContext);
-  const req = appContext.ctx.req;
-  const visitor = {
-    remoteAdress: req?.connection.remoteAddress,
-    host: req?.headers['host'],
-    realIp: req?.headers['x-real-ip'],
-    forwarded: req?.headers['x-forwarded-for'],
-    forwardedVercel: req?.headers['x-vercel-forwarded-for'],
-    deployUrl: req?.headers['x-vercel-deployment-url'],
-    ipCountry: req?.headers['x-vercel-ip-country'],
-    ipCountryRegion: req?.headers['x-vercel-ip-country-region'],
-    vercelId: req?.headers['x-vercel-id'],
-    ipCity: req?.headers['x-vercel-ip-city'],
-  };
-  console.log(visitor);
-  return {
-    pageProps: {
-      ...appProps.pageProps,
-    },
-  };
-};

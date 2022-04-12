@@ -14,7 +14,7 @@ import createEmotionCache from 'src/lib/vendor/mui/createEmotionCache';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang={APP_LOCALE}>
+      <Html lang={APP_LOCALE} id="root">
         <Head>
           {this.props.emotionStyleTags}
           <link
@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           <meta charSet={APP_CHARSET} />
-          <link rel="icon" href="/logo-pdt.png" />
+          <link rel="icon" href="/logo-pdt-blue.png" />
         </Head>
         <body>
           <Main />

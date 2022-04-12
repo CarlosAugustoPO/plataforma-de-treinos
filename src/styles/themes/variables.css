@@ -1,7 +1,55 @@
 :root {
-  --bg-color: #f8f8f2;
+  --nprogress-color: #423768;
+  --text-button-cyan-active: #00ff80;
+  --text-button-cyan-hover: #00ff80;
+  --text-button-cyan: #0ff;
+  --text-button-cyan-visited: #0dd;
+
+  --text-button-default-active: #00c933;
+  --text-button-default-hover: #00c933;
+  --text-button-default: #00559d;
+  --text-button-default-visited: #9400d1;
+
+  --text-button-modal-active: #00c933;
+  --text-button-modal-hover: #00c933;
+  --text-button-modal: #00559d;
+  --text-button-modal-visited: #00559d;
+
+  --text-button-pinkLinkInt-active: #00c933;
+  --text-button-pinkLinkInt-hover: #00c933;
+  --text-button-pinkLinkInt: #cd5f9e;
+  --text-button-pinkLinkInt-visited: #cd5f9e;
+
+  --text-button-disabled-active: #00000033;
+  --text-button-disabled-hover: #00000033;
+  --text-button-disabled: #00000033;
+  --text-button-disabled-visited: #00000033;
 }
 
 [data-theme='dark'] {
-  --bg-color: #282a36;
+  --nprogress-color: #bd93f9;
+  --text-button-disabled-active: #f8f8f266;
+  --text-button-disabled-hover: #f8f8f266;
+  --text-button-disabled: #f8f8f266;
+  --text-button-disabled-visited: #f8f8f266;
+
+  --text-button-cyan-active: #50fa7b;
+  --text-button-cyan-hover: #50fa7b;
+  --text-button-cyan: #8be9fd;
+  --text-button-cyan-visited: #0dd;
+
+  --text-button-default-active: #50fa7b;
+  --text-button-default-hover: #50fa7b;
+  --text-button-default: #bd93f9;
+  --text-button-default-visited: #6272a4;
+
+  --text-button-modal-active: #50fa7b;
+  --text-button-modal-hover: #50fa7b;
+  --text-button-modal: #8be9fd;
+  --text-button-modal-visited: #8be9fd;
+
+  --text-button-pinkLinkInt-active: #50fa7b;
+  --text-button-pinkLinkInt-hover: #50fa7b;
+  --text-button-pinkLinkInt: #ff79c6;
+  --text-button-pinkLinkInt-visited: #ff79c6;
 }

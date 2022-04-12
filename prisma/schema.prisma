@@ -1,0 +1,59 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+model users {
+    id String @id @default(uuid())
+    fname String
+    lname String
+    email String @unique
+    jwtKey String?
+    verification_code Int
+    is_verified DateTime?
+    password String
+    fragment_hash_password String
+    created_at_br String
+    updated_at_br String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
+model visits {
+    visit_id String @id @default(uuid())
+    visited_url String
+    user_agent String
+    ipv4 String
+    forwarded_ipv4 String
+    ip_city String
+    ip_country String
+    vercel_id String
+    protocol String
+    visited_domain String
+    visited_page_path String
+    cookies_consent_accepted String
+    cookies_consent_version String
+    cookies_consent_save String
+    logged_as String
+    created_at_br String
+    updated_at_br String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}
+
+model magic_links {
+    id String @id @default(uuid())
+    user_email String @unique
+    magic_token String
+    is_disabled DateTime?
+    created_at_br String
+    updated_at_br String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
+}

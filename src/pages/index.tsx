@@ -1,45 +1,51 @@
-//Dependency imports
-import dynamic from 'next/dynamic';
 //shared components
 import MyHead from 'src/components/MyHead/index';
+//General Pages templates
+import LoadingTemplate from 'src/templates/commons/Loading';
+//Dynamic Pages templates
+import dynamic from 'next/dynamic';
+const IndexAuthTemplate = dynamic(
+  () => import('src/templates/auth/Index'),
+  { loading: () => <LoadingTemplate /> },
+);
+const IndexUnauthTemplate = dynamic(
+  () => import('src/templates/unauth/Index'),
+  { loading: () => <LoadingTemplate /> },
+);
 //hooks
 import useStatus from 'src/lib/hooks/useStatus';
-
-//templates
-const LoadingTemplate = dynamic(
-  () => import('src/templates/Loading/index'),
-  {
-    loading: () => (
-      <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
-    ),
-  },
-);
-
-const IndexTemplate = dynamic(
-  () => import('src/templates/Index/index'),
-  {
-    loading: () => (
-      <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
-    ),
-  },
-);
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+//fetcher
+import createVisit from 'src/lib/fetchers/visits/create/index';
+//reducers
+import { add } from 'src/reducers/visit/index';
+//types
+import type VisitData from 'src/types/VisitData';
 
 export default function Index() {
   const status = useStatus();
-  if (status === 'loading') {
-    return (
-      <LoadingTemplate>Carregando, aguarde</LoadingTemplate>
-    );
-  }
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const visitedPagePath = router.pathname;
+  const [_visit, setVisit] = useState<VisitData>();
 
-  if (
-    status === 'unauthenticated' ||
-    status === 'authenticated'
-  ) {
-    return (
-      <MyHead>
-        <IndexTemplate status={status} />
-      </MyHead>
-    );
-  }
+  useEffect(() => {
+    createVisit(visitedPagePath).then((visitResult) => {
+      if (visitResult) {
+        dispatch(add(visitResult)), setVisit(visitResult);
+      }
+    });
+  }, [dispatch, visitedPagePath]);
+
+  return (
+    <MyHead>
+      {status === 'loading' && (
+        <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+      )}
+      {status === 'unauthenticated' && <IndexUnauthTemplate />}
+      {status === 'authenticated' && <IndexAuthTemplate />}
+    </MyHead>
+  );
 }

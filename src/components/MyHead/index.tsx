@@ -1,19 +1,21 @@
 import Head from 'next/head';
 import { useTheme } from '@mui/material/styles';
 import { useRouter } from 'next/router';
-import styles from './styles.module.css';
 import {
   APP_NAME,
   APP_DESCRIPTION,
-  APP_CHARSET,
   APP_LOCALE,
   APP_TYPE,
 } from 'src/lib/utils/constants';
 
-type Props = {
+type Robots = {
+  robots?: 'noindex' | 'nofollow' | 'none' | 'all';
+};
+
+export default function MyHead(props: {
   title?: string;
   description?: string;
-  robots?: string;
+  robots?: 'noindex' | 'nofollow' | 'none' | 'all';
   canonicalUrl?: string;
   ogTitle?: string;
   ogDescription?: string;
@@ -22,50 +24,51 @@ type Props = {
   ogImage?: string;
   ogImageAlt?: string;
   ogLocale?: string;
-  children?: React.ReactNode;
-};
-
-export default function Layout({
-  title,
-  description,
-  robots,
-  canonicalUrl,
-  ogTitle,
-  ogDescription,
-  ogType,
-  ogUrl,
-  ogImage,
-  ogImageAlt,
-  ogLocale,
-  children,
-}: Props) {
+  children: React.ReactNode;
+}): JSX.Element {
   const router = useRouter();
-  const publicUrl = process.env.NEXT_PUBLIC_URL;
+
+  const protocol =
+    process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+      ? 'http://'
+      : 'https://';
+  const publicUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
   const urlComplement = router.pathname;
-  const thisUrl = `${publicUrl + urlComplement}`;
+  const thisUrl = `${protocol + publicUrl + urlComplement}`;
+
   const theme = useTheme();
 
-  title ? (title = title) : (title = APP_NAME);
-  description
-    ? (description = description)
-    : (description = APP_DESCRIPTION);
-  robots ? (robots = robots) : (robots = 'none');
-  canonicalUrl
-    ? (canonicalUrl = canonicalUrl)
-    : (canonicalUrl = thisUrl);
-  ogTitle ? (ogTitle = ogTitle) : (ogTitle = title);
-  ogDescription
-    ? (ogDescription = ogDescription)
-    : (ogDescription = description);
-  ogType ? (ogType = ogType) : (ogType = APP_TYPE);
-  ogUrl ? (ogUrl = ogUrl) : (ogUrl = thisUrl);
-  ogImage
-    ? (ogImage = ogImage)
-    : (ogImage = `${publicUrl}/banner.png`);
-  ogImageAlt
-    ? (ogImageAlt = ogImageAlt)
-    : (ogImageAlt = `Banner do APP ${APP_NAME}`);
-  ogLocale ? (ogLocale = ogLocale) : (ogLocale = APP_LOCALE);
+  let title = (props.title as string) || APP_NAME;
+  let description =
+    (props.description as string) || APP_DESCRIPTION;
+  const robots = (props.robots as Robots) || 'none';
+  const canonicalUrl = (props.canonicalUrl as string) || thisUrl;
+  const ogTitle = (props.ogTitle as string) || title;
+  const ogDescription =
+    (props.ogDescription as string) || description;
+  const ogType = (props.ogType as string) || APP_TYPE;
+  const ogUrl = (props.ogUrl as string) || thisUrl;
+  const ogImage =
+    (props.ogImage as string) ||
+    `${protocol + publicUrl}/banner.png`;
+  const ogImageAlt =
+    (props.ogImageAlt as string) || `Banner do APP ${APP_NAME}`;
+  const ogLocale = (props.ogLocale as string) || APP_LOCALE;
+  const children = props.children;
+
+  title == 'replaceThis' ? (title = APP_NAME) : (title = title);
+  description == 'replaceThis'
+    ? (description = APP_DESCRIPTION)
+    : (description = description);
+
+  if (typeof window !== 'undefined') {
+    if (theme.palette.mode == 'dark') {
+      document.documentElement.dataset.theme = 'dark';
+    }
+    if (theme.palette.mode == 'light') {
+      document.documentElement.dataset.theme = 'light';
+    }
+  }
 
   return (
     <>
@@ -81,7 +84,11 @@ export default function Layout({
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
           key="viewport"
         />
-        <meta name="robots" content={robots} key="robots" />
+        <meta
+          name="robots"
+          content={robots as string}
+          key="robots"
+        />
         <link
           rel="canonical"
           href={canonicalUrl}
@@ -120,12 +127,7 @@ export default function Layout({
           key="themeColor"
         />
       </Head>
-      <div
-        className={styles.layout}
-        data-theme={theme.palette.mode}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </>
   );
 }
