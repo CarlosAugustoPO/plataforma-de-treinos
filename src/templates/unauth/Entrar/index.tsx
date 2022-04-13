@@ -139,13 +139,21 @@ export default function EntrarUnauthTemplate() {
             />
             .
           </Caption>
-          <Grid container mt={3} justifyContent="center">
-            <Grid item>
+          <Grid container mt={2} justifyContent="center">
+            <Grid item xs={12} mt={1}>
               <TextButton
                 linkColor="pinkLinkInt"
                 cta="Não tem uma conta? Registre-se"
                 sx={{ fontSize: '90%' }}
                 href="/cadastrar"
+              />
+            </Grid>
+            <Grid item xs={12} mt={1}>
+              <TextButton
+                linkColor="pinkLinkInt"
+                cta="Esqueceu a conta?"
+                sx={{ fontSize: '90%' }}
+                href="/recovery-account"
               />
             </Grid>
           </Grid>
