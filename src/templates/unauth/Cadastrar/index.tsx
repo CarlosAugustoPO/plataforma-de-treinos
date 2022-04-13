@@ -22,6 +22,7 @@ import login from 'src/lib/fetchers/session/login';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from 'src/lib/hooks/useRedux/index';
 import { putAlert } from 'src/reducers/alert/index';
+
 export default function CadastrarUnauthTemplate() {
   const [submitting, setSubmitting] = useState(false);
 

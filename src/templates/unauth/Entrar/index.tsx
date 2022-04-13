@@ -153,7 +153,7 @@ export default function EntrarUnauthTemplate() {
                 linkColor="pinkLinkInt"
                 cta="Esqueceu a conta?"
                 sx={{ fontSize: '90%' }}
-                href="/recovery-account"
+                href="/relembrar-email"
               />
             </Grid>
           </Grid>
