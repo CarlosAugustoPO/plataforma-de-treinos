@@ -61,9 +61,9 @@ export default NextAuth({
         token.lname = user.lname;
         token.email = user.email;
         token.is_verified = user.is_verified;
+        token.jwt_key = user.jwt_key;
         token.fragment_hash_password =
           user.fragment_hash_password;
-        token.jwtKey = user.jwtKey;
       }
       return token;
     },
@@ -73,9 +73,9 @@ export default NextAuth({
       session.user.lname = token.lname;
       session.user.email = token.email;
       session.user.is_verified = token.is_verified;
+      session.user.jwt_key = token.jwt_key;
       session.user.fragment_hash_password =
         token.fragment_hash_password;
-      session.user.jwtKey = token.jwtKey;
       return session;
     },
   },

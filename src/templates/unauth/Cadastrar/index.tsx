@@ -1,3 +1,4 @@
+import Divider from '@mui/material/Divider';
 import createUser from 'src/lib/fetchers/users/create/index';
 import createMagicLink from 'src/lib/fetchers/magic-links/create/index';
 import deleteUser from 'src/lib/fetchers/users/delete/index';
@@ -22,6 +23,7 @@ import login from 'src/lib/fetchers/session/login';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from 'src/lib/hooks/useRedux/index';
 import { putAlert } from 'src/reducers/alert/index';
+
 export default function CadastrarUnauthTemplate() {
   const [submitting, setSubmitting] = useState(false);
 
@@ -145,13 +147,21 @@ export default function CadastrarUnauthTemplate() {
       <SignUpIcon
         sx={{ color: 'mainIcon.main', fontSize: 60 }}
       />
-      <Title gutterBottom>
-        Registre-se na Plataforma de Treinos
-      </Title>
-      <Text>
-        Informe seus dados para criar sua conta na Plataforma de
-        Treinos
-      </Text>
+      <Grid sx={{ width: '90%' }}>
+        <Title paragraph>
+          Registre-se na Plataforma de Treinos
+        </Title>
+        <Divider
+          sx={{
+            bgcolor: 'clearLine.main',
+            marginBottom: '3%',
+          }}
+        />
+        <Text>
+          Informe seus dados para criar sua conta na Plataforma
+          de Treinos
+        </Text>
+      </Grid>
       <Grid sx={{ maxWidth: '90%' }}>
         <Form
           handleSubmit={handleSubmit}
@@ -224,8 +234,15 @@ export default function CadastrarUnauthTemplate() {
             />
             .
           </Caption>
-          <Grid container mt={3} justifyContent="center">
-            <Grid item>
+          <Grid container justifyContent="center">
+            <Grid item width="100%">
+              <Divider
+                sx={{
+                  bgcolor: 'clearLine.main',
+                  marginTop: '3%',
+                  marginBottom: '3%',
+                }}
+              />
               <TextButton
                 linkColor="pinkLinkInt"
                 cta="Já tem uma conta? Entrar"

@@ -21,13 +21,10 @@ export default async function signInApi(
     });
   }
 
-  console.log('email: ', email);
-  console.log('password: ', password);
   const user: any = await getUserModel({ email });
   if (user.error) {
     return res.status(401).json({ error: user.error });
   }
-  console.log('datapass: ', user?.data?.password);
   if (!user.data?.password) {
     return res.status(401).json({
       error:

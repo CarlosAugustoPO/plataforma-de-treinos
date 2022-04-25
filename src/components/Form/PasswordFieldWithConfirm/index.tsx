@@ -21,6 +21,8 @@ export default function PassWordFieldWithConfirm(props: {
   lastFieldError: string;
   getValues: any;
   sx?: {};
+  fieldLabelPassword?: string;
+  fieldLabelConfirmPassword?: string;
 }) {
   const debouncedClearErrors = useDebounce(
     props.clearErrors,
@@ -58,7 +60,11 @@ export default function PassWordFieldWithConfirm(props: {
               ? true
               : false
           }
-          label="Senha"
+          label={
+            props.fieldLabelPassword
+              ? props.fieldLabelPassword
+              : 'Senha'
+          }
           type={showPassword ? 'text' : 'password'} // <-- This is where the magic happens
           variant="standard"
           autoComplete="password"
@@ -164,7 +170,11 @@ export default function PassWordFieldWithConfirm(props: {
               ? true
               : false
           }
-          label="Confirme sua senha"
+          label={
+            props.fieldLabelConfirmPassword
+              ? props.fieldLabelConfirmPassword
+              : 'Confirme sua senha'
+          }
           type={showConfirmPassword ? 'text' : 'password'} // <-- This is where the magic happens
           onPaste={preventPasswordPaste}
           variant="standard"

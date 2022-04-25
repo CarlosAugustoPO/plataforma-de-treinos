@@ -1,4 +1,5 @@
 import updateMagicToken from 'src/lib/fetchers/magic-links/update/magicTokenFields/index';
+import Divider from '@mui/material/Divider';
 import updateVerificationCode from 'src/lib/fetchers/users/update/verificationCodeField/index';
 import { sendVerificationMail } from 'src/lib/chains/sendVerificationMail/index';
 import TimerTextButton from 'src/components/TimerTextButton/index';
@@ -54,7 +55,7 @@ export default function ConfirmarAuthTemplate(props: {
     dispatch(
       putAlert({
         content: {
-          message: 'Saindo da área de usuário...',
+          message: 'Saindo da áera de usuário',
           severity: 'warning',
           duration: 3000,
           show: true,
@@ -154,13 +155,27 @@ export default function ConfirmarAuthTemplate(props: {
       <ConfirmMailIcon
         sx={{ color: 'mainIcon.main', fontSize: 60 }}
       />
-      <Title gutterBottom>
-        Confirme sua conta na Plataforma de Treinos
-      </Title>
-      <Text>
-        Digite o número de 5 dígitos enviado ao email{' '}
-        {props.session?.user?.email}
-      </Text>
+      <Grid sx={{ width: '90%' }}>
+        <Title paragraph>
+          Confirme sua conta na Plataforma de Treinos
+        </Title>
+        <Divider
+          sx={{
+            bgcolor: 'clearLine.main',
+            marginBottom: '3%',
+          }}
+        />
+        <Text>
+          Digite o número de 5 dígitos enviado ao email{' '}
+          <span
+            style={{
+              color: 'var(--title-span-true)',
+            }}
+          >
+            {props.session?.user?.email}
+          </span>
+        </Text>
+      </Grid>
       <Grid style={{ width: '90%' }}>
         <Form
           handleSubmit={handleSubmit}
@@ -195,12 +210,23 @@ export default function ConfirmarAuthTemplate(props: {
           </Grid>
         </Form>
       </Grid>
-      <Grid container justifyContent="center" spacing={1}>
+      <Grid
+        container
+        width="90%"
+        justifyContent="center"
+        spacing={1}
+      >
         <Grid item xs={12}>
+          <Divider
+            sx={{
+              bgcolor: 'clearLine.main',
+              marginBottom: '3%',
+            }}
+          />{' '}
           <TimerTextButton
             onClick={handleResendVerificationEmail}
             cta={`Reenviar email de confirmação`}
-            initialTime={45000}
+            initialTime={75000}
             resetTimer={resetTimer}
             setResetTimer={setResetTimer}
             fontSize="90%"

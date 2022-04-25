@@ -14,8 +14,11 @@ model users {
     fname String
     lname String
     email String @unique
-    jwtKey String?
+    jwt_key String?
+    logout_request_id String?
     verification_code Int
+    recovery_code Int?
+    recovery_code_date DateTime?
     is_verified DateTime?
     password String
     fragment_hash_password String

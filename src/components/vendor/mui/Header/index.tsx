@@ -1,4 +1,6 @@
 import sleep from 'src/lib/utils/sleep/index';
+import relogin from 'src/lib/fetchers/session/relogin/index';
+import updateLogonTokenFields from 'src/lib/fetchers/users/update/jwtKeyField/index';
 import LogoutIcon from '@mui/icons-material/Logout';
 import logout from 'src/lib/fetchers/session/logout/index';
 import { APP_NAME } from 'src/lib/utils/constants/index';
@@ -21,8 +23,12 @@ import { THEMES } from 'src/lib/utils/constants';
 import Logo from 'src/components/Logo/index';
 import { useRouter } from 'next/router';
 import useStatus from 'src/lib/hooks/useStatus';
+import useSession from 'src/lib/hooks/useSession';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import { putAlert } from 'src/reducers/alert/index';
+import { useAppSelector } from 'src/lib/hooks/useRedux';
+import { selectVisit } from 'src/reducers/visit/index';
+import type VisitData from 'src/types/VisitData';
 
 export default function PrimarySearchAppBar(): JSX.Element {
   const router = useRouter();
@@ -36,6 +42,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const status = useStatus();
+  const session = useSession();
   const handleProfileMenuOpen = (
     event: React.MouseEvent<HTMLElement>,
   ) => {
@@ -73,11 +80,11 @@ export default function PrimarySearchAppBar(): JSX.Element {
     handleMenuClose();
   };
 
-  const handleLogout = async () => {
+  const sairDeste = async () => {
     dispatch(
       putAlert({
         content: {
-          message: 'Saindo da área de usuário...',
+          message: 'Saindo da áera de usuário',
           severity: 'warning',
           duration: 3000,
           show: true,
@@ -91,6 +98,50 @@ export default function PrimarySearchAppBar(): JSX.Element {
     router.push(result.url);
     handleMobileMenuClose();
     handleMenuClose();
+  };
+
+  const visit: VisitData = useAppSelector(selectVisit);
+  const sairTodos = async () => {
+    handleMobileMenuClose();
+    handleMenuClose();
+    const email = session?.user?.email as string;
+
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Saindo da áera de usuário',
+          severity: 'warning',
+          duration: 3000,
+          show: true,
+        },
+      }),
+    );
+    await updateLogonTokenFields({
+      email,
+      logoutRequestId: 'none',
+    });
+  };
+
+  const sairOutros = async () => {
+    handleMobileMenuClose();
+    handleMenuClose();
+    const email = session?.user?.email as string;
+
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Saindo dos outros dispositivos',
+          severity: 'success',
+          duration: 3000,
+          show: true,
+        },
+      }),
+    );
+
+    await updateLogonTokenFields({
+      email,
+      logoutRequestId: visit.data?.visit_id,
+    });
   };
 
   const handleEntrar = () => {
@@ -120,7 +171,9 @@ export default function PrimarySearchAppBar(): JSX.Element {
         <IconButton size="large" color="headerIcons">
           <LoginItem />
         </IconButton>
-        {status === 'unauthenticated' ? 'Entrar' : 'Acessar'}
+        {status === 'unauthenticated'
+          ? 'Entrar'
+          : 'Acessar Painel'}
       </MenuItem>
       {status === 'unauthenticated' ? (
         <MenuItem onClick={handleCadastar}>
@@ -130,12 +183,26 @@ export default function PrimarySearchAppBar(): JSX.Element {
           Cadastrar
         </MenuItem>
       ) : (
-        <MenuItem onClick={handleLogout}>
-          <IconButton size="large" color="headerIcons">
-            <LogoutIcon />
-          </IconButton>
-          Sair
-        </MenuItem>
+        <div>
+          <MenuItem onClick={sairDeste}>
+            <IconButton size="large" color="headerIcons">
+              <LogoutIcon />
+            </IconButton>
+            Sair deste dispotivo
+          </MenuItem>
+          <MenuItem onClick={sairOutros}>
+            <IconButton size="large" color="headerIcons">
+              <LogoutIcon />
+            </IconButton>
+            Sair dos outros dispositivos
+          </MenuItem>
+          <MenuItem onClick={sairTodos}>
+            <IconButton size="large" color="headerIcons">
+              <LogoutIcon />
+            </IconButton>
+            Sair de todos os dispositivos
+          </MenuItem>
+        </div>
       )}
     </Menu>
   );

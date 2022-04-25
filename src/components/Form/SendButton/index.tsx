@@ -1,10 +1,11 @@
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import MarkEmailReadIcon from '@mui/icons-material/MarkEmailRead';
 import Button, { ButtonProps } from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import CreateIcon from '@mui/icons-material/Create';
 import SendIcon from '@mui/icons-material/Send';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import LoginIcon from '@mui/icons-material/Login';
+import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 type NewOptions = {
   enviar?: string;
@@ -15,6 +16,7 @@ type NewOptions = {
     | 'send'
     | 'login'
     | 'register'
+    | 'check'
     | 'verifyEmail';
 };
 
@@ -39,6 +41,16 @@ export default function SendButton({
         />
       );
     }
+    if (customIcon === 'check') {
+      return (
+        <CheckOutlinedIcon
+          sx={{
+            marginTop: '-2px',
+          }}
+        />
+      );
+    }
+
     if (customIcon === 'verifyEmail') {
       return (
         <MarkEmailReadIcon

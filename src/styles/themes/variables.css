@@ -24,6 +24,9 @@
   --text-button-disabled-hover: #00000033;
   --text-button-disabled: #00000033;
   --text-button-disabled-visited: #00000033;
+
+  --title-span-true: #26bd4c;
+  --title-span-false: #0dd;
 }
 
 [data-theme='dark'] {
@@ -52,4 +55,7 @@
   --text-button-pinkLinkInt-hover: #50fa7b;
   --text-button-pinkLinkInt: #ff79c6;
   --text-button-pinkLinkInt-visited: #ff79c6;
+
+  --title-span-true: #50fa7b;
+  --title-span-false: #0dd;
 }

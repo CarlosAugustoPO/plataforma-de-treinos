@@ -13,6 +13,8 @@ export default function ResendVerificationMailButton({
   email,
 }: Props) {
   const [deadLine, setDeadLine] = useState(false);
+  const [resetTimer, setResetTimer] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [initialTime, setInitialTime] = useState(75000);
   const [sucessMessage, setSucessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -106,6 +108,9 @@ export default function ResendVerificationMailButton({
             <Timer
               restartCounter={restartCounter}
               initialTime={initialTime}
+              resetTimer={resetTimer}
+              setResetTimer={setResetTimer}
+              setDisabled={setDisabled}
             />
             )
           </span>
