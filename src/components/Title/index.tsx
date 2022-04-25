@@ -9,7 +9,7 @@ type TypographyPropsPlusComponent = TypographyProps &
   PlusComponent;
 
 export default function Title({
-  variant = 'h4',
+  variant = 'h5',
   component = 'h2',
   color = 'title.main',
   ...props

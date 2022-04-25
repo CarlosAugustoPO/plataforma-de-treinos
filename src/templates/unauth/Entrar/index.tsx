@@ -1,3 +1,4 @@
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Form from 'src/components/Form/index';
 import TextButton from 'src/components/TextButton/index';
@@ -80,11 +81,19 @@ export default function EntrarUnauthTemplate() {
         setOpen={setModalPoliticas}
       />
       <LoginIcon sx={{ color: 'mainIcon.main', fontSize: 60 }} />
-      <Title gutterBottom>Entre na Plataforma de Treinos</Title>
-      <Text>
-        Coloque suas credenciais para entrar na sua área de
-        usuário
-      </Text>
+      <Grid style={{ width: '90%' }}>
+        <Title paragraph>Entre na Plataforma de Treinos</Title>
+        <Divider
+          sx={{
+            bgcolor: 'clearLine.main',
+            marginBottom: '3%',
+          }}
+        />
+        <Text>
+          Coloque suas credenciais para entrar na sua área de
+          usuário
+        </Text>
+      </Grid>
       <Grid style={{ width: '90%' }}>
         <Form
           handleSubmit={handleSubmit}
@@ -139,8 +148,15 @@ export default function EntrarUnauthTemplate() {
             />
             .
           </Caption>
-          <Grid container mt={2} justifyContent="center">
-            <Grid item xs={12} mt={1}>
+          <Grid container justifyContent="center">
+            <Grid item xs={12}>
+              <Divider
+                sx={{
+                  bgcolor: 'clearLine.main',
+                  marginTop: '3%',
+                  marginBottom: '3%',
+                }}
+              />
               <TextButton
                 linkColor="pinkLinkInt"
                 cta="Não tem uma conta? Registre-se"

@@ -118,7 +118,7 @@ export default function ChangeEmailModal(props: {
       email: insertedEmail,
     });
     if (updateEmail.error) {
-      setLastFieldError('Falha em atualizat e-mail');
+      setLastFieldError('Falha em atualizar e-mail');
       setSubmitting(false);
       return;
     }

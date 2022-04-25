@@ -84,6 +84,7 @@ export default function MyAlert(props: {
           severity={alert.content?.severity as any}
           sx={{
             wordBreak: 'break-word',
+            maxWidth: `${lowerThan600 ? '100%' : '90%'}`,
           }}
         >
           {alert.content?.message}

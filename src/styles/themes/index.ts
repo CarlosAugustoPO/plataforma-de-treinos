@@ -15,6 +15,7 @@ const colors = {
     green: '#26bd4c',
     greenLighter: '#00ff80',
     yellow: '#f1fa8c',
+    orange: '#ff8f00',
   },
   dark: {
     purple: '#cba7ff',
@@ -110,6 +111,10 @@ const getDesignTokens = (mode: any) => ({
             main: colors.light.yellow,
             contrastText: colors.light.yellow,
           },
+          buttonCancel: {
+            main: colors.light.orange,
+            contrastText: colors.light.yellow,
+          },
           sendButton: {
             main: colors.light.green,
             contrastText: colors.light.white,
@@ -125,6 +130,9 @@ const getDesignTokens = (mode: any) => ({
           },
           modalTitleIcon: {
             main: colors.light.pink,
+          },
+          clearLine: {
+            main: colors.light.pink + '00',
           },
           modalVersionIcon: {
             main: colors.light.white,
@@ -217,6 +225,9 @@ const getDesignTokens = (mode: any) => ({
           buttonSnackbarCancel: {
             main: colors.dark.yellow,
           },
+          buttonCancel: {
+            main: colors.dark.yellow,
+          },
           buttonSettingsBoxOk: {
             main: colors.dark.green,
           },
@@ -285,6 +296,9 @@ const getDesignTokens = (mode: any) => ({
           },
           modalTitleIcon: {
             main: colors.dark.pink,
+          },
+          clearLine: {
+            main: colors.dark.pink + '00',
           },
           modalVersionIcon: {
             main: colors.dark.purple,
@@ -366,6 +380,7 @@ declare module '@mui/material/styles' {
     buttonSettingsBoxOk: Palette['primary'];
     buttonSettingsBoxOkCancel: Palette['primary'];
     buttonSnackbarCancel: Palette['primary'];
+    buttonCancel: Palette['primary'];
     buttonModal: Palette['primary'];
   }
 }
@@ -377,6 +392,7 @@ declare module '@mui/material/Button' {
     headerIcons: true;
     buttonSnackbarOk: true;
     buttonSnackbarCancel: true;
+    buttonCancel: true;
     buttonSettingsBoxCancel: true;
     sendButton: true;
     buttonModal: true;

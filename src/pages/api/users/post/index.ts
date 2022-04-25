@@ -12,10 +12,9 @@ const postUserApi: NextApiHandler = async (req, res) => {
         'Falha interna de comunicação. Tente novamente mais tarde ou informe o serviço técnico através do email suporte@plataformadetreinos.com.br',
     });
   }
-
-  const digestPasswordResult = await digestPassword(password);
   const verificationCode =
     Math.floor(Math.random() * 87539) + 13251;
+  const digestPasswordResult = await digestPassword(password);
   const digestedPassword = digestPasswordResult.return as string;
   let fragmentHashPassword = digestedPassword.slice(-25);
   fragmentHashPassword = fragmentHashPassword.replace(

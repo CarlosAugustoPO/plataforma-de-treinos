@@ -11,6 +11,7 @@ type PlusOptions = {
     | 'cyan'
     | 'default'
     | 'modal'
+    | 'modalLinkInt'
     | 'pinkLinkInt'
     | 'pinkLinkWithoutRouter';
   href?: any;
@@ -77,6 +78,11 @@ export default function TextButton({
       {linkColor === 'pinkLinkInt' && (
         <Link href={href}>
           <a className={styles.pinkLinkInt}>{cta}</a>
+        </Link>
+      )}
+      {linkColor === 'modalLinkInt' && (
+        <Link href={href}>
+          <a className={styles.modal}>{cta}</a>
         </Link>
       )}
       {linkColor === 'pinkLinkWithoutRouter' && (

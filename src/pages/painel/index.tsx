@@ -9,6 +9,7 @@ import useSession from 'src/lib/hooks/useSession';
 import logout from 'src/lib/fetchers/session/logout';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import { putAlert } from 'src/reducers/alert/index';
+import useMassLogout from 'src/lib/hooks/swr/useMassLogout/index';
 
 export default function Painel() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function Painel() {
     dispatch(
       putAlert({
         content: {
-          message: 'Saindo da área de usuário...',
+          message: 'Saindo da áera de usuário',
           severity: 'warning',
           duration: 3000,
           show: true,
@@ -35,6 +36,7 @@ export default function Painel() {
   const status = useStatus();
   const email = session?.user?.email;
   const isVerified = useVerification(email as string);
+  const logoutToken = useMassLogout(email as string);
 
   if (status === 'loading') {
     return <LoadingTemplate />;
@@ -45,7 +47,21 @@ export default function Painel() {
       router.push('/confirmar');
       return null;
     }
+    if (logoutToken.jwt_key != session?.user?.jwt_key) {
+      logout({
+        redirect: false,
+        callbackUrl: '/entrar',
+      }).then((result) => {
+        router.push(result.url);
+        return (
+          <LoadingTemplate>
+            Desconectando, aguarde...
+          </LoadingTemplate>
+        );
+      });
+    }
   }
+
   return (
     <div className={styles.container}>
       <main>
