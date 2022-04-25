@@ -9,7 +9,7 @@ export default function CookieConsent(): JSX.Element {
   /*{{{ StatesDeclatation */
   const [isCookieSnackBoxOpen, setCookieSnackBoxOpen] = useState<
     'block' | 'none'
-  >('block');
+  >('none');
   const [isCookieConsentModalOpen, setCookieConsentModalOpen] =
     useState(false);
   const [isCookieSettingsModalOpen, setCookieSettingsModalOpen] =
@@ -34,7 +34,7 @@ export default function CookieConsent(): JSX.Element {
         return;
       }
     }
-    destroyCookie(null, 'consent');
+    setCookieSnackBoxOpen('block');
   }, []);
   /*}}} GetStoredCookieConsentLogic */
 
