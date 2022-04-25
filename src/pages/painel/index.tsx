@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from 'src/templates/Painel/index.module.css';
@@ -10,11 +11,26 @@ import logout from 'src/lib/fetchers/session/logout';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import { putAlert } from 'src/reducers/alert/index';
 import useMassLogout from 'src/lib/hooks/swr/useMassLogout/index';
+import createVisit from 'src/lib/fetchers/visits/create/index';
+//reducers
+import { add } from 'src/reducers/visit/index';
+//types
+import type VisitData from 'src/types/VisitData';
 
 export default function Painel() {
   const router = useRouter();
   const session = useSession();
   const dispatch = useAppDispatch();
+  const visitedPagePath = router.pathname;
+  const [visit, setVisit] = useState<VisitData>();
+
+  useEffect(() => {
+    createVisit(visitedPagePath).then((visitResult) => {
+      if (visitResult) {
+        dispatch(add(visitResult)), setVisit(visitResult);
+      }
+    });
+  }, [dispatch, visitedPagePath]);
 
   async function handleSignOut() {
     dispatch(
@@ -36,7 +52,7 @@ export default function Painel() {
   const status = useStatus();
   const email = session?.user?.email;
   const isVerified = useVerification(email as string);
-  const logoutToken = useMassLogout(email as string);
+  const logoutRequest = useMassLogout(email as string);
 
   if (status === 'loading') {
     return <LoadingTemplate />;
@@ -47,18 +63,32 @@ export default function Painel() {
       router.push('/confirmar');
       return null;
     }
-    if (logoutToken.jwt_key != session?.user?.jwt_key) {
-      logout({
-        redirect: false,
-        callbackUrl: '/entrar',
-      }).then((result) => {
-        router.push(result.url);
-        return (
-          <LoadingTemplate>
-            Desconectando, aguarde...
-          </LoadingTemplate>
-        );
-      });
+    if (logoutRequest.ok.id) {
+      if (visit?.data?.visit_id != logoutRequest.ok.id) {
+        if (logoutRequest.ok.jwt_key != session?.user?.jwt_key) {
+          dispatch(
+            putAlert({
+              content: {
+                message: 'Saindo da áera de usuário',
+                severity: 'warning',
+                duration: 5000,
+                show: true,
+              },
+            }),
+          );
+          logout({
+            redirect: false,
+            callbackUrl: '/entrar',
+          }).then((result) => {
+            router.push(result.url);
+            return (
+              <LoadingTemplate>
+                Desconectando, aguarde...
+              </LoadingTemplate>
+            );
+          });
+        }
+      }
     }
   }
 
