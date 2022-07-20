@@ -55,13 +55,17 @@ export default function Painel() {
   const logoutRequest = useMassLogout(email as string);
 
   if (status === 'loading') {
-    return <LoadingTemplate />;
+    return (
+      <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+    );
   }
 
   if (status === 'authenticated') {
     if (!isVerified.ok) {
       router.push('/confirmar');
-      return null;
+      return (
+        <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
+      );
     }
     if (logoutRequest.ok.id) {
       if (visit?.data?.visit_id != logoutRequest.ok.id) {
