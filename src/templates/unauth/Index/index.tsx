@@ -43,30 +43,30 @@ export default function IndexUnauthTemplate() {
 
   async function handlePreRegister(data: any) {
     setSubmitting(true);
-    const email = data.email;
-    const password = data.password;
+    // const email = data.email;
+    // const password = data.password;
 
-    const result = await login({
-      redirect: false,
-      email,
-      password,
-    });
-
-    if (result?.error) {
-      setLastFieldError(result.error);
-      setSubmitting(false);
-      return;
-    }
-    dispatch(
-      putAlert({
-        content: {
-          message: 'Login realizado com sucesso',
-          severity: 'success',
-          duration: 6000,
-          show: true,
-        },
-      }),
-    );
+    // const result = await login({
+    //   redirect: false,
+    //   email,
+    //   password,
+    // });
+    //
+    // if (result?.error) {
+    //   setLastFieldError(result.error);
+    //   setSubmitting(false);
+    //   return;
+    // }
+    // dispatch(
+    //   putAlert({
+    //     content: {
+    //       message: 'Login realizado com sucesso',
+    //       severity: 'success',
+    //       duration: 6000,
+    //       show: true,
+    //     },
+    //   }),
+    // );
     setSubmitting(false);
   }
 
