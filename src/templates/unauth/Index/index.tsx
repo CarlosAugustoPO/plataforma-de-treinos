@@ -136,8 +136,13 @@ export default function IndexUnauthTemplate() {
               />
             </Grid>
             <Caption mt={2}>
-              Ao fazer o pré registro você está de acordo com
-              nossas{' '}
+              Ao fazer o pré registro você está de acordo com os
+              nossos{' '}
+              <TextButton
+                cta="termos de uso"
+                onClick={() => setModalTermos(true)}
+              />{' '}
+              e com nossas{' '}
               <TextButton
                 cta="politicas de dados"
                 onClick={() => setModalPoliticas(true)}
