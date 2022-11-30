@@ -5,11 +5,13 @@ import LoadingTemplate from 'src/templates/commons/Loading';
 //Dynamic Pages templates
 import dynamic from 'next/dynamic';
 const IndexAuthTemplate = dynamic(
-  () => import('src/templates/auth/Index'),
+  // () => import('src/templates/auth/TurmaFechada'),
+  () => import('src/templates/auth/PaginaDeVendas'),
   { loading: () => <LoadingTemplate /> },
 );
 const IndexUnauthTemplate = dynamic(
-  () => import('src/templates/unauth/Index'),
+  // () => import('src/templates/unauth/TurmaFechada'),
+  () => import('src/templates/unauth/PaginaDeVendas'),
   { loading: () => <LoadingTemplate /> },
 );
 //hooks

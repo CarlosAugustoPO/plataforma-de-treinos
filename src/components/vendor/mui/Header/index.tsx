@@ -29,6 +29,22 @@ import { putAlert } from 'src/reducers/alert/index';
 import { useAppSelector } from 'src/lib/hooks/useRedux';
 import { selectVisit } from 'src/reducers/visit/index';
 import type VisitData from 'src/types/VisitData';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+
+interface Props {
+  children: React.ReactElement;
+}
+
+function ElevationScroll(props: Props) {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
 
 export default function PrimarySearchAppBar(): JSX.Element {
   const router = useRouter();
@@ -270,6 +286,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <ElevationScroll >
       <AppBar
         position="fixed"
         enableColorOnDark
@@ -349,6 +366,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
           </Box>
         </Toolbar>
       </AppBar>
+      </ElevationScroll>
       {renderMobileMenu}
       {renderMenu}
     </Box>
