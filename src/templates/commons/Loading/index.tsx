@@ -24,6 +24,12 @@ export default function LoadingTemplate(Props: {
           <Caption>
             {Props.children || 'Carregando, aguarde...'}
           </Caption>
+          <CircularProgress
+            sx={{ position: 'absolute' }}
+            size="155px"
+            disableShrink
+            thickness={1}
+          />
         </div>
       )}
       {theme.palette.mode === 'dark' && (
@@ -39,6 +45,12 @@ export default function LoadingTemplate(Props: {
           <Caption>
             {Props.children || 'Carregando, aguarde...'}
           </Caption>
+          <CircularProgress
+            sx={{ position: 'absolute' }}
+            size="155px"
+            disableShrink
+            thickness={1}
+          />
         </div>
       )}
     </main>
