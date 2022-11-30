@@ -1,45 +1,58 @@
-import MyCard from 'src/components/MyCard/index';
+import Caption from 'src/components/Caption/index';
 import Image from 'next/image';
 import styles from './index.module.css';
 import { useTheme } from '@mui/material';
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function LoadingTemplate(Props: {
   children?: React.ReactNode;
 }) {
   const theme = useTheme();
   return (
-    <main className={styles.container}>
-      <MyCard
-        sx={{
-          width: '100px',
-          height: '100px',
-          display: 'flex',
-          alignContent: 'center',
-          borderRadius: '50%',
-        }}
-      >
-        {theme.palette.mode === 'light' && (
+    <main className={styles.outterContainer}>
+      {theme.palette.mode === 'light' && (
+        <div className={styles.innerContainer}>
           <Image
             src="/logo-pdt-light-theme.png"
             alt="Pdt Logo for light theme"
-            width={75}
-            height={75}
+            width={35}
+            height={35}
             layout="fixed"
             priority
           />
-        )}
-        {theme.palette.mode === 'dark' && (
+          <Caption>
+            {Props.children || 'Carregando, aguarde...'}
+          </Caption>
+          <CircularProgress
+            sx={{ position: 'absolute' }}
+            size="155px"
+            disableShrink
+            thickness={1}
+          />
+        </div>
+      )}
+      {theme.palette.mode === 'dark' && (
+        <div className={styles.innerContainer}>
           <Image
             src="/logo-pdt-dark-theme.png"
-            alt="Pdt Logo form dark theme"
-            width={75}
-            height={75}
+            alt="Pdt Logo for dark theme"
+            width={35}
+            height={35}
             layout="fixed"
             priority
           />
-        )}
-      </MyCard>
-      {Props.children || 'Carregando, aguarde...'}
+          <Caption>
+            {Props.children || 'Carregando, aguarde...'}
+          </Caption>
+          <CircularProgress
+            sx={{ position: 'absolute' }}
+            size="155px"
+            disableShrink
+            thickness={1}
+          />
+        </div>
+      )}
     </main>
   );
 }

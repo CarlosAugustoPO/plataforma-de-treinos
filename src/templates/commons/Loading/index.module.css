@@ -1,9 +1,22 @@
-.container {
+.outterContainer {
+  z-index: 99999 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  background-color: var(--background-color);
+  height: 100vh;
+  width: 100vw;
+}
+
+.innerContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-items: center;
   align-items: center;
+  justify-content: center;
   align-content: center;
-  font-size: 1.6em;
+  justify-items: center;
 }

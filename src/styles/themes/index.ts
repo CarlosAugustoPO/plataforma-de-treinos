@@ -8,7 +8,7 @@ const colors = {
     purple: '#423768',
     gray: '#000b',
     grayLighter: '#00000033',
-    white: '#f8f8f2',
+    white: '#fff',
     red: '#c93939',
     pink: '#ff4db3',
     darkPink: '#cd5f9e',

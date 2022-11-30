@@ -286,86 +286,86 @@ export default function PrimarySearchAppBar(): JSX.Element {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <ElevationScroll >
-      <AppBar
-        position="fixed"
-        enableColorOnDark
-        color="appbar"
-        sx={{ backgroundImage: 'none' }}
-      >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            onClick={() => router.push('/')}
-            sx={{ ml: -2.2 }}
-          >
-            <Logo />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: 'block', sm: 'block' } }}
-            fontFamily="Carter One"
-            color="headerTitle.main"
-          >
-            {APP_NAME}
-          </Typography>
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+      <ElevationScroll>
+        <AppBar
+          position="fixed"
+          enableColorOnDark
+          color="appbar"
+          sx={{ backgroundImage: 'none' }}
+        >
+          <Toolbar>
             <IconButton
               size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="headerIcons"
+              edge="start"
+              onClick={() => router.push('/')}
+              sx={{ ml: -2.2 }}
             >
-              <AccountCircle />
+              <Logo />
             </IconButton>
-          </Box>
-          <Box
-            sx={{
-              display: { xs: 'flex', md: 'none' },
-              mr: -0.5,
-            }}
-          >
-            <IconButton
-              size="small"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="headerIcons"
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'block', sm: 'block' } }}
+              fontFamily="Carter One"
+              color="headerTitle.main"
             >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            {settings.theme === THEMES.DARK ? (
+              {APP_NAME}
+            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <IconButton
                 size="large"
-                onClick={setLightTheme}
-                aria-label="change theme"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
                 color="headerIcons"
               >
-                <Brightness7Icon />
+                <AccountCircle />
               </IconButton>
-            ) : (
+            </Box>
+            <Box
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                mr: -0.5,
+              }}
+            >
               <IconButton
-                size="large"
-                onClick={setDarkTheme}
-                aria-label="change theme"
+                size="small"
+                aria-label="show more"
+                aria-controls={mobileMenuId}
+                aria-haspopup="true"
+                onClick={handleMobileMenuOpen}
                 color="headerIcons"
               >
-                <Brightness4Icon />
+                <MenuIcon />
               </IconButton>
-            )}
-          </Box>
-        </Toolbar>
-      </AppBar>
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              {settings.theme === THEMES.DARK ? (
+                <IconButton
+                  size="large"
+                  onClick={setLightTheme}
+                  aria-label="change theme"
+                  color="headerIcons"
+                >
+                  <Brightness7Icon />
+                </IconButton>
+              ) : (
+                <IconButton
+                  size="large"
+                  onClick={setDarkTheme}
+                  aria-label="change theme"
+                  color="headerIcons"
+                >
+                  <Brightness4Icon />
+                </IconButton>
+              )}
+            </Box>
+          </Toolbar>
+        </AppBar>
       </ElevationScroll>
       {renderMobileMenu}
       {renderMenu}

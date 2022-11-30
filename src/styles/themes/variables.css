@@ -27,6 +27,8 @@
 
   --title-span-true: #26bd4c;
   --title-span-false: #0dd;
+
+  --background-color: #fff;
 }
 
 [data-theme='dark'] {
@@ -58,4 +60,6 @@
 
   --title-span-true: #50fa7b;
   --title-span-false: #0dd;
+
+  --background-color: #282a36;
 }
