@@ -43,6 +43,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "12.1.2",
     "@testing-library/user-event": "13.5.0",
+    "@types/aos": "^3.0.4",
     "@types/bcrypt": "^5.0.0",
     "@types/react": "17.0.38",
     "@types/react-redux": "^7.1.23",
