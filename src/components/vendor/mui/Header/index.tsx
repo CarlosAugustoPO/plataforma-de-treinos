@@ -30,6 +30,7 @@ import { useAppSelector } from 'src/lib/hooks/useRedux';
 import { selectVisit } from 'src/reducers/visit/index';
 import type VisitData from 'src/types/VisitData';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 interface Props {
   children: React.ReactElement;
@@ -39,7 +40,7 @@ function ElevationScroll(props: Props) {
   const { children } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0,
+    threshold: 61,
   });
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
@@ -109,7 +110,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
     );
     const result = await logout({
       redirect: false,
-      callbackUrl: '/entrar',
+      callbackUrl: LOGIN_PAGE,
     });
     router.push(result.url);
     handleMobileMenuClose();

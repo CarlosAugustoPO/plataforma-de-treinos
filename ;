@@ -1,0 +1,163 @@
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Form from 'src/components/Form/index';
+import TextButton from 'src/components/TextButton/index';
+import Caption from 'src/components/Caption/index';
+import EmailField from 'src/components/Form/EmailField/index';
+import PasswordField from 'src/components/Form/PasswordField/index';
+import SendButton from 'src/components/Form/SendButton/index';
+import Title from 'src/components/Title';
+import Text from 'src/components/Text';
+import MyCard from 'src/components/MyCard/index';
+import ModalPoliticasDeDados from 'src/components/Modals/PoliticasDeDados/index';
+import ModalTermosPreUser from 'src/components/Modals/TermosPreUser/index';
+import LoginIcon from '@mui/icons-material/LoginRounded';
+import HandshakeIcon from '@mui/icons-material/HandshakeRounded';
+import { useState, useEffect } from 'react';
+import login from 'src/lib/fetchers/session/login';
+import { useForm } from 'react-hook-form';
+import { useAppDispatch } from 'src/lib/hooks/useRedux';
+import { putAlert } from 'src/reducers/alert/index';
+export default function EntrarUnauthTemplate() {
+  const dispatch = useAppDispatch();
+  const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    return () => {
+      setSubmitting(false); // This worked for me
+    };
+  }, []);
+  const [lastFieldError, setLastFieldError] = useState<
+    undefined | string
+  >(undefined);
+  const {
+    register,
+    clearErrors,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function handleErrors() {
+    setLastFieldError('');
+    clearErrors();
+  }
+
+  async function handleSignIn(data: any) {
+    setSubmitting(true);
+    const email = data.email;
+    const password = data.password;
+
+    const result = await login({
+      redirect: false,
+      email,
+      password,
+    });
+    if (result?.error) {
+      setLastFieldError(result.error);
+      setSubmitting(false);
+      return;
+    }
+    dispatch(
+      putAlert({
+        content: {
+          message: 'Login realizado com sucesso',
+          severity: 'success',
+          duration: 6000,
+          show: true,
+        },
+      }),
+    );
+    setSubmitting(false);
+  }
+
+  const [modalTermos, setModalTermos] = useState(false);
+  const [modalPoliticas, setModalPoliticas] = useState(false);
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyItems: 'space',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <ModalTermosPreUser
+        isOpen={modalTermos}
+        setOpen={setModalTermos}
+      />
+      <ModalPoliticasDeDados
+        isOpen={modalPoliticas}
+        setOpen={setModalPoliticas}
+      />
+      <HandshakeIcon
+        sx={{ color: 'mainIcon.main', fontSize: 60 }}
+      />
+      <Grid style={{ width: '90%' }}>
+        <Title paragraph>Seja bem-vindo(a)!</Title>
+        <Divider
+          sx={{
+            bgcolor: 'clearLine.main',
+            marginBottom: '3%',
+          }}
+        />
+        <Text>
+          Treine com acompanhamento profissional a qualquer hora
+          e em qualquer lugar.
+        </Text>
+      </Grid>
+      <Grid style={{ width: '90%' }}>
+        <Form
+          handleSubmit={handleSubmit}
+          handleAction={handleSignIn}
+        >
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Continuar com e-mail..."
+              enviando="Entrando..."
+              onClick={handleErrors}
+              customIcon="email"
+              sx={{ width: '270px', paddingLeft: '0' }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Continuar com Google..."
+              enviando="Entrando..."
+              onClick={handleErrors}
+              customIcon="google"
+              color="error"
+              sx={{
+                width: '270px',
+                paddingLeft: '7px',
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SendButton
+              enviar="Continuar com Facebook..."
+              enviando="Entrando..."
+              onClick={handleErrors}
+              customIcon="facebook"
+              color="primary"
+              sx={{ width: '270px', paddingLeft: '25px' }}
+            />
+          </Grid>
+          <Caption mt={2}>
+            Ao continuar você está de acordo com os nossos{' '}
+            <TextButton
+              cta="termos de uso"
+              onClick={() => setModalTermos(true)}
+            />{' '}
+            e com nossas{' '}
+            <TextButton
+              cta="politicas de dados"
+              onClick={() => setModalPoliticas(true)}
+            />
+            .
+          </Caption>
+        </Form>
+      </Grid>
+    </div>
+  );
+}

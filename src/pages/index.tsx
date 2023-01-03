@@ -6,12 +6,14 @@ import LoadingTemplate from 'src/templates/commons/Loading';
 import dynamic from 'next/dynamic';
 const IndexAuthTemplate = dynamic(
   // () => import('src/templates/auth/TurmaFechada'),
-  () => import('src/templates/auth/PaginaDeVendas'),
+  () => import('src/templates/unauth/PaginaDeVendas/'),
+  // () => import('src/templates/auth/Painel/'),
   { loading: () => <LoadingTemplate /> },
 );
 const IndexUnauthTemplate = dynamic(
   // () => import('src/templates/unauth/TurmaFechada'),
-  () => import('src/templates/unauth/PaginaDeVendas'),
+  () => import('src/templates/unauth/PaginaDeVendas/'),
+  // () => import('src/templates/unauth/SocialLogin/'),
   { loading: () => <LoadingTemplate /> },
 );
 //hooks

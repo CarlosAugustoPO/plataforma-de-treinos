@@ -1,5 +1,6 @@
 import { SignOutResponse } from 'next-auth/react';
 import { signOut } from 'next-auth/react';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 export default async function logoutSession(options: {
   redirect?: boolean;
@@ -11,7 +12,7 @@ export default async function logoutSession(options: {
    *****/
   const response: SignOutResponse | any = await signOut({
     redirect: options?.redirect || false,
-    callbackUrl: options?.callbackUrl || '/entrar',
+    callbackUrl: options?.callbackUrl || LOGIN_PAGE,
   });
   return response;
 }

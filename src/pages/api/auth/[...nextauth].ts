@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 
 type SessionProps = {
   session: any;
@@ -8,6 +9,17 @@ type SessionProps = {
 
 export default NextAuth({
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
+    }),
     Credentials({
       id: 'username-login',
       name: 'Login',
@@ -43,7 +55,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/entrar',
+    signIn: '/',
   },
   session: {
     maxAge: 30 * 24 * 60 * 60,
@@ -54,7 +66,7 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account, profile }) {
       if (user) {
         token.id = user.id;
         token.fname = user.fname;
@@ -64,6 +76,15 @@ export default NextAuth({
         token.jwt_key = user.jwt_key;
         token.fragment_hash_password =
           user.fragment_hash_password;
+      }
+      if (account?.provider === 'google') {
+        token.id = profile?.sub;
+        token.fname = profile?.name;
+        token.lname = profile?.family_name;
+        token.email = profile?.email;
+        token.is_verified = profile?.email_verified;
+        token.jwt_key = 'Google login';
+        token.fragment_hash_password = 'Google login';
       }
       return token;
     },

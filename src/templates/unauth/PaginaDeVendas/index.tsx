@@ -1,101 +1,175 @@
 import Divider from '@mui/material/Divider';
 import Caption from 'src/components/Caption/index';
 import SendButton from 'src/components/Form/SendButton/index';
-import ModalPoliticasDeDados from 'src/components/Modals/PoliticasDeDados/index';
-import ModalTermosPreUser from 'src/components/Modals/TermosPreUser/index';
-import Grid from '@mui/material/Grid';
 //My components
 import Title from 'src/components/Title/index';
 import Text from 'src/components/Text/index';
-import MyCard from 'src/components/MyCard/index';
 //Mui Components
-import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import Typography from '@mui/material/Typography';
-import Accordion from '@mui/material/Accordion';
 import TimelineIcon from '@mui/icons-material/Timeline';
 import FotoAntesEDepoisGuto from 'src/components/FotoAntesEDepoisGuto/index';
 import FotoGraficoDesempenho from 'src/components/FotoGraficoDesempenho/index';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+// import Accordion from '@mui/material/Accordion';
+// import AccordionSummary from '@mui/material/AccordionSummary';
+// import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
-
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import MuiAccordion, {
+  AccordionProps,
+} from '@mui/material/Accordion';
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from '@mui/material/AccordionSummary';
+import MuiAccordionDetails from '@mui/material/AccordionDetails';
+import { useEffect } from 'react';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 //Hooks
 
+const Accordion = styled((props: AccordionProps) => (
+  <MuiAccordion disableGutters elevation={0} square {...props} />
+))(({ theme }) => ({
+  border: `1px solid ${theme.palette.divider}`,
+  margin: 'auto',
+  '&:before': {
+    display: 'none',
+  },
+}));
+
+const AccordionSummary = styled(
+  (props: AccordionSummaryProps) => (
+    <MuiAccordionSummary
+      expandIcon={
+        <ArrowForwardIosSharpIcon sx={{ fontSize: '0.9rem' }} />
+      }
+      {...props}
+    />
+  ),
+)(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? `${theme.palette.background.default}`
+      : `${theme.palette.background.default}`,
+  flexDirection: 'row-reverse',
+  '& .MuiAccordionSummary-expandIconWrapper.Mui-expanded': {
+    transform: 'rotate(180deg)',
+  },
+  '& .MuiAccordionSummary-content': {
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetails)(
+  ({ theme }) => ({
+    padding: theme.spacing(2),
+    borderTop: '1px solid rgba(0, 0, 0, .125)',
+    backgroundColor: theme.palette.background.paper,
+  }),
+);
+
 export default function IndexUnauthTemplate() {
+  useEffect(() => {
+    Aos.init({ duration: 1500 });
+  }, []);
+  const [expanded, setExpanded] = React.useState<string | false>(
+    false,
+  );
+
+  const handleChange =
+    (panel: string) =>
+    (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
+
   return (
-    <MyCard style={{ width: '100%', margin: '0' }}>
-      <Grid
+    <Box
+      className="container"
+      sx={{
+        backgroundColor: 'background.default',
+      }}
+    >
+      <Box
+        className="heroBanner"
+        data-aos="fade-down"
+        data-aos-once="true"
         sx={{
+          height: '92vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          height: '85vh',
+          padding: '5%',
         }}
       >
-        <div>
-          <div>
-            <FitnessCenterIcon
-              color="info"
-              sx={{ color: 'mainIcon.main', fontSize: 60 }}
-            />
-            <DirectionsRunIcon
-              color="warning"
-              sx={{ fontSize: 60 }}
-            />
-            <TimelineIcon
-              color="success"
-              sx={{ fontSize: 60 }}
-            />
-          </div>
-          <Grid style={{ width: '80vw' }}>
-            <Title paragraph>
-              Treinos específicos e individualizados para
-              praticantes de exercícios físicos, iniciantes ou
-              avançados que querem, sem perder tempo, entrar em
-              forma, melhorar a saúde e potencializar seus
-              resultados.
-            </Title>
-          </Grid>
-          <Grid item xs={12}>
-            <SendButton enviar="Saiba mais..." />
-          </Grid>
-        </div>
-      </Grid>
+        <Box className="bannerIcons">
+          <FitnessCenterIcon
+            color="info"
+            sx={{ color: 'mainIcon.main', fontSize: 60 }}
+          />
+          <DirectionsRunIcon
+            color="warning"
+            sx={{ fontSize: 60 }}
+          />
+          <TimelineIcon color="success" sx={{ fontSize: 60 }} />
+        </Box>
+        <Title paragraph>
+          Treinos específicos e individualizados para praticantes
+          de exercícios físicos, iniciantes ou avançados que
+          querem, sem perder tempo, entrar em forma, melhorar a
+          saúde e potencializar seus resultados.
+        </Title>
+        <SendButton
+          sx={{ width: '200px', margin: '10px auto' }}
+          enviar="Saiba mais..."
+        />
+      </Box>
 
-      <MyCard
-        raised={false}
-        style={{
-          width: '120%',
-          margin: '0',
-          padding: '5% 10% 0 10%',
-          height: '100%',
-          alignContent: 'center',
+      <Box
+        className="about"
+        sx={{
+          padding: '5%',
+          backgroundColor: 'background.paper',
         }}
-        sx={{ backgroundColor: 'background.default' }}
       >
-        <Grid style={{ width: '80%' }}>
-          <Title paragraph>Sobre a Plataforma de Treinos</Title>
-          <Text align="left" paragraph>
-            A Plataforma de Treinos é um programa de prescrição
-            de Exercícios Físicos individualizados, que leva em
-            consideração suas características físicas e tem o
-            foco em proporcionar as melhores prescrições de
-            exercícios físicos possíveis para você.
-          </Text>
-          <Text align="left" paragraph>
-            Ao direcionar o foco dos exercícios para o seu
-            objetivo e ao adaptá-los a sua realidade os treinos
-            podem ser encaixados em qualquer rotina, ficam mais
-            curtos que os treinos convencionais e quando
-            embasados pela ciência ainda promovem resultados
-            superiores aos treinos que duram horas.
-          </Text>
+        <Title
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          Sobre a Plataforma de Treinos
+        </Title>
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          A Plataforma de Treinos é um programa de prescrição de
+          Exercícios Físicos individualizados, que leva em
+          consideração suas características físicas e tem o foco
+          em proporcionar as melhores prescrições de exercícios
+          físicos possíveis para você.
+        </Text>
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          Ao direcionar o foco dos exercícios para o seu objetivo
+          e ao adaptá-los a sua realidade os treinos podem ser
+          encaixados em qualquer rotina, ficam mais curtos que os
+          treinos convencionais e quando embasados pela ciência
+          ainda promovem resultados superiores aos treinos que
+          duram horas.
+        </Text>
+        <Box data-aos="zoom-in" data-aos-once="true">
           <FotoGraficoDesempenho />
-          <div
+          <Box
             style={{
               marginBottom: '4%',
               lineHeight: '10px',
@@ -107,33 +181,39 @@ export default function IndexUnauthTemplate() {
               treinos padrões e individualizados no decorrer do
               tempo.
             </Caption>
-          </div>
-          <Text align="left" paragraph>
-            Eu espero que fique claro que a Plataforma de Treinos
-            não é uma receita milagrosa, ou video aula com
-            treinos padrões. Aqui cada aluno recebe um plano de
-            exercícios individualizado de acordo com as suas
-            necessidades, com bases científicas, montado por
-            profissionais qualificados, com o foco em
-            proporcionar uma evolução constante.
-          </Text>
-        </Grid>
-      </MyCard>
-      <MyCard
-        raised={false}
-        style={{
-          width: '120%',
-          margin: '0',
-          padding: '5% 10% 0 10%',
-          height: '100%',
-          alignContent: 'center',
-        }}
-      >
-        <Grid style={{ width: '80%' }}>
-          <Title paragraph>
+          </Box>
+        </Box>
+        <Text
+          data-aos="fade-right"
+          data-aos-once="true"
+          align="left"
+          paragraph
+        >
+          Eu espero que fique claro que a Plataforma de Treinos
+          não é uma receita milagrosa, ou video aula com treinos
+          padrões. Aqui cada aluno recebe um plano de exercícios
+          individualizado de acordo com as suas necessidades, com
+          bases científicas, montado por profissionais
+          qualificados, com o foco em proporcionar uma evolução
+          constante.
+        </Text>
+      </Box>
+
+      <Box>
+        <Box sx={{ padding: '5%' }}>
+          <Title
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
             Porque utilizar a Plataforma de Treinos?
           </Title>
-          <Text align="left" paragraph>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
             Os exercícios físicos são umas das melhores
             ferramentas para trazer benefícios ao corpo,
             entretanto iniciar a prática não é tão simples assim.
@@ -148,7 +228,12 @@ export default function IndexUnauthTemplate() {
             com os estímulos e continue a responder com mudanças
             que vão de acordo com o objetivo.
           </Text>
-          <Text align="left" paragraph>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
             Dar conta de montar uma rotina eficiente e segura é
             uma tarefa que demanda bastante tempo, estudo,
             disciplina e organização. Além disso muitas vezes o
@@ -157,43 +242,52 @@ export default function IndexUnauthTemplate() {
             físicas e realizar as trocas de treinos com uma
             frequência adequada.
           </Text>
-          <Text align="left" paragraph>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
             Com a Plataforma de Treinos você saberá o que deve
             fazer e como fazer para atingir o seu objetivo de
             forma otimizada, seja treinando em uma academia ou em
             casa, sem perder tempo com exercícios e estratégias
             que não funcionam.
           </Text>
-        </Grid>
-      </MyCard>
-      <MyCard
-        raised={false}
-        style={{
-          width: '120%',
-          margin: '0',
-          marginTop: '-10px',
-          marginBottom: '60px',
-          padding: '5% 10% 0 10%',
-          height: '100%',
-          alignContent: 'center',
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          padding: '5%',
+          backgroundColor: 'background.paper',
         }}
-        sx={{ backgroundColor: 'background.default' }}
       >
-        <Grid style={{ width: '80%' }}>
-          <Title paragraph>Sobre o Treinador</Title>
-          <Text align="left" paragraph>
-            A Plataforma é administrada pelo Treinador Carlos
-            Augusto, graduado em Educação Física pela
-            Universidade Santa Cecília (2012), especialista em
-            Treinamento Desportivo e Treinamento Personalizado
-            pela Universidade Santa Cecília (2014), especialista
-            em Condicionamento Físico Aplicado à Prevenção
-            Cardiológica Primária e Secundária pela Faculdade de
-            Medicina da USP e Mestre em Ciências da Saúde pela
-            Universidade Federal de São Paulo.
-          </Text>
+        <Title
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          Sobre o Treinador
+        </Title>
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          A Plataforma é administrada pelo Treinador Carlos
+          Augusto, graduado em Educação Física pela Universidade
+          Santa Cecília (2012), especialista em Treinamento
+          Desportivo e Treinamento Personalizado pela
+          Universidade Santa Cecília (2014), especialista em
+          Condicionamento Físico Aplicado à Prevenção
+          Cardiológica Primária e Secundária pela Faculdade de
+          Medicina da USP e Mestre em Ciências da Saúde pela
+          Universidade Federal de São Paulo.
+        </Text>
+        <Box data-aos="zoom-in" data-aos-once="true">
           <FotoAntesEDepoisGuto />
-          <div
+          <Box
             style={{
               marginTop: '-2%',
               marginBottom: '4%',
@@ -204,27 +298,44 @@ export default function IndexUnauthTemplate() {
               Legenda: Evolução do Professor Carlos Augusto
               durante uma fase de definição.
             </Caption>
-          </div>
-          <Text align="left" paragraph>
-            Com um conhecimento embasado em pesquisas
-            aprofundadas na literatura científica atual, a missão
-            do Treinador Carlos Augusto é utilizar a Plataforma
-            de Treinos para descomplicar o acesso aos benefícios
-            dos exercícios físicos e entregar ao máximo de
-            pessoas, treinos simples, objetivos, que realmente
-            funcionam e trazem os resultados esperados.
-          </Text>
-          <SendButton
-            enviar="Quero começar agora"
-            enviando="Registrando..."
-            customIcon="send"
-          />
-        </Grid>
-      </MyCard>
+          </Box>
+        </Box>
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          Com um conhecimento embasado em pesquisas aprofundadas
+          na literatura científica atual, a missão do Treinador
+          Carlos Augusto é utilizar a Plataforma de Treinos para
+          descomplicar o acesso aos benefícios dos exercícios
+          físicos e entregar ao máximo de pessoas, treinos
+          simples, objetivos, que realmente funcionam e trazem os
+          resultados esperados.
+        </Text>
+        <SendButton
+          data-aos="zoom-in"
+          data-aos-once="true"
+          enviar="Quero começar agora"
+          enviando="Registrando..."
+          customIcon="send"
+        />
+      </Box>
 
-      <Title paragraph>Perguntas e Respostas Frequentes</Title>
-      <div>
-        <Accordion TransitionProps={{ unmountOnExit: true }}>
+      <Box
+        data-aos="fade-up"
+        data-aos-once="true"
+        sx={{
+          padding: '5%',
+          backgroundColor: 'background.default',
+        }}
+      >
+        <Title paragraph>Perguntas e Respostas Frequentes</Title>
+        <Accordion
+          expanded={expanded === 'panel1'}
+          onChange={handleChange('panel1')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -235,13 +346,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Qualquer pessoa que queira se beneficiar dos
               exercícios físicos podem ser alunos da Plataforma
@@ -254,7 +358,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel2'}
+          onChange={handleChange('panel2')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2a-content"
@@ -265,13 +372,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Como o programa é individualizado e o intuito é dar
               o aporte necessário a todos os alunos sem deixá-los
@@ -281,7 +381,11 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+
+        <Accordion
+          expanded={expanded === 'panel3'}
+          onChange={handleChange('panel3')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3a-content"
@@ -292,13 +396,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               A Plataforma de Treinos não é só para quem quer
               emagrecer. Pessoas que querem hipertrofia muscular,
@@ -308,7 +405,11 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+
+        <Accordion
+          expanded={expanded === 'panel4'}
+          onChange={handleChange('panel4')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel4a-content"
@@ -319,13 +420,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Não, existem exercícios que podem ser feitos em
               qualquer lugar e todos trazem benefícios.
@@ -341,7 +435,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel5'}
+          onChange={handleChange('panel5')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel5a-content"
@@ -353,13 +450,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Até a presente turma, a Plataforma de Treinos dura
               8 semanas. Com uma avaliação física pré
@@ -369,7 +459,11 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+
+        <Accordion
+          expanded={expanded === 'panel6'}
+          onChange={handleChange('panel6')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel6a-content"
@@ -380,13 +474,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Uma avaliação física inicial é enviada antes da
               prescrição dos treinos. Com base nas respostas
@@ -398,24 +485,20 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panelAF'}
+          onChange={handleChange('panelAF')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="paneAF-content"
-            id="paneAF-header"
+            aria-controls="panelAF-content"
+            id="panelAF-header"
           >
             <Typography textAlign="left">
               Como funciona a avaliação física?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               A avaliação física é enviada automaticamente
               mediante ao pagamento e deve ser preenchida com
@@ -428,7 +511,10 @@ export default function IndexUnauthTemplate() {
           </AccordionDetails>
         </Accordion>
 
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel7'}
+          onChange={handleChange('panel7')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel7a-content"
@@ -439,13 +525,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Após a aprovação da compra você receberá
               gradativamente o material do programa por e-mail.
@@ -458,7 +537,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel8'}
+          onChange={handleChange('panel8')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel8a-content"
@@ -469,13 +551,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Não, não é necessário tomar remédios. Quanto a
               dieta, caso ainda não tenha um nutricionista, na
@@ -487,7 +562,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel9'}
+          onChange={handleChange('panel9')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel9a-content"
@@ -498,13 +576,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               Pessoas de todas as idades podem usar a Plataforma
               de Treinos. Temos clientes dos 15 aos 52 anos que
@@ -517,7 +588,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel10'}
+          onChange={handleChange('panel10')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel10a-content"
@@ -528,13 +602,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography>
               O foco principal da Plataforma são pessoas
               saudáveis que querem entrar ou se manter em forma
@@ -549,7 +616,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel11'}
+          onChange={handleChange('panel11')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel11a-content"
@@ -561,13 +631,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               Independente da limitação, antes da prática é
               recomendado que você converse com o seu médico e
@@ -583,7 +646,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel12'}
+          onChange={handleChange('panel12')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel12a-content"
@@ -595,13 +661,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               É aconselhável que quem use a Plataforma já tenha
               alguma afinidade com exercícios. Os treinos vem com
@@ -616,7 +675,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel13'}
+          onChange={handleChange('panel13')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel13a-content"
@@ -627,13 +689,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               Diferente da maioria dos produtos do mercado, a
               Plataforma não tem uma transformação específica e
@@ -659,7 +714,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel14'}
+          onChange={handleChange('panel14')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel14a-content"
@@ -671,13 +729,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               Essa turma será limitada pelo número de vagas, ao
               atingir as vagas limites, as inscrições serão
@@ -685,7 +736,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel15'}
+          onChange={handleChange('panel15')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel15a-content"
@@ -697,13 +751,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               O personal tem vantagens e desvantagens perante a
               Plataforma de Treinos. O personal vai corrigir seus
@@ -725,7 +772,10 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel16'}
+          onChange={handleChange('panel16')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel16a-content"
@@ -736,13 +786,6 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               Atualmente os horários para as aulas de personal
               estão lotados. Entretanto, pode abrir vagas
@@ -752,24 +795,20 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion>
+        <Accordion
+          expanded={expanded === 'panel17'}
+          onChange={handleChange('panel17')}
+        >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel16a-content"
-            id="panel16a-header"
+            aria-controls="panel17a-content"
+            id="panel17a-header"
           >
             <Typography textAlign="left">
               Ainda tem dúvidas?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Divider
-              sx={{
-                bgcolor: 'clearLine.main',
-                marginTop: '-3%',
-                marginBottom: '3%',
-              }}
-            />
             <Typography paragraph>
               Envie um e-mail para
               suporte@plataformadetreinos.com.br e minha equipe
@@ -778,39 +817,70 @@ export default function IndexUnauthTemplate() {
           </AccordionDetails>
         </Accordion>
         <SendButton
-          sx={{ marginTop: '3%' }}
+          data-aos="zoom-in"
+          data-aos-once="true"
+          sx={{ marginTop: '5%' }}
           enviar="Quero começar agora"
           enviando="Registrando..."
           customIcon="send"
         />
-        <Divider
-          sx={{
-            bgcolor: 'clearLine.main',
-            marginTop: '3%',
-            marginBottom: '1%',
-          }}
-        />
-      </div>
-      <Caption fontSize="70%" maxWidth="90%">
-        Como qualquer exercício físico, você assume riscos para
-        sua saúde e segurança ao praticar os treinos propostos
-        pela Plataforma de Treinos, principalmente se você não
-        seguir todas as recomendações, por isso antes de iniciar
-        a prática leia todo o material recebido. Além disso você
-        deve consultar o seu médico e ver se você está apto para
-        praticar atividade física e em qual nível.
-      </Caption>
-      <Caption fontSize="70%" maxWidth="90%">
-        © 2022 Plataforma de Treinos. Todos os direito
-        reservados.
-      </Caption>
-      <Caption
-        fontSize="70%"
-        maxWidth="90%"
-        sx={{ marginTop: '-2%' }}
+      </Box>
+      <Divider
+        data-aos="fade-up"
+        data-aos-once="true"
+        sx={{
+          bgcolor: 'clearLine.main',
+          marginBottom: '1%',
+        }}
+      />
+      <Box
+        className="footer"
+        sx={{ padding: '0 5%' }}
+        data-aos="fade-up"
+        data-aos-once="true"
       >
-        Design By: Prof. Carlos Augusto
-      </Caption>
-    </MyCard>
+        <Box>
+          <Text
+            fontSize="70%"
+            sx={{ color: 'clearComment.main' }}
+          >
+            Como qualquer exercício físico, você assume riscos
+            para sua saúde e segurança ao praticar os treinos
+            propostos pela Plataforma de Treinos, principalmente
+            se você não seguir todas as recomendações, por isso
+            antes de iniciar a prática leia todo o material
+            recebido. Além disso você deve consultar o seu médico
+            e ver se você está apto para praticar atividade
+            física e em qual nível.
+          </Text>
+        </Box>
+        <Box>
+          <Text fontSize="70%" sx={{ color: 'primary.main' }}>
+            © 2023 Plataforma de Treinos.{' '}
+          </Text>
+          <Box>
+            <Text
+              fontSize="70%"
+              sx={{ color: 'clearComment.main' }}
+            >
+              Todos os direito reservados.
+            </Text>
+          </Box>
+        </Box>
+        <Box mb="10px">
+          <Text fontSize="70%" sx={{ color: 'success.main' }}>
+            Design By:{' '}
+            <Caption
+              sx={{
+                fontSize: '95%',
+                color: 'clearComment.main',
+              }}
+            >
+              Prof. Carlos Augusto
+            </Caption>
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   );
 }

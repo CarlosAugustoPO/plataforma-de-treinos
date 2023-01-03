@@ -21,6 +21,7 @@ import type Session from 'src/types/Session';
 import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import { putAlert } from 'src/reducers/alert/index';
 import ChangeEmailModal from 'src/components/Modals/ChangeEmail/index';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 export default function ConfirmarAuthTemplate(props: {
   session: Session;
@@ -64,7 +65,7 @@ export default function ConfirmarAuthTemplate(props: {
     );
     const result = await logout({
       redirect: false,
-      callbackUrl: '/entrar',
+      callbackUrl: LOGIN_PAGE,
     });
     router.push(result.url);
   };

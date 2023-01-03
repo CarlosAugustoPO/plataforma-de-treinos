@@ -57,6 +57,7 @@ export const SettingsProvider = ({
 
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);
+    window.location.reload();
   };
 
   useEffect(() => {

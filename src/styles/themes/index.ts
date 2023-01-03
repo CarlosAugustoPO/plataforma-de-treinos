@@ -8,7 +8,9 @@ const colors = {
     purple: '#423768',
     gray: '#000b',
     grayLighter: '#00000033',
+    grayLighterStrong: '#00000083',
     white: '#fff',
+    offwhite: '#f8f8f2',
     red: '#c93939',
     pink: '#ff4db3',
     darkPink: '#cd5f9e',
@@ -21,6 +23,7 @@ const colors = {
     purple: '#cba7ff',
     gray: '#44475a',
     grayLighter: '#f8f8f266',
+    grayLighterStrong: '#f8f8f283',
     white: '#f8f8f2',
     red: '#ff5555',
     pink: '#ff79c6',
@@ -39,8 +42,8 @@ const getDesignTokens = (mode: any) => ({
         palette: {
           mode: mode,
           background: {
-            default: colors.light.purple + '20',
-            paper: colors.light.white,
+            paper: colors.light.offwhite,
+            default: colors.light.white,
           },
           backgroundBrowserbar: {
             main: colors.light.purple,
@@ -137,6 +140,9 @@ const getDesignTokens = (mode: any) => ({
           modalVersionIcon: {
             main: colors.light.white,
           },
+          clearComment: {
+            main: colors.light.grayLighterStrong,
+          },
         },
         components: {
           MuiFormLabel: {
@@ -195,8 +201,8 @@ const getDesignTokens = (mode: any) => ({
         palette: {
           mode: mode,
           background: {
-            default: colors.dark.gray,
-            paper: colors.dark.blueDarker,
+            paper: colors.dark.gray,
+            default: colors.dark.blueDarker,
           },
           backgroundBrowserbar: {
             main: colors.dark.blueDarker,
@@ -302,6 +308,9 @@ const getDesignTokens = (mode: any) => ({
           },
           modalVersionIcon: {
             main: colors.dark.purple,
+          },
+          clearComment: {
+            main: colors.dark.grayLighterStrong,
           },
         },
         components: {

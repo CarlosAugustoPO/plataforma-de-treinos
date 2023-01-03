@@ -5,7 +5,7 @@ export default interface Session {
     fname?: string;
     lname?: string;
     email?: string;
-    is_verified?: Date | string;
+    is_verified?: Date | string | boolean;
     fragment_hash_password?: string;
     jwt_key?: string;
   };
@@ -20,7 +20,7 @@ declare module 'next-auth' {
       fname?: string;
       lname?: string;
       email?: string;
-      is_verified?: Date | string;
+      is_verified?: Date | string | boolean;
       fragment_hash_password?: string;
       jwt_key?: string;
     };

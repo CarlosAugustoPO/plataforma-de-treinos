@@ -24,6 +24,7 @@ import useSession from 'src/lib/hooks/useSession';
 import useVerification from 'src/lib/hooks/swr/useVerification/index';
 import useMassLogout from 'src/lib/hooks/swr/useMassLogout/index';
 import logout from 'src/lib/fetchers/session/logout/index';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 export default function Confirmar() {
   const status = useStatus();
@@ -64,7 +65,7 @@ export default function Confirmar() {
           );
           logout({
             redirect: false,
-            callbackUrl: '/entrar',
+            callbackUrl: LOGIN_PAGE,
           }).then((result) => {
             router.push(result.url);
             return (
@@ -79,7 +80,7 @@ export default function Confirmar() {
   }
 
   if (status === 'unauthenticated') {
-    router.push('/entrar');
+    router.push(LOGIN_PAGE);
     return (
       <LoadingTemplate>Carregando, aguarde...</LoadingTemplate>
     );

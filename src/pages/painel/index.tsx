@@ -16,6 +16,7 @@ import createVisit from 'src/lib/fetchers/visits/create/index';
 import { add } from 'src/reducers/visit/index';
 //types
 import type VisitData from 'src/types/VisitData';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 export default function Painel() {
   const router = useRouter();
@@ -45,7 +46,7 @@ export default function Painel() {
     );
     const result = await logout({
       redirect: false,
-      callbackUrl: '/entrar',
+      callbackUrl: LOGIN_PAGE,
     });
     router.push(result.url);
   }
@@ -69,7 +70,10 @@ export default function Painel() {
     }
     if (logoutRequest.ok.id) {
       if (visit?.data?.visit_id != logoutRequest.ok.id) {
-        if (logoutRequest.ok.jwt_key != session?.user?.jwt_key) {
+        if (
+          logoutRequest.ok.jwt_key != session?.user?.jwt_key &&
+          session?.user.jwt_key !== 'Google login'
+        ) {
           dispatch(
             putAlert({
               content: {
@@ -82,7 +86,7 @@ export default function Painel() {
           );
           logout({
             redirect: false,
-            callbackUrl: '/entrar',
+            callbackUrl: LOGIN_PAGE,
           }).then((result) => {
             router.push(result.url);
             return (

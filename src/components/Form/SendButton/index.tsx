@@ -6,6 +6,9 @@ import SendIcon from '@mui/icons-material/Send';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import LoginIcon from '@mui/icons-material/Login';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import EmailIcon from '@mui/icons-material/Email';
 
 type NewOptions = {
   enviar?: string;
@@ -17,7 +20,10 @@ type NewOptions = {
     | 'login'
     | 'register'
     | 'check'
-    | 'verifyEmail';
+    | 'verifyEmail'
+    | 'email'
+    | 'google'
+    | 'facebook';
 };
 
 type ButtonPropsWhitOptions = ButtonProps & NewOptions;
@@ -87,6 +93,42 @@ export default function SendButton({
         />
       );
     }
+    if (customIcon === 'google') {
+      return (
+        <GoogleIcon
+          sx={{
+            marginTop: '-2px',
+            position: 'absolute',
+            left: '5px',
+            top: '9px',
+          }}
+        />
+      );
+    }
+    if (customIcon === 'email') {
+      return (
+        <EmailIcon
+          sx={{
+            marginTop: '-2px',
+            position: 'absolute',
+            left: '5px',
+            top: '9px',
+          }}
+        />
+      );
+    }
+    if (customIcon === 'facebook') {
+      return (
+        <FacebookIcon
+          sx={{
+            marginTop: '-2px',
+            position: 'absolute',
+            left: '5px',
+            top: '9px',
+          }}
+        />
+      );
+    }
     return (
       <CreateIcon
         sx={{
@@ -95,6 +137,7 @@ export default function SendButton({
       />
     );
   }
+
   return (
     <Button
       disabled={submitting}

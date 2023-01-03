@@ -15,6 +15,7 @@ import { add } from 'src/reducers/visit/index';
 import { putAlert } from 'src/reducers/alert/index';
 //types
 import type VisitData from 'src/types/VisitData';
+import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
 
 export default function Confirmar() {
   const router = useRouter();
@@ -54,7 +55,7 @@ export default function Confirmar() {
           },
         }),
       );
-      router.push('/entrar');
+      router.push(LOGIN_PAGE);
       return;
     }
 
