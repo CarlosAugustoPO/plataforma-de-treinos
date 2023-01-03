@@ -176,7 +176,7 @@ export default function IndexUnauthTemplate() {
             }}
           >
             <Caption fontSize="70%">
-              Legenda: Grafico de barras com representação da
+              Legenda: Gráfico de barras com representação da
               diferença na progressão dos resultados entre
               treinos padrões e individualizados no decorrer do
               tempo.
@@ -190,7 +190,7 @@ export default function IndexUnauthTemplate() {
           paragraph
         >
           Eu espero que fique claro que a Plataforma de Treinos
-          não é uma receita milagrosa, ou video aula com treinos
+          não é uma receita milagrosa, ou vídeo aula com treinos
           padrões. Aqui cada aluno recebe um plano de exercícios
           individualizado de acordo com as suas necessidades, com
           bases científicas, montado por profissionais
@@ -223,7 +223,7 @@ export default function IndexUnauthTemplate() {
             controladas para que o treino seja eficiente, além
             disso essa composição de treino deve levar em
             consideração as individualidades de cada um e devem
-            ser frequentemente atualizadas conforme o individuo
+            ser frequentemente atualizadas conforme o indivíduo
             evolui, tudo isso para que o corpo não se acostume
             com os estímulos e continue a responder com mudanças
             que vão de acordo com o objetivo.
