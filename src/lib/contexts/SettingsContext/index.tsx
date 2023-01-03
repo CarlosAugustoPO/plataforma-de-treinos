@@ -64,7 +64,6 @@ export const SettingsProvider = ({
 
     var scrollpos = localStorage.getItem('scrollpos');
     if (scrollpos) window.scrollTo(0, scrollpos as any);
-    console.log(scrollpos);
   };
 
   useEffect(() => {
