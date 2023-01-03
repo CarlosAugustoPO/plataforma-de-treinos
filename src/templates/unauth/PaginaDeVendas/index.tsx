@@ -191,10 +191,11 @@ export default function IndexUnauthTemplate() {
         >
           Eu espero que fique claro que a Plataforma de Treinos
           não é uma receita milagrosa, ou vídeo aula com treinos
-          padrões. Aqui cada aluno recebe um plano de exercícios
-          individualizado de acordo com as suas necessidades, com
-          bases científicas, montado por profissionais
-          qualificados, com o foco em proporcionar uma evolução
+          padrões. Aqui cada aluno recebe um plano
+          individualizado com exercícios físicos escolhidos de
+          acordo com as suas necessidades, estruturado de acordo
+          com as bases científicas, montado por profissionais
+          qualificados e com o foco em proporcionar uma evolução
           constante.
         </Text>
       </Box>
@@ -851,7 +852,7 @@ export default function IndexUnauthTemplate() {
             antes de iniciar a prática leia todo o material
             recebido. Além disso você deve consultar o seu médico
             e ver se você está apto para praticar atividade
-            física e em qual nível.
+            física e em qual nível de intensidade.
           </Text>
         </Box>
         <Box mt="10px">
