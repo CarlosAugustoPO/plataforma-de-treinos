@@ -55,12 +55,12 @@ export const SettingsProvider = ({
   const handleSaveSettings = (update = {}) => {
     const mergedSettings = update;
 
-    localStorage.setItem('scrollpos', window.scrollY as any);
+    const realScrollPos = window.scrollY;
+    const plusScrollPos = realScrollPos - 1;
+    localStorage.setItem('scrollpos', plusScrollPos as any);
 
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);
-
-    window.location.reload();
 
     var scrollpos = localStorage.getItem('scrollpos');
     if (scrollpos) window.scrollTo(0, scrollpos as any);
