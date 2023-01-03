@@ -839,7 +839,7 @@ export default function IndexUnauthTemplate() {
         data-aos="fade-up"
         data-aos-once="true"
       >
-        <Box>
+        <Box mt="10px">
           <Text
             fontSize="70%"
             sx={{ color: 'clearComment.main' }}
@@ -854,7 +854,7 @@ export default function IndexUnauthTemplate() {
             física e em qual nível.
           </Text>
         </Box>
-        <Box>
+        <Box mt="10px">
           <Text fontSize="70%" sx={{ color: 'primary.main' }}>
             © 2023 Plataforma de Treinos.{' '}
           </Text>

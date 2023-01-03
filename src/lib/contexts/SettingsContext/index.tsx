@@ -57,7 +57,8 @@ export const SettingsProvider = ({
 
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);
-    window.location.reload();
+    // window.location.reload(); prevent to clear animation when
+    // change mode
   };
 
   useEffect(() => {
