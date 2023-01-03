@@ -56,7 +56,7 @@ export const SettingsProvider = ({
     const mergedSettings = update;
 
     const realScrollPos = window.scrollY;
-    const plusScrollPos = realScrollPos - 1;
+    const plusScrollPos = realScrollPos + 1;
     localStorage.setItem('scrollpos', plusScrollPos as any);
 
     setCurrentSettings(mergedSettings);
