@@ -54,16 +54,37 @@ export const SettingsProvider = ({
 
   const handleSaveSettings = (update = {}) => {
     const mergedSettings = update;
-
-    const realScrollPos = window.scrollY;
-    const plusScrollPos = realScrollPos + 1;
-    localStorage.setItem('scrollpos', plusScrollPos as any);
-
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);
 
+    const realScrollPos = window.scrollY;
+    localStorage.setItem('scrollpos', realScrollPos as any);
+
+    var maxScrollLimit = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight,
+    );
+
+    let corScrollLimit = maxScrollLimit - window.outerHeight;
+
     var scrollpos = localStorage.getItem('scrollpos');
-    if (scrollpos) window.scrollTo(0, scrollpos as any);
+
+    if (scrollpos) {
+      let scrollposAsNumber = Number(scrollpos);
+      let plusScrollPos = scrollposAsNumber + 1;
+      let minusScrollPos = scrollposAsNumber - 1;
+
+      if (scrollposAsNumber < corScrollLimit) {
+        window.scrollTo(0, plusScrollPos);
+        console.log('scroll menor que o limite');
+      } else {
+        window.scrollTo(0, minusScrollPos);
+        console.log('scroll no limite');
+      }
+    }
   };
 
   useEffect(() => {
