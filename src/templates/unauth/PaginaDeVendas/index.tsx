@@ -1,19 +1,33 @@
+import Image from 'next/image';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import StarIcon from '@mui/icons-material/Star';
+import UpdateIcon from '@mui/icons-material/Update';
+import FlagIcon from '@mui/icons-material/Flag';
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import EmailIcon from '@mui/icons-material/Email';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import TimerIcon from '@mui/icons-material/Timer';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import InsightsIcon from '@mui/icons-material/Insights';
 import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
 import Caption from 'src/components/Caption/index';
-import SendButton from 'src/components/Form/SendButton/index';
+import AngleDivisor from 'src/components/AngleDivisor/index';
 //My components
 import Title from 'src/components/Title/index';
 import Text from 'src/components/Text/index';
 //Mui Components
 import Typography from '@mui/material/Typography';
 import TimelineIcon from '@mui/icons-material/Timeline';
+import SettingsAccessibilityIcon from '@mui/icons-material/SettingsAccessibility';
 import FotoAntesEDepoisGuto from 'src/components/FotoAntesEDepoisGuto/index';
+import SellerBanner from 'src/components/SellerBanner/index';
 import FotoGraficoDesempenho from 'src/components/FotoGraficoDesempenho/index';
+import LogoPagSeguro from 'src/components/LogoPagSeguro/index';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-// import Accordion from '@mui/material/Accordion';
-// import AccordionSummary from '@mui/material/AccordionSummary';
-// import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Box from '@mui/material/Box';
 import * as React from 'react';
@@ -29,6 +43,9 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import { useEffect } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import SwipeUpSharpIcon from '@mui/icons-material/SwipeUpSharp';
+import styles from './styles.module.css';
+
 //Hooks
 
 const Accordion = styled((props: AccordionProps) => (
@@ -79,7 +96,6 @@ export default function IndexUnauthTemplate() {
   const [expanded, setExpanded] = React.useState<string | false>(
     false,
   );
-
   const handleChange =
     (panel: string) =>
     (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -91,6 +107,7 @@ export default function IndexUnauthTemplate() {
       className="container"
       sx={{
         backgroundColor: 'background.default',
+        overflow: 'hidden',
       }}
     >
       <Box
@@ -103,6 +120,7 @@ export default function IndexUnauthTemplate() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '5%',
+          overflow: 'hidden',
         }}
       >
         <Box className="bannerIcons">
@@ -116,26 +134,100 @@ export default function IndexUnauthTemplate() {
           />
           <TimelineIcon color="success" sx={{ fontSize: 60 }} />
         </Box>
-        <Title paragraph>
+        <Title paragraph data-aos="fade-right">
           Treinos específicos e individualizados para praticantes
           de exercícios físicos, iniciantes ou avançados que
           querem, sem perder tempo, entrar em forma, melhorar a
           saúde e potencializar seus resultados.
         </Title>
-        <SendButton
-          sx={{ width: '200px', margin: '10px auto' }}
-          enviar="Saiba mais..."
+        <Button
+          sx={{
+            width: '300px',
+            margin: '10px auto',
+          }}
+          variant="outlined"
+          color="success"
+          endIcon={
+            <SwipeUpSharpIcon sx={{ marginTop: '-2px' }} />
+          }
+          onClick={() => {
+            document.getElementById('anchor1')?.scrollIntoView();
+          }}
+        >
+          Saiba mais...
+        </Button>
+        <Box
+          id="anchor1"
+          sx={{
+            position: 'absolute',
+            bottom: '-30px',
+            left: 0,
+          }}
         />
+
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: '-20px',
+            right: '-110px',
+            opacity: '0.15',
+            pointerEvents: 'none',
+            userSelect: 'none',
+          }}
+        >
+          <Image
+            data-aos="fade-left"
+            data-aos-once="true"
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={400}
+            height={400}
+          />
+        </Box>
       </Box>
+
+      <AngleDivisor
+        color="background.default"
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        data-aos-offset="35"
+        id="about1"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
 
       <Box
         className="about"
+        id="about2"
         sx={{
           padding: '5%',
           backgroundColor: 'background.paper',
         }}
       >
         <Title
+          id="about3"
+          mt={3}
           paragraph
           data-aos="fade-right"
           data-aos-once="true"
@@ -148,11 +240,9 @@ export default function IndexUnauthTemplate() {
           data-aos="fade-right"
           data-aos-once="true"
         >
-          A Plataforma de Treinos é um programa de prescrição de
-          Exercícios Físicos individualizados, que leva em
-          consideração suas características físicas e tem o foco
-          em proporcionar as melhores prescrições de exercícios
-          físicos possíveis para você.
+          A Plataforma de Treinos é a escolha certa para você que
+          está cansado de tentar soluções milagrosas que não
+          trazem resultados e quer ver resultados duradouros.
         </Text>
         <Text
           align="left"
@@ -160,12 +250,20 @@ export default function IndexUnauthTemplate() {
           data-aos="fade-right"
           data-aos-once="true"
         >
-          Ao direcionar o foco dos exercícios para o seu objetivo
-          e ao adaptá-los a sua realidade os treinos podem ser
-          encaixados em qualquer rotina, ficam mais curtos que os
-          treinos convencionais e quando embasados pela ciência
-          ainda promovem resultados superiores aos treinos que
-          duram horas.
+          Oferecemos exercícios físicos individualizados para
+          cada pessoa, levando em conta suas características
+          físicas e objetivos específicos.
+        </Text>
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
+          Com exercícios adaptados à sua rotina e baseados em
+          evidências científicas, nossos treinos são mais curtos
+          e eficientes do que os convencionais, promovendo
+          resultados ainda melhores.
         </Text>
         <Box data-aos="zoom-in" data-aos-once="true">
           <FotoGraficoDesempenho />
@@ -189,16 +287,74 @@ export default function IndexUnauthTemplate() {
           align="left"
           paragraph
         >
-          Eu espero que fique claro que a Plataforma de Treinos
-          não é uma receita milagrosa, ou vídeo aula com treinos
-          padrões. Aqui cada aluno recebe um plano
-          individualizado com exercícios físicos escolhidos de
-          acordo com as suas necessidades, estruturado de acordo
-          com as bases científicas, montado por profissionais
-          qualificados e com o foco em proporcionar uma evolução
-          constante.
+          Cada um dos nossos alunos recebe um plano de treino
+          individualizado, criado por profissionais qualificados.
+          Nosso objetivo é garantir uma evolução constante e
+          resultados duradouros de acordo com os objetivos de
+          cada aluno.
         </Text>
+        <Text
+          data-aos="fade-right"
+          data-aos-once="true"
+          align="left"
+          paragraph
+        >
+          Garanta sua vaga e comece a ver resultados de verdade
+          com a Plataforma de Treinos!
+        </Text>
+        <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>
+          <a href="https://pag.ae/7Y-U92iVs">
+            <Button
+              data-aos="fade-right"
+              data-aos-once="true"
+              sx={{
+                width: '300px',
+                margin: '10px auto',
+              }}
+              variant="outlined"
+              color="success"
+              endIcon={
+                <SettingsAccessibilityIcon
+                  sx={{ marginTop: '-2px' }}
+                />
+              }
+            >
+              Quero um treino para mim
+            </Button>
+          </a>
+        </Box>
       </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.paper"
+        bottom="0"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
 
       <Box>
         <Box sx={{ padding: '5%' }}>
@@ -207,7 +363,7 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Porque utilizar a Plataforma de Treinos?
+            Porque Utilizar a Plataforma de Treinos?
           </Title>
           <Text
             align="left"
@@ -215,19 +371,9 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Os exercícios físicos são umas das melhores
-            ferramentas para trazer benefícios ao corpo,
-            entretanto iniciar a prática não é tão simples assim.
-            Quais exercícios utilizar, a duração dos intervalos,
-            as metodologias a serem utilizadas e diversas outras
-            variáveis que compõe o treinamento devem ser
-            controladas para que o treino seja eficiente, além
-            disso essa composição de treino deve levar em
-            consideração as individualidades de cada um e devem
-            ser frequentemente atualizadas conforme o indivíduo
-            evolui, tudo isso para que o corpo não se acostume
-            com os estímulos e continue a responder com mudanças
-            que vão de acordo com o objetivo.
+            Os exercícios físicos são uma ótima maneira de trazer
+            benefícios ao corpo, mas sabemos que pode ser difícil
+            saber por onde começar.
           </Text>
           <Text
             align="left"
@@ -235,13 +381,12 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Dar conta de montar uma rotina eficiente e segura é
-            uma tarefa que demanda bastante tempo, estudo,
-            disciplina e organização. Além disso muitas vezes o
-            professor da academia não tem condições logísticas
-            para dar o suporte necessário, fazer as avaliações
-            físicas e realizar as trocas de treinos com uma
-            frequência adequada.
+            É preciso considerar qual tipo de exercício fazer,
+            por quanto tempo, qual método usar e muitas outras
+            variáveis para que o treino seja eficiente. Além
+            disso, o treino precisa ser ajustado às suas
+            necessidades individuais e atualizado regularmente
+            para garantir resultados.
           </Text>
           <Text
             align="left"
@@ -249,18 +394,889 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Com a Plataforma de Treinos você saberá o que deve
-            fazer e como fazer para atingir o seu objetivo de
-            forma otimizada, seja treinando em uma academia ou em
-            casa, sem perder tempo com exercícios e estratégias
-            que não funcionam.
+            Montar uma rotina de exercícios eficiente e segura
+            pode ser demorado, exigir muito estudo, disciplina e
+            organização. E às vezes, o professor da academia não
+            tem tempo ou recursos para fornecer o suporte
+            adequado, fazer avaliações físicas e mudar o treino
+            com a frequência necessária.
+          </Text>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Veja Alguns Benefícios de Utilizar a Plataforma de
+            Treinos
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <FlagIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">
+                Facilidade de Começar
+              </Title>
+              <Text mt={2}>
+                A Plataforma de Treinos oferece orientação e
+                suporte para começar a se exercitar de maneira
+                eficiente e segura, sem precisar se preocupar com
+                as variáveis envolvidas na criação de uma rotina
+                de exercícios.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <SettingsAccessibilityIcon
+                color="warning"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '40%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">
+                Adaptação a Necessidades Individuais
+              </Title>
+              <Text mt={2}>
+                Os treinos são personalizados e ajustados às suas
+                necessidades individuais, garantindo resultados
+                mais eficientes.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <UpdateIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">Atualização Regular</Title>
+              <Text mt={2}>
+                Os treinos são atualizados regularmente para
+                garantir que você continue progredindo e
+                alcançando seus objetivos.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <StarIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title fontSize="100%">Suporte Profissional</Title>
+              <Text mt={2}>
+                A Plataforma de Treinos fornece suporte
+                profissional para garantir que você esteja se
+                exercitando de maneira segura e eficiente.
+              </Text>{' '}
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <TrendingUpIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title fontSize="100%">
+                Otimização de Resultados
+              </Title>
+              <Text mt={2}>
+                A Plataforma de Treinos ajuda a otimizar os
+                resultados dos exercícios, garantindo que você
+                não perca tempo com estratégias e exercícios que
+                não funcionam.
+              </Text>{' '}
+            </Box>{' '}
+          </Box>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Com a Plataforma de Treinos, você sabe exatamente o
+            que fazer e como fazer para atingir seus objetivos de
+            forma otimizada, seja em uma academia ou em casa. Não
+            perca mais tempo, faça sua inscrição e comece a ver
+            resultados de verdade com a Plataforma de Treinos.
           </Text>
         </Box>
       </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.default"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
       <Box
+        className="price"
+        id="price"
         sx={{
           padding: '5%',
           backgroundColor: 'background.paper',
+        }}
+      >
+        <Box sx={{ position: 'relative' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              left: '-120px',
+              marginTop: '100px',
+              opacity: '0.15',
+              pointerEvents: 'none',
+              userSelect: 'none',
+            }}
+          >
+            <Image
+              data-aos="fade-right"
+              data-aos-once="true"
+              src="/logo-pdt-blue.png"
+              alt="Logo da Plataforma de Treinos"
+              width={400}
+              height={400}
+            />
+          </Box>
+        </Box>{' '}
+        <SellerBanner />
+      </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.paper"
+        bottom="0"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box>
+        <Box sx={{ padding: '5%' }}>
+          <Title
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Política de Reembolso
+          </Title>
+          <Image
+            data-aos="zoom-in"
+            data-aos-once="true"
+            src="/garantia_14_dias.png"
+            alt="Logo da Plataforma de Treinos"
+            width={175}
+            height={150}
+          />
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            <p>
+              Oferecemos um termo de reembolso válido por 14 dias
+              após a compra de nossos produtos ou serviços. Se
+              você não estiver satisfeito com o que comprou, pode
+              solicitar um reembolso total dentro desse prazo.
+              Para obter mais detalhes, consulte o nosso termo de
+              reembolso completo.
+            </p>
+          </Text>
+        </Box>
+      </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.default"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box
+        id="step-by-step"
+        sx={{
+          padding: '5%',
+          backgroundColor: 'background.paper',
+        }}
+      >
+        <Box>
+          <Title
+            mt={3}
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Como funciona a Plataforma de Treinos?
+          </Title>
+          <Box className={styles.gridStepByStep} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <PaymentsIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>1</Title>
+              <Text mt={2}>
+                O usuário realiza a compra da Plataforma de
+                Treinos.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <SettingsAccessibilityIcon
+                color="warning"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '40%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>2</Title>
+              <Text mt={2}>
+                É enviada uma avaliação física para o usuário
+                preencher e enviar de volta.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <TimerIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>3</Title>
+
+              <Text mt={2}>
+                Com base nas respostas da avaliação física, é
+                feita a prescrição dos treinos, em até 72 horas,
+                e enviada para o usuário.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <UploadFileIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title className={styles.cardTitle}>4</Title>
+              <Text mt={2}>
+                O usuário recebe o material do programa por
+                e-mail junto com o número de WhatsApp do
+                professor.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <EmailIcon
+                color="action"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>5</Title>
+              <Text mt={2}>
+                O usuário tem acesso ao conteúdo 100% online, que
+                pode ser acessado de qualquer dispositivo com
+                acesso ao e-mail.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <HowToRegIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>6</Title>
+              <Text mt={2}>
+                O usuário tem acesso à área de usuário com maior
+                interatividade onde pode ver o seu progresso.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <StackedLineChartIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>7</Title>
+              <Text mt={2}>
+                A avaliação física é reenviada periodicamente
+                durante e ao final do programa para avaliar os
+                resultados, realizar a progressão e os ajustes
+                necessários.
+              </Text>
+            </Box>{' '}
+          </Box>
+        </Box>
+      </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.paper"
+        bottom="0"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box>
+        <Box sx={{ padding: '5%' }}>
+          <Title
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Sobre os Treinos
+          </Title>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            A Plataforma de Treinos oferece uma consultoria
+            fitness completa e personalizada. Cada treino enviado
+            possui todas as informações necessárias para uma
+            execução segura e eficiente dos exercícios.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Os treinos incluem o nome dos exercícios, informações
+            detalhadas sobre como realizá-los, vídeos
+            demonstrativos, observações sobre a execução correta,
+            e uma descrição do método utilizado no treino. Além
+            disso, você também terá acesso à informações sobre o
+            método e tempo utilizado no intervalo, quantidade de
+            repetições e séries, e a cadência de movimento
+            recomendada.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Com essas informações completas e precisas, você
+            poderá se exercitar de maneira eficiente e segura,
+            alcançando seus objetivos de fitness de maneira mais
+            rápida e duradoura. Não perca mais tempo com treinos
+            sem resultados, escolha a nossa plataforma de treinos
+            e dê o primeiro passo para o seu sucesso.
+          </Text>
+        </Box>
+      </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.default"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box
+        className="tipos-de-treinos"
+        id="tipos-de-treinos"
+        sx={{
+          padding: '5%',
+          backgroundColor: 'background.paper',
+        }}
+      >
+        <Box>
+          <Title
+            mt={3}
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Tipos de Treinos
+          </Title>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Na nossa consultoria fitness, montamos treinos
+            personalizados de acordo com os objetivos de cada
+            aluno. Oferecemos uma ampla variedade de opções para
+            atender às suas necessidades e garantir o máximo de
+            sucesso.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Se o seu objetivo é a melhora estética, temos treinos
+            focados em ganho de massa muscular ou perda de
+            gordura. Para atletas ou praticantes de esportes,
+            oferecemos treinos de performance esportiva,
+            incluindo opções específicas para corrida.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Também oferecemos treinos focados em saúde, como
+            aqueles que visam a melhora da qualidade de vida,
+            reabilitação física, reabilitação cardiovascular, e a
+            luta contra o sedentarismo.{' '}
+          </Text>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Para a Melhora Estética:
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Ganho de Massa Muscular
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Diminuição da Gordura Corporal
+              </Text>
+            </Box>
+          </Box>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Para Esportistas e Atletas:
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Aumento de Performance Esportiva
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">Progressão na Corrida</Text>
+            </Box>
+          </Box>
+
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Focados em Saúde
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Melhora da Qualidade de Vida
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">Reabilitação Física</Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Reabilitação Cardiovascular
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Combate ao Sedentarismo
+              </Text>
+            </Box>
+          </Box>
+
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+          >
+            Não importa qual seja o seu objetivo, temos um treino
+            personalizado que pode ajudá-lo a alcançá-lo de
+            maneira eficiente e segura. Não perca mais tempo com
+            treinos sem resultados. Escolha a nossa consultoria e
+            veja a diferença em pouco tempo.
+          </Text>
+        </Box>
+      </Box>
+      <AngleDivisor
+        color="background.paper"
+        bottom="0"
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box
+        sx={{
+          padding: '5%',
         }}
       >
         <Title
@@ -276,15 +1292,15 @@ export default function IndexUnauthTemplate() {
           data-aos="fade-right"
           data-aos-once="true"
         >
-          A Plataforma é administrada pelo Treinador Carlos
-          Augusto, graduado em Educação Física pela Universidade
-          Santa Cecília (2012), especialista em Treinamento
-          Desportivo e Treinamento Personalizado pela
-          Universidade Santa Cecília (2014), especialista em
+          O Treinador Carlos Augusto, graduado em Educação Física
+          pela Universidade Santa Cecília, especialista em
+          Treinamento Desportivo e em Treinamento Personalizado
+          pela Universidade Santa Cecília, especialista em
           Condicionamento Físico Aplicado à Prevenção
-          Cardiológica Primária e Secundária pela Faculdade de
-          Medicina da USP e Mestre em Ciências da Saúde pela
-          Universidade Federal de São Paulo.
+          Cardiológica pela Faculdade de Medicina da USP e mestre
+          em Ciências Interdisciplinar da Saúde pela UNIFESP, é o
+          administrador e o Personal Trainer responsável pelo
+          time técnico da Plataforma de Treinos.
         </Text>
         <Box data-aos="zoom-in" data-aos-once="true">
           <FotoAntesEDepoisGuto />
@@ -307,28 +1323,125 @@ export default function IndexUnauthTemplate() {
           data-aos="fade-right"
           data-aos-once="true"
         >
-          Com um conhecimento embasado em pesquisas aprofundadas
-          na literatura científica atual, a missão do Treinador
-          Carlos Augusto é utilizar a Plataforma de Treinos para
-          descomplicar o acesso aos benefícios dos exercícios
-          físicos e entregar ao máximo de pessoas, treinos
-          simples, objetivos, que realmente funcionam e trazem os
-          resultados esperados.
+          Com seu conhecimento baseado na literatura científica
+          atual, o nosso treinador lidera o time com a missão de
+          tornar o acesso aos benefícios dos exercícios físicos
+          mais fácil e oferecer treinos simples e eficientes para
+          o máximo de pessoas, garantindo resultados realmente
+          surpreendentes.
         </Text>
-        <SendButton
-          data-aos="zoom-in"
+        <Text
+          align="left"
+          paragraph
+          data-aos="fade-right"
           data-aos-once="true"
-          enviar="Quero começar agora"
-          enviando="Registrando..."
-          customIcon="send"
-        />
+        >
+          Se você deseja alcançar suas metas de condicionamento
+          físico de maneira rápida e eficiente, tenha o
+          acompanhamento do nosso time e comece a ver resultados
+          de verdade com a Plataforma de Treinos!
+        </Text>
       </Box>
 
+      <AngleDivisor
+        color="background.default"
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        data-aos-offset="35"
+        id="about1"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
       <Box
-        data-aos="fade-up"
-        data-aos-once="true"
+        className="price2"
+        id="price2"
         sx={{
           padding: '5%',
+          backgroundColor: 'background.paper',
+        }}
+      >
+        <Box sx={{ position: 'relative' }}>
+          <Box
+            sx={{
+              position: 'absolute',
+              right: '-120px',
+              marginTop: '100px',
+              opacity: '0.15',
+              pointerEvents: 'none',
+              userSelect: 'none',
+            }}
+          >
+            <Image
+              data-aos="fade-left"
+              data-aos-once="true"
+              src="/logo-pdt-blue.png"
+              alt="Logo da Plataforma de Treinos"
+              width={400}
+              height={400}
+            />
+          </Box>
+        </Box>{' '}
+        <SellerBanner />
+      </Box>
+
+      <AngleDivisor
+        data-aos="zoom-out-down"
+        data-aos-duration="500"
+        color="background.paper"
+        bottom="0"
+        data-aos-offset="35"
+      >
+        <Box
+          data-aos="fade-down"
+          data-aos-once="false"
+          data-aos-offset="70"
+          sx={{
+            pointerEvents: 'none',
+            userSelect: 'none',
+            position: 'relative',
+            top: '-60px',
+            left: '-50px',
+            width: '100px',
+            height: '100px',
+            opacity: '0.22 !important',
+          }}
+        >
+          <Image
+            src="/logo-pdt-blue.png"
+            alt="Logo da Plataforma de Treinos"
+            width={60}
+            height={60}
+          />
+        </Box>
+      </AngleDivisor>
+
+      <Box
+        data-aos="fade-right"
+        data-aos-once="true"
+        sx={{
+          padding: '5% 5% 20px 5%',
           backgroundColor: 'background.default',
         }}
       >
@@ -348,14 +1461,14 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Qualquer pessoa que queira se beneficiar dos
-              exercícios físicos podem ser alunos da Plataforma
-              de Treinos. Todos os exercícios podem ser adaptados
-              para qualquer realidade, porém é necessário que um
-              médico tenha lhe dado o aval para prática de
-              atividades físicas. Portanto, para sua segurança,
-              antes de iniciar qualquer rotina de atividade
-              física, faça um checkup médico.
+              Todos que desejem se beneficiar com os exercícios
+              físicos podem se tornar alunos da Plataforma de
+              Treinos. Adaptamos os exercícios para qualquer
+              realidade, mas é importante lembrar que é sempre
+              necessário obter o aval de um médico antes de
+              iniciar uma rotina de exercícios. Portanto, para
+              garantir sua segurança, faça um checkup médico
+              antes de começar qualquer atividade física.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -374,11 +1487,11 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Como o programa é individualizado e o intuito é dar
-              o aporte necessário a todos os alunos sem deixá-los
-              na mão, é necessário diminuir a quantidade de
-              pessoas por turma para aumentar a qualidade e
-              eficácia do serviço e fazer o melhor para cada um.
+              O objetivo do programa é fornecer o apoio adequado
+              a todos os alunos, portanto, é preciso limitar o
+              número de pessoas nas turma para aumentar a
+              qualidade e eficácia do serviço e poder atender
+              cada um de maneira mais eficiente.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -398,11 +1511,12 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              A Plataforma de Treinos não é só para quem quer
-              emagrecer. Pessoas que querem hipertrofia muscular,
-              ou até mesmo manter o físico que já tem e apenas
-              melhorar parâmetros de saúde, também são bem-vindas
-              e conseguirão ótimos resultados.
+              A Plataforma de Treinos não é exclusiva para quem
+              deseja emagrecer. Também é adequada para aqueles
+              que buscam aumentar a massa muscular, manter a
+              forma física atual e melhorar os parâmetros de
+              saúde. Todos esses objetivos, e muitos outros,
+              podem ser alcançados com sucesso na plataforma.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -422,17 +1536,17 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Não, existem exercícios que podem ser feitos em
-              qualquer lugar e todos trazem benefícios.
-              Entretanto, devo deixar claro que quanto melhor a
-              infra estrutura e os aparelhos que você tiver a sua
-              disposição, melhor será o seu resultado. Se você
-              quiser, é possível treinar apenas com o peso do seu
-              corpo, mas se você tiver um elástico à sua
-              disposição, o treino já pode ser potencializado.
-              Isso da liberdade para você treinar onde quiser, e
-              como quiser, é só deixar bem claro seu objetivo e
-              entender suas limitações.
+              Não! Os treinos também podem ser feitos fora de uma
+              academia. Existem exercícios que podem ser feitos
+              em qualquer lugar e todos eles trazem benefícios
+              para o corpo. No entanto, quanto mais equipamentos
+              e uma boa infraestrutura estiverem disponíveis,
+              melhor será o resultado. É possível treinar apenas
+              com o peso do próprio corpo, mas se houver um
+              elástico disponível, o treino pode ser
+              intensificado. É importante ter claro qual é o seu
+              objetivo e entender as limitações do ambiente para
+              escolher onde e como treinar.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -452,11 +1566,10 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Até a presente turma, a Plataforma de Treinos dura
-              8 semanas. Com uma avaliação física pré
-              participação, uma avaliação física na quarta semana
-              para fazer possíveis adaptações e a avaliação final
-              na oitava semana para ver a eficácia do programa.
+              A Plataforma de Treinos dura 4 semanas. Há uma
+              avaliação física pré participação, uma avaliação
+              física na segunda semana e uma avaliação final na
+              quarta semana.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -476,13 +1589,12 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Uma avaliação física inicial é enviada antes da
-              prescrição dos treinos. Com base nas respostas
-              dessa avaliação toda a prescrição é feita e
-              enviada, porém, no decorrer dos dias, conforme os
-              exercícios são executados eles podem ser adaptados
-              de acordo com o relato de necessidade desde que o
-              treino ainda esteja na validade.
+              O processo de individualização de Treinos inclui
+              uma avaliação física inicial, com base na qual são
+              prescritos os treinos. Essa prescrição pode ser
+              adaptada durante o período em que os exercícios são
+              realizados, de acordo com o relato de necessidade,
+              enquanto a inscrição ainda estiver válida.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -501,10 +1613,11 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              A avaliação física é enviada automaticamente
-              mediante ao pagamento e deve ser preenchida com
+              Na plataforma de treinos, a avaliação física é
+              enviada automaticamente após o pagamento. É
+              importante que essa avaliação seja preenchida com
               todas as informações para que o treino seja
-              prescrito de forma otimizada. Essa avaliação é
+              prescrito de forma otimizada. A avaliação é
               reenviada periodicamente durante e ao final do
               programa para avaliar os resultados, realizar a
               progressão e os ajustes necessários.
@@ -527,14 +1640,14 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Após a aprovação da compra você receberá
+              Após a aprovação da compra, o usuário receberá
               gradativamente o material do programa por e-mail.
-              Todo conteúdo é 100% online e você pode acessá-lo
+              Todo o conteúdo é 100% online e pode ser acessado
               de qualquer dispositivo (computador, smart TV,
-              celular, tablet) com acesso ao e-mail. Além de ter
-              acesso a uma área de usuário com uma maior
-              interatividade com o professor onde você pode ver o
-              seu progresso.
+              celular, tablet) com acesso ao e-mail. Além disso,
+              o usuário terá acesso a uma área de usuário com uma
+              maior interatividade com o professor, onde poderá
+              ver o seu progresso.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -553,13 +1666,14 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Não, não é necessário tomar remédios. Quanto a
-              dieta, caso ainda não tenha um nutricionista, na
-              área de usuário tem um App de alimentação para que
-              você consiga resultados mais rápidos. Apesar de não
-              ser obrigatório, se você combinar os treinos com
-              uma alimentação balanceada os resultados serão
-              ainda melhores.
+              Você não precisa tomar remédios para alcançar seus
+              objetivos. Além disso, temos um aplicativo de
+              alimentação disponível na área de usuário, que pode
+              ajudá-lo a atingir resultados mais rápidos, mesmo
+              se você não tiver um nutricionista. Embora não seja
+              obrigatório, se você combinar os treinos com uma
+              alimentação balanceada, os resultados serão ainda
+              melhores.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -573,50 +1687,27 @@ export default function IndexUnauthTemplate() {
             id="panel9a-header"
           >
             <Typography textAlign="left">
-              O programa é indicado para qual idade?
+              O programa é indicado para quem
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Pessoas de todas as idades podem usar a Plataforma
-              de Treinos. Temos clientes dos 15 aos 52 anos que
-              obtiveram resultados incríveis com o programa. É
-              recomendável que você converse com o seu médico
-              antes de iniciar os treinos para que você esteja
-              com o melhor amparo clínico possível. E caso seja
-              menor de idade, é necessário o consentimento dos
-              pais.
+              A plataforma de treinos pode ser útil para pessoas
+              de todas as idades e níveis de aptidão física que
+              desejam melhorar sua forma física, seja aumentando
+              a massa muscular ou perdendo gordura. Pode ser útil
+              para pessoas que não têm tempo para ir à academia,
+              que preferem treinos mais personalizados ou
+              específicos, que já fazem exercícios mas não obtêm
+              resultados ou que preferem treinar em casa ou em
+              condomínios. Também pode ser útil para pessoas que
+              têm limitações físicas ou doenças crônicas e
+              precisam de orientação sobre como incluir
+              exercícios de forma segura em sua rotina.
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
-          expanded={expanded === 'panel10'}
-          onChange={handleChange('panel10')}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel10a-content"
-            id="panel10a-header"
-          >
-            <Typography textAlign="left">
-              Quem pode se beneficiar da Plataforma?
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              O foco principal da Plataforma são pessoas
-              saudáveis que querem entrar ou se manter em forma
-              aumentando a massa muscular ou perdendo gordura,
-              pessoas que não tem muito tempo para ficar na
-              academia, pessoas que buscam treinos mais
-              individualizados e específicos do que os montados
-              nas academias, pessoas que não trocam
-              frequentemente de treino, pessoas que já treinam
-              mas não vêem resultados e pessoas que querem
-              treinar em casa ou condomínios.
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
+
         <Accordion
           expanded={expanded === 'panel11'}
           onChange={handleChange('panel11')}
@@ -633,17 +1724,16 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              Independente da limitação, antes da prática é
-              recomendado que você converse com o seu médico e
-              cheque o estado atual de sua saúde. Caso esteja
-              apto para realizar a musculação, você estará apto
-              para realizar o nosso programa.
-            </Typography>
-            <Typography>
-              Os exercícios de musculação possuem baixo impacto e
-              são completamente adaptáveis o que facilita a
-              prática para aqueles que apresentam problemas de
-              saúde, porém estão aptos a treinar.
+              Indenpendente da limitação, antes de começar
+              qualquer tipo de programa de exercícios, é
+              importante conversar com o seu médico e garantir
+              que sua saúde atual é adequada para a prática. Se
+              você está apto para fazer musculação, também estará
+              apto para participar do nosso programa. Os
+              exercícios de musculação têm baixo impacto e são
+              facilmente adaptáveis, o que os torna uma opção
+              segura para pessoas com problemas de saúde, desde
+              que estejam aptas para treinar.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -663,16 +1753,16 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              É aconselhável que quem use a Plataforma já tenha
-              alguma afinidade com exercícios. Os treinos vem com
-              o exemplo de cada movimento em vídeo, porém a
-              dificuldade de uma correção em tempo real dificulta
-              a correção ideal. Entretanto, caso você ainda assim
-              queira iniciar na Plataforma com pouca ou sem
-              nenhuma experiência, você pode enviar suas dúvidas
-              e os vídeos com a execução do movimento para que
-              possamos sugerir as adaptações e correções
-              necessárias para garantir a sua segurança.
+              É recomendável ter alguma familiaridade com
+              exercícios antes de usar a nossa plataforma. Embora
+              os treinos venham com vídeos demonstrativos de cada
+              movimento, a dificuldade de fornecer correção em
+              tempo real pode dificultar a execução correta. No
+              entanto, se você ainda assim deseja começar a usar
+              a plataforma com pouca ou nenhuma experiência, pode
+              enviar suas dúvidas e vídeos da sua execução para
+              que possamos sugerir adaptações e correções para
+              garantir sua segurança.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -691,27 +1781,26 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              Diferente da maioria dos produtos do mercado, a
-              Plataforma não tem uma transformação específica e
-              cada cliente pode ter um objetivo diferente. Uns
-              querem emagrecer, outros hipertrofiar, outros
-              querem correr 10km, outros querem apenas cuidar da
-              saúde. Porém, todos os objetivos convergem em um,
-              aumentar a eficácia dos exercícios físicos, e esse
-              só não é alcançável para aquele que desistir do
-              programa ou por alguma dificuldade pessoal não
-              consegue implementar a rotina proposta e nem fazer
-              as adaptações sugeridas. Entretanto, vale ressaltar
-              que cada corpo apresenta uma velocidade de evolução
-              que além de levar em conta o empenho, leva em
-              considerações fatores genéticos.
+              Diferentemente de muitos outros produtos no
+              mercado, a nossa plataforma não tem um objetivo
+              específico e cada cliente pode ter um objetivo
+              diferente, como emagrecer, ganhar massa muscular,
+              correr 10 km ou simplesmente se manter saudável. No
+              entanto, todos esses objetivos têm um ponto em
+              comum: aumentar a eficácia dos exercícios físicos.
+              Isso só não é possível se você desistir do programa
+              ou não conseguir implementar a rotina proposta e
+              fazer as adaptações sugeridas. Vale lembrar que
+              cada corpo tem uma velocidade de evolução que
+              depende do esforço pessoal, mas também de fatores
+              genéticos.
             </Typography>
             <Typography>
-              Eu espero que fique claro que não estou oferecendo
-              para você uma receita milagrosa, ou video-aulas com
-              treinos padrões! A Plataforma é um programa de
-              treinos individualizados que dependem do seu
-              esforço para dar resultados.
+              É importante frisar que não estamos oferecendo uma
+              solução milagrosa ou treinos padronizados em vídeo.
+              A nossa plataforma é um programa de treinos
+              personalizados que dependem do seu esforço para dar
+              resultados.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -731,9 +1820,10 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              Essa turma será limitada pelo número de vagas, ao
-              atingir as vagas limites, as inscrições serão
-              encerradas.
+              O número de vagas para essa turma é limitado e,
+              assim que atingirmos o limite, as inscrições serão
+              encerradas. Além disso, as vagas para essa turma
+              também serão limitada pelo tempo.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -753,23 +1843,25 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              O personal tem vantagens e desvantagens perante a
-              Plataforma de Treinos. O personal vai corrigir seus
-              movimentos em tempo real e te ajudar a não perder o
-              intervalo entre os exercícios, assim como também
-              pode montar um treino individualizado e extrair
-              mais intensidade durante o treino. As desvantagens
-              do personal ficam em relação a liberdade de horário
-              para treinar, a dificuldade de achar um bom
-              profissional com agenda compatível e o preço
-              acessível.
+              Ter um personal trainer tem vantagens e
+              desvantagens em comparação com a nossa plataforma
+              de treinos, principalmente se você for iniciante
+              sem experiência na musculação. Algumas vantagens de
+              ter um personal são: correção em tempo real dos
+              movimentos, ajuda para não perder o intervalo entre
+              os exercícios, possibilidade de criar um treino
+              personalizado e intensidade extra durante o treino.
+              Algumas desvantagens de ter um personal são: menos
+              flexibilidade de horário para treinar, dificuldade
+              em encontrar um bom profissional com horário
+              compatível e preço mais elevado.
             </Typography>
             <Typography>
-              A Plataforma tem a vantagem de ter um menor preço e
-              uma maior flexibilidade para executar suas sessões,
-              as desvantagens ficam na latência da correção e na
-              cobrança dos exercícios. Isso exige uma disciplina
-              maior do praticante.
+              A nossa plataforma tem a vantagem de ter um preço
+              mais acessível e maior flexibilidade para realizar
+              as sessões, mas algumas desvantagens são: possível
+              atraso na correção e cobrança de exercícios, o que
+              exige mais disciplina do praticante
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -788,11 +1880,11 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography paragraph>
-              Atualmente os horários para as aulas de personal
-              estão lotados. Entretanto, pode abrir vagas
-              mediante a desistência. Caso tenha interesse entre
-              em contato através do e-mail
-              prof.carlos.aug@gmail.com.
+              No momento, os horários para as aulas de personal
+              estão todos ocupados. No entanto, pode haver vagas
+              disponíveis se alguém desistir. Se você estiver
+              interessado, entre em contato pelo e-mail
+              prof.carlos.aug@gmail.com
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -817,21 +1909,31 @@ export default function IndexUnauthTemplate() {
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <SendButton
-          data-aos="zoom-in"
-          data-aos-once="true"
-          sx={{ marginTop: '5%' }}
-          enviar="Quero começar agora"
-          enviando="Registrando..."
-          customIcon="send"
-        />
+        <Box sx={{ marginTop: '20px' }}>
+          <a href="https://pag.ae/7Y-U92iVs">
+            <Button
+              data-aos="fade-right"
+              data-aos-once="true"
+              sx={{
+                width: '300px',
+                margin: '10px auto',
+              }}
+              variant="outlined"
+              color="success"
+              endIcon={
+                <GroupAddIcon sx={{ marginTop: '-3px' }} />
+              }
+            >
+              Quero me inscrever
+            </Button>{' '}
+          </a>
+        </Box>
       </Box>
       <Divider
         data-aos="fade-up"
         data-aos-once="true"
         sx={{
           bgcolor: 'clearLine.main',
-          marginBottom: '1%',
         }}
       />
       <Box
@@ -845,14 +1947,15 @@ export default function IndexUnauthTemplate() {
             fontSize="70%"
             sx={{ color: 'clearComment.main' }}
           >
-            Como qualquer exercício físico, você assume riscos
-            para sua saúde e segurança ao praticar os treinos
-            propostos pela Plataforma de Treinos, principalmente
-            se você não seguir todas as recomendações, por isso
-            antes de iniciar a prática leia todo o material
-            recebido. Além disso você deve consultar o seu médico
-            e ver se você está apto para praticar atividade
-            física e em qual nível de intensidade.
+            Assim como qualquer exercício físico, ao praticar os
+            treinos propostos pela nossa plataforma de treinos,
+            você assume alguns riscos para sua saúde e segurança.
+            Isso é especialmente verdadeiro se você não seguir
+            todas as recomendações. Por isso, antes de começar,
+            leia todo o material fornecido e consulte o seu
+            médico para verificar se está apto para a prática de
+            atividade física e qual nível de intensidade é
+            adequado para você{' '}
           </Text>
         </Box>
         <Box mt="10px">
