@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import { useRouter } from 'next/router';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
@@ -135,7 +135,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={400}
             height={400}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
         <Box className="bannerIcons">
           <FitnessCenterIcon
@@ -258,7 +261,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
       <Box
@@ -505,7 +511,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 
@@ -614,7 +623,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 
@@ -646,7 +658,10 @@ export default function IndexUnauthTemplate() {
               alt="Logo da Plataforma de Treinos"
               width={300}
               height={300}
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Box>
         </Box>{' '}
         <Box sx={{ padding: '5%' }}>
@@ -702,7 +717,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 
@@ -822,7 +840,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 
@@ -852,7 +873,10 @@ export default function IndexUnauthTemplate() {
               alt="Logo da Plataforma de Treinos"
               width={400}
               height={400}
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Box>
         </Box>{' '}
         <AFSellerBanner />
@@ -884,7 +908,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 

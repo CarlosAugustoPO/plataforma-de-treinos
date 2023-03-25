@@ -1,5 +1,5 @@
 import Caption from 'src/components/Caption/index';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from './index.module.css';
 import { useTheme } from '@mui/material';
 import * as React from 'react';
@@ -18,9 +18,7 @@ export default function LoadingTemplate(Props: {
             alt="Pdt Logo for light theme"
             width={35}
             height={35}
-            layout="fixed"
-            priority
-          />
+            priority />
           <Caption>
             {Props.children || 'Carregando, aguarde...'}
           </Caption>
@@ -39,9 +37,7 @@ export default function LoadingTemplate(Props: {
             alt="Pdt Logo for dark theme"
             width={35}
             height={35}
-            layout="fixed"
-            priority
-          />
+            priority />
           <Caption>
             {Props.children || 'Carregando, aguarde...'}
           </Caption>

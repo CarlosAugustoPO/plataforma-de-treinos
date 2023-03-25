@@ -28,7 +28,7 @@ import { useState } from 'react';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Title from 'src/components/Title/index';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import AngleDivisor from 'src/components/AngleDivisor/index';
 import Text from 'src/components/Text/index';
 import Aos from 'aos';
@@ -321,7 +321,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={400}
             height={400}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
         <div
           data-aos="fade-right"
@@ -512,7 +515,10 @@ export default function IndexUnauthTemplate() {
             alt="Logo da Plataforma de Treinos"
             width={60}
             height={60}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </Box>
       </AngleDivisor>
 

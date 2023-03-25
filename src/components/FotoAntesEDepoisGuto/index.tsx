@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import useSettings from 'src/lib/hooks/useSettings';
 
 export default function Logo(props: {
@@ -27,8 +27,11 @@ export default function Logo(props: {
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}
-        style={style}
-      />
+        style={{
+          ...style,
+          maxWidth: "100%",
+          height: "auto"
+        }} />
     );
   }
 
@@ -39,8 +42,11 @@ export default function Logo(props: {
         alt="Logo da Plataforma de Treinos"
         width={width}
         height={height}
-        style={style}
-      />
+        style={{
+          ...style,
+          maxWidth: "100%",
+          height: "auto"
+        }} />
     );
   }
 
@@ -51,6 +57,9 @@ export default function Logo(props: {
       width={width}
       height={height}
       sx={style}
-    />
+      style={{
+        maxWidth: "100%",
+        height: "auto"
+      }} />
   );
 }
