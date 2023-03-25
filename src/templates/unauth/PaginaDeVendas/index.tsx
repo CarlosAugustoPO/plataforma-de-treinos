@@ -303,7 +303,7 @@ export default function IndexUnauthTemplate() {
           com a Plataforma de Treinos!
         </Text>
         <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>
-          <a href="https://pag.ae/7Y-U92iVs">
+          <a href="https://pag.ae/7ZaLofdCL">
             <Button
               data-aos="fade-right"
               data-aos-once="true"
@@ -1910,7 +1910,7 @@ export default function IndexUnauthTemplate() {
           </AccordionDetails>
         </Accordion>
         <Box sx={{ marginTop: '20px' }}>
-          <a href="https://pag.ae/7Y-U92iVs">
+          <a href="https://pag.ae/7ZaLofdCL">
             <Button
               data-aos="fade-right"
               data-aos-once="true"

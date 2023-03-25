@@ -10,24 +10,20 @@ export default function Logo(props: {
   let height = props.width;
 
   if (!width) {
-    width = 395;
+    width = 60;
   }
 
   if (!height) {
-    height = 350;
+    height = 30;
   }
-  const style = {
-    maxWidth: '95%',
-  };
 
   if (settings.theme == 'light') {
     return (
       <Image
-        src="/adguto-white.png"
-        alt="Logo da Plataforma de Treinos"
+        src="/stripe-logo.png"
+        alt="Logo stripe"
         width={width}
         height={height}
-        style={style}
       />
     );
   }
@@ -35,22 +31,20 @@ export default function Logo(props: {
   if (settings.theme == 'dark') {
     return (
       <Image
-        src="/adguto-dark.png"
-        alt="Logo da Plataforma de Treinos"
+        src="/stripe-logo.png"
+        alt="Logo stripe"
         width={width}
         height={height}
-        style={style}
       />
     );
   }
 
   return (
     <Image
-      src="/adguto.png"
-      alt="Logo da Plataforma de Treinos"
+      src="/stripe-logo.png"
+      alt="Logo stripe"
       width={width}
       height={height}
-      sx={style}
     />
   );
 }

@@ -134,6 +134,9 @@ const getDesignTokens = (mode: any) => ({
           modalTitleIcon: {
             main: colors.light.pink,
           },
+          bottonLink: {
+            main: colors.light.pink,
+          },
           clearLine: {
             main: colors.light.pink + '00',
           },
@@ -303,6 +306,9 @@ const getDesignTokens = (mode: any) => ({
           modalTitleIcon: {
             main: colors.dark.pink,
           },
+          bottonLink: {
+            main: colors.dark.pink,
+          },
           clearLine: {
             main: colors.dark.pink + '00',
           },
@@ -400,6 +406,7 @@ declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     headerIcons: true;
     buttonSnackbarOk: true;
+    bottonLink: true;
     buttonSnackbarCancel: true;
     buttonCancel: true;
     buttonSettingsBoxCancel: true;

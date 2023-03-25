@@ -1,0 +1,31 @@
+.gridStepByStep {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.gridServices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cardStepByStep {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px dashed;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardTitle {
+  border: 2px solid;
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  padding: 7px;
+  position: relative;
+  border-radius: 50%;
+}

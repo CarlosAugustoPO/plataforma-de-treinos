@@ -16,6 +16,9 @@ import 'src/styles/globals.css';
 import store from 'src/store/index';
 import { Provider } from 'react-redux';
 import MyAlertProvider from 'src/components/MyAlertProvider/index';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import 'dayjs/locale/pt-br';
 
 type AppPropsWithCache = AppProps & {
   Component: NextPage;
@@ -35,21 +38,26 @@ export default function MyApp({
       <SessionProvider session={session}>
         <CacheProvider value={emotionCache}>
           <SettingsProvider>
-            <MyThemeProvider>
-              <CssBaseline enableColorScheme />
-              <MyHead>
-                <CookieConsent />
-                {/* MyHead as layout component*/}
-                <LoadingBar>
-                  <MyHeader>
-                    <MyAlertProvider>
-                      {/* Main as main wraper*/}
-                      <Component {...pageProps} />
-                    </MyAlertProvider>
-                  </MyHeader>
-                </LoadingBar>
-              </MyHead>
-            </MyThemeProvider>
+            <LocalizationProvider
+              dateAdapter={AdapterDayjs}
+              adapterLocale={'pt-br'}
+            >
+              <MyThemeProvider>
+                <CssBaseline enableColorScheme />
+                <MyHead>
+                  <CookieConsent />
+                  {/* MyHead as layout component*/}
+                  <LoadingBar>
+                    <MyHeader>
+                      <MyAlertProvider>
+                        {/* Main as main wraper*/}
+                        <Component {...pageProps} />
+                      </MyAlertProvider>
+                    </MyHeader>
+                  </LoadingBar>
+                </MyHead>
+              </MyThemeProvider>
+            </LocalizationProvider>
           </SettingsProvider>
         </CacheProvider>
       </SessionProvider>

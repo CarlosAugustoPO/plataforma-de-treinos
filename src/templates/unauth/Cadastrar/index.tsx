@@ -1,4 +1,6 @@
 import Divider from '@mui/material/Divider';
+import { useRouter } from 'next/router';
+import Button from '@mui/material/Button';
 import createUser from 'src/lib/fetchers/users/create/index';
 import createMagicLink from 'src/lib/fetchers/magic-links/create/index';
 import deleteUser from 'src/lib/fetchers/users/delete/index';
@@ -26,6 +28,7 @@ import { putAlert } from 'src/reducers/alert/index';
 
 export default function CadastrarUnauthTemplate() {
   const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -162,7 +165,7 @@ export default function CadastrarUnauthTemplate() {
           de Treinos
         </Text>
       </Grid>
-      <Grid sx={{ maxWidth: '90%' }}>
+      <Grid sx={{ maxWidth: '100%' }}>
         <Form
           handleSubmit={handleSubmit}
           handleAction={handleSignUp}
@@ -243,12 +246,14 @@ export default function CadastrarUnauthTemplate() {
                   marginBottom: '3%',
                 }}
               />
-              <TextButton
-                linkColor="pinkLinkInt"
-                cta="Já tem uma conta? Entrar"
-                sx={{ fontSize: '90%' }}
-                href="/entrar"
-              />
+              <Button
+                variant="text"
+                color="bottonLink"
+                sx={{ fontSize: '70%' }}
+                onClick={() => router.push('/entrar')}
+              >
+                Já tem uma conta? Entrar
+              </Button>
             </Grid>
           </Grid>
         </Form>

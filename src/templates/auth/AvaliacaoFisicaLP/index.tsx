@@ -1,4 +1,14 @@
 import Image from 'next/image';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import StarIcon from '@mui/icons-material/Star';
+import UpdateIcon from '@mui/icons-material/Update';
+import FlagIcon from '@mui/icons-material/Flag';
+import StackedLineChartIcon from '@mui/icons-material/StackedLineChart';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import EmailIcon from '@mui/icons-material/Email';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import TimerIcon from '@mui/icons-material/Timer';
+import PaymentsIcon from '@mui/icons-material/Payments';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import InsightsIcon from '@mui/icons-material/Insights';
 import Divider from '@mui/material/Divider';
@@ -34,6 +44,7 @@ import { useEffect } from 'react';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import SwipeUpSharpIcon from '@mui/icons-material/SwipeUpSharp';
+import styles from './styles.module.css';
 
 //Hooks
 
@@ -292,7 +303,7 @@ export default function IndexUnauthTemplate() {
           com a Plataforma de Treinos!
         </Text>
         <Box sx={{ marginTop: '20px', marginBottom: '20px' }}>
-          <a href="https://pag.ae/7Y-U92iVs">
+          <a href="https://pag.ae/7ZaLofdCL">
             <Button
               data-aos="fade-right"
               data-aos-once="true"
@@ -352,7 +363,7 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Porque utilizar a Plataforma de Treinos?
+            Porque Utilizar a Plataforma de Treinos?
           </Title>
           <Text
             align="left"
@@ -390,6 +401,149 @@ export default function IndexUnauthTemplate() {
             adequado, fazer avaliações físicas e mudar o treino
             com a frequência necessária.
           </Text>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Veja Alguns Benefícios de Utilizar a Plataforma de
+            Treinos
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <FlagIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">
+                Facilidade de Começar
+              </Title>
+              <Text mt={2}>
+                A Plataforma de Treinos oferece orientação e
+                suporte para começar a se exercitar de maneira
+                eficiente e segura, sem precisar se preocupar com
+                as variáveis envolvidas na criação de uma rotina
+                de exercícios.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <SettingsAccessibilityIcon
+                color="warning"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '40%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">
+                Adaptação a Necessidades Individuais
+              </Title>
+              <Text mt={2}>
+                Os treinos são personalizados e ajustados às suas
+                necessidades individuais, garantindo resultados
+                mais eficientes.
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <UpdateIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title fontSize="100%">Atualização Regular</Title>
+              <Text mt={2}>
+                Os treinos são atualizados regularmente para
+                garantir que você continue progredindo e
+                alcançando seus objetivos.
+              </Text>
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <StarIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title fontSize="100%">Suporte Profissional</Title>
+              <Text mt={2}>
+                A Plataforma de Treinos fornece suporte
+                profissional para garantir que você esteja se
+                exercitando de maneira segura e eficiente.
+              </Text>{' '}
+            </Box>{' '}
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <TrendingUpIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title fontSize="100%">
+                Otimização de Resultados
+              </Title>
+              <Text mt={2}>
+                A Plataforma de Treinos ajuda a otimizar os
+                resultados dos exercícios, garantindo que você
+                não perca tempo com estratégias e exercícios que
+                não funcionam.
+              </Text>{' '}
+            </Box>{' '}
+          </Box>
           <Text
             align="left"
             paragraph
@@ -399,17 +553,8 @@ export default function IndexUnauthTemplate() {
             Com a Plataforma de Treinos, você sabe exatamente o
             que fazer e como fazer para atingir seus objetivos de
             forma otimizada, seja em uma academia ou em casa. Não
-            perca mais tempo com exercícios e estratégias que não
-            funcionam.
-          </Text>{' '}
-          <Text
-            align="left"
-            paragraph
-            data-aos="fade-right"
-            data-aos-once="true"
-          >
-            Faça sua inscrição e comece a ver resultados de
-            verdade com a Plataforma de Treinos
+            perca mais tempo, faça sua inscrição e comece a ver
+            resultados de verdade com a Plataforma de Treinos.
           </Text>
         </Box>
       </Box>
@@ -516,6 +661,14 @@ export default function IndexUnauthTemplate() {
           >
             Política de Reembolso
           </Title>
+          <Image
+            data-aos="zoom-in"
+            data-aos-once="true"
+            src="/garantia_14_dias.png"
+            alt="Logo da Plataforma de Treinos"
+            width={175}
+            height={150}
+          />
           <Text
             align="left"
             paragraph
@@ -524,14 +677,9 @@ export default function IndexUnauthTemplate() {
           >
             <p>
               Oferecemos um termo de reembolso válido por 14 dias
-              após a compra de nossos produtos ou serviços.
-            </p>
-            <p>
-              Se você não estiver satisfeito com o que comprou,
-              pode solicitar um reembolso total dentro desse
-              prazo.
-            </p>
-            <p>
+              após a compra de nossos produtos ou serviços. Se
+              você não estiver satisfeito com o que comprou, pode
+              solicitar um reembolso total dentro desse prazo.
               Para obter mais detalhes, consulte o nosso termo de
               reembolso completo.
             </p>
@@ -570,45 +718,43 @@ export default function IndexUnauthTemplate() {
       </AngleDivisor>
 
       <Box
-        className="step-by-step"
         id="step-by-step"
         sx={{
           padding: '5%',
           backgroundColor: 'background.paper',
         }}
       >
-        <Box sx={{ padding: '5%' }}>
+        <Box>
           <Title
+            mt={3}
             paragraph
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Passo a passo
+            Como funciona a Plataforma de Treinos?
           </Title>
-          <Box
-            sx={{
-              display: 'grid',
-              gridTemplateColumns:
-                'repeat(auto-fill, minmax(200px, 200px))',
-              gridGap: '16px',
-            }}
-          >
+          <Box className={styles.gridStepByStep} mb={3}>
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
               sx={{
-                padding: '5%',
                 backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
               }}
+              className={styles.cardStepByStep}
             >
-              <Title>1</Title>
-              <Text>
+              <PaymentsIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>1</Title>
+              <Text mt={2}>
                 O usuário realiza a compra da Plataforma de
                 Treinos.
               </Text>
@@ -616,19 +762,22 @@ export default function IndexUnauthTemplate() {
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>2</Title>
-              <Text>
+              <SettingsAccessibilityIcon
+                color="warning"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '40%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>2</Title>
+              <Text mt={2}>
                 É enviada uma avaliação física para o usuário
                 preencher e enviar de volta.
               </Text>
@@ -636,19 +785,23 @@ export default function IndexUnauthTemplate() {
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>3</Title>
-              <Text>
+              <TimerIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>3</Title>
+
+              <Text mt={2}>
                 Com base nas respostas da avaliação física, é
                 feita a prescrição dos treinos, em até 72 horas,
                 e enviada para o usuário.
@@ -657,40 +810,46 @@ export default function IndexUnauthTemplate() {
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>4</Title>
-              <Text>
-                O usuário recebe o material do programa
-                gradativamente por e-mail e o número de WhatsApp
-                do professor.
+              <UploadFileIcon
+                color="info"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />{' '}
+              <Title className={styles.cardTitle}>4</Title>
+              <Text mt={2}>
+                O usuário recebe o material do programa por
+                e-mail junto com o número de WhatsApp do
+                professor.
               </Text>
             </Box>{' '}
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>5</Title>
-              <Text>
+              <EmailIcon
+                color="action"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>5</Title>
+              <Text mt={2}>
                 O usuário tem acesso ao conteúdo 100% online, que
                 pode ser acessado de qualquer dispositivo com
                 acesso ao e-mail.
@@ -699,19 +858,22 @@ export default function IndexUnauthTemplate() {
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>6</Title>
-              <Text>
+              <HowToRegIcon
+                color="primary"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  right: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>6</Title>
+              <Text mt={2}>
                 O usuário tem acesso à área de usuário com maior
                 interatividade onde pode ver o seu progresso.
               </Text>
@@ -719,19 +881,22 @@ export default function IndexUnauthTemplate() {
             <Box
               data-aos="zoom-in"
               data-aos-once="true"
-              sx={{
-                padding: '5%',
-                backgroundColor: 'background.default',
-                boxShadow:
-                  '0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)',
-                display: 'flex',
-                flexDirection: 'column',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
             >
-              <Title>7</Title>
-              <Text>
+              <StackedLineChartIcon
+                color="success"
+                sx={{
+                  position: 'absolute',
+                  transform: 'scale(5)',
+                  top: '50%',
+                  left: '20%',
+                  zIndex: '-1',
+                  opacity: '0.1',
+                }}
+              />
+              <Title className={styles.cardTitle}>7</Title>
+              <Text mt={2}>
                 A avaliação física é reenviada periodicamente
                 durante e ao final do programa para avaliar os
                 resultados, realizar a progressão e os ajustes
@@ -780,7 +945,7 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Sobre os treinos
+            Sobre os Treinos
           </Title>
           <Text
             align="left"
@@ -790,7 +955,7 @@ export default function IndexUnauthTemplate() {
           >
             A Plataforma de Treinos oferece uma consultoria
             fitness completa e personalizada. Cada treino enviado
-            por possui todas as informações necessárias para uma
+            possui todas as informações necessárias para uma
             execução segura e eficiente dos exercícios.
           </Text>
           <Text
@@ -869,7 +1034,7 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Tipos de treinos
+            Tipos de Treinos
           </Title>
           <Text
             align="left"
@@ -906,6 +1071,164 @@ export default function IndexUnauthTemplate() {
             reabilitação física, reabilitação cardiovascular, e a
             luta contra o sedentarismo.{' '}
           </Text>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Para a Melhora Estética:
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Ganho de Massa Muscular
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{ backgroundColor: 'background.default' }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Diminuição da Gordura Corporal
+              </Text>
+            </Box>
+          </Box>
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Para Esportistas e Atletas:
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Aumento de Performance Esportiva
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">Progressão na Corrida</Text>
+            </Box>
+          </Box>
+
+          <Title
+            paragraph
+            align="left"
+            data-aos="fade-right"
+            data-aos-once="true"
+            fontSize="110%"
+          >
+            Treinos Focados em Saúde
+          </Title>
+          <Box className={styles.gridServices} mb={3}>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Melhora da Qualidade de Vida
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">Reabilitação Física</Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Reabilitação Cardiovascular
+              </Text>
+            </Box>
+            <Box
+              data-aos="zoom-in"
+              data-aos-once="true"
+              sx={{
+                backgroundColor: 'background.default',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                justifyItems: 'center',
+                alignContent: 'center',
+              }}
+              className={styles.cardStepByStep}
+            >
+              <Text fontSize="100%">
+                Combate ao Sedentarismo
+              </Text>
+            </Box>
+          </Box>
+
           <Text
             align="left"
             paragraph
@@ -1243,10 +1566,10 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              A Plataforma de Treinos dura 8 semanas. Há uma
+              A Plataforma de Treinos dura 4 semanas. Há uma
               avaliação física pré participação, uma avaliação
-              física na quarta semana e uma avaliação final na
-              oitava semana.
+              física na segunda semana e uma avaliação final na
+              quarta semana.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -1499,8 +1822,8 @@ export default function IndexUnauthTemplate() {
             <Typography paragraph>
               O número de vagas para essa turma é limitado e,
               assim que atingirmos o limite, as inscrições serão
-              encerradas. Além disso, essa turma também será
-              limitada pelo tempo.
+              encerradas. Além disso, as vagas para essa turma
+              também serão limitada pelo tempo.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -1522,12 +1845,13 @@ export default function IndexUnauthTemplate() {
             <Typography paragraph>
               Ter um personal trainer tem vantagens e
               desvantagens em comparação com a nossa plataforma
-              de treinos. Algumas vantagens de ter um personal
-              são: correção em tempo real dos movimentos, ajuda
-              para não perder o intervalo entre os exercícios,
-              possibilidade de criar um treino personalizado e
-              intensidade extra durante o treino. Algumas
-              desvantagens de ter um personal são: menos
+              de treinos, principalmente se você for iniciante
+              sem experiência na musculação. Algumas vantagens de
+              ter um personal são: correção em tempo real dos
+              movimentos, ajuda para não perder o intervalo entre
+              os exercícios, possibilidade de criar um treino
+              personalizado e intensidade extra durante o treino.
+              Algumas desvantagens de ter um personal são: menos
               flexibilidade de horário para treinar, dificuldade
               em encontrar um bom profissional com horário
               compatível e preço mais elevado.
@@ -1586,7 +1910,7 @@ export default function IndexUnauthTemplate() {
           </AccordionDetails>
         </Accordion>
         <Box sx={{ marginTop: '20px' }}>
-          <a href="https://pag.ae/7Y-U92iVs">
+          <a href="https://pag.ae/7ZaLofdCL">
             <Button
               data-aos="fade-right"
               data-aos-once="true"

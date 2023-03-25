@@ -17,7 +17,11 @@ export default function EmailField(props: {
   sx?: {};
 }) {
   return (
-    <Grid item xs={12}>
+    <Grid
+      item
+      xs={12}
+      sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+    >
       {/* email text field */}
       <TextField
         required

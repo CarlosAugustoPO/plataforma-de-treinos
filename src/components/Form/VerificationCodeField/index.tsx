@@ -18,7 +18,12 @@ export default function VerificationCodeField(props: {
   return (
     <>
       {/* email text field */}
-      <Grid item xs={12}>
+      <Grid
+        item
+        xs={12}
+        sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+      >
+        {' '}
         <TextField
           required
           fullWidth

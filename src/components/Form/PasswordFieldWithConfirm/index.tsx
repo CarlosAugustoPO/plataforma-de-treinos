@@ -48,7 +48,12 @@ export default function PassWordFieldWithConfirm(props: {
     setShowConfirmPassword(!showConfirmPassword);
   return (
     <>
-      <Grid item xs={12}>
+      <Grid
+        item
+        xs={12}
+        sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+      >
+        {' '}
         {/* email text field */}
         <TextField
           required
@@ -156,7 +161,12 @@ export default function PassWordFieldWithConfirm(props: {
           </Text>
         )}
       </Grid>
-      <Grid item xs={12}>
+      <Grid
+        item
+        xs={12}
+        sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+      >
+        {' '}
         {/* email text field */}
         <TextField
           required
@@ -268,7 +278,6 @@ export default function PassWordFieldWithConfirm(props: {
             A senha deve ter no máximo 15 caracteres
           </Text>
         )}
-
         {(props.passwordErrors === 'validate' ||
           props.confirmPasswordErrors === 'validate') && (
           <Text
