@@ -15,80 +15,78 @@ export default function VerificationCodeField(props: {
   >;
   lastFieldError: string;
 }) {
-  return (
-    <>
-      {/* email text field */}
-      <Grid
-        item
-        xs={12}
-        sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
-      >
-        {' '}
-        <TextField
-          required
-          fullWidth
-          id="verificationCode"
-          label="Código de verificação"
-          variant="standard"
-          error={
-            props.errors || props.lastFieldError ? true : false
-          }
-          onKeyDown={() => {
-            props.setLastFieldError('');
-          }}
-          onClick={() => {
-            props.setLastFieldError('');
-          }}
-          {...props.register('verificationCode', {
-            required: true,
-            pattern: /^[0-9]*$/gm,
-            minLength: 5,
-            maxLength: 5,
-          })}
-        />
-        {props.errors === 'required' && (
-          <Text
-            color="error"
-            fontSize="80%"
-            align="left"
-            variant="subtitle2"
-          >
-            O campo código de verificação é obrigatório
-          </Text>
-        )}
-        {props.errors === 'pattern' && (
-          <Text
-            color="error"
-            fontSize="80%"
-            align="left"
-            variant="subtitle2"
-          >
-            O código de verificação deve ter apenas números
-          </Text>
-        )}
-        {props.errors === 'minLength' && (
-          <Text
-            color="error"
-            fontSize="80%"
-            align="left"
-            variant="subtitle2"
-          >
-            Preencha o código de verificação com 5 dígitos
-            (apenas números)
-          </Text>
-        )}
-        {props.errors === 'maxLength' && (
-          <Text
-            color="error"
-            fontSize="80%"
-            align="left"
-            variant="subtitle2"
-          >
-            Preencha o código de verificação com 5 dígitos
-            (apenas números)
-          </Text>
-        )}
-      </Grid>
-    </>
-  );
+  return <>
+    {/* email text field */}
+    <Grid
+      item
+      xs={12}
+      sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+    >
+      {' '}
+      <TextField
+        required
+        fullWidth
+        id="verificationCode"
+        label="Código de verificação"
+        variant="standard"
+        error={
+          props.errors || props.lastFieldError ? true : false
+        }
+        onKeyDown={() => {
+          props.setLastFieldError('');
+        }}
+        onClick={() => {
+          props.setLastFieldError('');
+        }}
+        {...props.register('verificationCode', {
+          required: true,
+          pattern: /^[0-9]*$/gm,
+          minLength: 5,
+          maxLength: 5,
+        })}
+      />
+      {props.errors === 'required' && (
+        <Text
+          color="error"
+          fontSize="80%"
+          align="left"
+          variant="subtitle2"
+        >
+          O campo código de verificação é obrigatório
+        </Text>
+      )}
+      {props.errors === 'pattern' && (
+        <Text
+          color="error"
+          fontSize="80%"
+          align="left"
+          variant="subtitle2"
+        >
+          O código de verificação deve ter apenas números
+        </Text>
+      )}
+      {props.errors === 'minLength' && (
+        <Text
+          color="error"
+          fontSize="80%"
+          align="left"
+          variant="subtitle2"
+        >
+          Preencha o código de verificação com 5 dígitos
+          (apenas números)
+        </Text>
+      )}
+      {props.errors === 'maxLength' && (
+        <Text
+          color="error"
+          fontSize="80%"
+          align="left"
+          variant="subtitle2"
+        >
+          Preencha o código de verificação com 5 dígitos
+          (apenas números)
+        </Text>
+      )}
+    </Grid>
+  </>;
 }

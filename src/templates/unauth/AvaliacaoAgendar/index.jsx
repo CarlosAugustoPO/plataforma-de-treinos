@@ -28,7 +28,7 @@ import { useState } from 'react';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Title from 'src/components/Title/index';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import AngleDivisor from 'src/components/AngleDivisor/index';
 import Text from 'src/components/Text/index';
 import Aos from 'aos';

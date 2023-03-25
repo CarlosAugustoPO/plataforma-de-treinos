@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import { useRouter } from 'next/router';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';

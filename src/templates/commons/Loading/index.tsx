@@ -1,5 +1,5 @@
 import Caption from 'src/components/Caption/index';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import styles from './index.module.css';
 import { useTheme } from '@mui/material';
 import * as React from 'react';

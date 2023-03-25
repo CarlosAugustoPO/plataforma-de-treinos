@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import useSettings from 'src/lib/hooks/useSettings';
 
 export default function Logo(props: {
