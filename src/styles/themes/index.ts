@@ -75,6 +75,9 @@ const getDesignTokens = (mode: any) => ({
           backgroundModalBody: {
             main: colors.light.white,
           },
+          defaultText: {
+            main: colors.light.grayLighter,
+          },
           cookieConsentTitle: {
             main: colors.light.white,
           },
@@ -155,6 +158,28 @@ const getDesignTokens = (mode: any) => ({
                 '&$error': {
                   color: colors.light.red,
                 },
+              },
+            },
+          },
+          MuiPickersDay: {
+            styleOverrides: {
+              root: {
+                border: '1px solid',
+                color: colors.light.purple,
+                borderColor: colors.light.grayLighter,
+                fontWeight: 'bold',
+                '&.Mui-disabled': {
+                  border: 'none',
+                  fontWeight: 'normal',
+                },
+                '&.Mui-selected': {
+                  '&:hover, &:focus': {
+                    backgroundColor: colors.light.purple,
+                  },
+                },
+              },
+              today: {
+                backgroundColor: colors.light.grayLighter,
               },
             },
           },
@@ -269,6 +294,9 @@ const getDesignTokens = (mode: any) => ({
           backgroundModalBody: {
             main: colors.dark.blueMedium,
           },
+          defaultText: {
+            main: colors.dark.white,
+          },
           headerText: {
             main: colors.dark.white,
           },
@@ -327,6 +355,28 @@ const getDesignTokens = (mode: any) => ({
                 '&$error': {
                   color: colors.dark.red,
                 },
+              },
+            },
+          },
+          MuiPickersDay: {
+            styleOverrides: {
+              root: {
+                border: '1px solid',
+                color: colors.dark.purple,
+                borderColor: colors.dark.grayLighter,
+                fontWeight: 'bold',
+                '&.Mui-disabled': {
+                  border: 'none',
+                  fontWeight: 'normal',
+                },
+                '&.Mui-selected': {
+                  '&:hover, &:focus': {
+                    backgroundColor: colors.dark.purple,
+                  },
+                },
+              },
+              today: {
+                backgroundColor: colors.dark.grayLighter,
               },
             },
           },

@@ -1,4 +1,6 @@
 import Divider from '@mui/material/Divider';
+import { useRouter } from 'next/router';
+import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Form from 'src/components/Form/index';
 import TextButton from 'src/components/TextButton/index';
@@ -20,6 +22,7 @@ import { putAlert } from 'src/reducers/alert/index';
 export default function EntrarUnauthTemplate() {
   const dispatch = useAppDispatch();
   const [submitting, setSubmitting] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     return () => {
       setSubmitting(false); // This worked for me
@@ -157,20 +160,24 @@ export default function EntrarUnauthTemplate() {
                   marginBottom: '3%',
                 }}
               />
-              <TextButton
-                linkColor="pinkLinkInt"
-                cta="Não tem uma conta? Registre-se"
-                sx={{ fontSize: '90%' }}
-                href="/cadastrar"
-              />
+              <Button
+                variant="text"
+                color="bottonLink"
+                sx={{ fontSize: '70%' }}
+                onClick={() => router.push('/cadastrar')}
+              >
+                Não tem uma conta? Registre-se
+              </Button>
             </Grid>
-            <Grid item xs={12} mt={1}>
-              <TextButton
-                linkColor="pinkLinkInt"
-                cta="Esqueceu a conta?"
-                sx={{ fontSize: '90%' }}
-                href="/relembrar-email"
-              />
+            <Grid item xs={12}>
+              <Button
+                variant="text"
+                color="bottonLink"
+                sx={{ fontSize: '70%' }}
+                onClick={() => router.push('/relembrar-email')}
+              >
+                Esqueceu a conta?
+              </Button>{' '}
             </Grid>
           </Grid>
         </Form>

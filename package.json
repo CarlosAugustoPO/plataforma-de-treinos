@@ -30,6 +30,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.0",
+    "html-to-react": "latest",
     "moment": "^2.29.4",
     "next": "latest",
     "next-auth": "^4.2.1",

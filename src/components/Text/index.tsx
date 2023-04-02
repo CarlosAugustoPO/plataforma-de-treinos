@@ -10,7 +10,7 @@ type TypographyPropsPlusComponent = TypographyProps &
 
 export default function Text({
   variant = 'body1',
-  component = 'p',
+  component = 'div',
   color = 'text.primary',
   ...props
 }: TypographyPropsPlusComponent): JSX.Element {

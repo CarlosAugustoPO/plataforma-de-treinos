@@ -5,7 +5,6 @@ import LoadingTemplate from 'src/templates/commons/Loading';
 //Dynamic Pages templates
 import dynamic from 'next/dynamic';
 const IndexAuthTemplate = dynamic(
-  // () => import('src/templates/auth/TurmaFechada'),
   () => import('src/templates/unauth/PaginaDeVendas/'),
   // () => import('src/templates/auth/Painel/'),
   { loading: () => <LoadingTemplate /> },

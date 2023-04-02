@@ -1,0 +1,174 @@
+import { useRouter } from 'next/router';
+import PrintObject from 'src/components/PrintObject';
+import EmailRedirectButton from 'src/components/EmailRedirectButton';
+import { fetchGetJSON } from 'src/lib/utils/apiHelpers';
+import {
+  formatAmountForDisplay,
+  formatAmountFromStripe,
+} from 'src/lib/utils/stripeHelpers';
+import useSWR from 'swr';
+import React from 'react';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+
+const ResultPage = () => {
+  const router = useRouter();
+
+  const { data, error } = useSWR(
+    router.query.session_id
+      ? `/api/checkout_sessions/${router.query.session_id}`
+      : null,
+    fetchGetJSON,
+  );
+
+  if (!error && data?.payment_intent?.status !== 'succeeded') {
+    return <div>loading...</div>;
+  }
+
+  if (
+    error ||
+    data?.payment_intent?.status === 'requires_payment_method'
+  ) {
+    return (
+      <div className="page-container">
+        <h1>Pagamento Falhou</h1>
+        <p>O pagamento falhou. Por favor, tente novamente.</p>
+      </div>
+    );
+  }
+
+    let amountValue = formatAmountFromStripe(
+    data?.amount_subtotal,
+    'BRL',
+  );
+  amountValue = formatAmountForDisplay(amountValue, 'BRL')
+  let moneyPaid = formatAmountFromStripe(
+    data?.payment_intent?.amount_received,
+    'BRL',
+  );
+  moneyPaid = formatAmountForDisplay(moneyPaid, 'BRL');
+  const paymentMethod =
+    data.payment_intent?.payment_method_types[0];
+
+  //amount_received
+  //paid
+  //funding
+  //status
+
+  return (
+    <Grid container spacing={3} alignItems="flex-start">
+      <Grid item xs={12}>
+        <Typography variant="h4">Confirmado</Typography>
+        <Typography variant="body1">
+          Você agendou uma avaliação física com Carlos Augusto.
+        </Typography>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Typography variant="h6">
+          Detalhes do agendamento
+        </Typography>
+        <Divider />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Data: {data?.metadata.date ?? 'loading...'}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Horário: {data?.metadata.time ?? 'loading...'}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Local: {data?.metadata.location ?? 'loading...'}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Nome do cliente:{' '}
+              {data?.metadata.clientName ?? 'loading...'}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Email do cliente:{' '}
+              {data?.metadata.clientEmail ?? 'loading...'}
+            </Typography>
+          </Grid>
+          {data.metadata.plusInfo ? (
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                Informações Adicionais:{' '}
+                {data?.metadata.plusInfo ?? 'loading...'}
+              </Typography>
+            </Grid>
+          ) : (
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                Sem Informações Adicionais
+              </Typography>
+            </Grid>
+          )}
+          {data.metadata.accompanimentName ? (
+            <>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">
+                  Nome do acompanhante:{' '}
+                  {data?.metadata.accompanimentName ??
+                    'loading...'}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography variant="body1">
+                  Email do acompanhente:{' '}
+                  {data?.metadata.accompanimentEmail ??
+                    'loading...'}
+                </Typography>
+              </Grid>
+            </>
+          ) : (
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                Sem acompanhante
+              </Typography>
+            </Grid>
+          )}
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Typography variant="h6">Pagamento</Typography>
+        <Divider />
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Método de pagamento:{' '}
+              {paymentMethod ?? 'loading...'}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="body1">
+              Valor pago: R${amountValue ?? 'loading...'} R${moneyPaid ?? 'loading...'}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Typography variant="h6">Comprovante</Typography>
+        <Divider />
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography variant="body1">
+              Seu comprovante de agendamento foi enviado para o
+              seu e-mail.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
+export default ResultPage;

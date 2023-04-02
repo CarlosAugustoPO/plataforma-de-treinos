@@ -2,6 +2,7 @@ import Text from 'src/components/Text/index';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import type { Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, FocusEvent } from 'react';
 
 export default function FirstNameField(props: {
   errors: string;
@@ -20,6 +21,8 @@ export default function FirstNameField(props: {
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 }) {
   return (
     <Grid
@@ -46,8 +49,10 @@ export default function FirstNameField(props: {
         onClick={() => {
           props.setLastFieldError('');
         }}
+        onFocus={props.onFocus ?? undefined}
+        onChange={props.onChange ?? undefined}
         {...props.register(props.id ?? 'firstName', {
-          required: true,
+          required: props.required ?? true,
           minLength: 2,
           maxLength: 50,
           pattern: /^[^0-9]*$/gm,
@@ -70,8 +75,8 @@ export default function FirstNameField(props: {
           align="left"
           variant="subtitle2"
         >
-          Preencha seu {props.label?.toLowerCase()} com no mínimo
-          2 letras
+          Preencha o {props.label?.toLowerCase()} com no mínimo 2
+          letras
         </Text>
       )}
       {props.errors === 'maxLength' && (
@@ -81,7 +86,7 @@ export default function FirstNameField(props: {
           align="left"
           variant="subtitle2"
         >
-          Preencha seu {props.label?.toLowerCase()} com no máximo
+          Preencha o {props.label?.toLowerCase()} com no máximo
           50 letras
         </Text>
       )}
@@ -92,7 +97,7 @@ export default function FirstNameField(props: {
           align="left"
           variant="subtitle2"
         >
-          Preencha seu {props.label?.toLowerCase()} apenas com
+          Preencha o {props.label?.toLowerCase()} apenas com
           letras
         </Text>
       )}

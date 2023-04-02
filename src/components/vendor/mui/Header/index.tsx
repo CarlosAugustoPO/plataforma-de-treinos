@@ -1,4 +1,3 @@
-import sleep from 'src/lib/utils/sleep/index';
 import relogin from 'src/lib/fetchers/session/relogin/index';
 import updateLogonTokenFields from 'src/lib/fetchers/users/update/jwtKeyField/index';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -28,6 +27,7 @@ import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import { putAlert } from 'src/reducers/alert/index';
 import { useAppSelector } from 'src/lib/hooks/useRedux';
 import { selectVisit } from 'src/reducers/visit/index';
+import { selectBackButton } from 'src/reducers/backButton/index';
 import type VisitData from 'src/types/VisitData';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import { LOGIN_PAGE } from 'src/lib/utils/constants/index';
@@ -117,6 +117,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
     handleMenuClose();
   };
 
+  const backButtonUrl: any = useAppSelector(selectBackButton);
   const visit: VisitData = useAppSelector(selectVisit);
   const sairTodos = async () => {
     handleMobileMenuClose();
@@ -298,7 +299,9 @@ export default function PrimarySearchAppBar(): JSX.Element {
             <IconButton
               size="large"
               edge="start"
-              onClick={() => router.push('/')}
+              onClick={() =>
+                router.push(backButtonUrl.backButton)
+              }
               sx={{ ml: -2.2 }}
             >
               <Logo />

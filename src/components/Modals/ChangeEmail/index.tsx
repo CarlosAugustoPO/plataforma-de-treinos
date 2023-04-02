@@ -232,8 +232,8 @@ export default function ChangeEmailModal(props: {
             style={{ marginBottom: '5%' }}
           >
             <EmailFieldWithConfirm
-              fieldLabelEmail="E-mail corrigido"
-              fieldLabelEmailConfirm="Confirme o e-mail corrigido"
+              label1="E-mail corrigido"
+              label2="Confirme o e-mail corrigido"
               emailErrors={errors.email?.type}
               confirmEmailErrors={errors.confirmEmail?.type}
               getValues={getValues}

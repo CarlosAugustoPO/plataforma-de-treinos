@@ -60,3 +60,18 @@ model magic_links {
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
 }
+
+model af_availability {
+    id String @id @default(uuid())
+    day_of_week String
+    time_available String
+}
+
+model af_reservations {
+  id String @id @default(uuid())
+  reservation_date DateTime
+  reservation_time String
+  status String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

@@ -2,11 +2,13 @@ import MyHead from 'src/components/MyHead/index';
 import LoadingTemplate from 'src/templates/commons/Loading';
 import dynamic from 'next/dynamic';
 const PageAuthTemplate = dynamic(
-  () => import('src/templates/unauth/AvaliacaoFisicaLP/'),
+  () =>
+    import('src/templates/unauth/AvaliacaoAgendarResult/index.jsx'),
   { loading: () => <LoadingTemplate /> },
 );
 const PageUnauthTemplate = dynamic(
-  () => import('src/templates/unauth/AvaliacaoFisicaLP/'),
+  () =>
+    import('src/templates/unauth/AvaliacaoAgendarResult/index.jsx'),
   { loading: () => <LoadingTemplate /> },
 );
 //hooks

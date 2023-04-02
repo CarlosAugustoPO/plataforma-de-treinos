@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import FirstNameField from 'src/components/Form/FirstNameField';
+import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
+import EmailFieldWithConfirm from 'src/components/Form/EmailFieldWithConfirm';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
@@ -18,7 +20,7 @@ import { Modal } from '@mui/material';
 import dayjs from 'dayjs';
 import Recommendations from 'src/components/Recommendations';
 import PayInfo from 'src/components/PayInfo';
-import AccompanimentButton from 'src/components/AccompanimentButton';
+import AccompanimentButton from 'src/components/AccompanimentButton/index.tsx';
 import getStripe from 'src/lib/utils/getStripe/index.js';
 import { fetchPostJSON } from 'src/lib/utils/apiHelpers/index.js';
 import Caption from 'src/components/Caption/index';
@@ -28,7 +30,7 @@ import { useState } from 'react';
 import { Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Title from 'src/components/Title/index';
-import Image from "next/image";
+import Image from 'next/image';
 import AngleDivisor from 'src/components/AngleDivisor/index';
 import Text from 'src/components/Text/index';
 import Aos from 'aos';
@@ -37,50 +39,41 @@ import { useEffect } from 'react';
 //Hooks
 
 dayjs.locale('pt-br');
+
 const githubAvatarUrl =
   'https://avatars.githubusercontent.com/CarlosAugustoPO';
 const today = dayjs();
+
 const lastDayOfNextMonth = today
   .add(1, 'month') //número de meses disponíveis
   .startOf('month')
   .add(1, 'month')
   .subtract(1, 'day');
 
-const plus30days = dayjs().add(30, 'day').endOf('day');
+const plus30days = today.add(30, 'day').endOf('day');
+const plus3days = today.add(3, 'day').endOf('day');
+
+var updateLocale = require('dayjs/plugin/updateLocale');
+dayjs.extend(updateLocale);
+dayjs.updateLocale('pt-br', {
+  weekdaysMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+  weekStart: 0,
+});
 
 const availability = {
-  sunday: [
-    '07:00',
-    '08:00',
-    '09:00',
-    '10:00',
-    '11:00',
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-    '21:00',
-    '22:00',
-    '23:00',
-    '00:00',
-  ],
+  sunday: [],
   monday: ['10:00', '11:00', '12:00', '14:00', '15:00'],
   tuesday: ['11:00', '12:00', '13:00', '15:00', '16:00'],
   wednesday: ['12:00', '13:00', '14:00', '16:00', '17:00'],
   thursday: ['13:00', '14:00', '15:00', '17:00', '18:00'],
   friday: ['14:00', '15:00', '16:00', '18:00', '19:00'],
-  saturday: ['15:00', '16:00', '17:00', '19:00', '20:00'],
+  saturday: [],
 };
 
 const busySlots = {
   // yyyy-MM-dd
   '2023-03-04': ['15:00', '11:30'],
-  '2023-03-24': ['14:00', '18:00'],
+  '2023-04-10': ['10:00', '11:00', '12:00', '14:00', '15:00'],
 };
 
 const location =
@@ -105,6 +98,8 @@ export default function IndexUnauthTemplate() {
   const [showMore, setShowMore] = useState(false);
   const [scrollToButtonColumn, setScrollToButtonColumn] =
     useState(false);
+  const [scrollToFirstNameRef, setScrollToFirstNameRef] =
+    useState(false);
   const [selectedTime, setSelectedTime] = useState(null);
   const selectedDateCor = new Date(selectedDate);
 
@@ -112,17 +107,22 @@ export default function IndexUnauthTemplate() {
   const [datePickerDisabled, setDatePickerDisabled] =
     useState(false);
   const anchorRef = useRef(null);
+  const firstNameRef = useRef(null);
 
   const [emailExistsError, setEmailExistsError] =
     useState(undefined);
   const [lastFieldError, setLastFieldError] =
     useState(undefined);
 
+  const hasUnsavedChanges = true; // substitua por uma lógica para detectar as alterações não salvas
+  useLeavePageConfirmation(hasUnsavedChanges);
+
   const {
     register,
     clearErrors,
     handleSubmit,
     getValues,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -137,6 +137,13 @@ export default function IndexUnauthTemplate() {
     }
   }, [scrollToButtonColumn]);
 
+  useEffect(() => {
+    if (scrollToFirstNameRef && firstNameRef.current) {
+      firstNameRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [scrollToFirstNameRef]);
   const handleShowMore = () => {
     setShowMore(false); // altera o estado showMore para false
   };
@@ -150,25 +157,27 @@ export default function IndexUnauthTemplate() {
   };
   const handleSubmitToStripe = async (data) => {
     setLoading(true);
-    showSnackbarWithMessage(errors.clientName?.type);
     // Create a Checkout Session.
     const response = await fetchPostJSON(
       '/api/checkout_sessions',
       {
         amount: '8000',
         productName: 'Agendamento de Avaliação Física',
-        date: selectedDateCor?.toLocaleDateString('pt-BR'),
         time: `Das ${selectedTime} às ${finalTime}`,
-        clientEmail: email,
+        initalTime: selectedTime,
+        finalTime: finalTime,
+        date: selectedDateCor?.toLocaleDateString('pt-BR'),
+        weekDay: dayjs(selectedDateCor).format('dddd'),
+        clientEmail: data.clientEmail,
         clientName: data.clientName,
-        accompanimentEmail: accompanimentEmail,
-        accompanimentName: accompanimentName,
-        message: message,
+        accompanimentEmail: data.accompanimentEmail,
+        accompanimentName: data.accompanimentName,
+        plusInfo: data.plusInfo,
         location: location,
         description: `
-        Avaliação física na ${dayjs(selectedDateCor).format(
-          'dddd',
-        )},
+        Avaliação física, com o Avaliador Carlos Augusto, ${dayjs(
+          selectedDateCor,
+        ).format('dddd')},
         dia ${selectedDateCor?.toLocaleDateString('pt-BR')},
         das ${selectedTime} às ${finalTime},
         em ${location}`,
@@ -192,9 +201,6 @@ export default function IndexUnauthTemplate() {
   };
 
   const handleCancelModal = () => {
-    setSelectedButtonIndex(null);
-    setSelectedTime(null);
-    setSelectedDate(null);
     setOpen(false);
   };
 
@@ -206,6 +212,7 @@ export default function IndexUnauthTemplate() {
     setOpen(false);
     setDatePickerDisabled(true);
     handleShowMore();
+    setScrollToFirstNameRef(true);
   };
 
   const handleCancelDate = () => {
@@ -217,6 +224,7 @@ export default function IndexUnauthTemplate() {
     setSelectedTime(null);
     setSelectedDate(null);
     setFinalTime(null);
+    setScrollToFirstNameRef(false);
   };
   const showSnackbarWithMessage = (message) => {
     setSnackbarMessage(message);
@@ -224,6 +232,7 @@ export default function IndexUnauthTemplate() {
   };
 
   const handleCancelTime = () => {
+    setScrollToFirstNameRef(false);
     setName('');
     setEmail('');
     setMessage('');
@@ -253,7 +262,6 @@ export default function IndexUnauthTemplate() {
       //when cancel
       setSelectedButtonIndex(null);
       setSelectedTime(null);
-      setSelectedDate(null);
     } else {
       //when select
       setSelectedButtonIndex(index);
@@ -283,8 +291,27 @@ export default function IndexUnauthTemplate() {
     setScrollToButtonColumn(true);
   };
 
+  function isDayFullyBooked(date) {
+    const day = format(new Date(date), 'yyyy-MM-dd');
+    const availableSlots =
+      availability[format(new Date(date), 'EEEE').toLowerCase()];
+    const busySlotsOfDay = busySlots[day] || [];
+    const filteredSlots = availableSlots.filter(
+      (slot) => !busySlotsOfDay.includes(slot),
+    );
+    return filteredSlots.length === 0;
+  }
+
   function disabledDate(date) {
-    return date.isAfter(lastDayOfNextMonth);
+    const dayOfWeek = format(
+      new Date(date),
+      'EEEE',
+    ).toLowerCase();
+    return (
+      !availability[dayOfWeek]?.length ||
+      date.isAfter(lastDayOfNextMonth) ||
+      isDayFullyBooked(date)
+    );
   }
 
   // const router = useRouter();
@@ -322,9 +349,10 @@ export default function IndexUnauthTemplate() {
             width={400}
             height={400}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
         <div
           data-aos="fade-right"
@@ -373,6 +401,30 @@ export default function IndexUnauthTemplate() {
             Agende Agora sua Avaliação Física Presencial
           </Title>
           <Box sx={{ pl: 2 }}>
+            <div
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <PinDropIcon
+                color="error"
+                style={{ marginRight: '5px' }}
+              />
+              <Typography
+                variant="body2"
+                textAlign="left"
+                sx={{ fontWeight: 'bold' }}
+              >
+                Local:
+                <Box
+                  sx={{
+                    fontWeight: 'normal',
+                  }}
+                  component="span"
+                >
+                  {' '}
+                  {location ?? 'loading...'}
+                </Box>{' '}
+              </Typography>
+            </div>
             {selectedDate && (
               <div
                 style={{
@@ -381,14 +433,28 @@ export default function IndexUnauthTemplate() {
                 }}
               >
                 <EventIcon
-                  color="secondary"
+                  color="info"
                   style={{ marginRight: '5px' }}
                 />
-                <Typography variant="body2" textAlign="left">
-                  {selectedDateCor?.toLocaleDateString('pt-BR')}{' '}
-                  ({dayjs(selectedDateCor).format('dddd')})
+                <Typography
+                  variant="body2"
+                  textAlign="left"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  Data:
+                  <Box
+                    sx={{
+                      fontWeight: 'normal',
+                    }}
+                    component="span"
+                  >
+                    {' '}
+                    {selectedDateCor?.toLocaleDateString(
+                      'pt-BR',
+                    )}{' '}
+                    ({dayjs(selectedDateCor).format('dddd')})
+                  </Box>{' '}
                 </Typography>
-
                 <Tooltip
                   disableFocusListener
                   title="Trocar data"
@@ -420,13 +486,39 @@ export default function IndexUnauthTemplate() {
                 style={{ marginRight: '5px' }}
               />
               {!selectedTime ? (
-                <Typography variant="body2" textAlign="left">
-                  45 minutos
+                <Typography
+                  variant="body2"
+                  textAlign="left"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  Duração:
+                  <Box
+                    sx={{
+                      fontWeight: 'normal',
+                    }}
+                    component="span"
+                  >
+                    {' '}
+                    45 minutos
+                  </Box>{' '}
                 </Typography>
               ) : (
                 <>
-                  <Typography variant="body2" textAlign="left">
-                    Das {selectedTime} às {finalTime}
+                  <Typography
+                    variant="body2"
+                    textAlign="left"
+                    sx={{ fontWeight: 'bold' }}
+                  >
+                    Horário:
+                    <Box
+                      sx={{
+                        fontWeight: 'normal',
+                      }}
+                      component="span"
+                    >
+                      {' '}
+                      Das {selectedTime} às {finalTime}
+                    </Box>
                   </Typography>
                   <Tooltip
                     disableFocusListener
@@ -456,21 +548,25 @@ export default function IndexUnauthTemplate() {
                 color="success"
                 style={{ marginRight: '5px' }}
               />
-              <Typography variant="body2" textAlign="left">
-                R$ 80,00
+
+              <Typography
+                variant="body2"
+                textAlign="left"
+                sx={{ fontWeight: 'bold' }}
+              >
+                Preço:
+                <Box
+                  sx={{
+                    fontWeight: 'normal',
+                  }}
+                  component="span"
+                >
+                  {' '}
+                  R$ 80,00
+                </Box>{' '}
               </Typography>
             </div>
-            <div
-              style={{ display: 'flex', alignItems: 'center' }}
-            >
-              <PinDropIcon
-                color="error"
-                style={{ marginRight: '5px' }}
-              />
-              <Typography variant="body2" textAlign="left">
-                {location}
-              </Typography>
-            </div>
+
             <div
               style={{
                 display: 'flex',
@@ -487,7 +583,7 @@ export default function IndexUnauthTemplate() {
           </Box>
         </Box>
       </Box>
-
+      <div ref={firstNameRef}></div>
       <AngleDivisor
         color="background.default"
         data-aos="zoom-out-down"
@@ -516,9 +612,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -542,7 +639,7 @@ export default function IndexUnauthTemplate() {
               justifyContent: 'space-between',
               alignItems: 'flex-start',
               mb: 1,
-              '@media (max-width: 600px)': {
+              '@media (max-width: 740px)': {
                 flexDirection: 'column',
                 alignItems: 'center',
               },
@@ -554,38 +651,64 @@ export default function IndexUnauthTemplate() {
                 flexDirection: 'column',
                 flexGrow: 1,
                 alignItems: 'center',
+                p: 1,
               }}
             >
-              <Typography
+              <Title
                 variant="body1"
                 sx={{
                   fontWeight: 'bold',
                   mt: 1,
                   mb: 0,
-                  '@media (max-width: 600px)': {
+                  '@media (max-width: 740px)': {
                     mt: 2,
                     mb: 0,
                   },
                 }}
               >
                 Escolha abaixo uma data disponível
-              </Typography>
-              <div ref={anchorRef}></div>
+              </Title>
               <StaticDatePicker
                 sx={{ maxWidth: '300px' }}
                 value={selectedDate}
-                minDate={today}
+                minDate={plus3days}
                 maxDate={plus30days} //or lastDayOfNextMonth
                 shouldDisableDate={disabledDate}
                 displayStaticWrapperAs="desktop"
                 disabled={datePickerDisabled}
+                dayOfWeekFormatter={(day) => day.substr(0, 3)}
                 views={['day']}
+                slotProps={{
+                  day: {
+                    disableHighlightToday: false,
+                    disableMargin: false,
+                    today: true,
+                  },
+                }}
                 format="DD/MM/YYYY"
                 onChange={(newValue) => {
                   handleDateChange(newValue);
                 }}
               />
             </Box>
+
+            {selectedDate && (
+              <Box
+                sx={{
+                  height: '100%',
+                  width: '1px',
+                  backgroundColor: 'divider',
+                  marginRight: '10px',
+                  '@media (max-width: 740px)': {
+                    height: '1px',
+                    width: '100%',
+                    backgroundColor: 'divider',
+                    marginBottom: '30px',
+                    marginTop: '-10px',
+                  },
+                }}
+              ></Box>
+            )}
             {selectedDate && (
               <Box
                 sx={{
@@ -593,22 +716,42 @@ export default function IndexUnauthTemplate() {
                   flexDirection: 'column',
                   flexGrow: 0,
                   alignItems: 'center',
+                  p: 1,
                 }}
               >
-                <Typography
+                <div ref={anchorRef}></div>
+                <Title
                   variant="body1"
                   sx={{
-                    mt: 1,
-                    mb: 1.75,
                     fontWeight: 'bold',
-                    '@media (max-width: 600px)': {
-                      mt: -2,
-                      mb: 2,
+                    mt: 1,
+                    mb: 0,
+                    '@media (max-width: 740px)': {
+                      mt: 0,
+                      mb: 0,
                     },
                   }}
                 >
                   Escolha abaixo um horário disponível
-                </Typography>
+                </Title>
+                <Title
+                  variant="body1"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  para o dia{' '}
+                  <Box component="span" color="success.main">
+                    {selectedDateCor?.toLocaleDateString(
+                      'pt-BR',
+                    )}
+                  </Box>
+                </Title>
+                <Text
+                  variant="body1"
+                  sx={{ mb: 2, fontWeight: 500 }}
+                  color="defaultText"
+                >
+                  {dayjs(selectedDateCor).format('dddd')}
+                </Text>
                 {buttonList.map((button, index) => (
                   <Box
                     key={button}
@@ -663,6 +806,7 @@ export default function IndexUnauthTemplate() {
             )}
           </Box>
         )}
+
         {dateChoiseInvisible && (
           <Box
             sx={{
@@ -688,7 +832,7 @@ export default function IndexUnauthTemplate() {
                 alignItems: 'center',
               }}
             >
-              <Typography
+              <Title
                 variant="body1"
                 align="center"
                 alignSelf="center"
@@ -698,20 +842,20 @@ export default function IndexUnauthTemplate() {
                   fontWeight: 'bold',
                   mt: 1,
                   mb: 0,
-                  '@media (max-width: 600px)': {
+                  '@media (max-width: 740px)': {
                     mt: 2,
                     mb: 0,
                   },
                 }}
               >
                 Informe os dados do cliente que será avaliado
-              </Typography>
+              </Title>
               <FirstNameField
+                id="clientName"
                 mt="2.5%"
                 mb="0%"
                 width="95%"
                 label="Nome"
-                id="clientName"
                 autoFocus={true}
                 required={true}
                 variant="outlined"
@@ -721,35 +865,49 @@ export default function IndexUnauthTemplate() {
                 lastFieldError={lastFieldError}
                 register={register}
                 placeholder="Por favor, insira seu nome"
+                onFocus={() => setScrollToFirstNameRef(true)}
               />
-              <TextField
-                sx={{ width: '95%', m: '3% 2.5% 0 2.5%' }}
-                label="E-mail"
-                placeholder="Por favor, insira seu e-mail"
+              <EmailFieldWithConfirm
+                id1="clientEmail"
+                id2="confirmEmail"
+                label1="E-mail"
+                label2="Confirme seu e-mail"
+                placeholder1="Por favor, insira seu e-mail"
+                placeholder2="Por favor, confirme seu e-mail"
+                emailErrors={errors.clientEmail?.type}
+                confirmEmailErrors={errors.confirmEmail?.type}
+                getValues={getValues}
+                clearErrors={clearErrors}
+                setLastFieldError={setLastFieldError}
+                lastFieldError={lastFieldError}
+                emailExistsError={emailExistsError}
+                setEmailExistsError={setEmailExistsError}
+                register={register}
+                mt="2.5%"
+                mb="0%"
+                width="95%"
+                autoFocus={false}
+                required={true}
                 variant="outlined"
-                required
-                value={email}
-                onChange={(event) =>
-                  setEmail(event.target.value)
-                }
               />
+
               <TextField
+                id="plusInfo"
                 sx={{ width: '95%', m: '3% 2.5% 0 2.5%' }}
                 placeholder="Por favor, compartilhe algo que irá ajudar-me no preparo para nosso encontro"
                 label="Informações Adicionais"
                 variant="outlined"
                 multiline
                 rows={4}
-                value={message}
-                onChange={(event) =>
-                  setMessage(event.target.value)
-                }
+                {...register('plusInfo')}
               />
               <AccompanimentButton
-                accompanimentName={accompanimentName}
-                accompanimentEmail={accompanimentEmail}
-                setAccompanimentEmail={setAccompanimentEmail}
-                setAccompanimentName={setAccompanimentName}
+                errors={errors}
+                clearErrors={clearErrors}
+                setLastFieldError={setLastFieldError}
+                lastFieldError={lastFieldError}
+                register={register}
+                reset={reset}
               />
               <PayInfo />
               <Box
@@ -835,23 +993,20 @@ export default function IndexUnauthTemplate() {
       <Box
         className="footer"
         sx={{ padding: '0 5%', mb: 4, mt: 4 }}
-        data-aos="fade-up"
-        data-aos-once="true"
       >
         <Box mt="10px">
           <Text
             fontSize="70%"
             sx={{ color: 'clearComment.main' }}
           >
-            Assim como qualquer exercício físico, ao praticar os
-            treinos propostos pela nossa plataforma de treinos,
-            você assume alguns riscos para sua saúde e segurança.
-            Isso é especialmente verdadeiro se você não seguir
-            todas as recomendações. Por isso, antes de começar,
-            leia todo o material fornecido e consulte o seu
-            médico para verificar se está apto para a prática de
-            atividade física e qual nível de intensidade é
-            adequado para você{' '}
+            Importante: A prática de atividade física envolve
+            riscos para a saúde e segurança. Certifique-se de ler
+            todas as orientações fornecidas e consultar seu
+            médico antes de começar qualquer programa de
+            avaliação física ou exercício físico. Siga as
+            recomendações do seu avaliador físico e informe-o
+            imediatamente se sentir algum desconforto ou dor
+            durante a avaliação.
           </Text>
         </Box>
         <Box mt="10px">
@@ -876,7 +1031,7 @@ export default function IndexUnauthTemplate() {
                 color: 'clearComment.main',
               }}
             >
-              Prof. Carlos Augusto
+              Carlos Augusto
             </Caption>
           </Text>
         </Box>

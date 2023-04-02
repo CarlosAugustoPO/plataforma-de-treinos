@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import StarIcon from '@mui/icons-material/Star';
 import UpdateIcon from '@mui/icons-material/Update';
@@ -183,9 +183,10 @@ export default function IndexUnauthTemplate() {
             width={400}
             height={400}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </Box>
 
@@ -217,9 +218,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -359,9 +361,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -595,9 +598,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -628,9 +632,10 @@ export default function IndexUnauthTemplate() {
               width={400}
               height={400}
               style={{
-                maxWidth: "100%",
-                height: "auto"
-              }} />
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
           </Box>
         </Box>{' '}
         <SellerBanner />
@@ -664,9 +669,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -687,9 +693,10 @@ export default function IndexUnauthTemplate() {
             width={175}
             height={150}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
           <Text
             align="left"
             paragraph
@@ -735,9 +742,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -959,9 +967,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -1043,9 +1052,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -1301,9 +1311,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -1404,9 +1415,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -1437,9 +1449,10 @@ export default function IndexUnauthTemplate() {
               width={400}
               height={400}
               style={{
-                maxWidth: "100%",
-                height: "auto"
-              }} />
+                maxWidth: '100%',
+                height: 'auto',
+              }}
+            />
           </Box>
         </Box>{' '}
         <SellerBanner />
@@ -1473,9 +1486,10 @@ export default function IndexUnauthTemplate() {
             width={60}
             height={60}
             style={{
-              maxWidth: "100%",
-              height: "auto"
-            }} />
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
         </Box>
       </AngleDivisor>
 
@@ -1989,15 +2003,14 @@ export default function IndexUnauthTemplate() {
             fontSize="70%"
             sx={{ color: 'clearComment.main' }}
           >
-            Assim como qualquer exercício físico, ao praticar os
-            treinos propostos pela nossa plataforma de treinos,
-            você assume alguns riscos para sua saúde e segurança.
-            Isso é especialmente verdadeiro se você não seguir
-            todas as recomendações. Por isso, antes de começar,
-            leia todo o material fornecido e consulte o seu
-            médico para verificar se está apto para a prática de
-            atividade física e qual nível de intensidade é
-            adequado para você{' '}
+            Importante: A prática de atividade física envolve
+            riscos para a saúde e segurança. Certifique-se de ler
+            todas as orientações fornecidas e consultar seu
+            médico antes de começar qualquer programa de
+            avaliação física ou exercício físico. Siga as
+            recomendações do seu avaliador físico e informe-o
+            imediatamente se sentir algum desconforto ou dor
+            durante a avaliação.
           </Text>
         </Box>
         <Box mt="10px">
@@ -2022,7 +2035,7 @@ export default function IndexUnauthTemplate() {
                 color: 'clearComment.main',
               }}
             >
-              Prof. Carlos Augusto
+              Carlos Augusto
             </Caption>
           </Text>
         </Box>

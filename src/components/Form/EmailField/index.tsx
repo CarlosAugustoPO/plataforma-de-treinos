@@ -6,11 +6,21 @@ import preventWhiteSpace from 'src/lib/utils/preventWhiteSpace';
 import type { Dispatch, SetStateAction } from 'react';
 
 export default function EmailField(props: {
+  variant?: any;
+  label?: string;
+  placeholder?: string;
+  id?: string;
+  mt?: string;
+  mb?: string;
+  width?: string;
+  required?: boolean;
+  autoFocus?: boolean;
+  onChange?: boolean;
   errors: string;
   lastFieldError: string;
   fieldLabel?: string;
-  clearErrors: (email: 'email') => void;
-  register: (email: 'email', validation: {}) => void;
+  clearErrors: (registerEmail: string) => void;
+  register: (registerEmail: string, validation: {}) => void;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;
@@ -20,18 +30,22 @@ export default function EmailField(props: {
     <Grid
       item
       xs={12}
-      sx={{ width: '95%', m: '0% 2.5% 0% 2.5%' }}
+      sx={{
+        width: `${props.width ?? '95%'}`,
+        m: `${props.mt ?? '0%'} 2.5% ${props.mb ?? '0%'} 2.5%`,
+      }}
     >
       {/* email text field */}
       <TextField
-        required
         fullWidth
-        id="email"
+        required={props.required ?? true}
+        id={props.id ?? 'email'}
+        placeholder={props.placeholder ?? 'Insira seu e-mail'}
         error={
           props.errors || props.lastFieldError ? true : false
         }
-        label={props.fieldLabel || 'E-mail'}
-        variant="standard"
+        label={props.fieldLabel || props.label || 'E-mail'}
+        variant={props.variant ?? 'standard'}
         autoComplete="email"
         onKeyUp={(e) => changeWhiteSpace(e)}
         onKeyDown={(e) => {
@@ -41,14 +55,14 @@ export default function EmailField(props: {
         onClick={() => {
           props.setLastFieldError('');
         }}
-        autoFocus={false}
+        autoFocus={props.autoFocus ?? false}
         sx={{ ...props.sx }}
         inputProps={{
           style: {
             textTransform: 'lowercase',
           },
         }}
-        {...props.register('email', {
+        {...props.register(props.id ?? 'email', {
           required: true,
           pattern:
             /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi,
@@ -61,7 +75,7 @@ export default function EmailField(props: {
           align="left"
           fontSize="80%"
         >
-          O campo e-mail é obrigatório
+          O campo {props.label?.toLowerCase()} é obrigatório
         </Text>
       )}
       {props.errors === 'pattern' && (
@@ -71,7 +85,7 @@ export default function EmailField(props: {
           variant="subtitle2"
           fontSize="80%"
         >
-          Preencha com um e-mail válido
+          Preencha com um {props.label?.toLowerCase()} válido
         </Text>
       )}
     </Grid>

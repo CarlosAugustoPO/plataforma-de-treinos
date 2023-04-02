@@ -20,6 +20,7 @@ import { useAppDispatch } from 'src/lib/hooks/useRedux';
 import createVisit from 'src/lib/fetchers/visits/create/index';
 //reducers
 import { add } from 'src/reducers/visit/index';
+import { setBackButton } from 'src/reducers/backButton/index';
 //types
 import type VisitData from 'src/types/VisitData';
 
@@ -37,6 +38,14 @@ export default function Page() {
       }
     });
   }, [dispatch, visitedPagePath]);
+
+  useEffect(() => {
+    dispatch(
+      setBackButton(
+        '/avaliacao-fisica/presencial/treinador-carlos-augusto',
+      ),
+    );
+  }, [dispatch]);
 
   return (
     <MyHead>

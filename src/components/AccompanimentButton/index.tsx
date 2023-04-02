@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import {
-  Typography,
-  Button,
-  TextField,
-  Box,
-} from '@mui/material';
+import Title from 'src/components/Title';
+import type { Dispatch, SetStateAction } from 'react';
+import FirstNameField from 'src/components/Form/FirstNameField';
+import EmailField from 'src/components/Form/EmailField';
+import { Button, Box } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
-export default function AccompanimentButton({
-  accompanimentName,
-  setAccompanimentName,
-  accompanimentEmail,
-  setAccompanimentEmail,
+export default function AccompanimentButton(props: {
+  lastFieldError: string;
+  errors: any;
+  reset: (registerNames: {}, options: {}) => void;
+  clearErrors: (registerName: string) => void;
+  register: (registerName: string, validation: {}) => void;
+  setLastFieldError: Dispatch<
+    SetStateAction<string | undefined>
+  >;
 }) {
   const [showForm, setShowForm] = useState(false);
 
@@ -21,15 +24,17 @@ export default function AccompanimentButton({
 
   const handleCancel = () => {
     setShowForm(false);
-    setAccompanimentName('');
-    setAccompanimentEmail('');
+    props.reset(
+      { accompanimentName: '' },
+      { keepErrors: false, keepDirty: false },
+    );
   };
 
   return (
     <>
       {showForm ? (
         <>
-          <Typography
+          <Title
             variant="body1"
             align="center"
             alignSelf="center"
@@ -46,32 +51,38 @@ export default function AccompanimentButton({
             }}
           >
             Informe os dados do seu acompanhante
-          </Typography>
+          </Title>
 
-          <TextField
-            sx={{ width: '95%', m: '3% 2.5% 0 2.5%' }}
+          <FirstNameField
+            id="accompanimentName"
             label="Nome do acompanhante"
+            mt="2.5%"
+            mb="0%"
+            width="95%"
             autoFocus={true}
             required={showForm}
             variant="outlined"
-            fullWidth
-            value={accompanimentName}
+            errors={props.errors.accompanimentName?.type}
+            clearErrors={props.clearErrors}
+            setLastFieldError={props.setLastFieldError}
+            lastFieldError={props.lastFieldError}
+            register={props.register}
             placeholder="Por favor, informe o nome de seu acompanhante"
-            onChange={(e) =>
-              setAccompanimentName(e.target.value)
-            }
           />
-          <TextField
-            sx={{ width: '95%', m: '3% 2.5% 0 2.5%' }}
-            label="Email do acompanhante"
-            fullWidth
+          <EmailField
+            id="accompanimentEmail"
+            label="E-mail do acompanhante"
+            mt="2.5%"
+            mb="0%"
+            width="95%"
             required={showForm}
             variant="outlined"
-            value={accompanimentEmail}
+            errors={props.errors.accompanimentName?.type}
+            clearErrors={props.clearErrors}
+            setLastFieldError={props.setLastFieldError}
+            lastFieldError={props.lastFieldError}
+            register={props.register}
             placeholder="Por favor, informe o e-mail de seu acompanhante"
-            onChange={(e) =>
-              setAccompanimentEmail(e.target.value)
-            }
           />
           <Box
             mt={2}

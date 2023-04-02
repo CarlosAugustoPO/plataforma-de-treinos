@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import { useRouter } from 'next/router';
 import Text from 'src/components/Text/index';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -252,6 +253,7 @@ export default function AFSellerBanner() {
       >
         Marcar uma data
       </Button>
+
       <Box data-aos="fade-right" data-aos-once="true">
         {' '}
         <Text
@@ -266,10 +268,10 @@ export default function AFSellerBanner() {
         >
           <HttpsIcon
             sx={{
-              transform: 'scale(0.6)',
+              transform: 'scale(0.7)',
               position: 'relative',
-              top: '6px',
-              left: '3px',
+              top: '7px',
+              right: '-3px',
             }}
           />
           Compra segura. Veja nossos termos
@@ -284,16 +286,16 @@ export default function AFSellerBanner() {
           mb={5}
           sx={{ opacity: '0.6' }}
         >
-          Pagamento processado pelo{' '}
+          Pagamento processado através do{' '}
           <Box
             component="span"
             sx={{
               position: 'relative',
-              left: '-5px',
-              top: '11.5px',
+              top: '8px',
+              left: '2px',
             }}
           >
-            <LogoStripe />
+            <LogoStripe width={60} />
           </Box>
         </Text>
         <Box
@@ -333,8 +335,7 @@ export default function AFSellerBanner() {
                 opacity: '0.60',
               }}
             >
-              Crédito <br />
-              (até 12x)
+              Crédito
             </Text>
           </Box>
           <Box component="span" sx={{ opacity: '0.6' }}>
@@ -344,8 +345,7 @@ export default function AFSellerBanner() {
               fontSize="60%"
               sx={{ position: 'relative', top: '-7px' }}
             >
-              Cartão de
-              <br /> Débito
+              Débito
             </Text>
           </Box>
           <Box component="span" sx={{ opacity: '0.6' }}>
@@ -355,7 +355,7 @@ export default function AFSellerBanner() {
               fontSize="60%"
               sx={{ position: 'relative', top: '-7px' }}
             >
-              Boleto <br /> Bancario
+              Boleto
             </Text>
           </Box>
           {/* <Box component="span" sx={{ opacity: '0.6' }}>

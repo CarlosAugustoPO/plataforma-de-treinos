@@ -6,10 +6,15 @@ import {
 
 import visitReducer from 'src/reducers/visit/index';
 import alertReducer from 'src/reducers/alert/index';
+import backButtonReducer from 'src/reducers/backButton/index';
 
 export function makeStore() {
   return configureStore({
-    reducer: { visit: visitReducer, alert: alertReducer },
+    reducer: {
+      visit: visitReducer,
+      alert: alertReducer,
+      backButton: backButtonReducer,
+    },
   });
 }
 
