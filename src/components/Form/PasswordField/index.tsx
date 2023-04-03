@@ -10,7 +10,7 @@ import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
 export default function PasswordField(props: {
-  errors: string;
+  errors: any;
   lastFieldError: string;
   wrongPasswordError?: string;
   clearErrors: (password: 'password') => void;

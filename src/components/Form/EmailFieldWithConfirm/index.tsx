@@ -8,8 +8,8 @@ import { useState } from 'react';
 import useDebounce from 'src/lib/utils/debounce/index';
 
 export default function EmailFieldWithConfirm(props: {
-  emailErrors: string;
-  confirmEmailErrors: string;
+  emailErrors: any;
+  confirmEmailErrors: any;
   emailExistsError: undefined | string;
   clearErrors: (registerName: string) => void;
   register: (registerName: string, validation: {}) => void;
