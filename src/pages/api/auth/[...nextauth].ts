@@ -66,7 +66,7 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_SECRET,
   },
   callbacks: {
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user, account, profile }: any) {
       if (user) {
         token.id = user.id;
         token.fname = user.fname;
