@@ -1233,8 +1233,6 @@ export default function IndexUnauthTemplate() {
         </Box>
       </Box>
       <Divider
-        data-aos="fade-up"
-        data-aos-once="true"
         sx={{
           bgcolor: 'clearLine.main',
         }}
@@ -1242,8 +1240,6 @@ export default function IndexUnauthTemplate() {
       <Box
         className="footer"
         sx={{ padding: '0 5%', mb: 4, mt: 4 }}
-        data-aos="fade-up"
-        data-aos-once="true"
       >
         <Box mt="10px">
           <Text

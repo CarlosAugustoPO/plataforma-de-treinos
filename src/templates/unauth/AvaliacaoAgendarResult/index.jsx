@@ -98,17 +98,17 @@ function formatDate(dateString) {
     Nov: '11',
     Dec: '12',
     'jan.': '1',
-    'feb.': '2',
+    'fev.': '2',
     'mar.': '3',
-    'apr.': '4',
-    'may.': '5',
+    'abr.': '4',
+    'mai.': '5',
     'jun.': '6',
     'jul.': '7',
-    'aug.': '8',
-    'sep.': '9',
-    'oct.': '10',
+    'ago.': '8',
+    'set.': '9',
+    'out.': '10',
     'nov.': '11',
-    'dec.': '12',
+    'dez.': '12',
   };
 
   // Check for second format of date
@@ -159,7 +159,7 @@ export default function IndexUnauthTemplate() {
   const [showMore, setShowMore] = useState(false);
 
   const handleOpen = async (url) => {
-    fetch(`/api/teste/${encodeURIComponent(url)}`)
+    fetch(`/api/receipt/${encodeURIComponent(url)}`)
       .then((response) => response.json())
       .then((data) => setContent(data.content))
       .catch((error) => console.error(error))
