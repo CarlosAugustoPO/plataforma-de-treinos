@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import FirstNameField from 'src/components/Form/FirstNameField';
-import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
+// import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
 import EmailFieldWithConfirm from 'src/components/Form/EmailFieldWithConfirm';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import Tooltip from '@mui/material/Tooltip';
@@ -114,8 +114,8 @@ export default function IndexUnauthTemplate() {
   const [lastFieldError, setLastFieldError] =
     useState(undefined);
 
-  const hasUnsavedChanges = true; // substitua por uma lógica para detectar as alterações não salvas
-  useLeavePageConfirmation(hasUnsavedChanges);
+  // const hasUnsavedChanges = true; // substitua por uma lógica para detectar as alterações não salvas
+  // useLeavePageConfirmation(hasUnsavedChanges);
 
   const {
     register,
