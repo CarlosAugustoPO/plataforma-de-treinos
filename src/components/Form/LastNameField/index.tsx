@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import type { Dispatch, SetStateAction } from 'react';
 
 export default function LastNameField(props: {
-  errors: string;
+  errors: any;
   clearErrors: (lastName: 'lastName') => void;
   register: (lastName: 'lastName', validation: {}) => void;
   setLastFieldError: Dispatch<

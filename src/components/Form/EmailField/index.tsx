@@ -16,7 +16,7 @@ export default function EmailField(props: {
   required?: boolean;
   autoFocus?: boolean;
   onChange?: boolean;
-  errors: string;
+  errors: any;
   lastFieldError: string;
   fieldLabel?: string;
   clearErrors: (registerEmail: string) => void;

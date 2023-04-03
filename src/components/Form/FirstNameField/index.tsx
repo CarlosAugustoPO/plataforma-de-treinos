@@ -5,7 +5,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { ChangeEvent, FocusEvent } from 'react';
 
 export default function FirstNameField(props: {
-  errors: string;
+  errors: any;
   lastFieldError: string;
   variant?: any;
   label?: string;

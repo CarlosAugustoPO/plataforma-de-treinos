@@ -11,8 +11,8 @@ import { useState } from 'react';
 import useDebounce from 'src/lib/utils/debounce/index';
 
 export default function PassWordFieldWithConfirm(props: {
-  passwordErrors: string;
-  confirmPasswordErrors: string;
+  passwordErrors: any;
+  confirmPasswordErrors: any;
   clearErrors: (id: string) => void;
   register: (id: string, validation: {}) => void;
   setLastFieldError: Dispatch<
