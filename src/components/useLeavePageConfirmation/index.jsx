@@ -2,7 +2,7 @@ import SingletonRouter, { Router } from 'next/router';
 import { useEffect } from 'react';
 
 const defaultConfirmationDialog = async (msg) =>
-  window.confirm(msg);
+  window.confirm(`Sair da página?\n\n${msg}`);
 
 export const useLeavePageConfirmation = (
   shouldPreventLeaving,
@@ -18,7 +18,9 @@ export const useLeavePageConfirmation = (
     const originalOnBeforeUnloadFunction = window.onbeforeunload;
 
     if (shouldPreventLeaving) {
-      window.onbeforeunload = () => '';
+      window.onbeforeunload = shouldPreventLeaving
+        ? () => message
+        : null;
     } else {
       window.onbeforeunload = originalOnBeforeUnloadFunction;
     }
