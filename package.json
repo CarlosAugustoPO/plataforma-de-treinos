@@ -43,6 +43,7 @@
     "react-redux": "latest",
     "serverless-mysql": "^1.5.4",
     "stripe": "^11.16.0",
+    "sweetalert2": "^11.4.8",
     "swr": "^1.2.2",
     "uuid": "^8.3.2"
   },

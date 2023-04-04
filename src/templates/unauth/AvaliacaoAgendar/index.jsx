@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import FirstNameField from 'src/components/Form/FirstNameField';
-// import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
+import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
 import EmailFieldWithConfirm from 'src/components/Form/EmailFieldWithConfirm';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import Tooltip from '@mui/material/Tooltip';
@@ -80,6 +80,7 @@ const location =
   'Av. Alm. Cochrane, 187 - Embaré, Santos - SP, 11040-001';
 export default function IndexUnauthTemplate() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [formIsDirty, setFormIsDirty] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -114,8 +115,7 @@ export default function IndexUnauthTemplate() {
   const [lastFieldError, setLastFieldError] =
     useState(undefined);
 
-  // const hasUnsavedChanges = true; // substitua por uma lógica para detectar as alterações não salvas
-  // useLeavePageConfirmation(hasUnsavedChanges);
+  useLeavePageConfirmation(formIsDirty);
 
   const {
     register,
@@ -157,6 +157,7 @@ export default function IndexUnauthTemplate() {
   };
   const handleSubmitToStripe = async (data) => {
     setLoading(true);
+    setFormIsDirty(false);
     // Create a Checkout Session.
     const response = await fetchPostJSON(
       '/api/checkout_sessions',
@@ -216,6 +217,7 @@ export default function IndexUnauthTemplate() {
   };
 
   const handleCancelDate = () => {
+    setFormIsDirty(false);
     setName('');
     setEmail('');
     setMessage('');
@@ -275,6 +277,7 @@ export default function IndexUnauthTemplate() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    setFormIsDirty(true);
     const dayOfWeek = format(
       new Date(date),
       'EEEE',
