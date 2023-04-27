@@ -560,9 +560,9 @@ export default function IndexUnauthTemplate() {
             }}
           >
             Agende sua avaliação física agora e ganhe um bônus
-            exclusivo: uma precrição de treinamento
-            individualizado, com duração de 4 semanas, que se
-            adapte às suas necessidades específicas.{' '}
+            exclusivo: uma prescrição de treinamento
+            individualizado, com duração de 4 semanas, totalmente
+            adequado às suas necessidades específicas.{' '}
           </Text>
           <Text
             align="left"
