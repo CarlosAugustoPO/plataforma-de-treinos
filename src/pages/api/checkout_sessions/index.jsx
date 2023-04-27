@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const date = req.body.date;
     const time = req.body.time;
     const weekDay = req.body.weekDay;
-    const initalTime = req.body.initalTime;
+    const initialTime = req.body.initialTime;
     const finalTime = req.body.finalTime;
     const location = req.body.location;
     const plusInfo = req.body.plusInfo;
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         metadata: {
           date: date,
           time: time,
-          initialTime: initalTime,
+          initialTime: initialTime,
           finalTime: finalTime,
           weekDay: weekDay,
           location: location,

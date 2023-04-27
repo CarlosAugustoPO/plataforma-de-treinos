@@ -42,6 +42,7 @@ import Text from 'src/components/Text/index';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import postAfReservation from 'src/lib/fetchers/af-reservations/create';
 //Hooks
 
 const githubAvatarUrl =
@@ -204,6 +205,18 @@ export default function IndexUnauthTemplate() {
       </div>
     );
   }
+
+  const dateString = data?.metadata.date;
+  const [day, month, year] = dateString.split('/');
+  const formattedDate = `${year}/${month}/${day}`;
+
+  postAfReservation({
+    reservation_date: new Date(formattedDate),
+    reservation_time: data?.metadata.initialTime,
+    user_name: data?.metadata.clientName,
+    user_email: data?.metadata.clientEmail,
+    status: 'confirmed',
+  });
 
   const getCode = async () => {
     if (

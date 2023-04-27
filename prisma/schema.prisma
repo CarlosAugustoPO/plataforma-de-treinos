@@ -72,6 +72,10 @@ model af_reservations {
   reservation_date DateTime
   reservation_time String
   status String
+  user_name String
+  user_email String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@unique([reservation_date, reservation_time], name: "reservation_unique_constraint")
 }

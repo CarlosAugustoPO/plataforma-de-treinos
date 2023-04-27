@@ -36,6 +36,9 @@ import Text from 'src/components/Text/index';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import readAfAvailability from 'src/lib/fetchers/af-availability/read/';
+import readAfReservations from 'src/lib/fetchers/af-reservations/read/';
+
 //Hooks
 
 dayjs.locale('pt-br');
@@ -60,26 +63,28 @@ dayjs.updateLocale('pt-br', {
   weekStart: 0,
 });
 
-const availability = {
-  sunday: [],
-  monday: ['10:00', '11:00', '12:00', '14:00', '15:00'],
-  tuesday: ['11:00', '12:00', '13:00', '15:00', '16:00'],
-  wednesday: ['12:00', '13:00', '14:00', '16:00', '17:00'],
-  thursday: ['13:00', '14:00', '15:00', '17:00', '18:00'],
-  friday: ['14:00', '15:00', '16:00', '18:00', '19:00'],
-  saturday: [],
-};
+// const availability = {
+//   sunday: [],
+//   monday: ['10:00', '11:00', '12:00', '14:00', '15:00'],
+//   tuesday: ['11:00', '12:00', '13:00', '15:00', '16:00'],
+//   wednesday: ['12:00', '13:00', '14:00', '16:00', '17:00'],
+//   thursday: ['13:00', '14:00', '15:00', '17:00', '18:00'],
+//   friday: ['14:00', '15:00', '16:00', '18:00', '19:00'],
+//   saturday: [],
+// };
 
-const busySlots = {
-  // yyyy-MM-dd
-  '2023-03-04': ['15:00', '11:30'],
-  '2023-04-10': ['10:00', '11:00', '12:00', '14:00', '15:00'],
-};
+// const busySlots = {
+//   // yyyy-MM-dd
+//   '2023-05-23': ['06:00', '08:00', '10:00'],
+//   '2023-04-10': ['10:00', '11:00', '12:00'],
+// };
 
 const location =
   'Av. Alm. Cochrane, 187 - Embaré, Santos - SP, 11040-001';
 export default function IndexUnauthTemplate() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [availability, setAvailability] = useState([]);
+  const [busySlots, setBusySlots] = useState([]);
   const [formIsDirty, setFormIsDirty] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -144,6 +149,23 @@ export default function IndexUnauthTemplate() {
       });
     }
   }, [scrollToFirstNameRef]);
+
+  useEffect(() => {
+    const getAfAvalilability = async () => {
+      const result = await readAfAvailability();
+      setAvailability(result);
+    };
+    getAfAvalilability();
+  }, []);
+
+  useEffect(() => {
+    const getAfReservations = async () => {
+      const result = await readAfReservations();
+      setBusySlots(result);
+    };
+    getAfReservations();
+  }, []);
+
   const handleShowMore = () => {
     setShowMore(false); // altera o estado showMore para false
   };
@@ -165,7 +187,7 @@ export default function IndexUnauthTemplate() {
         amount: '8000',
         productName: 'Agendamento de Avaliação Física',
         time: `Das ${selectedTime} às ${finalTime}`,
-        initalTime: selectedTime,
+        initialTime: selectedTime,
         finalTime: finalTime,
         date: selectedDateCor?.toLocaleDateString('pt-BR'),
         weekDay: dayjs(selectedDateCor).format('dddd'),
