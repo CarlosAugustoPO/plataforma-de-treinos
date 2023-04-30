@@ -43,6 +43,7 @@ import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import postAfReservation from 'src/lib/fetchers/af-reservations/create';
+import tratarNome from 'src/lib/utils/tratarNome';
 //Hooks
 
 const githubAvatarUrl =
@@ -209,11 +210,12 @@ export default function IndexUnauthTemplate() {
   const dateString = data?.metadata.date;
   const [day, month, year] = dateString.split('/');
   const formattedDate = `${year}/${month}/${day}`;
+  const nameTratado = tratarNome(data?.metadata.clientName);
 
   postAfReservation({
     reservation_date: new Date(formattedDate),
     reservation_time: data?.metadata.initialTime,
-    user_name: data?.metadata.clientName,
+    user_name: nameTratado,
     user_email: data?.metadata.clientEmail,
     status: 'confirmed',
   });
@@ -541,7 +543,7 @@ export default function IndexUnauthTemplate() {
                   component="span"
                 >
                   {' '}
-                  {data?.metadata.clientName ?? 'loading...'}
+                  {nameTratado ?? 'loading...'}
                 </Box>{' '}
               </Typography>
             </div>
