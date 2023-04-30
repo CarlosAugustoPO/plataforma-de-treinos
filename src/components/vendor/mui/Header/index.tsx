@@ -185,6 +185,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      {/*
       <MenuItem onClick={handleEntrar}>
         <IconButton size="large" color="headerIcons">
           <LoginItem />
@@ -222,6 +223,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
           </MenuItem>
         </div>
       )}
+        */}
     </Menu>
   );
 
@@ -269,6 +271,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
           </Typography>
         </MenuItem>
       )}
+      {/*
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -283,6 +286,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
           Painel de Usuário
         </Typography>
       </MenuItem>
+        */}
     </Menu>
   );
 
@@ -318,6 +322,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+              {/*
               <IconButton
                 size="large"
                 edge="end"
@@ -328,7 +333,7 @@ export default function PrimarySearchAppBar(): JSX.Element {
                 color="headerIcons"
               >
                 <AccountCircle />
-              </IconButton>
+              </IconButton>*/}
             </Box>
             <Box
               sx={{
