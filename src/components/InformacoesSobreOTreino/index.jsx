@@ -29,22 +29,28 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.haQuantoTempoTreinaMusculacao}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            O que te fez parar da última vez?{' '}
-          </Box>
-          {dadosDaAvaliacao.motivoDeParadaDaUltimaVez}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Por quanto tempo ficou parado da última vez?{' '}
-          </Box>
-          {dadosDaAvaliacao.tempoDeParadaDaUltimaVez}
-        </Typography>
-      </Grid>
+
+      {dadosDaAvaliacao.motivoDeParadaDaUltimaVez ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              O que te fez parar da última vez?{' '}
+            </Box>
+            {dadosDaAvaliacao.motivoDeParadaDaUltimaVez}
+          </Typography>
+        </Grid>
+      ) : null}
+
+      {dadosDaAvaliacao.tempoDeParadaDaUltimaVez ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Por quanto tempo ficou parado da última vez?{' '}
+            </Box>
+            {dadosDaAvaliacao.tempoDeParadaDaUltimaVez}
+          </Typography>
+        </Grid>
+      ) : null}
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <Box component="span" sx={{ fontWeight: 'bold' }}>

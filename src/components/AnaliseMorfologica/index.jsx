@@ -89,9 +89,9 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Massa muscular bioimpedância:{' '}
+              Percential de massa muscular bioimpedância:{' '}
             </Box>
-            {dadosDaAvaliacao.massaMuscularBia} kg
+            {dadosDaAvaliacao.massaMuscularBia}%
           </Typography>
         </Grid>
         <Grid item xs={12} sm={12}>

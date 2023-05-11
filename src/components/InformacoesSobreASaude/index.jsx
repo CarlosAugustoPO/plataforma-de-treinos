@@ -23,29 +23,47 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Algum problema de saúde diagnosticado:</strong>{' '}
-          {dadosDaAvaliacao.problemaDeSaude ? 'Sim' : 'Não'}
+          {dadosDaAvaliacao.problemasDeSaude
+            ? dadosDaAvaliacao.problemasDeSaude
+            : 'Não'}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Medicamentos:</strong>{' '}
-          {dadosDaAvaliacao.tomaMedicamento ? 'Sim' : 'Não'}
+          {dadosDaAvaliacao.tomaMedicamento
+            ? dadosDaAvaliacao.tomaMedicamento
+            : 'Não'}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Uso de esteróides anabólicos:</strong>{' '}
-          {dadosDaAvaliacao.usaEsteroides ? 'Sim' : 'Não'}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>Fumo e álcool:</strong>{' '}
-          {dadosDaAvaliacao.fumaOuBebeAlcool
-            ? `${dadosDaAvaliacao.frequenciaFumo} cigarros por dia, ${dadosDaAvaliacao.frequenciaAlcool} vezes por semana`
+          {dadosDaAvaliacao.usaEsteroides
+            ? dadosDaAvaliacao.usaEsteroides
             : 'Não'}
         </Typography>
       </Grid>
+
+      {dadosDaAvaliacao.frequenciaFumo ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>Você fuma? Com qual frequência?</strong>{' '}
+            {dadosDaAvaliacao.frequenciaFumo}
+          </Typography>
+        </Grid>
+      ) : null}
+      {dadosDaAvaliacao.frequenciaAlcool ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>
+              Você bebe alcool? Com qual frequência?
+            </strong>{' '}
+            {dadosDaAvaliacao.frequenciaAlcool}
+          </Typography>
+        </Grid>
+      ) : null}
+
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Lesões no passado:</strong>{' '}
@@ -61,14 +79,16 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Amamentação:</strong>{' '}
-          {dadosDaAvaliacao.amamentando ? 'Sim' : 'Não'}
+          {dadosDaAvaliacao.amamentando
+            ? dadosDaAvaliacao.amamentando
+            : 'Não'}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Cirurgia:</strong>{' '}
-          {dadosDaAvaliacao.passouPorCirurgia
-            ? `Sim, há ${dadosDaAvaliacao.tempoCirurgia} meses`
+          {dadosDaAvaliacao.cirurgiaPassada
+            ? `${dadosDaAvaliacao.cirurgiaPassada}`
             : 'Não'}
         </Typography>
       </Grid>

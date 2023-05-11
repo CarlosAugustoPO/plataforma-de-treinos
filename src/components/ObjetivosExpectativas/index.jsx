@@ -65,7 +65,7 @@ const ObjetivosExpectativas = ({ dadosDaAvaliacao }) => {
           <Box component="span" sx={{ fontWeight: 'bold' }}>
             Você pretende melhorar a flexibilidade?{' '}
           </Box>
-          {dadosDaAvaliacao.pretendeMelhorarFlexibilidade} anos
+          {dadosDaAvaliacao.pretendeMelhorarFlexibilidade}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12}>

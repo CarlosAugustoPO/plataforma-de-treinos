@@ -220,7 +220,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
             </TableCell>
             {dadosDoGrafico.map((item) => (
               <TableCell key={item.data} align="left">
-                {item.massaMuscularBia} kg
+                {item.massaMuscularBia} %
               </TableCell>
             ))}
           </TableRow>
