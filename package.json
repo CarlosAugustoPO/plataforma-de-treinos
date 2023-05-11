@@ -43,6 +43,7 @@
     "react-modal": "^3.16.1",
     "react-redux": "latest",
     "react-router-navigation-prompt": "^1.9.6",
+    "recharts": "^2.5.0",
     "serverless-mysql": "^1.5.4",
     "stripe": "^11.16.0",
     "sweetalert2": "^11.4.8",

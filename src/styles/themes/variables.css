@@ -29,6 +29,7 @@
   --title-span-false: #0dd;
 
   --background-color: #fff;
+  --text-color: #fff;
 }
 
 [data-theme='dark'] {
@@ -62,4 +63,5 @@
   --title-span-false: #0dd;
 
   --background-color: #282a36;
+  --text-color: #fff;
 }
