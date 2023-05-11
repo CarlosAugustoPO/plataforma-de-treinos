@@ -73,7 +73,9 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Limitações físicas:</strong>{' '}
-          {dadosDaAvaliacao.limitacaoFisica ? 'Sim' : 'Não'}
+          {dadosDaAvaliacao.limitacaoFisica
+            ? dadosDaAvaliacao.limitacaoFisica
+            : 'Não'}
         </Typography>
       </Grid>
       <Grid item xs={12} sm={12}>

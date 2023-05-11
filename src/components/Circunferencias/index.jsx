@@ -94,14 +94,6 @@ const Circunferencias = ({ dadosDaAvaliacao }) => {
           <Box component="span" sx={{ fontWeight: 'bold' }}>
             Circunferência de Braço relaxado:{' '}
           </Box>
-          {dadosDaAvaliacao.circunferenciaDeBracoRelaxado} cm
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Circunferência de Braço relaxado:{' '}
-          </Box>
           {dadosDaAvaliacao.circunferenciaBracoRelaxado} cm
         </Typography>
       </Grid>
