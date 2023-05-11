@@ -154,10 +154,10 @@ function ResultadoAvaliacaoFisica() {
     coxa +
     panturrilha;
   const densidadeCorporal =
-    1.112 -
-    0.00043499 * somaDobras +
-    0.00000055 * Math.pow(somaDobras, 2) -
-    0.0001284 * dadosDaAvaliacaoAtual.idade;
+    1.097 -
+    0.00046971 * somaDobras +
+    0.00000056 * Math.pow(somaDobras, 2) -
+    0.00012828 * dadosDaAvaliacaoAtual.idade;
   const pollock7dobras = (4.95 / densidadeCorporal - 4.5) * 100;
   // Cálculo de Gordura em KG Pollock 7 Dobras
   const pesoGordo =

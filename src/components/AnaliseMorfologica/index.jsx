@@ -31,10 +31,10 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
     coxa +
     panturrilha;
   const densidadeCorporal =
-    1.112 -
-    0.00043499 * somaDobras +
-    0.00000055 * Math.pow(somaDobras, 2) -
-    0.0001284 * dadosDaAvaliacao.idade;
+    1.097 -
+    0.00046971 * somaDobras +
+    0.00000056 * Math.pow(somaDobras, 2) -
+    0.00012828 * dadosDaAvaliacao.idade;
   const porcentagemDeGordura =
     (4.95 / densidadeCorporal - 4.5) * 100;
 
