@@ -266,7 +266,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
           </TableRow>
           <TableRow>
             <TableCell key="pollock" align="left">
-              Circunferencia de Quadrl
+              Circunferencia de Quadril
             </TableCell>
             {dadosDoGrafico.map((item) => (
               <TableCell key={item.data} align="left">
