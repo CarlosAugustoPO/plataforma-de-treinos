@@ -23,114 +23,112 @@ import Box from '@mui/material/Box';
 
 function ResultadoAvaliacaoFisica() {
   const dadosDaAvaliacaoAtual = {
-    nome: 'Andressa Paiva de Oliveira',
-    idade: 42,
-    altura: 1.68,
-    email: 'andressa.paiva@uol.com.br',
+    nome: 'David Soares Silva',
+    idade: 41,
+    altura: 1.78,
+    email: 'davisoarescdm@gmail.com',
     dataDaAvaliação: '06/05/2023',
-    dataDeNascimento: '26/05/1980',
-    genero: 'feminino',
+    dataDeNascimento: '03/10/1981',
+    genero: 'masculino',
     objetivoEstetico: 'Definição',
-    pontosFracosEsteticos: 'Barriga e dobra axilar',
-    pretendeCorrer: 'Não',
-    objetivosComCorrida: '',
+    pontosFracosEsteticos: 'Antebraço e panturrilha',
+    pretendeCorrer: 'Sim',
+    objetivosComCorrida: 'Saúde',
     pretendeMelhorarFlexibilidade: 'Sim',
     objetivosComFlexibilidade: 'Saúde',
     comoPossoTeAjudar: '',
-    haQuantoTempoTreinaMusculacao: 'Há mais de 1 ano',
-    motivoDeParadaDaUltimaVez: 'Desânimo',
+    haQuantoTempoTreinaMusculacao: 'Há 3 meses',
+    motivoDeParadaDaUltimaVez: 'Incompatibilidade com trabalho',
     tempoDeParadaDaUltimaVez: '',
-    quantidadeDeTreinosPorSemana: '5 vezes',
-    horarioDeTreinoMusculacao: '05h30',
-    horarioDesejadoDeTreinoMusculacao: '05h30',
-    musculosPreferidosDeTreinoMusculacao: 'Pernas e Peitoral',
-    exerciciosComDificuldades: 'Afundo/Avanço',
-    tempoExerciciosAerobios: 'Sem aeróbios',
-    horarioExerciciosAerobios: '',
-    horarioPretendidoExerciciosAerobios: '',
-    freqExerciciosAerobios: '',
-    tempoExerciciosAlongamento: 'Não alonga',
+    quantidadeDeTreinosPorSemana: '4 vezes',
+    horarioDeTreinoMusculacao: '04h00',
+    horarioDesejadoDeTreinoMusculacao: '04h00',
+    musculosPreferidosDeTreinoMusculacao: '',
+    exerciciosComDificuldades: 'Pesos livres',
+    tempoExerciciosAerobios: 'Indefinido',
+    horarioExerciciosAerobios: 'Horário do treino',
+    horarioPretendidoExerciciosAerobios: 'Horário do treino',
+    freqExerciciosAerobios: 'Indefinido',
+    tempoExerciciosAlongamento: '',
     horarioExerciciosAlongamento: '',
     horarioPretendidoExerciciosAlongamento: '',
-    ultimoTreino: 'Há mais de 24 horas',
+    ultimoTreino: '12 horas antes',
     ultimoTreinoDescricao:
-      'Treino de musculação com ênfase em membros superiores',
-    ultimaRefeicao: 'Ceia - Uva e Caqui',
-    tempoUltimaRefeicao: 'há 8 horas',
-    horaDeDormir: '23:00',
-    horaDeAcordar: '05:14',
-    qualidadeDoSono: 'Ótima',
+      'Treino de musculação com ênfase em membros inferiores',
+    ultimaRefeicao: 'Gelatina',
+    tempoUltimaRefeicao: 'há 3 horas',
+    horaDeDormir: 'Sem padrão por causa do trabalho',
+    horaDeAcordar: 'Sem padrão por causa do trabalho',
+    qualidadeDoSono: 'Ruim',
     rotinaDiariaDetalhes: '',
-    huorDiario: 'Pacífico',
-    estrategiasContraEstresse: 'Ficar sozinha',
+    huorDiario: 'Ansioso',
+    estrategiasContraEstresse: 'Beliscar',
     estrategiasDeLazer: '',
     rotinaDeTrabalho: 'Sedentária',
     meioDeTransporteParaTrabalho: '',
-    problemasDeSaude: 'Hipotireoidismo',
-    tomaMedicamento: 'Puran T4 - Tiroxina - (75mg)',
-    esteroidesAnabolicos: 'Não',
-    frequenciaAlcool: 'Sim, socialmente',
+    problemasDeSaude: 'Sem problema de saúde',
+    tomaMedicamento: 'Não toma medicamentos',
+    esteroidesAnabolicos: 'Não usa esteróides',
+    frequenciaAlcool: 'Não bebe',
     frequenciaFumo: 'Não fuma',
     lesaoPassada: 'Não',
-    limitacaoFisica: 'Dor na lombar exporádica durante o dia',
-    amamentando: 'Amamentou 9 anos atrás',
-    cirurgiaPassada:
-      'Laqueadura, 3 anos atrás. Cesária, 9 anos atrás',
-    tempoCirurgiaPassada: 'Há 3 anos',
+    limitacaoFisica: 'Sem limitações',
+    amamentando: '',
+    cirurgiaPassada: 'Ginecomastia e hérnia inguinal',
+    tempoCirurgiaPassada: 'Há + de 6 anos',
     fcRepouso: '75 bpm',
-    paRepouso: '120x90 mmHg',
-    spO2: '95%',
-    temperaturaExtremidades: 'Quente',
+    paRepouso: '140x70 mmHg',
+    spO2: '98%',
+    temperaturaExtremidades: '',
     temperaturaCorporal: '',
-    menorPesoAdulto: 65,
-    maiorPesoAdulto: 110,
-    peso3Meses: 91.5,
-    peso6Meses: 90,
-    peso1Ano: 88,
-    peso5Anos: 80,
-    peso10Anos: 75,
+    menorPesoAdulto: 88,
+    maiorPesoAdulto: 101.3,
+    peso3Meses: 97,
+    peso6Meses: 97,
+    peso1Ano: 94,
+    peso5Anos: 92,
+    peso10Anos: 90,
     pesoPretendido: 72,
-    pesoAtual: 92.5,
-    circunferenciaDePunho: 18.5,
-    circunferenciaDeAbdomen: 105,
-    circunferenciaDePescoco: 38.5,
-    circunferenciaDeCintura: 95,
-    circunferenciaDeQuadril: 117.5,
-    circunferenciaDePanturrilha: 41,
-    circunferenciaBracoRelaxado: 34.5,
-    circunferenciaBracoContraido: 35.5,
-    circunferenciaTorax: 96,
-    circunferenciaAntebraco: 26,
-    circunferenciaCoxa: 63,
+    pesoAtual: 101.3,
+    circunferenciaDePunho: 18,
+    circunferenciaDeAbdomen: 113,
+    circunferenciaDePescoco: 41,
+    circunferenciaDeCintura: 104,
+    circunferenciaDeQuadril: 116,
+    circunferenciaDePanturrilha: 40,
+    circunferenciaBracoRelaxado: 39,
+    circunferenciaBracoContraido: 42,
+    circunferenciaTorax: 113,
+    circunferenciaAntebraco: 32,
+    circunferenciaCoxa: 61,
     circunferenciaTornozelo: 24,
     dobraCutaneaPeitoral: 12,
-    dobraCutaneaAbdominal: 31,
-    dobraCutaneaTricipital: 25,
-    dobraCutaneaSubescapular: 27,
-    dobraCutaneaSuprailiaca: 31,
-    dobraCutaneaCoxa: 40,
-    dobraCutaneaPanturrilha: 30,
-    porcentagemDeGorduraBia: 47.9,
-    massaMuscularBia: 22.8,
-    idadeCorporal: 60,
-    gorduraVisceral: 9,
+    dobraCutaneaAbdominal: 38,
+    dobraCutaneaTricipital: 11,
+    dobraCutaneaSubescapular: 22,
+    dobraCutaneaSuprailiaca: 23,
+    dobraCutaneaCoxa: 17,
+    dobraCutaneaPanturrilha: 15,
+    porcentagemDeGorduraBia: 32.2,
+    massaMuscularBia: 31.5,
+    idadeCorporal: 69,
+    gorduraVisceral: 15,
     planejaRefeicoes: 'Sim, sempre',
-    preparaRefeicoes: 'Sim, as vezes a mãe',
-    numeroRefeicoes: 3,
-    quantidadeAgua: 8,
-    horarioFome: 'Pós treino',
-    alimentoBeliscar: 'Doces',
-    alimentosFrequentes: 'Arroz e feijão',
-    restricaoAlimentar: 'Camarão',
+    preparaRefeicoes: 'Sim',
+    numeroRefeicoes: 7,
+    quantidadeAgua: 15,
+    horarioFome: 'Almoço',
+    alimentoBeliscar: 'Doces (chocolate, sobremesas, bolos)',
+    alimentosFrequentes: 'Arroz, feijão, carne ou peixe',
+    restricaoAlimentar: 'Nenhuma',
     velocidadeMastigar: '',
-    usaSuplementos: 'Alcachofra, Mega Ulton',
-    consumoAlimentarDiario:
-      '- Café da manhã: Café com leite em pó (molico) com açúcar demerara, média sem miolo ou pão integral. \n- Almoço: 1 prato de arroz integral, feijão, frango - Lanche da tarde: 1 fruta.\n- Jantar: 1 danone, uma fruta ou um pão integral. Obs: Ás vezes toma chá de pessêgo',
+    usaSuplementos: 'Creatina, Whey Proterin e cafeína',
+    consumoAlimentarDiario: '',
     habitosFinaisDeSemana:
-      'Costuma fazer uma refeição fora da rotina, geralmente pizza',
+      'Não muda os hábitos alimentares finais de semana',
     desvioPostural: 'Não possui',
     informacoesAdicionais:
-      'Faz drenagem 2 vezes na semana, faz um treino em casa diariamente, de segunda a segunda. Não fará apenas quando estiver com dor.',
+      'Trabalha embarcado durante uma semana',
   };
 
   const peitoral = dadosDaAvaliacaoAtual.dobraCutaneaPeitoral;
@@ -153,6 +151,7 @@ function ResultadoAvaliacaoFisica() {
     suprailiaca +
     coxa +
     panturrilha;
+
   const calcularDensidadeCorporal = (dadosDaAvaliacaoAtual) => {
     var genero = dadosDaAvaliacaoAtual.genero;
 
@@ -184,7 +183,6 @@ function ResultadoAvaliacaoFisica() {
     (4.95 / calcularDensidadeCorporal(dadosDaAvaliacaoAtual) -
       4.5) *
     100;
-
   // Cálculo de Gordura em KG Pollock 7 Dobras
   const pesoGordo =
     (pollock7dobras / 100) * dadosDaAvaliacaoAtual.pesoAtual;
@@ -356,11 +354,15 @@ function ResultadoAvaliacaoFisica() {
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Recordatório Alimentar</Title>
-      <RecordatorioAlimentar
-        dadosDaAvaliacao={dadosDaAvaliacaoAtual}
-      />
+      {dadosDaAvaliacaoAtual.RecordatorioAlimentar ? (
+        <>
+          <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+          <Title paragraph>Recordatório Alimentar</Title>
+          <RecordatorioAlimentar
+            dadosDaAvaliacao={dadosDaAvaliacaoAtual}
+          />
+        </>
+      ) : null}
 
       <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
       <Title paragraph>Analíse Postural</Title>

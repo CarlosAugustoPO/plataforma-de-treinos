@@ -30,13 +30,37 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
     suprailiaca +
     coxa +
     panturrilha;
-  const densidadeCorporal =
-    1.097 -
-    0.00046971 * somaDobras +
-    0.00000056 * Math.pow(somaDobras, 2) -
-    0.00012828 * dadosDaAvaliacao.idade;
+
+  const calcularDensidadeCorporal = (dadosDaAvaliacao) => {
+    var genero = dadosDaAvaliacao.genero;
+
+    if (genero === 'masculino') {
+      const densidadeCorporal =
+        1.112 -
+        0.00043499 * somaDobras +
+        0.00000055 * Math.pow(somaDobras, 2) -
+        0.0002882 * dadosDaAvaliacao.idade;
+      return densidadeCorporal;
+    } else if (genero === 'feminino') {
+      const densidadeCorporal =
+        1.097 -
+        0.00046971 * somaDobras +
+        0.00000056 * Math.pow(somaDobras, 2) -
+        0.00012828 * dadosDaAvaliacao.idade;
+      return densidadeCorporal;
+    } else {
+      const densidadeCorporal =
+        1.097 -
+        0.00046971 * somaDobras +
+        0.00000056 * Math.pow(somaDobras, 2) -
+        0.00012828 * dadosDaAvaliacao.idade;
+      return densidadeCorporal;
+    }
+  };
+
   const porcentagemDeGordura =
-    (4.95 / densidadeCorporal - 4.5) * 100;
+    (4.95 / calcularDensidadeCorporal(dadosDaAvaliacao) - 4.5) *
+    100;
 
   // Cálculo de Gordura em KG Pollock 7 Dobras
   const pesoGordo =

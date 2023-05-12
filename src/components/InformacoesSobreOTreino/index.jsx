@@ -75,15 +75,20 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.horarioDesejadoDeTreinoMusculacao}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Quais músculos você mais gosta de treinar na
-            musculação?{' '}
-          </Box>
-          {dadosDaAvaliacao.musculosPreferidosDeTreinoMusculacao}
-        </Typography>
-      </Grid>
+
+      {dadosDaAvaliacao.musculosPreferidosDeTreinoMusculacao ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Quais músculos você mais gosta de treinar na
+              musculação?{' '}
+            </Box>
+            {
+              dadosDaAvaliacao.musculosPreferidosDeTreinoMusculacao
+            }
+          </Typography>
+        </Grid>
+      ) : null}
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -134,7 +139,7 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           </Typography>
         </Grid>
       ) : null}
-      {dadosDaAvaliacao.tempoExerciciosAerobios ? (
+      {dadosDaAvaliacao.tempoExerciciosAlongamento ? (
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>

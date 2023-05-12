@@ -78,14 +78,17 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
             : 'Não'}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>Amamentação:</strong>{' '}
-          {dadosDaAvaliacao.amamentando
-            ? dadosDaAvaliacao.amamentando
-            : 'Não'}
-        </Typography>
-      </Grid>
+      {dadosDaAvaliacao.amamentando ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>Amamentação:</strong>{' '}
+            {dadosDaAvaliacao.amamentando
+              ? dadosDaAvaliacao.amamentando
+              : 'Não'}
+          </Typography>
+        </Grid>
+      ) : null}
+
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>Cirurgia:</strong>{' '}
@@ -120,12 +123,15 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
           </Typography>
         </Grid>
       ) : null}
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>Temperatura das extremidades:</strong>{' '}
-          {dadosDaAvaliacao.temperaturaExtremidades}
-        </Typography>
-      </Grid>
+
+      {dadosDaAvaliacao.temperaturaExtremidades ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>Temperatura das extremidades:</strong>{' '}
+            {dadosDaAvaliacao.temperaturaExtremidades}
+          </Typography>
+        </Grid>
+      ) : null}
     </Grid>
   );
 };

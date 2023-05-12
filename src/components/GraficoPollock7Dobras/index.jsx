@@ -19,13 +19,13 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
         <text
           x={x}
           y={y}
-          dx={40}
-          dy={-15}
+          dx={45}
+          dy={30}
           fill={theme.palette.primary.main}
           fontSize={14}
           textAnchor="end"
         >
-          {value} %
+          {value}%
         </text>
       );
     }
@@ -35,12 +35,12 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           x={x}
           y={y}
           dx={20}
-          dy={-12}
+          dy={30}
           fill={theme.palette.primary.main}
           fontSize={14}
           textAnchor="end"
         >
-          {value} %
+          {value}%
         </text>
       );
     }
@@ -50,12 +50,12 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           x={x}
           y={y}
           dx={-1}
-          dy={-12}
+          dy={30}
           fill={theme.palette.primary.main}
           fontSize={14}
           textAnchor="end"
         >
-          {value} %
+          {value}%
         </text>
       );
     }
