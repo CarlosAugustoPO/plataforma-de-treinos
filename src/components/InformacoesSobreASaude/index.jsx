@@ -103,17 +103,23 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.fcRepouso}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>PA de repouso:</strong>{' '}
-          {dadosDaAvaliacao.paRepouso}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>SPO2:</strong> {dadosDaAvaliacao.spO2}
-        </Typography>
-      </Grid>
+
+      {dadosDaAvaliacao.paRepouso ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>PA de repouso:</strong>{' '}
+            {dadosDaAvaliacao.paRepouso}
+          </Typography>
+        </Grid>
+      ) : null}
+
+      {dadosDaAvaliacao.spO2 ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>SPO2:</strong> {dadosDaAvaliacao.spO2}
+          </Typography>
+        </Grid>
+      ) : null}
 
       {dadosDaAvaliacao.temperaturaCorporal ? (
         <Grid item xs={12} sm={12}>

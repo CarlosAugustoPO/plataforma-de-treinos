@@ -184,36 +184,44 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              %G Bioimpedância
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.porcentagemDeGorduraBia} %
-              </TableCell>
-            ))}
-          </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              Idade Corporal Bioimpedância
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.idadeCorporal} Anos
-              </TableCell>
-            ))}
-          </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              Gordura Visceral Bioimpedância
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.gorduraVisceral} kg
-              </TableCell>
-            ))}
-          </TableRow>
+          {dadosDoGrafico.map((item) =>
+            item.porcentagemDeGorduraBia ? (
+              <TableRow>
+                <TableCell key="pollock" align="left">
+                  %G Bioimpedância
+                </TableCell>
+                <TableCell key={item.data} align="left">
+                  {item.porcentagemDeGorduraBia} %
+                </TableCell>
+              </TableRow>
+            ) : null,
+          )}
+
+          {dadosDoGrafico.map((item) =>
+            item.idadeCorporal ? (
+              <TableRow>
+                <TableCell key="pollock" align="left">
+                  Idade Corporal Bioimpedância
+                </TableCell>
+                <TableCell key={item.data} align="left">
+                  {item.idadeCorporal} Anos
+                </TableCell>
+              </TableRow>
+            ) : null,
+          )}
+
+          {dadosDoGrafico.map((item) =>
+            item.gorduraVisceral ? (
+              <TableRow>
+                <TableCell key="pollock" align="left">
+                  Gordura Visceral Bioimpedância
+                </TableCell>
+                <TableCell key={item.data} align="left">
+                  {item.gorduraVisceral} kg
+                </TableCell>
+              </TableRow>
+            ) : null,
+          )}
           <TableRow>
             <TableCell key="pollock" align="left">
               Massa Muscular Bioimpedância
@@ -354,26 +362,32 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              FC de Repouso
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.fcRepouso}
-              </TableCell>
-            ))}
-          </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              PA de Repouso
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.paRepouso}
-              </TableCell>
-            ))}
-          </TableRow>
+
+          {dadosDoGrafico.map((item) =>
+            item.fcRepouso ? (
+              <TableRow>
+                <TableCell key="pollock" align="left">
+                  FC de Repouso
+                </TableCell>
+                <TableCell key={item.data} align="left">
+                  {item.fcRepouso}
+                </TableCell>
+              </TableRow>
+            ) : null,
+          )}
+
+          {dadosDoGrafico.map((item) =>
+            item.paRepouso ? (
+              <TableRow>
+                <TableCell key="pollock" align="left">
+                  PA de Repouso
+                </TableCell>
+                <TableCell key={item.data} align="left">
+                  {item.paRepouso}
+                </TableCell>
+              </TableRow>
+            ) : null,
+          )}
         </TableBody>
       </Table>
     </TableContainer>

@@ -102,14 +102,18 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             {pesoMagro.toFixed(1)} kg
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Percentual de gordura bioimpedância:{' '}
-            </Box>
-            {dadosDaAvaliacao.porcentagemDeGorduraBia}%
-          </Typography>
-        </Grid>
+
+        {dadosDaAvaliacao.porcentagemDeGorduraBia ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Percentual de gordura bioimpedância:{' '}
+              </Box>
+              {dadosDaAvaliacao.porcentagemDeGorduraBia}%
+            </Typography>
+          </Grid>
+        ) : null}
+
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -118,22 +122,28 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             {dadosDaAvaliacao.massaMuscularBia}%
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Gordura visceral:{' '}
-            </Box>
-            {dadosDaAvaliacao.gorduraVisceral} kg
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Idade corporal:{' '}
-            </Box>
-            {dadosDaAvaliacao.idadeCorporal} Anos
-          </Typography>
-        </Grid>
+
+        {dadosDaAvaliacao.gorduraVisceral ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Gordura visceral:{' '}
+              </Box>
+              {dadosDaAvaliacao.gorduraVisceral} kg
+            </Typography>
+          </Grid>
+        ) : null}
+
+        {dadosDaAvaliacao.idadeCorporal ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Idade corporal:{' '}
+              </Box>
+              {dadosDaAvaliacao.idadeCorporal} Anos
+            </Typography>
+          </Grid>
+        ) : null}
       </Grid>
     </>
   );

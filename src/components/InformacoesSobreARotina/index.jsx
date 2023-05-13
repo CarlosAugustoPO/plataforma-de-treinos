@@ -61,7 +61,7 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <strong>
-            O que costuma fazer nos momentos de estresse?
+            O que costuma fazer nos momentos de humor abalado?
           </strong>{' '}
           {dadosDaAvaliacao.estrategiasContraEstresse}
         </Typography>
