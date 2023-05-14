@@ -31,7 +31,7 @@ function ResultadoAvaliacaoFisica() {
     dataDeNascimento: '30/04/1979',
     genero: 'feminino',
     objetivoEstetico: 'Definição',
-    pontosFracosEsteticos: 'Abdomêm e tríceps',
+    pontosFracosEsteticos: 'Abdome e tríceps',
     pretendeCorrer: 'Sim',
     objetivosComCorrida: 'Prova 2km Krav Maga',
     pretendeMelhorarFlexibilidade: 'Sim',
