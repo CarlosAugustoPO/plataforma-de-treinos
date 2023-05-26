@@ -20,6 +20,7 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
   const suprailiaca = dadosDaAvaliacao.dobraCutaneaSuprailiaca;
   const coxa = dadosDaAvaliacao.dobraCutaneaCoxa;
   const panturrilha = dadosDaAvaliacao.dobraCutaneaPanturrilha;
+  const axilarMedia = dadosDaAvaliacao.dobraCutaneaAxilarMedia;
 
   // Cálculo de Gordura em % Pollock 7 Dobras
   const somaDobras =
@@ -29,7 +30,8 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
     subescapular +
     suprailiaca +
     coxa +
-    panturrilha;
+    (axilarMedia ? axilarMedia : panturrilha);
+
 
   const calcularDensidadeCorporal = (dadosDaAvaliacao) => {
     var genero = dadosDaAvaliacao.genero;

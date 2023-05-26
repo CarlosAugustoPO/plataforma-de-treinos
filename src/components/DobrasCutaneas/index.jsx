@@ -20,6 +20,7 @@ const DobrasCutaneas = ({ dadosDaAvaliacao }) => {
   const suprailiaca = dadosDaAvaliacao.dobraCutaneaSuprailiaca;
   const coxa = dadosDaAvaliacao.dobraCutaneaCoxa;
   const panturrilha = dadosDaAvaliacao.dobraCutaneaPanturrilha;
+  const axilarMedia = dadosDaAvaliacao.dobraCutaneaAxilarMedia;
 
   return (
     <>
@@ -78,6 +79,16 @@ const DobrasCutaneas = ({ dadosDaAvaliacao }) => {
             {coxa} mm
           </Typography>
         </Grid>
+      {axilarMedia ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Dobra cutânea axilar medía:{' '}
+            </Box>
+            {axilarMedia} mm
+          </Typography>
+        </Grid>
+      ) : null}
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>

@@ -27,10 +27,10 @@ function ResultadoAvaliacaoFisica() {
     idade: 49,
     altura: 1.73,
     email: 'dr.renatosoaresvicente@gmail.com',
-    telefone: '13991490226',
+    telefone: '(13)991490226',
     dataDaAvaliação: '22/05/2023',
     dataDeNascimento: '12/12/1973',
-    genero: 'masculino',
+    genero: 'Masculino',
     objetivoEstetico: 'Hipertrofia',
     pontosFracosEsteticos: 'Abdome, Coxa',
     pretendeCorrer: 'Não',
@@ -40,48 +40,49 @@ function ResultadoAvaliacaoFisica() {
     comoPossoTeAjudar: '',
     haQuantoTempoTreinaMusculacao: 'Há mais de 1 ano',
     motivoDeParadaDaUltimaVez:
-      'Problema na coluna e dor e crise depressiva',
+      'Problemas na coluna, dor e crise depressiva',
     tempoDeParadaDaUltimaVez: 'de 2018 a 2021',
     quantidadeDeTreinosPorSemana: '6-7 vezes',
     horarioDeTreinoMusculacao: '10h30',
-    horarioDesejadoDeTreinoMusculacao: '12h00',
+    horarioDesejadoDeTreinoMusculacao: '10h30',
     musculosPreferidosDeTreinoMusculacao: 'Peito, Ombro',
-    exerciciosComDificuldades: 'Agachamento, Remada e qualquer outro exercício que coloque sobrecarga na coluna',
-    tempoExerciciosAerobios: '20min',
-    horarioExerciciosAerobios: 'Horário do treino de musculação junto com pernas',
+    exerciciosComDificuldades: 'Agachamento, Remada e qualquer outro exercício que coloque sobrecarga na lombar',
+    tempoExerciciosAerobios: '20 min',
+    horarioExerciciosAerobios: 'Horário do treino de musculação, no dia de MMII',
     horarioPretendidoExerciciosAerobios:
-      'Horário do treino de musculação',
+      '',
     freqExerciciosAerobios: '2x por semana',
-    tempoExerciciosAlongamento: 'não prática',
+    tempoExerciciosAlongamento: 'Não prática',
     horarioExerciciosAlongamento: '',
     horarioPretendidoExerciciosAlongamento: '',
     ultimoTreino: '2 dias antes',
     ultimoTreinoDescricao:
       'Treino de musculação com ênfase em membros inferiores',
     ultimaRefeicao: 'Banana',
-    tempoUltimaRefeicao: 'há 30 minutos',
+    tempoUltimaRefeicao: 'Há 30 minutos',
     horaDeDormir: '23:30',
     horaDeAcordar: '06:30',
-    qualidadeDoSono: 'Ótima com zolpidem,  porém mente muito ativa vai tentar trocar por melatonina',
+    qualidadeDoSono: 'Ótima com Zolpidem, porém mente muito ativa vai tentar trocar por melatonina',
+    qualidadeDoSono: 'Diiculdade para dormir devido a atividade mental, Zolpidem ajudar a tornar a noite de sono ótima, porém pretende troca-lo por melatonina',
     rotinaDiariaDetalhes:
-      'Acorda, come, atende pacientes, faz um lanche de manhã. para perto do alomço para fazer um treino, almoça, volta a atender, faz um lanche, segunda e quanta faz pilates, pretende fazer krav maga terça e quinta, janta, estuda e dorme',
+      'Acorda, come, atende pacientes, faz um lanche de manhã, para perto do alomço para fazer um treino, almoça, volta a atender, faz um lanche, segunda e quanta faz pilates, pretende fazer krav maga terça e quinta, janta, estuda e dorme',
     humorDiario: 'Ansiedade',
     estrategiasContraEstresse:
-      'Ocupação',
+      'Ocupar-se',
     estrategiasDeLazer: 'Sem nada',
     tabalhaCom$: 'Dentista',
     rotinaDeTrabalho: 'Sedentária',
     meioDeTransporteParaTrabalho: 'Carro',
     problemasDeSaude: 'Colesterol',
-    tomaMedicamento: 'rusovas 10mg, dorflex quase diariamente',
-    usaEsteroides: 'Primobolan (tem + 20 unidades), propionato de testosterona, Clomifeno 60MG, Gel de testosterona, desde de agosto',
-    frequenciaAlcool: 'As vezes no final de semana, bem pouco',
+    tomaMedicamento: 'Rusovas 10mg, dorflex quase diariamente',
+    usaEsteroides: 'Primobolan (tem + 20 unidades), Propionato de testosterona, Clomifeno 60MG, Gel de testosterona, desde de agosto',
+    frequenciaAlcool: 'As vezes no final de semana',
     frequenciaFumo: 'Não fuma',
     lesaoPassada: 'Lombar e Toraxica em 2021',
     limitacaoFisica:
-      'Cervical as vezes sente dor',
+      'Cervical',
     amamentando: '',
-    cirurgiaPassada: 'colocou uma tela',
+    cirurgiaPassada: 'Hérnia abdominal',
     tempoCirurgiaPassada: '2013',
     fcRepouso: '61 bpm',
     paRepouso: '120/70',
@@ -116,7 +117,7 @@ function ResultadoAvaliacaoFisica() {
     dobraCutaneaSuprailiaca: 8,
     dobraCutaneaCoxa: 14,
     dobraCutaneaPanturrilha: 15,
-    dobraAxilarMedia: 5,
+    dobraCutaneaAxilarMedia: 5,
     porcentagemDeGorduraBia: '18.3%',
     massaMuscularBia: 38.6,
     idadeCorporal: '46',
@@ -126,7 +127,7 @@ function ResultadoAvaliacaoFisica() {
     numeroRefeicoes: 5,
     quantidadeAgua: 8,
     horarioFome: 'Almoço',
-    alimentoBeliscar: 'Está bastante controlado',
+    alimentoBeliscar: 'Não sente necessidade',
     alimentosFrequentes: 'Arroz, feijão e carne',
     restricaoAlimentar: 'Nenhuma',
     velocidadeMastigar: 'Devagar',
@@ -148,8 +149,8 @@ function ResultadoAvaliacaoFisica() {
   const suprailiaca =
     dadosDaAvaliacaoAtual.dobraCutaneaSuprailiaca;
   const coxa = dadosDaAvaliacaoAtual.dobraCutaneaCoxa;
-  const panturrilha =
-    dadosDaAvaliacaoAtual.dobraCutaneaPanturrilha;
+  const axilarMedia =
+    dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia;
 
   // Cálculo de Gordura em % Pollock 7 Dobras
   const somaDobras =
@@ -159,7 +160,7 @@ function ResultadoAvaliacaoFisica() {
     subescapular +
     suprailiaca +
     coxa +
-    panturrilha;
+    (axilarMedia ? axilarMedia : panturrilha);
 
   const calcularDensidadeCorporal = (dadosDaAvaliacaoAtual) => {
     var genero = dadosDaAvaliacaoAtual.genero;
