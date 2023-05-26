@@ -46,13 +46,14 @@ function ResultadoAvaliacaoFisica() {
     horarioDeTreinoMusculacao: '10h30',
     horarioDesejadoDeTreinoMusculacao: '10h30',
     musculosPreferidosDeTreinoMusculacao: 'Peito, Ombro',
-    exerciciosComDificuldades: 'Agachamento, Remada e qualquer outro exercício que coloque sobrecarga na lombar',
+    exerciciosComDificuldades:
+      'Agachamento, Remada e qualquer outro exercício que coloque sobrecarga na lombar',
     tempoExerciciosAerobios: '20 min',
-    horarioExerciciosAerobios: 'Horário do treino de musculação, no dia de MMII',
-    horarioPretendidoExerciciosAerobios:
-      '',
+    horarioExerciciosAerobios:
+      'Horário do treino de musculação, no dia de MMII',
+    horarioPretendidoExerciciosAerobios: '',
     freqExerciciosAerobios: '2x por semana',
-    tempoExerciciosAlongamento: 'Não prática',
+    tempoExerciciosAlongamento: 'Não pratica',
     horarioExerciciosAlongamento: '',
     horarioPretendidoExerciciosAlongamento: '',
     ultimoTreino: '2 dias antes',
@@ -62,25 +63,26 @@ function ResultadoAvaliacaoFisica() {
     tempoUltimaRefeicao: 'Há 30 minutos',
     horaDeDormir: '23:30',
     horaDeAcordar: '06:30',
-    qualidadeDoSono: 'Ótima com Zolpidem, porém mente muito ativa vai tentar trocar por melatonina',
-    qualidadeDoSono: 'Diiculdade para dormir devido a atividade mental, Zolpidem ajudar a tornar a noite de sono ótima, porém pretende troca-lo por melatonina',
+    qualidadeDoSono:
+      'Ótima com Zolpidem, porém mente muito ativa vai tentar trocar por melatonina',
+    qualidadeDoSono:
+      'Diiculdade para dormir devido a atividade mental, Zolpidem ajudar a tornar a noite de sono ótima, porém pretende troca-lo por melatonina',
     rotinaDiariaDetalhes:
       'Acorda, come, atende pacientes, faz um lanche de manhã, para perto do alomço para fazer um treino, almoça, volta a atender, faz um lanche, segunda e quanta faz pilates, pretende fazer krav maga terça e quinta, janta, estuda e dorme',
     humorDiario: 'Ansiedade',
-    estrategiasContraEstresse:
-      'Ocupar-se',
+    estrategiasContraEstresse: 'Ocupar-se',
     estrategiasDeLazer: 'Sem nada',
     tabalhaCom$: 'Dentista',
     rotinaDeTrabalho: 'Sedentária',
     meioDeTransporteParaTrabalho: 'Carro',
     problemasDeSaude: 'Colesterol',
     tomaMedicamento: 'Rusovas 10mg, dorflex quase diariamente',
-    usaEsteroides: 'Primobolan (tem + 20 unidades), Propionato de testosterona, Clomifeno 60MG, Gel de testosterona, desde de agosto',
+    usaEsteroides:
+      'Primobolan (tem + 20 unidades), Propionato de testosterona, Clomifeno 60MG, Gel de testosterona, desde de agosto',
     frequenciaAlcool: 'As vezes no final de semana',
     frequenciaFumo: 'Não fuma',
     lesaoPassada: 'Lombar e Toraxica em 2021',
-    limitacaoFisica:
-      'Cervical',
+    limitacaoFisica: 'Cervical',
     amamentando: '',
     cirurgiaPassada: 'Hérnia abdominal',
     tempoCirurgiaPassada: '2013',
@@ -131,14 +133,14 @@ function ResultadoAvaliacaoFisica() {
     alimentosFrequentes: 'Arroz, feijão e carne',
     restricaoAlimentar: 'Nenhuma',
     velocidadeMastigar: 'Devagar',
-    usaSuplementos: 'Whey Protein Concentrado, Creatina, DHEA,  Lisina, Vit C, Arginina, Ferro Q, Aswagandha, Zinco Q, Gama Oryzanol, Magnésio Q',
+    usaSuplementos:
+      'Whey Protein Concentrado, Creatina, DHEA,  Lisina, Vit C, Arginina, Ferro Q, Aswagandha, Zinco Q, Gama Oryzanol, Magnésio Q',
     consumoAlimentarDiario:
-    'Café da manhã: Pão com margarina e café com leite. Lanche da Manhã: Ovo cozido ou barrinha de proteina ou iogurte com granola, Almoço: Arroz, feijão e frango. Lanche da tarde: 4 fatias de pão integral, frango com creme de ricotta, banana e whey. Jantar: Arroz, feijão e carne.',
-    habitosFinaisDeSemana: 'Pula o lanche da manhã e o lanche da tarde e da uma abusada no final do dia',
-    desvioPostural:
-      '',
-    informacoesAdicionais:
-      '',
+      'Café da manhã: Pão com margarina e café com leite. Lanche da Manhã: Ovo cozido ou barrinha de proteina ou iogurte com granola, Almoço: Arroz, feijão e frango. Lanche da tarde: 4 fatias de pão integral, frango com creme de ricotta, banana e whey. Jantar: Arroz, feijão e carne.',
+    habitosFinaisDeSemana:
+      'Pula o lanche da manhã e o lanche da tarde e da uma abusada no final do dia',
+    desvioPostural: '',
+    informacoesAdicionais: '',
   };
 
   const peitoral = dadosDaAvaliacaoAtual.dobraCutaneaPeitoral;
