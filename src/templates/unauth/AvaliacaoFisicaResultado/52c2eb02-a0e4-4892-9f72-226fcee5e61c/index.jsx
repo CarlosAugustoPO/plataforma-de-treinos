@@ -48,11 +48,11 @@ function ResultadoAvaliacaoFisica() {
     musculosPreferidosDeTreinoMusculacao: 'Peito, Ombro',
     exerciciosComDificuldades:
       'Agachamento, Remada e qualquer outro exercício que coloque sobrecarga na lombar',
-    tempoExerciciosAerobios: '20 min',
+    tempoExerciciosAerobios: '',
     horarioExerciciosAerobios:
       'Horário do treino de musculação, no dia de MMII',
     horarioPretendidoExerciciosAerobios: '',
-    freqExerciciosAerobios: '2x por semana',
+    freqExerciciosAerobios: '2x por semana, por 20 min',
     tempoExerciciosAlongamento: 'Não pratica',
     horarioExerciciosAlongamento: '',
     horarioPretendidoExerciciosAlongamento: '',
@@ -66,7 +66,7 @@ function ResultadoAvaliacaoFisica() {
     qualidadeDoSono:
       'Ótima com Zolpidem, porém mente muito ativa vai tentar trocar por melatonina',
     qualidadeDoSono:
-      'Diiculdade para dormir devido a atividade mental, Zolpidem ajudar a tornar a noite de sono ótima, porém pretende troca-lo por melatonina',
+      'Dificuldade para dormir devido a atividade mental, Zolpidem ajudar a tornar a noite de sono ótima, porém pretende troca-lo por melatonina',
     rotinaDiariaDetalhes:
       'Acorda, come, atende pacientes, faz um lanche de manhã, para perto do alomço para fazer um treino, almoça, volta a atender, faz um lanche, segunda e quanta faz pilates, pretende fazer krav maga terça e quinta, janta, estuda e dorme',
     humorDiario: 'Ansiedade',
@@ -98,7 +98,7 @@ function ResultadoAvaliacaoFisica() {
     peso1Ano: 75,
     peso5Anos: 75,
     peso10Anos: 75,
-    pesoPretendido: 61,
+    pesoPretendido: '',
     pesoAtual: 75.1,
     circunferenciaDePunho: 16.5,
     circunferenciaDeAbdomen: 87,

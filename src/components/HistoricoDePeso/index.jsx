@@ -78,14 +78,16 @@ const HistoricoDePeso = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.peso10Anos} kg
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Peso pretendido:{' '}
-          </Box>
-          {dadosDaAvaliacao.pesoPretendido} kg
-        </Typography>
-      </Grid>
+      {dadosDaAvaliacao.pesoPretendido ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Peso pretendido:{' '}
+            </Box>
+            {dadosDaAvaliacao.pesoPretendido} kg
+          </Typography>
+        </Grid>
+      ) : null}
     </Grid>
   );
 };
