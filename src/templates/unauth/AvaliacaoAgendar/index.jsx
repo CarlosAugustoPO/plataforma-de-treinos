@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import LocationModal from 'src/components/Modals/LocationModal/index';
 import FirstNameField from 'src/components/Form/FirstNameField';
 import { useLeavePageConfirmation } from 'src/components/useLeavePageConfirmation';
 import EmailFieldWithConfirm from 'src/components/Form/EmailFieldWithConfirm';
@@ -36,7 +37,7 @@ import Text from 'src/components/Text/index';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
-import readAfAvailability from 'src/lib/fetchers/af-availability/read/';
+// import readAfAvailability from 'src/lib/fetchers/af-availability/read/';
 import readAfReservations from 'src/lib/fetchers/af-reservations/read/';
 
 //Hooks
@@ -63,15 +64,15 @@ dayjs.updateLocale('pt-br', {
   weekStart: 0,
 });
 
-// const availability = {
-//   sunday: [],
-//   monday: ['10:00', '11:00', '12:00', '14:00', '15:00'],
-//   tuesday: ['11:00', '12:00', '13:00', '15:00', '16:00'],
-//   wednesday: ['12:00', '13:00', '14:00', '16:00', '17:00'],
-//   thursday: ['13:00', '14:00', '15:00', '17:00', '18:00'],
-//   friday: ['14:00', '15:00', '16:00', '18:00', '19:00'],
-//   saturday: [],
-// };
+const availability = {
+  sunday: ['08:00', '09:00', '10:00', '11:00'],
+  monday: ['11:00'],
+  tuesday: ['11:00'],
+  wednesday: ['08:00', '09:00', '10:00', '11:00'],
+  thursday: ['11:00'],
+  friday: ['08:00', '09:00', '10:00', '11:00'],
+  saturday: [],
+};
 
 // const busySlots = {
 //   // yyyy-MM-dd
@@ -79,16 +80,32 @@ dayjs.updateLocale('pt-br', {
 //   '2023-04-10': ['10:00', '11:00', '12:00'],
 // };
 
-const location =
-  'Av. Alm. Cochrane, 187 - Embaré, Santos - SP, 11040-001';
+const locations = [
+  'Bluefit - Unidade Santos 3: Av. Alm. Cochrane, 187 - Embaré, Santos - SP',
+  'Unique Offices: Avenida Conselheiro Nébias, 703 - Boqueirão, Santos - SP',
+];
 export default function IndexUnauthTemplate() {
+  const [isLocationModalOpen, setIsLocationModalOpen] =
+    useState(false);
+  const [selectedLocationIndex, setSelectedLocationIndex] =
+    useState(0);
+  const [
+    tempSelectedLocationIndex,
+    setTempSelectedLocationIndex,
+  ] = useState(0);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [availability, setAvailability] = useState([]);
+  // const [availability, setAvailability] = useState([]);
   const [busySlots, setBusySlots] = useState([]);
   const [formIsDirty, setFormIsDirty] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [showSnackbar, setShowSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [showConfirmSnackbar, setShowConfirmSnackbar] =
+    useState(false);
+  const [snackbarConfirmMessage, setSnackbarConfirmMessage] =
+    useState('');
+  const [showErrorSnackbar, setShowErrorSnackbar] =
+    useState(false);
+  const [snackbarErrorMessage, setSnackbarErrorMessage] =
+    useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -151,12 +168,21 @@ export default function IndexUnauthTemplate() {
   }, [scrollToFirstNameRef]);
 
   useEffect(() => {
-    const getAfAvalilability = async () => {
-      const result = await readAfAvailability();
-      setAvailability(result);
-    };
-    getAfAvalilability();
-  }, []);
+    if (selectedLocationIndex === 0) {
+      availability.sunday = ['08:00', '09:00', '10:00', '11:00'];
+    }
+    if (selectedLocationIndex === 1) {
+      availability.sunday = [];
+    }
+  }, [selectedLocationIndex]);
+
+  // useEffect(() => {
+  //   const getAfAvalilability = async () => {
+  //     const result = await readAfAvailability();
+  //     setAvailability(result);
+  //   };
+  //   getAfAvalilability();
+  // }, []);
 
   useEffect(() => {
     const getAfReservations = async () => {
@@ -165,6 +191,59 @@ export default function IndexUnauthTemplate() {
     };
     getAfReservations();
   }, []);
+
+  const handleTempLocationChange = (index) => {
+    setTempSelectedLocationIndex(index);
+  };
+
+  const handleLocationChangeConfirm = () => {
+    if (tempSelectedLocationIndex === selectedLocationIndex) {
+      showSnackbarConfirmWithMessage(
+        `Local escolhido permanece ${locations[selectedLocationIndex]}`,
+      );
+    } else {
+      setSelectedLocationIndex(tempSelectedLocationIndex);
+
+      if (selectedLocationIndex === 0) {
+        availability.sunday = [];
+      }
+      if (selectedLocationIndex === 1) {
+        availability.sunday = [
+          '08:00',
+          '09:00',
+          '10:00',
+          '11:00',
+        ];
+      }
+      setFormIsDirty(false);
+      setName('');
+      setEmail('');
+      setMessage('');
+      setDateChoiceInvisible(false);
+      setDatePickerDisabled(false);
+      setSelectedTime(null);
+      setSelectedDate(null);
+      setFinalTime(null);
+      setScrollToFirstNameRef(false);
+      showSnackbarConfirmWithMessage(
+        `Troca de local bem sucedida para ${locations[tempSelectedLocationIndex]}`,
+      );
+    }
+    setIsLocationModalOpen(false);
+  };
+
+  const selectedLocation = locations[selectedLocationIndex];
+  const handleLocationModalOpen = () => {
+    setIsLocationModalOpen(true);
+  };
+
+  const handleLocationModalClose = () => {
+    setTempSelectedLocationIndex(selectedLocationIndex);
+    setIsLocationModalOpen(false);
+    showSnackbarErrorWithMessage(
+      `Troca cancelada! Local escolhido permanece ${locations[selectedLocationIndex]}`,
+    );
+  };
 
   const handleShowMore = () => {
     setShowMore(false); // altera o estado showMore para false
@@ -184,7 +263,7 @@ export default function IndexUnauthTemplate() {
     const response = await fetchPostJSON(
       '/api/checkout_sessions',
       {
-        amount: '8000',
+        amount: '12000',
         productName: 'Agendamento de Avaliação Física',
         time: `Das ${selectedTime} às ${finalTime}`,
         initialTime: selectedTime,
@@ -208,7 +287,7 @@ export default function IndexUnauthTemplate() {
     );
 
     if (response.statusCode === 500) {
-      showSnackbarWithMessage(response.message);
+      showSnackbarErrorWithMessage(response.message);
       setLoading(false);
       return;
     }
@@ -219,7 +298,7 @@ export default function IndexUnauthTemplate() {
       sessionId: response.id,
     });
     console.warn(error.message);
-    showSnackbarWithMessage(error.message);
+    showSnackbarErrorWithMessage(error.message);
     setLoading(false);
   };
 
@@ -249,12 +328,18 @@ export default function IndexUnauthTemplate() {
     setSelectedDate(null);
     setFinalTime(null);
     setScrollToFirstNameRef(false);
+    showSnackbarErrorWithMessage(
+      `Por favor, escolha uma nova data`,
+    );
   };
-  const showSnackbarWithMessage = (message) => {
-    setSnackbarMessage(message);
-    setShowSnackbar(true);
+  const showSnackbarErrorWithMessage = (message) => {
+    setSnackbarErrorMessage(message);
+    setShowErrorSnackbar(true);
   };
-
+  const showSnackbarConfirmWithMessage = (message) => {
+    setSnackbarConfirmMessage(message);
+    setShowConfirmSnackbar(true);
+  };
   const handleCancelTime = () => {
     setScrollToFirstNameRef(false);
     setName('');
@@ -265,15 +350,20 @@ export default function IndexUnauthTemplate() {
     setDatePickerDisabled(false);
     setSelectedTime(null);
     setFinalTime(null);
+    showSnackbarErrorWithMessage(
+      'Por favor, selecione um novo horário.',
+    );
   };
 
   const handleScheduleMeeting = () => {
     if (!selectedDate) {
-      showSnackbarWithMessage('Por favor, selecione uma data.');
+      showSnackbarErrorWithMessage(
+        'Por favor, selecione uma data.',
+      );
       return;
     }
     if (!selectedTime) {
-      showSnackbarWithMessage(
+      showSnackbarErrorWithMessage(
         'Por favor, selecione um horário.',
       );
       return;
@@ -446,9 +536,129 @@ export default function IndexUnauthTemplate() {
                   component="span"
                 >
                   {' '}
-                  {location ?? 'loading...'}
+                  {selectedLocation ?? 'carregando...'}
                 </Box>{' '}
               </Typography>
+
+              <Tooltip disableFocusListener title="Trocar local">
+                <IconButton
+                  onClick={() => {
+                    handleShowMore();
+                    handleLocationModalOpen(); // chama a função handleClick
+                  }}
+                  size="small"
+                  aria-label="Trocar local"
+                >
+                  <ChangeCircleOutlinedIcon
+                    color="error"
+                    style={{ transform: 'scale(65%)' }}
+                  />
+                </IconButton>
+              </Tooltip>
+
+              <Modal
+                open={isLocationModalOpen}
+                onClose={handleLocationModalClose}
+              >
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    bgcolor: 'background.paper',
+                    boxShadow: 24,
+                    p: 2,
+                    width: '700px',
+                    maxWidth: '90%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Title
+                    variant="body1"
+                    sx={{
+                      fontSize: '120%',
+                      alignSelf: 'flex-start',
+                      fontWeight: 'bold',
+                      mt: 1,
+                      mb: 2,
+                      '@media (max-width: 740px)': {
+                        mt: 0,
+                        mb: 2,
+                      },
+                    }}
+                  >
+                    Selecione a Localização
+                  </Title>
+                  {locations.map((location, index) => (
+                    <Box
+                      key={location}
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent:
+                          tempSelectedLocationIndex === index
+                            ? 'flex-start'
+                            : 'center',
+                        flexShrink:
+                          tempSelectedLocationIndex === index
+                            ? 0
+                            : 1,
+                        width:
+                          tempSelectedLocationIndex === index
+                            ? '650px'
+                            : '650px',
+                        maxWidth:
+                          tempSelectedLocationIndex === index
+                            ? '100%'
+                            : '100%',
+
+                        mb: 1,
+                      }}
+                    >
+                      <Button
+                        key={location}
+                        variant={
+                          tempSelectedLocationIndex === index
+                            ? 'contained'
+                            : 'outlined'
+                        }
+                        onClick={() =>
+                          handleTempLocationChange(index)
+                        }
+                        sx={{ width: '650px', maxWidth: '100%' }}
+                      >
+                        {location}
+                      </Button>
+                    </Box>
+                  ))}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '100%',
+                    }}
+                  >
+                    {' '}
+                    <Button
+                      variant="outlined"
+                      onClick={handleLocationChangeConfirm}
+                      sx={{
+                        margin: 'auto',
+                        width: '650px',
+                        maxWidth: '100%',
+                      }}
+                      color="success"
+                    >
+                      Confirmar troca de local
+                    </Button>
+                  </Box>
+                </Box>
+              </Modal>
             </div>
             {selectedDate && (
               <div
@@ -587,7 +797,7 @@ export default function IndexUnauthTemplate() {
                   component="span"
                 >
                   {' '}
-                  R$ 80,00
+                  R$ 120,00
                 </Box>{' '}
               </Typography>
             </div>
@@ -960,16 +1170,29 @@ export default function IndexUnauthTemplate() {
         )}
       </Box>
       <Snackbar
-        open={showSnackbar}
+        open={showConfirmSnackbar}
         autoHideDuration={6000}
-        onClose={() => setShowSnackbar(false)}
+        onClose={() => setShowConfirmSnackbar(false)}
       >
         <MuiAlert
-          onClose={() => setShowSnackbar(false)}
+          onClose={() => setShowConfirmSnackbar(false)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
+          {snackbarConfirmMessage}
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar
+        open={showErrorSnackbar}
+        autoHideDuration={6000}
+        onClose={() => setShowErrorSnackbar(false)}
+      >
+        <MuiAlert
+          onClose={() => setShowErrorSnackbar(false)}
           severity="error"
           sx={{ width: '100%' }}
         >
-          {snackbarMessage}
+          {snackbarErrorMessage}
         </MuiAlert>
       </Snackbar>
       <Modal open={open} onClose={handleCloseModal}>
@@ -982,18 +1205,33 @@ export default function IndexUnauthTemplate() {
             bgcolor: 'background.paper',
             boxShadow: 24,
             p: 2,
-            width: '90%',
+            width: '700px',
+            maxWidth: '90%',
           }}
         >
-          <Typography variant="h6" gutterBottom>
+          <Title
+            variant="body1"
+            sx={{
+              fontSize: '120%',
+              alignSelf: 'flex-start',
+              fontWeight: 'bold',
+              mt: 1,
+              mb: 2,
+              '@media (max-width: 740px)': {
+                mt: 0,
+                mb: 2,
+              },
+            }}
+          >
             Confirmar Avaliação
-          </Typography>
+          </Title>
+
           <Typography variant="subtitle1" gutterBottom>
             Você tem certeza que gostaria de agendar uma
             avaliação física com o Prof. Carlos no dia{' '}
-            {selectedDateCor?.toLocaleDateString('pt-BR')} às{' '}
-            {selectedTime} na Av. Alm. Cochrane, 187, no bairro
-            do Embaré em Santos?
+            {selectedDateCor?.toLocaleDateString('pt-BR')} (
+            {dayjs(selectedDateCor).format('dddd')}) às{' '}
+            {selectedTime} na {selectedLocation}?
           </Typography>
           <Box sx={{ mt: 2 }}>
             <DialogActions>

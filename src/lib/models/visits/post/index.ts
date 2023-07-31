@@ -46,7 +46,7 @@ async function postVisitModel(visitParams: {
     return visit;
   } catch (e: any) {
     console.log(
-      '[ERROR]: in models/visit/insert/index.ts:53(prisma.visit.query): ',
+      '[ERROR]: in src/lib/models/visits/post/index.ts: ',
       e.message,
       e.code,
     );

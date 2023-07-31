@@ -1,13 +1,13 @@
 const { PrismaClient } = require('@prisma/client');
 
 const availability = {
-  sunday: [],
-  monday: ['08:00', '09:00', '10:00', '11:00'],
-  tuesday: ['08:00', '09:00', '10:00', '11:00'],
+  sunday: ['08:00', '09:00', '10:00', '11:00'],
+  monday: ['11:00'],
+  tuesday: ['11:00'],
   wednesday: ['08:00', '09:00', '10:00', '11:00'],
-  thursday: ['08:00', '09:00', '10:00', '11:00'],
+  thursday: ['11:00'],
   friday: ['08:00', '09:00', '10:00', '11:00'],
-  saturday: ['08:00', '09:00', '10:00', '11:00'],
+  saturday: [],
 };
 
 const prisma = new PrismaClient();

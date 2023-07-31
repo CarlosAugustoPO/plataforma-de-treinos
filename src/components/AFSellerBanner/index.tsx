@@ -24,10 +24,11 @@ export default function AFSellerBanner() {
           fontSize="130%"
           color="primary.main"
           lineHeight="20px"
+          marginBottom="20px"
         >
-          Promoção de Lançamento
+          Avaliação Física Presencial
         </Text>
-        <Text
+        {/*<Text
           data-aos="fade-right"
           data-aos-once="true"
           color="success.main"
@@ -35,14 +36,14 @@ export default function AFSellerBanner() {
           lineHeight="20px"
         >
           Avaliação Física Presencial
-        </Text>
+          </Text>*/}
         <Box
           data-aos="fade-right"
           data-aos-once="true"
           width="170px"
           sx={{ margin: 'auto' }}
         >
-          <Text
+          {/*<Text
             color="disabled.main"
             fontSize="85%"
             align="center"
@@ -64,14 +65,21 @@ export default function AFSellerBanner() {
               {' '}
               (-20%)
             </Box>
-          </Text>
+            </Text>*/}
           <Text
             align="center"
             fontSize="200%"
             fontWeight="bold"
             lineHeight="30px"
           >
-            R$ 80,00
+            <Box
+              fontWeight="bold"
+              color="success.main"
+              component="span"
+            >
+              R$
+            </Box>{' '}
+            120,00
           </Text>
         </Box>
         <Box

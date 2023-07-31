@@ -9,7 +9,8 @@
     "test:ci": "jest --ci",
     "prepare": "husky install",
     "cdb": "npx prisma db push",
-    "truncate": "node prisma/truncate.js"
+    "truncate": "node prisma/truncate.js",
+    "seed": "node prisma/seed_af_avaliability.js"
   },
   "dependencies": {
     "@emotion/cache": "latest",

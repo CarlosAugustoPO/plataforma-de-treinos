@@ -171,8 +171,7 @@ export default function IndexUnauthTemplate() {
             data-aos-once="true"
           >
             Olá, eu sou o Treinador Carlos Augusto e gostaria de
-            convidar você para uma avaliação física presencial na
-            unidade 3 da Bluefit em Santos/SP.
+            convidar você para uma avaliação física presencial.
           </Text>
           <Text
             align="justify"
@@ -676,7 +675,7 @@ export default function IndexUnauthTemplate() {
             data-aos="fade-right"
             data-aos-once="true"
           >
-            Local de Avaliação
+            Locais de Avaliação
           </Title>
           <Text
             align="left"
@@ -689,10 +688,51 @@ export default function IndexUnauthTemplate() {
               marginRight: 'auto',
             }}
           >
-            A avaliação física é realizada na unidade 3 da
-            Bluefit em Santos/SP que fica no endereço Av. Alm.
-            Cochrane, 187 - Embaré, Santos - SP, 11040-001 com
-            horários disponíveis sob consulta.
+            A avaliação física pode ser realizada em um desses
+            locais:
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+            sx={{
+              maxWidth: '960px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            1) Bluefit - Unidade Santos 3: Av. Alm. Cochrane, 187
+            - Embaré, Santos - SP.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+            sx={{
+              maxWidth: '960px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            2) Unique Offices: Avenida Conselheiro Nébias, 703 -
+            Boqueirão, Santos - SP.
+          </Text>
+          <Text
+            align="left"
+            paragraph
+            data-aos="fade-right"
+            data-aos-once="true"
+            sx={{
+              maxWidth: '960px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            Os horários disponíveis podem e devem ser consultados
+            no ato do agendamento de acordo com a escolha do
+            local.
           </Text>
         </Box>
       </Box>
@@ -1104,7 +1144,7 @@ export default function IndexUnauthTemplate() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              Os treinos são prescritos para 4 meses.
+              Os treinos são prescritos para 4 semanas.
             </Typography>
           </AccordionDetails>
         </Accordion>

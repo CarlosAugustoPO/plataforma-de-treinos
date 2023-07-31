@@ -42,7 +42,7 @@ export default function PaymentCard() {
           Preço
         </Typography>
         <Typography variant="body2" align="left" gutterBottom>
-          <span style={{ fontWeight: 'bold' }}>R$</span> 80,00
+          <span style={{ fontWeight: 'bold' }}>R$</span> 120,00
         </Typography>
         <Typography
           variant="body2"
@@ -55,7 +55,7 @@ export default function PaymentCard() {
           O pagamento da avaliação física é feito via Stripe, um
           dos sistemas de pagamento online mais seguros e
           confiáveis do mundo. Para garantir sua reserva, você
-          precisa pagar o valor de R$ 80,00, aguardar a
+          precisa pagar o valor de R$ 120,00, aguardar a
           confirmação de pagamento e pronto! Sua avaliação física
           está garantida.
         </Typography>
