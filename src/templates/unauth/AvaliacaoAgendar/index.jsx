@@ -275,14 +275,14 @@ export default function IndexUnauthTemplate() {
         accompanimentEmail: data.accompanimentEmail,
         accompanimentName: data.accompanimentName,
         plusInfo: data.plusInfo,
-        location: location,
+        location: selectedLocation,
         description: `
         Avaliação física, com o Avaliador Carlos Augusto, ${dayjs(
           selectedDateCor,
         ).format('dddd')},
         dia ${selectedDateCor?.toLocaleDateString('pt-BR')},
         das ${selectedTime} às ${finalTime},
-        em ${location}`,
+        em ${selectedLocation}`,
       },
     );
 
