@@ -115,6 +115,7 @@ function ResultadoAvaliacaoFisica() {
     massaMuscularBia: 35.9,
     idadeCorporal: 36,
     gorduraVisceral: 9,
+    tmb: 1550,
     planejaRefeicoes: '',
     preparaRefeicoes: '',
     numeroRefeicoes: '',

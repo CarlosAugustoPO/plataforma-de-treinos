@@ -90,7 +90,7 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Peso gordo:{' '}
+              Peso gordo (Pollock 7 dobras):{' '}
             </Box>
             {pesoGordo.toFixed(1)} kg
           </Typography>
@@ -98,7 +98,7 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>
             <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Peso magro:{' '}
+              Peso magro (Pollock 7 dobras):{' '}
             </Box>
             {pesoMagro.toFixed(1)} kg
           </Typography>
@@ -142,6 +142,16 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
                 Idade corporal:{' '}
               </Box>
               {dadosDaAvaliacao.idadeCorporal} Anos
+            </Typography>
+          </Grid>
+        ) : null}
+        {dadosDaAvaliacao.tmb ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Taxa metabólica basal:{' '}
+              </Box>
+              {dadosDaAvaliacao.tmb} kcal
             </Typography>
           </Grid>
         ) : null}
