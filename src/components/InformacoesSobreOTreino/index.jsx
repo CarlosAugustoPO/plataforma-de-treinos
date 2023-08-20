@@ -59,6 +59,19 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.quantidadeDeTreinosPorSemana}
         </Typography>
       </Grid>
+      {dadosDaAvaliacao.quantidadeDeTreinosPorSemanaPretendido ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Quantas vezes por semana você pretende treinar
+              musculação?{' '}
+            </Box>
+            {
+              dadosDaAvaliacao.quantidadeDeTreinosPorSemanaPretendido
+            }
+          </Typography>
+        </Grid>
+      ) : null}
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -89,22 +102,28 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           </Typography>
         </Grid>
       ) : null}
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Quais exercícios você tem mais dificuldade de fazer?{' '}
-          </Box>
-          {dadosDaAvaliacao.exerciciosComDificuldades}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Há quanto tempo você pratica exercícios aeróbios?{' '}
-          </Box>
-          {dadosDaAvaliacao.tempoExerciciosAerobios}
-        </Typography>
-      </Grid>
+
+      {dadosDaAvaliacao.exerciciosComDificuldades ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Quais exercícios você tem mais dificuldade de
+              fazer?{' '}
+            </Box>
+            {dadosDaAvaliacao.exerciciosComDificuldades}
+          </Typography>
+        </Grid>
+      ) : null}
+      {dadosDaAvaliacao.tempoExerciciosAerobios ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Há quanto tempo você pratica exercícios aeróbios?{' '}
+            </Box>
+            {dadosDaAvaliacao.tempoExerciciosAerobios}
+          </Typography>
+        </Grid>
+      ) : null}
       {dadosDaAvaliacao.horarioExerciciosAerobios ? (
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>

@@ -97,13 +97,14 @@ const InformacoesSobreASaude = ({ dadosDaAvaliacao }) => {
             : 'Não'}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <strong>FC de repouso:</strong>{' '}
-          {dadosDaAvaliacao.fcRepouso}
-        </Typography>
-      </Grid>
-
+      {dadosDaAvaliacao.fcRepouso ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <strong>FC de repouso:</strong>{' '}
+            {dadosDaAvaliacao.fcRepouso}
+          </Typography>
+        </Grid>
+      ) : null}
       {dadosDaAvaliacao.paRepouso ? (
         <Grid item xs={12} sm={12}>
           <Typography align={isSmallScreen ? 'left' : 'left'}>

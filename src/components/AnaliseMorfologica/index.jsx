@@ -32,7 +32,6 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
     coxa +
     (axilarMedia ? axilarMedia : panturrilha);
 
-
   const calcularDensidadeCorporal = (dadosDaAvaliacao) => {
     var genero = dadosDaAvaliacao.genero;
 
@@ -115,16 +114,16 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             </Typography>
           </Grid>
         ) : null}
-
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Percentual de massa muscular bioimpedância:{' '}
-            </Box>
-            {dadosDaAvaliacao.massaMuscularBia}%
-          </Typography>
-        </Grid>
-
+        {dadosDaAvaliacao.massaMuscularBia ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Percentual de massa muscular bioimpedância:{' '}
+              </Box>
+              {dadosDaAvaliacao.massaMuscularBia}%
+            </Typography>
+          </Grid>
+        ) : null}
         {dadosDaAvaliacao.gorduraVisceral ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>

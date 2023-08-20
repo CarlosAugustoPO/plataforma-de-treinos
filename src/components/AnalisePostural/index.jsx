@@ -22,7 +22,7 @@ const AnalisePostural = ({ dadosDaAvaliacao }) => {
           </Box>
           {dadosDaAvaliacao.desvioPostural
             ? dadosDaAvaliacao.desvioPostural
-            : 'Não'}
+            : 'Sem desvios posturais informados'}
         </Typography>
       </Grid>
     </Grid>

@@ -60,22 +60,27 @@ const ObjetivosExpectativas = ({ dadosDaAvaliacao }) => {
         </Grid>
       ) : null}
 
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Você pretende melhorar a flexibilidade?{' '}
-          </Box>
-          {dadosDaAvaliacao.pretendeMelhorarFlexibilidade}
-        </Typography>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Quais seus objetivos com a flexibilidade?{' '}
-          </Box>
-          {dadosDaAvaliacao.objetivosComFlexibilidade}
-        </Typography>
-      </Grid>
+      {dadosDaAvaliacao.pretendeMelhorarFlexibilidade ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Você pretende melhorar a flexibilidade?{' '}
+            </Box>
+            {dadosDaAvaliacao.pretendeMelhorarFlexibilidade}
+          </Typography>
+        </Grid>
+      ) : null}
+
+      {dadosDaAvaliacao.objetivosComFlexibilidade ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Quais seus objetivos com a flexibilidade?{' '}
+            </Box>
+            {dadosDaAvaliacao.objetivosComFlexibilidade}
+          </Typography>
+        </Grid>
+      ) : null}
 
       {dadosDaAvaliacao.comoPossoTeAjudar ? (
         <Grid item xs={12} sm={12}>
