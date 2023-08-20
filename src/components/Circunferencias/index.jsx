@@ -105,14 +105,16 @@ const Circunferencias = ({ dadosDaAvaliacao }) => {
           {dadosDaAvaliacao.circunferenciaBracoContraido} cm
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Circunferência de Tórax:{' '}
-          </Box>
-          {dadosDaAvaliacao.circunferenciaTorax} cm
-        </Typography>
-      </Grid>
+      {dadosDaAvaliacao.circunferenciaTorax ? (
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Circunferência de Tórax:{' '}
+            </Box>
+            {dadosDaAvaliacao.circunferenciaTorax} cm
+          </Typography>
+        </Grid>
+      ) : null}
       <Grid item xs={12} sm={12}>
         <Typography align={isSmallScreen ? 'left' : 'left'}>
           <Box component="span" sx={{ fontWeight: 'bold' }}>

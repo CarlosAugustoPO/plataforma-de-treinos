@@ -312,16 +312,18 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          <TableRow>
-            <TableCell key="pollock" align="left">
-              Circunferencia de Tórax
-            </TableCell>
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.circunferenciaTorax} cm
+          {dadosDoGrafico.circunferenciaTorax ? (
+            <TableRow>
+              <TableCell key="pollock" align="left">
+                Circunferencia de Tórax
               </TableCell>
-            ))}
-          </TableRow>
+              {dadosDoGrafico.map((item) => (
+                <TableCell key={item.data} align="left">
+                  {item.circunferenciaTorax} cm
+                </TableCell>
+              ))}
+            </TableRow>
+          ) : null}
           <TableRow>
             <TableCell key="pollock" align="left">
               Circunferencia de Antebraço
