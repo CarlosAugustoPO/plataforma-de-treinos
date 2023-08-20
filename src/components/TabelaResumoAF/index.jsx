@@ -186,7 +186,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
           </TableRow>
           {dadosDoGrafico.map((item) =>
             item.porcentagemDeGorduraBia ? (
-              <TableRow>
+              <TableRow key="pollock">
                 <TableCell key="pollock" align="left">
                   %G Bioimpedância
                 </TableCell>
@@ -199,7 +199,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
 
           {dadosDoGrafico.map((item) =>
             item.idadeCorporal ? (
-              <TableRow>
+              <TableRow key="pollock">
                 <TableCell key="pollock" align="left">
                   Idade Corporal Bioimpedância
                 </TableCell>
@@ -212,7 +212,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
 
           {dadosDoGrafico.map((item) =>
             item.gorduraVisceral ? (
-              <TableRow>
+              <TableRow key="pollock">
                 <TableCell key="pollock" align="left">
                   Gordura Visceral Bioimpedância
                 </TableCell>
@@ -365,7 +365,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
 
           {dadosDoGrafico.map((item) =>
             item.fcRepouso ? (
-              <TableRow>
+              <TableRow key="pollock">
                 <TableCell key="pollock" align="left">
                   FC de Repouso
                 </TableCell>
@@ -378,7 +378,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
 
           {dadosDoGrafico.map((item) =>
             item.paRepouso ? (
-              <TableRow>
+              <TableRow key="pollock">
                 <TableCell key="pollock" align="left">
                   PA de Repouso
                 </TableCell>
