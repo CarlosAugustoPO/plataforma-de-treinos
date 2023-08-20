@@ -14,7 +14,7 @@ export default function PasswordField(props: {
   lastFieldError: string;
   wrongPasswordError?: string;
   clearErrors: (password: 'password') => void;
-  register: (password: 'password', validation: {}) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

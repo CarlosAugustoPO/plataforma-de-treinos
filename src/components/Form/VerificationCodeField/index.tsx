@@ -6,10 +6,7 @@ import type { Dispatch, SetStateAction } from 'react';
 export default function VerificationCodeField(props: {
   errors: any;
   clearErrors: (verificationCode: 'verificationCode') => void;
-  register: (
-    verificationCode: 'verificationCode',
-    validation: {},
-  ) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

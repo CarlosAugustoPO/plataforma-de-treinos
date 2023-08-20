@@ -14,7 +14,7 @@ export default function PassWordFieldWithConfirm(props: {
   passwordErrors: any;
   confirmPasswordErrors: any;
   clearErrors: (id: string) => void;
-  register: (id: string, validation: {}) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

@@ -17,7 +17,7 @@ export default function FirstNameField(props: {
   required?: boolean;
   autoFocus?: boolean;
   clearErrors: (registerName: string) => void;
-  register: (registerName: string, validation: {}) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

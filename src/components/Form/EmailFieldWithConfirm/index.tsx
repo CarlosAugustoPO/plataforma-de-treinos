@@ -12,7 +12,7 @@ export default function EmailFieldWithConfirm(props: {
   confirmEmailErrors: any;
   emailExistsError: undefined | string;
   clearErrors: (registerName: string) => void;
-  register: (registerName: string, validation: {}) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

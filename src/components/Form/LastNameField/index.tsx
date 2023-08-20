@@ -6,7 +6,7 @@ import type { Dispatch, SetStateAction } from 'react';
 export default function LastNameField(props: {
   errors: any;
   clearErrors: (lastName: 'lastName') => void;
-  register: (lastName: 'lastName', validation: {}) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

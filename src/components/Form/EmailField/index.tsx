@@ -19,8 +19,8 @@ export default function EmailField(props: {
   errors: any;
   lastFieldError: string;
   fieldLabel?: string;
-  clearErrors: (registerEmail: string) => void;
-  register: (registerEmail: string, validation: {}) => void;
+  clearErrors: any;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;

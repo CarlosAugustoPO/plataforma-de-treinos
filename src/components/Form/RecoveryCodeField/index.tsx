@@ -6,10 +6,7 @@ import type { Dispatch, SetStateAction } from 'react';
 export default function RecoveryCodeField(props: {
   errors: any;
   clearErrors: (recoveryCode: 'recoveryCode') => void;
-  register: (
-    recoveryCode: 'recoveryCode',
-    validation: {},
-  ) => void;
+  register: any;
   setLastFieldError: Dispatch<
     SetStateAction<string | undefined>
   >;
