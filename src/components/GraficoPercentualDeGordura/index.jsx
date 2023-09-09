@@ -1,4 +1,5 @@
 import { useTheme } from '@mui/material';
+import React, { useState } from 'react';
 
 import {
   LineChart,
@@ -8,11 +9,23 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from 'recharts';
 
-const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
+const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
   const theme = useTheme();
-  const CustomizedLabel = ({ x, y, index, value }) => {
+  const [hiddenSeries, setHiddenSeries] = useState([]);
+  const toggleSeries = (dataKey) => {
+    if (hiddenSeries.includes(dataKey)) {
+      setHiddenSeries(
+        hiddenSeries.filter((key) => key !== dataKey),
+      );
+    } else {
+      setHiddenSeries([...hiddenSeries, dataKey]);
+    }
+  };
+
+  const CustomizedLabel = ({ x, y, index, value, color }) => {
     const theme = useTheme();
     if (index === 0) {
       return (
@@ -21,7 +34,7 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           y={y}
           dx={45}
           dy={30}
-          fill={theme.palette.primary.main}
+          fill={color}
           fontSize={14}
           textAnchor="end"
         >
@@ -36,7 +49,7 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           y={y}
           dx={20}
           dy={30}
-          fill={theme.palette.primary.main}
+          fill={color}
           fontSize={14}
           textAnchor="end"
         >
@@ -51,7 +64,7 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           y={y}
           dx={-1}
           dy={30}
-          fill={theme.palette.primary.main}
+          fill={color}
           fontSize={14}
           textAnchor="end"
         >
@@ -101,24 +114,47 @@ const GraficoPollock7Dobras = ({ dadosDoGrafico }) => {
           stroke={theme.palette.text.primary}
           tick={renderCustomAxisTick}
         />
-        <YAxis unit=" %" stroke={theme.palette.text.primary} />
+        <YAxis unit="%" stroke={theme.palette.text.primary} />
         <Tooltip
-          formatter={(value) => `${value} %`}
+          formatter={(value) => `${value}%`}
           contentStyle={{
             backgroundColor: theme.palette.background.paper,
           }} // usando a variável CSS
         />
+        {dadosDoGrafico.map((item) => (
+          <>
+            {item.pollock7dobras !== '' && (
+              <Line
+                type="monotone"
+                dataKey="pollock7dobras"
+                stroke="#8884d8"
+                strokeWidth={2}
+                name="Pollock 7 dobras"
+                hide={hiddenSeries.includes('pollock7dobras')}
+                label={(props) => (
+                  <CustomizedLabel
+                    {...props}
+                    color={theme.palette.primary.main}
+                  />
+                )}
+              />
+            )}
+          </>
+        ))}
 
-        <Line
-          type="monotone"
-          dataKey="pollock7dobras"
-          stroke="#8884d8"
-          strokeWidth={2}
-          label={<CustomizedLabel />}
+        <Legend
+          verticalAlign="top"
+          align="left" // Alinhar à direita
+          iconSize={20} // Tamanho do ícone
+          onClick={(e) => toggleSeries(e.dataKey)}
+          wrapperStyle={{
+            paddingLeft: '70px',
+            paddingBottom: '20px',
+          }} // Ajuste de espaço à direita
         />
       </LineChart>
     </ResponsiveContainer>
   );
 };
 
-export default GraficoPollock7Dobras;
+export default GraficoPesoCorporal;

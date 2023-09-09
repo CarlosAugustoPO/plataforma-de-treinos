@@ -1,6 +1,7 @@
 import React from 'react';
-import GraficoPesoCorporal from 'src/components/GraficoPesoCorporal';
-import GraficoPollock7Dobras from 'src/components/GraficoPollock7Dobras';
+import GraficoComposicaoCorporal from 'src/components/GraficoComposicaoCorporal';
+import GraficoPercentualDeGordura from 'src/components/GraficoPercentualDeGordura';
+import GraficoDobrasCutaneas from 'src/components/GraficoDobrasCutaneas';
 import DobrasCutaneas from 'src/components/DobrasCutaneas';
 import TabelaResumoAF from 'src/components/TabelaResumoAF';
 import InformacoesPessoais from 'src/components/InformacoesPessoais';
@@ -99,10 +100,11 @@ function ResultadoAvaliacaoFisica() {
     circunferenciaDePanturrilha: 35,
     circunferenciaBracoRelaxado: 29,
     circunferenciaBracoContraido: 30.5,
-    circunferenciaTorax: '',
+    circunferenciaTorax: 22,
     circunferenciaAntebraco: 27,
     circunferenciaCoxa: 50,
     circunferenciaTornozelo: 21,
+    dobraCutaneaAxilarMedia: 18,
     dobraCutaneaPeitoral: 17,
     dobraCutaneaAbdominal: 20,
     dobraCutaneaTricipital: 9,
@@ -110,7 +112,6 @@ function ResultadoAvaliacaoFisica() {
     dobraCutaneaSuprailiaca: 15,
     dobraCutaneaCoxa: 15,
     dobraCutaneaPanturrilha: 8,
-    dobraCutaneaAxilarMedia: 18,
     porcentagemDeGorduraBia: 24.5,
     massaMuscularBia: 35.9,
     idadeCorporal: 36,
@@ -187,10 +188,11 @@ function ResultadoAvaliacaoFisica() {
       4.5) *
     100;
   // Cálculo de Gordura em KG Pollock 7 Dobras
-  const pesoGordo =
+  const pesoGordoAtual =
     (pollock7dobras / 100) * dadosDaAvaliacaoAtual.pesoAtual;
   // Cálculo de Massa Magra em KG Pollock 7 Dobras
-  const pesoMagro = dadosDaAvaliacaoAtual.pesoAtual - pesoGordo;
+  const pesoMagroAtual =
+    dadosDaAvaliacaoAtual.pesoAtual - pesoGordoAtual;
 
   const calcularIMC = (altura, peso) => {
     return (peso / (altura * altura)).toFixed(1);
@@ -208,13 +210,13 @@ function ResultadoAvaliacaoFisica() {
 
   const dadosDoGrafico = [
     {
-      data: dadosDaAvaliacaoAtual.dataDaAvaliação,
+      data: '20/08/2023',
       peso: dadosDaAvaliacaoAtual.pesoAtual,
       idade: dadosDaAvaliacaoAtual.idade,
       imc: imcAtual,
       pollock7dobras: pollock7dobras.toFixed(1),
-      pesoMagro: pesoMagro.toFixed(1),
-      pesoGordo: pesoGordo.toFixed(1),
+      pesoMagro: pesoMagroAtual.toFixed(1),
+      pesoGordo: pesoGordoAtual.toFixed(1),
       massaMuscularBia: dadosDaAvaliacaoAtual.massaMuscularBia,
       porcentagemDeGorduraBia:
         dadosDaAvaliacaoAtual.porcentagemDeGorduraBia,
@@ -245,6 +247,120 @@ function ResultadoAvaliacaoFisica() {
       circunferenciaTornozelo:
         dadosDaAvaliacaoAtual.circunferenciaTornozelo,
       rcq: rcqAtual,
+      dobraCutaneaAxilarMedia:
+        dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia,
+      dobraCutaneaPeitoral:
+        dadosDaAvaliacaoAtual.dobraCutaneaPeitoral,
+      dobraCutaneaAbdominal:
+        dadosDaAvaliacaoAtual.dobraCutaneaAbdominal,
+      dobraCutaneaTricipital:
+        dadosDaAvaliacaoAtual.dobraCutaneaTricipital,
+      dobraCutaneaSubescapular:
+        dadosDaAvaliacaoAtual.dobraCutaneaSubescapular,
+      dobraCutaneaSuprailiaca:
+        dadosDaAvaliacaoAtual.dobraCutaneaSuprailiaca,
+      dobraCutaneaCoxa: dadosDaAvaliacaoAtual.dobraCutaneaCoxa,
+      dobraCutaneaPanturrilha:
+        dadosDaAvaliacaoAtual.dobraCutaneaPanturrilha,
+      fcRepouso: dadosDaAvaliacaoAtual.fcRepouso,
+      paRepouso: dadosDaAvaliacaoAtual.paRepouso,
+    },
+    {
+      data: '20/07/2023',
+      peso: dadosDaAvaliacaoAtual.pesoAtual,
+      idade: dadosDaAvaliacaoAtual.idade,
+      imc: imcAtual,
+      pollock7dobras: pollock7dobras.toFixed(1),
+      pesoMagro: pesoMagroAtual.toFixed(1),
+      pesoGordo: pesoGordoAtual.toFixed(1),
+      massaMuscularBia: dadosDaAvaliacaoAtual.massaMuscularBia,
+      porcentagemDeGorduraBia:
+        dadosDaAvaliacaoAtual.porcentagemDeGorduraBia,
+      gorduraVisceral: dadosDaAvaliacaoAtual.gorduraVisceral,
+      idadeCorporal: dadosDaAvaliacaoAtual.idadeCorporal,
+      circunferenciaDePunho:
+        dadosDaAvaliacaoAtual.circunferenciaDePunho,
+      circunferenciaDeAbdomen:
+        dadosDaAvaliacaoAtual.circunferenciaDeAbdomen,
+      circunferenciaDePescoco:
+        dadosDaAvaliacaoAtual.circunferenciaDePescoco,
+      circunferenciaDeCintura:
+        dadosDaAvaliacaoAtual.circunferenciaDeCintura,
+      circunferenciaDeQuadril:
+        dadosDaAvaliacaoAtual.circunferenciaDeQuadril,
+      circunferenciaDePanturrilha:
+        dadosDaAvaliacaoAtual.circunferenciaDePanturrilha,
+      circunferenciaBracoRelaxado:
+        dadosDaAvaliacaoAtual.circunferenciaBracoRelaxado,
+      circunferenciaBracoContraido:
+        dadosDaAvaliacaoAtual.circunferenciaBracoContraido,
+      circunferenciaTorax:
+        dadosDaAvaliacaoAtual.circunferenciaTorax,
+      circunferenciaAntebraco:
+        dadosDaAvaliacaoAtual.circunferenciaAntebraco,
+      circunferenciaCoxa:
+        dadosDaAvaliacaoAtual.circunferenciaCoxa,
+      circunferenciaTornozelo:
+        dadosDaAvaliacaoAtual.circunferenciaTornozelo,
+      rcq: rcqAtual,
+      dobraCutaneaAxilarMedia:
+        dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia,
+      dobraCutaneaPeitoral:
+        dadosDaAvaliacaoAtual.dobraCutaneaPeitoral,
+      dobraCutaneaAbdominal:
+        dadosDaAvaliacaoAtual.dobraCutaneaAbdominal,
+      dobraCutaneaTricipital:
+        dadosDaAvaliacaoAtual.dobraCutaneaTricipital,
+      dobraCutaneaSubescapular:
+        dadosDaAvaliacaoAtual.dobraCutaneaSubescapular,
+      dobraCutaneaSuprailiaca:
+        dadosDaAvaliacaoAtual.dobraCutaneaSuprailiaca,
+      dobraCutaneaCoxa: dadosDaAvaliacaoAtual.dobraCutaneaCoxa,
+      dobraCutaneaPanturrilha:
+        dadosDaAvaliacaoAtual.dobraCutaneaPanturrilha,
+      fcRepouso: dadosDaAvaliacaoAtual.fcRepouso,
+      paRepouso: dadosDaAvaliacaoAtual.paRepouso,
+    },
+    {
+      data: dadosDaAvaliacaoAtual.dataDaAvaliação,
+      peso: dadosDaAvaliacaoAtual.pesoAtual,
+      idade: dadosDaAvaliacaoAtual.idade,
+      imc: imcAtual,
+      pollock7dobras: pollock7dobras.toFixed(1),
+      pesoMagro: pesoMagroAtual.toFixed(1),
+      pesoGordo: pesoGordoAtual.toFixed(1),
+      massaMuscularBia: dadosDaAvaliacaoAtual.massaMuscularBia,
+      porcentagemDeGorduraBia:
+        dadosDaAvaliacaoAtual.porcentagemDeGorduraBia,
+      gorduraVisceral: dadosDaAvaliacaoAtual.gorduraVisceral,
+      idadeCorporal: dadosDaAvaliacaoAtual.idadeCorporal,
+      circunferenciaDePunho:
+        dadosDaAvaliacaoAtual.circunferenciaDePunho,
+      circunferenciaDeAbdomen:
+        dadosDaAvaliacaoAtual.circunferenciaDeAbdomen,
+      circunferenciaDePescoco:
+        dadosDaAvaliacaoAtual.circunferenciaDePescoco,
+      circunferenciaDeCintura:
+        dadosDaAvaliacaoAtual.circunferenciaDeCintura,
+      circunferenciaDeQuadril:
+        dadosDaAvaliacaoAtual.circunferenciaDeQuadril,
+      circunferenciaDePanturrilha:
+        dadosDaAvaliacaoAtual.circunferenciaDePanturrilha,
+      circunferenciaBracoRelaxado:
+        dadosDaAvaliacaoAtual.circunferenciaBracoRelaxado,
+      circunferenciaBracoContraido:
+        dadosDaAvaliacaoAtual.circunferenciaBracoContraido,
+      circunferenciaTorax:
+        dadosDaAvaliacaoAtual.circunferenciaTorax,
+      circunferenciaAntebraco:
+        dadosDaAvaliacaoAtual.circunferenciaAntebraco,
+      circunferenciaCoxa:
+        dadosDaAvaliacaoAtual.circunferenciaCoxa,
+      circunferenciaTornozelo:
+        dadosDaAvaliacaoAtual.circunferenciaTornozelo,
+      rcq: rcqAtual,
+      dobraCutaneaAxilarMedia:
+        dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia,
       dobraCutaneaPeitoral:
         dadosDaAvaliacaoAtual.dobraCutaneaPeitoral,
       dobraCutaneaAbdominal:
@@ -377,15 +493,25 @@ function ResultadoAvaliacaoFisica() {
 
       <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
       <Title paragraph mt={2}>
-        Gráfico de Peso Corporal
+        Gráfico de Peso e Composição Corporal
       </Title>
-      <GraficoPesoCorporal dadosDoGrafico={dadosDoGrafico} />
+      <GraficoComposicaoCorporal
+        dadosDoGrafico={dadosDoGrafico}
+      />
 
       <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
       <Title paragraph mt={2}>
-        Gráfico do Pollock 7 Dobras
+        Gráfico do Percentual de Gordura
       </Title>
-      <GraficoPollock7Dobras dadosDoGrafico={dadosDoGrafico} />
+      <GraficoPercentualDeGordura
+        dadosDoGrafico={dadosDoGrafico}
+      />
+
+      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+      <Title paragraph mt={2}>
+        Gráfico de Dobras Cutâneas
+      </Title>
+      <GraficoDobrasCutaneas dadosDoGrafico={dadosDoGrafico} />
     </Box>
   );
 }

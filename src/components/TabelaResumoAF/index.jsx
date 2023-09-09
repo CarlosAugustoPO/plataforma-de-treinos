@@ -312,7 +312,7 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          {dadosDoGrafico.circunferenciaTorax ? (
+          {!dadosDoGrafico.circunferenciaTorax ? (
             <TableRow>
               <TableCell key="pollock" align="left">
                 Circunferencia de Tórax
