@@ -153,7 +153,6 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-
           <TableRow>
             <TableCell key="pollock" align="left">
               Pollock 7 dobras
@@ -184,44 +183,39 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          {dadosDoGrafico.map((item) =>
-            item.porcentagemDeGorduraBia ? (
-              <TableRow key="pollock">
-                <TableCell key="pollock" align="left">
-                  %G Bioimpedância
-                </TableCell>
+          {dadosDoGrafico[dadosDoGrafico.length - 1]
+            ?.porcentagemDeGorduraBia === '' ? null : (
+            <TableRow>
+              <TableCell key="pollock" align="left">
+                %G Bioimpedância
+              </TableCell>
+              {dadosDoGrafico.map((item) => (
                 <TableCell key={item.data} align="left">
                   {item.porcentagemDeGorduraBia} %
                 </TableCell>
-              </TableRow>
-            ) : null,
+              ))}
+            </TableRow>
           )}
-
-          {dadosDoGrafico.map((item) =>
-            item.idadeCorporal ? (
-              <TableRow key="pollock">
-                <TableCell key="pollock" align="left">
-                  Idade Corporal Bioimpedância
-                </TableCell>
-                <TableCell key={item.data} align="left">
-                  {item.idadeCorporal} Anos
-                </TableCell>
-              </TableRow>
-            ) : null,
-          )}
-
-          {dadosDoGrafico.map((item) =>
-            item.gorduraVisceral ? (
-              <TableRow key="pollock">
-                <TableCell key="pollock" align="left">
-                  Gordura Visceral Bioimpedância
-                </TableCell>
-                <TableCell key={item.data} align="left">
-                  {item.gorduraVisceral} kg
-                </TableCell>
-              </TableRow>
-            ) : null,
-          )}
+          <TableRow>
+            <TableCell key="pollock" align="left">
+              Idade Corporal Bioimpedância
+            </TableCell>
+            {dadosDoGrafico.map((item) => (
+              <TableCell key={item.data} align="left">
+                {item.idadeCorporal} anos
+              </TableCell>
+            ))}
+          </TableRow>
+          <TableRow>
+            <TableCell key="pollock" align="left">
+              Gordura Visceral Bioimpedância
+            </TableCell>
+            {dadosDoGrafico.map((item) => (
+              <TableCell key={item.data} align="left">
+                {item.gorduraVisceral} kg
+              </TableCell>
+            ))}
+          </TableRow>
           <TableRow>
             <TableCell key="pollock" align="left">
               Massa Muscular Bioimpedância
@@ -312,7 +306,23 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-          {!dadosDoGrafico.circunferenciaTorax ? (
+          {/* FAZER COM QUE QUALQUER VALOR INDEFINIDO SEJA NA AF ANTERIOR, ATUAL OU NA PRIMEIRA,INIBA A CC DE TÓRAX
+          {dadosDoGrafico.some(
+          //   (p) => p.circunferenciaTorax === '',
+          // ) ? null : (
+          //   <TableRow>
+          //     <TableCell key="pollock" align="left">
+          //       Circunferencia de Tórax
+          //     </TableCell>
+          //     {dadosDoGrafico.map((item) => (
+          //       <TableCell key={item.data} align="left">
+          //         {item.circunferenciaTorax} cm
+          //       </TableCell>
+          //     ))}
+          //   </TableRow>
+          // )}*/}
+          {dadosDoGrafico[dadosDoGrafico.length - 1]
+            ?.circunferenciaTorax === '' ? null : (
             <TableRow>
               <TableCell key="pollock" align="left">
                 Circunferencia de Tórax
@@ -323,7 +333,8 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
                 </TableCell>
               ))}
             </TableRow>
-          ) : null}
+            //faz com que apenas a ausencia do valor na af atual iniba a cc de toráx
+          )}
           <TableRow>
             <TableCell key="pollock" align="left">
               Circunferencia de Antebraço
@@ -364,31 +375,31 @@ const TabelaPesoCorporal = ({ dadosDoGrafico }) => {
               </TableCell>
             ))}
           </TableRow>
-
-          {dadosDoGrafico.map((item) =>
-            item.fcRepouso ? (
-              <TableRow key="pollock">
-                <TableCell key="pollock" align="left">
-                  FC de Repouso
-                </TableCell>
+          {dadosDoGrafico[dadosDoGrafico.length - 1]
+            ?.fcRepouso === '' ? null : (
+            <TableRow key="pollock">
+              <TableCell key="pollock" align="left">
+                FC de Repouso
+              </TableCell>
+              {dadosDoGrafico.map((item) => (
                 <TableCell key={item.data} align="left">
-                  {item.fcRepouso}
+                  {item.fcRepouso} bpm
                 </TableCell>
-              </TableRow>
-            ) : null,
+              ))}
+            </TableRow>
           )}
-
-          {dadosDoGrafico.map((item) =>
-            item.paRepouso ? (
-              <TableRow key="pollock">
-                <TableCell key="pollock" align="left">
-                  PA de Repouso
-                </TableCell>
+          {dadosDoGrafico[dadosDoGrafico.length - 1]
+            ?.paRepouso === '' ? null : (
+            <TableRow key="pollock">
+              <TableCell key="pollock" align="left">
+                PA de Repouso
+              </TableCell>
+              {dadosDoGrafico.map((item) => (
                 <TableCell key={item.data} align="left">
                   {item.paRepouso}
                 </TableCell>
-              </TableRow>
-            ) : null,
+              ))}
+            </TableRow>
           )}
         </TableBody>
       </Table>

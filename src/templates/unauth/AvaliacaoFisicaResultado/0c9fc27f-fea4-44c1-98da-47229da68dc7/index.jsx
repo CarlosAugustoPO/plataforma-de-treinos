@@ -100,7 +100,7 @@ function ResultadoAvaliacaoFisica() {
     circunferenciaDePanturrilha: 35,
     circunferenciaBracoRelaxado: 29,
     circunferenciaBracoContraido: 30.5,
-    circunferenciaTorax: 22,
+    circunferenciaTorax: '',
     circunferenciaAntebraco: 27,
     circunferenciaCoxa: 50,
     circunferenciaTornozelo: 21,
@@ -212,7 +212,7 @@ function ResultadoAvaliacaoFisica() {
     {
       data: '20/08/2023',
       peso: dadosDaAvaliacaoAtual.pesoAtual,
-      idade: dadosDaAvaliacaoAtual.idade,
+      idade: '41',
       imc: imcAtual,
       pollock7dobras: pollock7dobras.toFixed(1),
       pesoMagro: pesoMagroAtual.toFixed(1),
@@ -238,8 +238,7 @@ function ResultadoAvaliacaoFisica() {
         dadosDaAvaliacaoAtual.circunferenciaBracoRelaxado,
       circunferenciaBracoContraido:
         dadosDaAvaliacaoAtual.circunferenciaBracoContraido,
-      circunferenciaTorax:
-        dadosDaAvaliacaoAtual.circunferenciaTorax,
+      circunferenciaTorax: 100,
       circunferenciaAntebraco:
         dadosDaAvaliacaoAtual.circunferenciaAntebraco,
       circunferenciaCoxa:
@@ -268,15 +267,14 @@ function ResultadoAvaliacaoFisica() {
     {
       data: '20/07/2023',
       peso: dadosDaAvaliacaoAtual.pesoAtual,
-      idade: dadosDaAvaliacaoAtual.idade,
+      idade: '42',
       imc: imcAtual,
       pollock7dobras: pollock7dobras.toFixed(1),
       pesoMagro: pesoMagroAtual.toFixed(1),
       pesoGordo: pesoGordoAtual.toFixed(1),
-      massaMuscularBia: dadosDaAvaliacaoAtual.massaMuscularBia,
-      porcentagemDeGorduraBia:
-        dadosDaAvaliacaoAtual.porcentagemDeGorduraBia,
-      gorduraVisceral: dadosDaAvaliacaoAtual.gorduraVisceral,
+      massaMuscularBia: '10',
+      porcentagemDeGorduraBia: '22',
+      gorduraVisceral: '2',
       idadeCorporal: dadosDaAvaliacaoAtual.idadeCorporal,
       circunferenciaDePunho:
         dadosDaAvaliacaoAtual.circunferenciaDePunho,
@@ -294,8 +292,7 @@ function ResultadoAvaliacaoFisica() {
         dadosDaAvaliacaoAtual.circunferenciaBracoRelaxado,
       circunferenciaBracoContraido:
         dadosDaAvaliacaoAtual.circunferenciaBracoContraido,
-      circunferenciaTorax:
-        dadosDaAvaliacaoAtual.circunferenciaTorax,
+      circunferenciaTorax: 110,
       circunferenciaAntebraco:
         dadosDaAvaliacaoAtual.circunferenciaAntebraco,
       circunferenciaCoxa:
