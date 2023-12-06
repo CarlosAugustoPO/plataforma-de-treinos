@@ -1,5 +1,7 @@
 import { useTheme } from '@mui/material';
 import React, { useState } from 'react';
+import Title from 'src/components/Title/index';
+import Divider from '@mui/material/Divider';
 
 import {
   LineChart,
@@ -26,7 +28,6 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
   };
 
   const CustomizedLabel = ({ x, y, index, value, color }) => {
-    const theme = useTheme();
     if (index === 0) {
       return (
         <text
@@ -38,7 +39,7 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
           fontSize={14}
           textAnchor="end"
         >
-          {value} kg
+          {value !== null ? `${value} kg` : ''}
         </text>
       );
     }
@@ -53,7 +54,7 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
           fontSize={14}
           textAnchor="end"
         >
-          {value} kg
+          {value !== null ? `${value} kg` : ''}
         </text>
       );
     }
@@ -68,7 +69,7 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
           fontSize={14}
           textAnchor="end"
         >
-          {value} kg
+          {value !== null ? `${value} kg` : ''}
         </text>
       );
     }
@@ -104,26 +105,61 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
     );
   };
 
+  const dadosManipulados = dadosDoGrafico.map((item) => ({
+    ...item,
+    peso:
+      item.peso === '' ||
+      item.peso === 'hide' ||
+      item.peso === null
+        ? null
+        : item.peso,
+    pesoMagro:
+      item.pesoMagro === '' ||
+      item.pesoMagro === 'hide' ||
+      item.pesoMagro === null
+        ? null
+        : item.pesoMagro,
+    pesoGordo:
+      item.pesoGordo === '' ||
+      item.pesoGordo === 'hide' ||
+      item.pesoGordo === null
+        ? null
+        : item.pesoGordo,
+  }));
+
   return (
-    <ResponsiveContainer width="90%" height={400}>
-      <LineChart data={dadosDoGrafico}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="data"
-          interval="preserveEnd"
-          stroke={theme.palette.text.primary}
-          tick={renderCustomAxisTick}
-        />
-        <YAxis unit=" kg" stroke={theme.palette.text.primary} />
-        <Tooltip
-          formatter={(value) => `${value} kg`}
-          contentStyle={{
-            backgroundColor: theme.palette.background.paper,
-          }} // usando a variável CSS
-        />
-        {dadosDoGrafico.map((item) => (
+    <>
+      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+      <Title paragraph mt={2}>
+        Gráfico de Composição Corporal
+      </Title>
+      <ResponsiveContainer width="90%" height={400}>
+        <LineChart data={dadosManipulados}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="data"
+            interval="preserveEnd"
+            stroke={theme.palette.text.primary}
+            tick={renderCustomAxisTick}
+          />
+          <YAxis
+            unit=" kg"
+            stroke={theme.palette.text.primary}
+          />
+          <Tooltip
+            formatter={(value) => `${value} kg`}
+            contentStyle={{
+              backgroundColor: theme.palette.background.paper,
+            }} // usando a variável CSS
+          />
           <>
-            {item.peso !== '' && (
+            {dadosDoGrafico.some(
+              (p) =>
+                p.peso &&
+                p.peso !== '' &&
+                p.peso !== 'hide' &&
+                p.peso !== null,
+            ) ? (
               <Line
                 type="monotone"
                 dataKey="peso"
@@ -137,9 +173,17 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
                     color={'#8884d8'}
                   />
                 )}
+                connectNulls
               />
-            )}
-            {item.pesoMagro !== '' && (
+            ) : null}
+
+            {dadosDoGrafico.some(
+              (p) =>
+                p.pesoMagro &&
+                p.pesoMagro !== '' &&
+                p.pesoMagro !== 'hide' &&
+                p.pesoMagro !== null,
+            ) ? (
               <Line
                 type="monotone"
                 dataKey="pesoMagro"
@@ -153,9 +197,17 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
                     color={theme.palette.success.main}
                   />
                 )}
+                connectNulls
               />
-            )}
-            {item.pesoGordo !== '' && (
+            ) : null}
+
+            {dadosDoGrafico.some(
+              (p) =>
+                p.pesoGordo &&
+                p.pesoGordo !== '' &&
+                p.pesoGordo !== 'hide' &&
+                p.pesoGordo !== null,
+            ) ? (
               <Line
                 type="monotone"
                 dataKey="pesoGordo"
@@ -169,23 +221,24 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
                     color={theme.palette.mainIcon.main}
                   />
                 )}
+                connectNulls
               />
-            )}
+            ) : null}
           </>
-        ))}
 
-        <Legend
-          verticalAlign="top"
-          align="left" // Alinhar à direita
-          iconSize={20} // Tamanho do ícone
-          onClick={(e) => toggleSeries(e.dataKey)}
-          wrapperStyle={{
-            paddingLeft: '70px',
-            paddingBottom: '20px',
-          }} // Ajuste de espaço à direita
-        />
-      </LineChart>
-    </ResponsiveContainer>
+          <Legend
+            verticalAlign="top"
+            align="left" // Alinhar à direita
+            iconSize={20} // Tamanho do ícone
+            onClick={(e) => toggleSeries(e.dataKey)}
+            wrapperStyle={{
+              paddingLeft: '70px',
+              paddingBottom: '20px',
+            }} // Ajuste de espaço à direita
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </>
   );
 };
 

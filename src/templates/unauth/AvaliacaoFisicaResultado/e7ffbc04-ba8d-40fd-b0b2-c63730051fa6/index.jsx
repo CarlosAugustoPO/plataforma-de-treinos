@@ -1,6 +1,6 @@
 import React from 'react';
-import GraficoPesoCorporal from 'src/components/GraficoPesoCorporal';
-import GraficoPollock7Dobras from 'src/components/GraficoPollock7Dobras';
+import GraficoPercentualDeGordura from 'src/components/GraficoPercentualDeGordura';
+import GraficoComposicaoCorporal from 'src/components/GraficoComposicaoCorporal';
 import DobrasCutaneas from 'src/components/DobrasCutaneas';
 import TabelaResumoAF from 'src/components/TabelaResumoAF';
 import InformacoesPessoais from 'src/components/InformacoesPessoais';
@@ -81,7 +81,7 @@ function ResultadoAvaliacaoFisica() {
     amamentando: 'Amamentou 10 anos atrás, por 2 anos',
     cirurgiaPassada: 'Hérnia umbilical e femural',
     tempoCirurgiaPassada: 'Há + de 10 anos',
-    fcRepouso: '70 bpm',
+    fcRepouso: '70',
     paRepouso: '',
     spO2: '',
     temperaturaExtremidades: 'Frias',
@@ -284,115 +284,73 @@ function ResultadoAvaliacaoFisica() {
         Data: {dadosDaAvaliacaoAtual.dataDaAvaliação}
       </Title>
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Pessoais</Title>
       <InformacoesPessoais
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph mt={2}>
-        Resumo da Avaliação Física
-      </Title>
       <TabelaResumoAF dadosDoGrafico={dadosDoGrafico} />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Objetivos e Expectativas</Title>
       <ObjetivosExpectativas
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Sobre o Treino</Title>
       <InformacoesSobreOTreino
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Pré Antropometria</Title>
       <InformacoesPreAvaliacao
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Sobre a Rotina</Title>
       <InformacoesSobreARotina
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Sobre a Saúde</Title>
       <InformacoesSobreASaude
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Histórico de Peso</Title>
       <HistoricoDePeso
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Resumo Antropométrico</Title>
       <ResumoAntropometrico
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Circunferências</Title>
       <Circunferencias
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Dobras Cutâneas</Title>
       <DobrasCutaneas dadosDaAvaliacao={dadosDaAvaliacaoAtual} />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Analíse Morfológica</Title>
       <AnaliseMorfologica
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Nutricionais</Title>
       <InformacoesNutricionais
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      {dadosDaAvaliacaoAtual.consumoAlimentarDiario ? (
-        <>
-          <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-          <Title paragraph>Recordatório Alimentar</Title>
-          <RecordatorioAlimentar
-            dadosDaAvaliacao={dadosDaAvaliacaoAtual}
-          />
-        </>
-      ) : null}
+      <RecordatorioAlimentar
+        dadosDaAvaliacao={dadosDaAvaliacaoAtual}
+      />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Analíse Postural</Title>
       <AnalisePostural
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph>Informações Adicionais</Title>
       <InformacoesAdicionais
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph mt={2}>
-        Gráfico de Peso Corporal
-      </Title>
-      <GraficoPesoCorporal dadosDoGrafico={dadosDoGrafico} />
+      <GraficoPercentualDeGordura
+        dadosDoGrafico={dadosDoGrafico}
+      />
 
-      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-      <Title paragraph mt={2}>
-        Gráfico do Pollock 7 Dobras
-      </Title>
-      <GraficoPollock7Dobras dadosDoGrafico={dadosDoGrafico} />
+      <GraficoComposicaoCorporal
+        dadosDoGrafico={dadosDoGrafico}
+      />
     </Box>
   );
 }

@@ -6,6 +6,8 @@ import {
   Box,
   Typography,
 } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import Title from 'src/components/Title/index';
 
 const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
   const theme = useTheme();
@@ -72,6 +74,8 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
 
   return (
     <>
+      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+      <Title paragraph>Analíse Morfológica</Title>
       <Grid
         container
         sx={{
@@ -79,32 +83,112 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
           paddingLeft: '05%',
         }}
       >
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Percentual de gordura (Pollock 7 dobras):{' '}
-            </Box>
-            {porcentagemDeGordura.toFixed(1)}%
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Peso gordo (Pollock 7 dobras):{' '}
-            </Box>
-            {pesoGordo.toFixed(1)} kg
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Peso magro (Pollock 7 dobras):{' '}
-            </Box>
-            {pesoMagro.toFixed(1)} kg
-          </Typography>
-        </Grid>
+        {dadosDaAvaliacao.dobraCutaneaPeitoral &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== '' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== null &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== '' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== null &&
+        dadosDaAvaliacao.dobraCutaneaTricipital &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== '' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== null &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== null &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== null &&
+        dadosDaAvaliacao.dobraCutaneaCoxa &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== '' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== null ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Percentual de gordura (Pollock 7 dobras):{' '}
+              </Box>
+              {porcentagemDeGordura.toFixed(1)}%
+            </Typography>
+          </Grid>
+        ) : null}
 
-        {dadosDaAvaliacao.porcentagemDeGorduraBia ? (
+        {dadosDaAvaliacao.dobraCutaneaPeitoral &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== '' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== null &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== '' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== null &&
+        dadosDaAvaliacao.dobraCutaneaTricipital &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== '' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== null &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== null &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== null &&
+        dadosDaAvaliacao.dobraCutaneaCoxa &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== '' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== null ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Peso gordo (Pollock 7 dobras):{' '}
+              </Box>
+              {pesoGordo.toFixed(1)} kg
+            </Typography>
+          </Grid>
+        ) : null}
+
+        {dadosDaAvaliacao.dobraCutaneaPeitoral &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== '' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaPeitoral !== null &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== '' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaAbdominal !== null &&
+        dadosDaAvaliacao.dobraCutaneaTricipital &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== '' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaTricipital !== null &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSubescapular !== null &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== '' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaSuprailiaca !== null &&
+        dadosDaAvaliacao.dobraCutaneaCoxa &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== '' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== 'hide' &&
+        dadosDaAvaliacao.dobraCutaneaCoxa !== null ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Peso magro (Pollock 7 dobras):{' '}
+              </Box>
+              {pesoMagro.toFixed(1)} kg
+            </Typography>
+          </Grid>
+        ) : null}
+
+        {dadosDaAvaliacao.porcentagemDeGorduraBia &&
+        dadosDaAvaliacao.porcentagemDeGorduraBia !== '' &&
+        dadosDaAvaliacao.porcentagemDeGorduraBia !== 'hide' &&
+        dadosDaAvaliacao.porcentagemDeGorduraBia !== null ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -114,7 +198,11 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             </Typography>
           </Grid>
         ) : null}
-        {dadosDaAvaliacao.massaMuscularBia ? (
+
+        {dadosDaAvaliacao.massaMuscularBia &&
+        dadosDaAvaliacao.massaMuscularBia !== '' &&
+        dadosDaAvaliacao.massaMuscularBia !== 'hide' &&
+        dadosDaAvaliacao.massaMuscularBia !== null ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -124,7 +212,11 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             </Typography>
           </Grid>
         ) : null}
-        {dadosDaAvaliacao.gorduraVisceral ? (
+
+        {dadosDaAvaliacao.gorduraVisceral &&
+        dadosDaAvaliacao.gorduraVisceral !== '' &&
+        dadosDaAvaliacao.gorduraVisceral !== 'hide' &&
+        dadosDaAvaliacao.gorduraVisceral !== null ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -135,7 +227,10 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
           </Grid>
         ) : null}
 
-        {dadosDaAvaliacao.idadeCorporal ? (
+        {dadosDaAvaliacao.idadeCorporal &&
+        dadosDaAvaliacao.idadeCorporal !== '' &&
+        dadosDaAvaliacao.idadeCorporal !== 'hide' &&
+        dadosDaAvaliacao.idadeCorporal !== null ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
@@ -145,7 +240,11 @@ const AnaliseMorfologica = ({ dadosDaAvaliacao }) => {
             </Typography>
           </Grid>
         ) : null}
-        {dadosDaAvaliacao.tmb ? (
+
+        {dadosDaAvaliacao.tmb &&
+        dadosDaAvaliacao.tmb !== '' &&
+        dadosDaAvaliacao.tmb !== 'hide' &&
+        dadosDaAvaliacao.tmb !== null ? (
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
