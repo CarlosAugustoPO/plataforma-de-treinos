@@ -6,6 +6,8 @@ import {
   Box,
   Typography,
 } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import Title from 'src/components/Title/index';
 
 const AnalisePostural = ({ dadosDaAvaliacao }) => {
   const theme = useTheme();
@@ -14,18 +16,25 @@ const AnalisePostural = ({ dadosDaAvaliacao }) => {
   );
 
   return (
-    <Grid container sx={{ width: '90%', paddingLeft: '05%' }}>
-      <Grid item xs={12} sm={12}>
-        <Typography align={isSmallScreen ? 'left' : 'left'}>
-          <Box component="span" sx={{ fontWeight: 'bold' }}>
-            Você possui algum desvio postural diagnosticado?{' '}
-          </Box>
-          {dadosDaAvaliacao.desvioPostural
-            ? dadosDaAvaliacao.desvioPostural
-            : 'Sem desvios posturais informados'}
-        </Typography>
+    <>
+      <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+      <Title paragraph>Analíse Postural</Title>
+      <Grid container sx={{ width: '90%', paddingLeft: '05%' }}>
+        <Grid item xs={12} sm={12}>
+          <Typography align={isSmallScreen ? 'left' : 'left'}>
+            <Box component="span" sx={{ fontWeight: 'bold' }}>
+              Você possui algum desvio postural diagnosticado?{' '}
+            </Box>
+            {dadosDaAvaliacao.desvioPosturala &&
+            dadosDaAvaliacao.desvioPosturala !== '' &&
+            dadosDaAvaliacao.desvioPosturala !== 'hide' &&
+            dadosDaAvaliacao.desvioPosturala !== null
+              ? dadosDaAvaliacao.desvioPostural
+              : 'Sem desvios posturais informados'}
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 

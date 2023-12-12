@@ -31,7 +31,10 @@ const InformacoesPreAvaliacao = ({ dadosDaAvaliacao }) => {
               paddingLeft: '05%',
             }}
           >
-            {dadosDaAvaliacao.ultimoTreino ? (
+            {dadosDaAvaliacao.ultimoTreino &&
+            dadosDaAvaliacao.ultimoTreino !== '' &&
+            dadosDaAvaliacao.ultimoTreino !== 'hide' &&
+            dadosDaAvaliacao.ultimoTreino !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -46,7 +49,11 @@ const InformacoesPreAvaliacao = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.ultimoTreinoDescricao ? (
+
+            {dadosDaAvaliacao.ultimoTreinoDescricao &&
+            dadosDaAvaliacao.ultimoTreinoDescricao !== '' &&
+            dadosDaAvaliacao.ultimoTreinoDescricao !== 'hide' &&
+            dadosDaAvaliacao.ultimoTreinoDescricao !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -61,7 +68,11 @@ const InformacoesPreAvaliacao = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.ultimaRefeicao ? (
+
+            {dadosDaAvaliacao.ultimaRefeicao &&
+            dadosDaAvaliacao.ultimaRefeicao !== '' &&
+            dadosDaAvaliacao.ultimaRefeicao !== 'hide' &&
+            dadosDaAvaliacao.ultimaRefeicao !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -76,7 +87,11 @@ const InformacoesPreAvaliacao = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.tempoUltimaRefeicao ? (
+
+            {dadosDaAvaliacao.tempoUltimaRefeicao &&
+            dadosDaAvaliacao.tempoUltimaRefeicao !== '' &&
+            dadosDaAvaliacao.tempoUltimaRefeicao !== 'hide' &&
+            dadosDaAvaliacao.tempoUltimaRefeicao !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}

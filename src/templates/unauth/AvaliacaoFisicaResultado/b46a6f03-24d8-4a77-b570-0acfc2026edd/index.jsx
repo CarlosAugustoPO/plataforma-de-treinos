@@ -1,6 +1,11 @@
 import React from 'react';
-import GraficoPercentualDeGordura from 'src/components/GraficoPercentualDeGordura';
 import GraficoComposicaoCorporal from 'src/components/GraficoComposicaoCorporal';
+import GraficoPercentualDeGordura from 'src/components/GraficoPercentualDeGordura';
+import GraficoDobrasCutaneas from 'src/components/GraficoDobrasCutaneas';
+import GraficoCircunferenciasDeTronco from 'src/components/GraficoCircunferenciasDeTronco';
+import GraficoCircunferenciasDeBraco from 'src/components/GraficoCircunferenciasDeBraco';
+import GraficoCircunferenciasDeMMII from 'src/components/GraficoCircunferenciasDeMMII';
+import GraficoPercentualDeMassaMuscular from 'src/components/GraficoPercentualDeMassaMuscular';
 import DobrasCutaneas from 'src/components/DobrasCutaneas';
 import TabelaResumoAF from 'src/components/TabelaResumoAF';
 import InformacoesPessoais from 'src/components/InformacoesPessoais';
@@ -17,124 +22,119 @@ import Circunferencias from 'src/components/Circunferencias';
 import AnaliseMorfologica from 'src/components/AnaliseMorfologica';
 import RecordatorioAlimentar from 'src/components/RecordatorioAlimentar';
 import AnalisePostural from 'src/components/AnalisePostural';
-import Divider from '@mui/material/Divider';
 import Title from 'src/components/Title/index';
 import Box from '@mui/material/Box';
 
 function ResultadoAvaliacaoFisica() {
   const dadosDaAvaliacaoAtual = {
-    nome: 'Karla Reina',
-    idade: 44,
-    altura: 1.61,
-    email: 'karla-reina@hotmail.com',
-    dataDaAvaliação: '13/05/2023',
-    dataDeNascimento: '30/04/1979',
+    nome: 'Andressa Cipriano dos Santos',
+    idade: 25,
+    altura: 1.53,
+    email: 'cipriano.a@hotmail.com',
+    dataDaAvaliação: '10/12/2023',
+    dataDeNascimento: '02/01/1998',
     genero: 'feminino',
-    objetivoEstetico: 'Definição',
-    pontosFracosEsteticos: 'Abdome e tríceps',
-    pretendeCorrer: 'Sim',
-    objetivosComCorrida: 'Prova 2km Krav Maga',
-    pretendeMelhorarFlexibilidade: 'Sim',
-    objetivosComFlexibilidade: 'Melhorar execução de exercícios',
-    comoPossoTeAjudar: '',
-    haQuantoTempoTreinaMusculacao: 'Há mais de 1 ano',
+    objetivoEstetico: 'Hipertrofia',
+    pontosFracosEsteticos:
+      'Dificuldade em ganhar pernas, omrbos e bíceps',
+    pretendeCorrer: 'Não',
+    objetivosComCorrida: 'hide',
+    pretendeMelhorarFlexibilidade: 'Não',
+    objetivosComFlexibilidade: 'hide',
+    comoPossoTeAjudar: 'hide',
+    haQuantoTempoTreinaMusculacao: '~2 anos',
     motivoDeParadaDaUltimaVez:
-      'Dificuldade em lidar com a rotina',
-    tempoDeParadaDaUltimaVez: '',
-    quantidadeDeTreinosPorSemana: '1-3 vezes',
-    horarioDeTreinoMusculacao: '10h00',
-    horarioDesejadoDeTreinoMusculacao: '10h00',
-    musculosPreferidosDeTreinoMusculacao: 'Posterior',
-    exerciciosComDificuldades: 'Agachamento búlgaro',
-    tempoExerciciosAerobios: 'Indefinido',
-    horarioExerciciosAerobios: 'Horário do treino de musculação',
-    horarioPretendidoExerciciosAerobios:
-      'Horário do treino de musculação',
-    freqExerciciosAerobios: 'Indefinido',
+      'Preguiça e quebra de ritmo de frequência',
+    tempoDeParadaDaUltimaVez: 'hide',
+    quantidadeDeTreinosPorSemana: '3 vezes',
+    quantidadeDeTreinosPorSemanaPretendido: '5 vezes',
+    horarioDeTreinoMusculacao: '19h00',
+    horarioDesejadoDeTreinoMusculacao: '19h00',
+    musculosPreferidosDeTreinoMusculacao: 'Costas',
+    exerciciosComDificuldades: '',
+    tempoExerciciosAerobios: '',
+    horarioExerciciosAerobios: '',
+    horarioPretendidoExerciciosAerobios: '',
+    freqExerciciosAerobios: '',
     tempoExerciciosAlongamento: '',
     horarioExerciciosAlongamento: '',
     horarioPretendidoExerciciosAlongamento: '',
-    ultimoTreino: '2 dias antes',
-    ultimoTreinoDescricao:
-      'Treino de musculação com ênfase em glúteos',
-    ultimaRefeicao: 'Pão de batata com ovo mexido',
-    tempoUltimaRefeicao: 'há 1 hora',
-    horaDeDormir: '0:00',
+    ultimoTreino: '48 horas atrás',
+    ultimoTreinoDescricao: 'Peito, Tríceps e Ombro',
+    ultimaRefeicao: 'Bolo de laranja',
+    tempoUltimaRefeicao: '2 horas atrás',
+    horaDeDormir: '00:00',
     horaDeAcordar: '07:00',
-    qualidadeDoSono: 'Varia entre boa e ruim',
-    rotinaDiariaDetalhes:
-      'Acorda perto das 07:00, enrola na cama estudando até ter motivação para o treino, almoça depois do treino e a tarde resolve compromissos pendentes ou vai ao consultório atender paciente, depois janta.',
-    humorDiario: 'Depressivo',
-    estrategiasContraEstresse:
-      'Dormir ou resistir ao sono com telas',
-    estrategiasDeLazer: 'Caminhadas, lanches e passeios',
-    rotinaDeTrabalho: 'Sedentária',
-    meioDeTransporteParaTrabalho: 'Carro',
-    problemasDeSaude: 'Sem problema de saúde',
-    tomaMedicamento: 'Não toma medicamentos',
-    usaEsteroides: 'Não, mas pretende começar',
-    frequenciaAlcool: 'Socialmente',
+    qualidadeDoSono: 'Boa',
+    rotinaDiariaDetalhes: '',
+    humorDiario: '',
+    estrategiasContraEstresse: '',
+    estrategiasDeLazer: '',
+    rotinaDeTrabalho: '',
+    meioDeTransporteParaTrabalho: '',
+    problemasDeSaude: 'Não possui',
+    tomaMedicamento: 'Não',
+    usaEsteroides: 'Não',
+    frequenciaAlcool: '1x/Semana',
     frequenciaFumo: 'Não fuma',
-    lesaoPassada: 'Tornozelo',
-    limitacaoFisica:
-      'Dores no joelho (suspeita de baixa flexibilidade)',
-    amamentando: 'Amamentou 10 anos atrás, por 2 anos',
-    cirurgiaPassada: 'Hérnia umbilical e femural',
-    tempoCirurgiaPassada: 'Há + de 10 anos',
-    fcRepouso: '70',
-    paRepouso: '',
+    lesaoPassada: 'hide',
+    limitacaoFisica: 'Dores lombar',
+    amamentando: '',
+    cirurgiaPassada: '',
+    tempoCirurgiaPassada: '',
+    fcRepouso: 'hide',
+    paRepouso: 'hide',
     spO2: '',
-    temperaturaExtremidades: 'Frias',
+    temperaturaExtremidades: '',
     temperaturaCorporal: '',
-    menorPesoAdulto: 46,
-    maiorPesoAdulto: 63,
-    peso3Meses: 63,
-    peso6Meses: 58,
-    peso1Ano: 52,
-    peso5Anos: 52,
-    peso10Anos: 46,
-    pesoPretendido: 61,
-    pesoAtual: 61.7,
+    menorPesoAdulto: 42,
+    maiorPesoAdulto: 52,
+    peso3Meses: '',
+    peso6Meses: '',
+    peso1Ano: '',
+    peso5Anos: '',
+    peso10Anos: '',
+    pesoPretendido: 55,
+    pesoAtual: 53,
     circunferenciaDePunho: 15,
-    circunferenciaDeAbdomen: 81,
-    circunferenciaDePescoco: 31.5,
-    circunferenciaDeCintura: 71,
-    circunferenciaDeQuadril: 106,
-    circunferenciaDePanturrilha: 35,
-    circunferenciaBracoRelaxado: 28,
-    circunferenciaBracoContraido: 30,
-    circunferenciaTorax: 91,
-    circunferenciaAntebraco: 22.5,
-    circunferenciaCoxa: 57,
-    circunferenciaTornozelo: 20,
-    dobraCutaneaPeitoral: 16,
-    dobraCutaneaAbdominal: 16,
-    dobraCutaneaTricipital: 14,
-    dobraCutaneaSubescapular: 13,
-    dobraCutaneaSuprailiaca: 14,
-    dobraCutaneaCoxa: 32,
-    dobraCutaneaPanturrilha: 15,
-    porcentagemDeGorduraBia: '',
-    massaMuscularBia: 27.3,
-    idadeCorporal: '',
-    gorduraVisceral: '',
-    planejaRefeicoes: 'Ultimamente não',
-    preparaRefeicoes: 'As vezes sim, as vezes a mãe',
-    numeroRefeicoes: 4,
-    quantidadeAgua: 6,
-    horarioFome: 'Almoço e jantar',
-    alimentoBeliscar: 'Chocolate, bolacha, pão',
-    alimentosFrequentes: 'Arroz, feijão, frango ou carne',
-    restricaoAlimentar: 'Leite',
-    velocidadeMastigar: 'Devagar',
-    usaSuplementos: 'Creatina e Whey Proterin',
-    consumoAlimentarDiario:
-      'Café da manhã: Pão com manteiga. Almoço: Arroz, feijão e frango. Lanche da tarde: Pão com manteiga. Jantar: Arroz, feijão e frango.',
-    habitosFinaisDeSemana: 'Costuma sair para comer',
-    desvioPostural:
-      'Leve projeção da cabeça para frente que resulta em uma saliência na parte superior das costas e inferior do pescoço',
-    informacoesAdicionais:
-      'Quer tomar oxandrolona para definir mantendo o máximo da masssa muscular e o glúteo com um bom aspécto estético',
+    circunferenciaDeAbdomen: 72.4,
+    circunferenciaDePescoco: 32,
+    circunferenciaDeCintura: 65,
+    circunferenciaDeQuadril: 95.5,
+    circunferenciaDePanturrilha: 34.5,
+    circunferenciaBracoRelaxado: 24,
+    circunferenciaBracoContraido: 25.5,
+    circunferenciaTorax: 'hide',
+    circunferenciaAntebraco: 22,
+    circunferenciaCoxa: 52,
+    circunferenciaTornozelo: 'hide',
+    dobraCutaneaAxilarMedia: 5,
+    dobraCutaneaPeitoral: 5,
+    dobraCutaneaAbdominal: 9,
+    dobraCutaneaTricipital: 12,
+    dobraCutaneaSubescapular: 12,
+    dobraCutaneaSuprailiaca: 6,
+    dobraCutaneaCoxa: 25,
+    dobraCutaneaPanturrilha: 14,
+    porcentagemDeGorduraBia: 31.4,
+    massaMuscularBia: 28.8,
+    idadeCorporal: 31,
+    gorduraVisceral: 4,
+    tmb: 1184,
+    planejaRefeicoes: '',
+    preparaRefeicoes: '',
+    numeroRefeicoes: '',
+    quantidadeAgua: '',
+    horarioFome: '',
+    alimentoBeliscar: '',
+    alimentosFrequentes: 'Arroz, Feijão e Carne',
+    restricaoAlimentar: 'Lactose',
+    velocidadeMastigar: '',
+    usaSuplementos: 'Creatina',
+    consumoAlimentarDiario: '',
+    habitosFinaisDeSemana: '',
+    desvioPostural: '',
+    informacoesAdicionais: '',
   };
 
   const peitoral = dadosDaAvaliacaoAtual.dobraCutaneaPeitoral;
@@ -147,6 +147,8 @@ function ResultadoAvaliacaoFisica() {
   const coxa = dadosDaAvaliacaoAtual.dobraCutaneaCoxa;
   const panturrilha =
     dadosDaAvaliacaoAtual.dobraCutaneaPanturrilha;
+  const axilarMedia =
+    dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia;
 
   // Cálculo de Gordura em % Pollock 7 Dobras
   const somaDobras =
@@ -156,7 +158,7 @@ function ResultadoAvaliacaoFisica() {
     subescapular +
     suprailiaca +
     coxa +
-    panturrilha;
+    (axilarMedia ? axilarMedia : panturrilha);
 
   const calcularDensidadeCorporal = (dadosDaAvaliacaoAtual) => {
     var genero = dadosDaAvaliacaoAtual.genero;
@@ -190,10 +192,11 @@ function ResultadoAvaliacaoFisica() {
       4.5) *
     100;
   // Cálculo de Gordura em KG Pollock 7 Dobras
-  const pesoGordo =
+  const pesoGordoAtual =
     (pollock7dobras / 100) * dadosDaAvaliacaoAtual.pesoAtual;
   // Cálculo de Massa Magra em KG Pollock 7 Dobras
-  const pesoMagro = dadosDaAvaliacaoAtual.pesoAtual - pesoGordo;
+  const pesoMagroAtual =
+    dadosDaAvaliacaoAtual.pesoAtual - pesoGordoAtual;
 
   const calcularIMC = (altura, peso) => {
     return (peso / (altura * altura)).toFixed(1);
@@ -216,8 +219,8 @@ function ResultadoAvaliacaoFisica() {
       idade: dadosDaAvaliacaoAtual.idade,
       imc: imcAtual,
       pollock7dobras: pollock7dobras.toFixed(1),
-      pesoMagro: pesoMagro.toFixed(1),
-      pesoGordo: pesoGordo.toFixed(1),
+      pesoMagro: pesoMagroAtual.toFixed(1),
+      pesoGordo: pesoGordoAtual.toFixed(1),
       massaMuscularBia: dadosDaAvaliacaoAtual.massaMuscularBia,
       porcentagemDeGorduraBia:
         dadosDaAvaliacaoAtual.porcentagemDeGorduraBia,
@@ -248,6 +251,8 @@ function ResultadoAvaliacaoFisica() {
       circunferenciaTornozelo:
         dadosDaAvaliacaoAtual.circunferenciaTornozelo,
       rcq: rcqAtual,
+      dobraCutaneaAxilarMedia:
+        dadosDaAvaliacaoAtual.dobraCutaneaAxilarMedia,
       dobraCutaneaPeitoral:
         dadosDaAvaliacaoAtual.dobraCutaneaPeitoral,
       dobraCutaneaAbdominal:
@@ -344,7 +349,25 @@ function ResultadoAvaliacaoFisica() {
         dadosDaAvaliacao={dadosDaAvaliacaoAtual}
       />
 
+      <GraficoCircunferenciasDeTronco
+        dadosDoGrafico={dadosDoGrafico}
+      />
+
+      <GraficoCircunferenciasDeBraco
+        dadosDoGrafico={dadosDoGrafico}
+      />
+
+      <GraficoCircunferenciasDeMMII
+        dadosDoGrafico={dadosDoGrafico}
+      />
+
+      <GraficoDobrasCutaneas dadosDoGrafico={dadosDoGrafico} />
+
       <GraficoPercentualDeGordura
+        dadosDoGrafico={dadosDoGrafico}
+      />
+
+      <GraficoPercentualDeMassaMuscular
         dadosDoGrafico={dadosDoGrafico}
       />
 

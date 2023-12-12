@@ -35,7 +35,10 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
               paddingLeft: '05%',
             }}
           >
-            {dadosDaAvaliacao.horaDeDormir ? (
+            {dadosDaAvaliacao.horaDeDormir &&
+            dadosDaAvaliacao.horaDeDormir !== '' &&
+            dadosDaAvaliacao.horaDeDormir !== 'hide' &&
+            dadosDaAvaliacao.horaDeDormir !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -45,7 +48,11 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.horaDeAcordar ? (
+
+            {dadosDaAvaliacao.horaDeAcordar &&
+            dadosDaAvaliacao.horaDeAcordar !== '' &&
+            dadosDaAvaliacao.horaDeAcordar !== 'hide' &&
+            dadosDaAvaliacao.horaDeAcordar !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -55,7 +62,11 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.qualidadeDoSono ? (
+
+            {dadosDaAvaliacao.qualidadeDoSono &&
+            dadosDaAvaliacao.qualidadeDoSono !== '' &&
+            dadosDaAvaliacao.qualidadeDoSono !== 'hide' &&
+            dadosDaAvaliacao.qualidadeDoSono !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -67,7 +78,11 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.rotinaDiariaDetalhes ? (
+
+            {dadosDaAvaliacao.rotinaDiariaDetalhes &&
+            dadosDaAvaliacao.rotinaDiariaDetalhes !== '' &&
+            dadosDaAvaliacao.rotinaDiariaDetalhes !== 'hide' &&
+            dadosDaAvaliacao.rotinaDiariaDetalhes !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -78,7 +93,10 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
               </Grid>
             ) : null}
 
-            {dadosDaAvaliacao.humorDiario ? (
+            {dadosDaAvaliacao.humorDiario &&
+            dadosDaAvaliacao.humorDiario !== '' &&
+            dadosDaAvaliacao.humorDiario !== 'hide' &&
+            dadosDaAvaliacao.humorDiario !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -90,7 +108,13 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.estrategiasContraEstresse ? (
+
+            {dadosDaAvaliacao.estrategiasContraEstresse &&
+            dadosDaAvaliacao.estrategiasContraEstresse !== '' &&
+            dadosDaAvaliacao.estrategiasContraEstresse !==
+              'hide' &&
+            dadosDaAvaliacao.estrategiasContraEstresse !==
+              null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -103,7 +127,11 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.estrategiasDeLazer ? (
+
+            {dadosDaAvaliacao.estrategiasDeLazer &&
+            dadosDaAvaliacao.estrategiasDeLazer !== '' &&
+            dadosDaAvaliacao.estrategiasDeLazer !== 'hide' &&
+            dadosDaAvaliacao.estrategiasDeLazer !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -115,7 +143,11 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.rotinaDeTrabalho ? (
+
+            {dadosDaAvaliacao.rotinaDeTrabalho &&
+            dadosDaAvaliacao.rotinaDeTrabalho !== '' &&
+            dadosDaAvaliacao.rotinaDeTrabalho !== 'hide' &&
+            dadosDaAvaliacao.rotinaDeTrabalho !== null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
@@ -125,7 +157,14 @@ const InformacoesSobreARotina = ({ dadosDaAvaliacao }) => {
                 </Typography>
               </Grid>
             ) : null}
-            {dadosDaAvaliacao.meioDeTransporteParaTrabalho ? (
+
+            {dadosDaAvaliacao.meioDeTransporteParaTrabalho &&
+            dadosDaAvaliacao.meioDeTransporteParaTrabalho !==
+              '' &&
+            dadosDaAvaliacao.meioDeTransporteParaTrabalho !==
+              'hide' &&
+            dadosDaAvaliacao.meioDeTransporteParaTrabalho !==
+              null ? (
               <Grid item xs={12} sm={12}>
                 <Typography
                   align={isSmallScreen ? 'left' : 'left'}
