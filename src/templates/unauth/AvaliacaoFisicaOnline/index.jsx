@@ -53,7 +53,7 @@ export default function IndexUnauthTemplate() {
     // setLoading(true);
     setFormIsDirty(false);
     // Create a Checkout Session.
-    alert(data.clientName + data.clientEmail);
+    alert(data.clientName + ' ' + data.clientEmail);
     // try {
     //   const response = await fetch('/api/submit-form', {
     //     method: 'POST',

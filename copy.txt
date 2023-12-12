@@ -1,105 +1,109 @@
-import React from 'react';
-import {
-  useMediaQuery,
-  useTheme,
-  Grid,
-  Box,
-  Typography,
-} from '@mui/material';
-
-const ObjetivosExpectativas = ({ dadosDaAvaliacao }) => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(
-    theme.breakpoints.down('sm'),
-  );
-
-  return (
-    <Grid
-      container
-      sx={{
-        width: '90%',
-        paddingLeft: '05%',
-      }}
-    >
-      {dadosDaAvaliacao.objetivoEstetico ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Objetivo estético atual:{' '}
-            </Box>
-            {dadosDaAvaliacao.objetivoEstetico}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.pontosFracosEsteticos ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Pontos fracos estéticos:{' '}
-            </Box>
-            {dadosDaAvaliacao.pontosFracosEsteticos}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.pretendeCorrer ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Você pretende correr?{' '}
-            </Box>
-            {dadosDaAvaliacao.pretendeCorrer}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.objetivosComCorrida ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Quais seus objetivos com a corrida?{' '}
-            </Box>
-            {dadosDaAvaliacao.objetivosComCorrida}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.pretendeMelhorarFlexibilidade ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Você pretende melhorar a flexibilidade?{' '}
-            </Box>
-            {dadosDaAvaliacao.pretendeMelhorarFlexibilidade}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.objetivosComFlexibilidade ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Quais seus objetivos com a flexibilidade?{' '}
-            </Box>
-            {dadosDaAvaliacao.objetivosComFlexibilidade}
-          </Typography>
-        </Grid>
-      ) : null}
-
-      {dadosDaAvaliacao.comoPossoTeAjudar ? (
-        <Grid item xs={12} sm={12}>
-          <Typography align={isSmallScreen ? 'left' : 'left'}>
-            <Box component="span" sx={{ fontWeight: 'bold' }}>
-              Como você acha que essa avaliação física e a
-              consultoria podem te ajudar?
-            </Box>
-            {dadosDaAvaliacao.comoPossoTeAjudar}
-          </Typography>
-        </Grid>
-      ) : null}
-    </Grid>
-  );
-};
-
-export default ObjetivosExpectativas;
+  const dadosDaAvaliacaoAtual = {
+    nome: 'Denis Wilson Santos',
+    idade: 43,
+    altura: 1.63,
+    email: 'deniswilsonsantos@gmail.com',
+    dataDaAvaliação: '13/09/2023',
+    dataDeNascimento: '07/10/1979',
+    genero: 'masculino',
+    objetivoEstetico: 'Definição',
+    pontosFracosEsteticos: 'Barriga',
+    pretendeCorrer: 'Sim',
+    objetivosComCorrida: 'Corrida de rua 5km',
+    pretendeMelhorarFlexibilidade: '',
+    objetivosComFlexibilidade: '',
+    comoPossoTeAjudar: '',
+    haQuantoTempoTreinaMusculacao: '20 dias',
+    motivoDeParadaDaUltimaVez: '',
+    tempoDeParadaDaUltimaVez: '',
+    quantidadeDeTreinosPorSemana: '6 vezes',
+    quantidadeDeTreinosPorSemanaPretendido: '6 vezes',
+    horarioDeTreinoMusculacao: '04h00',
+    horarioDesejadoDeTreinoMusculacao: '04h00',
+    musculosPreferidosDeTreinoMusculacao: '',
+    exerciciosComDificuldades: '',
+    tempoExerciciosAerobios: '',
+    horarioExerciciosAerobios: '',
+    horarioPretendidoExerciciosAerobios: '',
+    freqExerciciosAerobios: '',
+    tempoExerciciosAlongamento: '',
+    horarioExerciciosAlongamento: '',
+    horarioPretendidoExerciciosAlongamento: '',
+    ultimoTreino: '',
+    ultimoTreinoDescricao: '',
+    ultimaRefeicao: '',
+    tempoUltimaRefeicao: '',
+    horaDeDormir: '',
+    horaDeAcordar: '',
+    qualidadeDoSono: '',
+    rotinaDiariaDetalhes: '',
+    humorDiario: '',
+    estrategiasContraEstresse: '',
+    estrategiasDeLazer: '',
+    rotinaDeTrabalho: '',
+    meioDeTransporteParaTrabalho: '',
+    problemasDeSaude: 'Hipertensão',
+    tomaMedicamento: 'Não',
+    usaEsteroides: 'Não',
+    frequenciaAlcool: '1x/Semana',
+    frequenciaFumo: 'Não fuma',
+    lesaoPassada: 'Menisco e LCA Esquerdo, dedos dos pés',
+    limitacaoFisica:
+      'Canelite e encurtamento de cadeia posterior',
+    amamentando: '',
+    cirurgiaPassada: 'LCA e Menisco em 2005',
+    tempoCirurgiaPassada: '',
+    fcRepouso: '',
+    paRepouso: '',
+    spO2: '',
+    temperaturaExtremidades: '',
+    temperaturaCorporal: '',
+    menorPesoAdulto: 65,
+    maiorPesoAdulto: 72,
+    peso3Meses: '',
+    peso6Meses: '',
+    peso1Ano: '',
+    peso5Anos: '',
+    peso10Anos: '',
+    pesoPretendido: 66,
+    pesoAtual: 66.2,
+    circunferenciaDePunho: 16.5,
+    circunferenciaDeAbdomen: 93,
+    circunferenciaDePescoco: 37,
+    circunferenciaDeCintura: 83,
+    circunferenciaDeQuadril: 96,
+    circunferenciaDePanturrilha: 35,
+    circunferenciaBracoRelaxado: 29,
+    circunferenciaBracoContraido: 30.5,
+    circunferenciaTorax: 'hide',
+    circunferenciaAntebraco: 27,
+    circunferenciaCoxa: 50,
+    circunferenciaTornozelo: 21,
+    dobraCutaneaAxilarMedia: 18,
+    dobraCutaneaPeitoral: 17,
+    dobraCutaneaAbdominal: 20,
+    dobraCutaneaTricipital: 9,
+    dobraCutaneaSubescapular: 25,
+    dobraCutaneaSuprailiaca: 15,
+    dobraCutaneaCoxa: 15,
+    dobraCutaneaPanturrilha: '',
+    porcentagemDeGorduraBia: 24.5,
+    massaMuscularBia: 35.9,
+    idadeCorporal: 36,
+    gorduraVisceral: 9,
+    tmb: 1550,
+    planejaRefeicoes: '',
+    preparaRefeicoes: '',
+    numeroRefeicoes: '',
+    quantidadeAgua: '',
+    horarioFome: '',
+    alimentoBeliscar: '',
+    alimentosFrequentes: 'Salada, Arroz e Feijão',
+    restricaoAlimentar: 'Lactose',
+    velocidadeMastigar: '',
+    usaSuplementos: 'Sem suplementos',
+    consumoAlimentarDiario: '',
+    habitosFinaisDeSemana: '',
+    desvioPostural: '',
+    informacoesAdicionais: '',
+  };

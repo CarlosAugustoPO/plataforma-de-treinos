@@ -107,57 +107,57 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   const dadosManipulados = dadosDoGrafico.map((item) => ({
     ...item,
-    circunferenciaDeQuadril:
-      item.circunferenciaDeQuadril === '' ||
-      item.circunferenciaDeQuadril === 'hide' ||
-      item.circunferenciaDeQuadril === null
+    circunferenciaDePescoco:
+      item.circunferenciaDePescoco === '' ||
+      item.circunferenciaDePescoco === 'hide' ||
+      item.circunferenciaDePescoco === null
         ? null
-        : item.circunferenciaDeQuadril,
-    circunferenciaCoxa:
-      item.circunferenciaCoxa === '' ||
-      item.circunferenciaCoxa === 'hide' ||
-      item.circunferenciaCoxa === null
+        : item.circunferenciaDePescoco,
+    circunferenciaTorax:
+      item.circunferenciaTorax === '' ||
+      item.circunferenciaTorax === 'hide' ||
+      item.circunferenciaTorax === null
         ? null
-        : item.circunferenciaCoxa,
-    circunferenciaDePanturrilha:
-      item.circunferenciaDePanturrilha === '' ||
-      item.circunferenciaDePanturrilha === 'hide' ||
-      item.circunferenciaDePanturrilha === null
+        : item.circunferenciaTorax,
+    circunferenciaDeCintura:
+      item.circunferenciaDeCintura === '' ||
+      item.circunferenciaDeCintura === 'hide' ||
+      item.circunferenciaDeCintura === null
         ? null
-        : item.circunferenciaDePanturrilha,
-    circunferenciaTornozelo:
-      item.circunferenciaTornozelo === '' ||
-      item.circunferenciaTornozelo === 'hide' ||
-      item.circunferenciaTornozelo === null
+        : item.circunferenciaDeCintura,
+    circunferenciaDeAbdomen:
+      item.circunferenciaDeAbdomen === '' ||
+      item.circunferenciaDeAbdomen === 'hide' ||
+      item.circunferenciaDeAbdomen === null
         ? null
-        : item.circunferenciaTornozelo,
+        : item.circunferenciaDeAbdomen,
   }));
 
   return (
     <>
       {dadosDoGrafico.some(
         (p) =>
-          p.circunferenciaDeQuadril &&
-          p.circunferenciaDeQuadril !== '' &&
-          p.circunferenciaDeQuadril !== 'hide' &&
-          p.circunferenciaDeQuadril !== null &&
-          p.circunferenciaCoxa &&
-          p.circunferenciaCoxa !== '' &&
-          p.circunferenciaCoxa !== 'hide' &&
-          p.circunferenciaCoxa !== null &&
-          p.circunferenciaDePanturrilha &&
-          p.circunferenciaDePanturrilha !== '' &&
-          p.circunferenciaDePanturrilha !== 'hide' &&
-          p.circunferenciaDePanturrilha !== null &&
-          p.circunferenciaTornozelo &&
-          p.circunferenciaTornozelo !== '' &&
-          p.circunferenciaTornozelo !== 'hide' &&
-          p.circunferenciaTornozelo !== null,
+          p.circunferenciaDePescoco &&
+          p.circunferenciaDePescoco !== '' &&
+          p.circunferenciaDePescoco !== 'hide' &&
+          p.circunferenciaDePescoco !== null &&
+          p.circunferenciaTorax &&
+          p.circunferenciaTorax !== '' &&
+          p.circunferenciaTorax !== 'hide' &&
+          p.circunferenciaTorax !== null &&
+          p.circunferenciaDeCintura &&
+          p.circunferenciaDeCintura !== '' &&
+          p.circunferenciaDeCintura !== 'hide' &&
+          p.circunferenciaDeCintura !== null &&
+          p.circunferenciaDeAbdomen &&
+          p.circunferenciaDeAbdomen !== '' &&
+          p.circunferenciaDeAbdomen !== 'hide' &&
+          p.circunferenciaDeAbdomen !== null,
       ) ? (
         <>
           <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
           <Title paragraph mt={2}>
-            Gráfico de Circunferências de Membros Inferiores
+            Gráfico de Circunferências de Tronco
           </Title>
           <ResponsiveContainer width="90%" height={400}>
             <LineChart data={dadosManipulados}>
@@ -182,19 +182,19 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
               {dadosDoGrafico.some(
                 (p) =>
-                  p.circunferenciaDeQuadril &&
-                  p.circunferenciaDeQuadril !== '' &&
-                  p.circunferenciaDeQuadril !== 'hide' &&
-                  p.circunferenciaDeQuadril !== null,
+                  p.circunferenciaDePescoco &&
+                  p.circunferenciaDePescoco !== '' &&
+                  p.circunferenciaDePescoco !== 'hide' &&
+                  p.circunferenciaDePescoco !== null,
               ) ? (
                 <Line
                   type="monotone"
-                  dataKey="circunferenciaDeQuadril"
+                  dataKey="circunferenciaDePescoco"
                   stroke="#8884d8"
                   strokeWidth={2}
-                  name="Quadril"
+                  name="Pescoço"
                   hide={hiddenSeries.includes(
-                    'circunferenciaDeQuadril',
+                    'circunferenciaDePescoco',
                   )}
                   label={(props) => (
                     <CustomizedLabel
@@ -208,19 +208,19 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
               {dadosDoGrafico.some(
                 (p) =>
-                  p.circunferenciaCoxa &&
-                  p.circunferenciaCoxa !== '' &&
-                  p.circunferenciaCoxa !== 'hide' &&
-                  p.circunferenciaCoxa !== null,
+                  p.circunferenciaTorax &&
+                  p.circunferenciaTorax !== '' &&
+                  p.circunferenciaTorax !== 'hide' &&
+                  p.circunferenciaTorax !== null,
               ) ? (
                 <Line
                   type="monotone"
-                  dataKey="circunferenciaCoxa"
+                  dataKey="circunferenciaTorax"
                   stroke={theme.palette.success.main}
                   strokeWidth={2}
-                  name="Coxa"
+                  name="Tórax"
                   hide={hiddenSeries.includes(
-                    'circunferenciaCoxa',
+                    'circunferenciaTorax',
                   )}
                   label={(props) => (
                     <CustomizedLabel
@@ -234,19 +234,19 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
               {dadosDoGrafico.some(
                 (p) =>
-                  p.circunferenciaDePanturrilha &&
-                  p.circunferenciaDePanturrilha !== '' &&
-                  p.circunferenciaDePanturrilha !== 'hide' &&
-                  p.circunferenciaDePanturrilha !== null,
+                  p.circunferenciaDeCintura &&
+                  p.circunferenciaDeCintura !== '' &&
+                  p.circunferenciaDeCintura !== 'hide' &&
+                  p.circunferenciaDeCintura !== null,
               ) ? (
                 <Line
                   type="monotone"
-                  dataKey="circunferenciaDePanturrilha"
+                  dataKey="circunferenciaDeCintura"
                   strokeWidth={2}
-                  name="Panturrilha"
+                  name="Cintura"
                   stroke={theme.palette.mainIcon.main}
                   hide={hiddenSeries.includes(
-                    'circunferenciaDePanturrilha',
+                    'circunferenciaDeCintura',
                   )}
                   label={(props) => (
                     <CustomizedLabel
@@ -260,19 +260,19 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
               {dadosDoGrafico.some(
                 (p) =>
-                  p.circunferenciaTornozelo &&
-                  p.circunferenciaTornozelo !== '' &&
-                  p.circunferenciaTornozelo !== 'hide' &&
-                  p.circunferenciaTornozelo !== null,
+                  p.circunferenciaDeAbdomen &&
+                  p.circunferenciaDeAbdomen !== '' &&
+                  p.circunferenciaDeAbdomen !== 'hide' &&
+                  p.circunferenciaDeAbdomen !== null,
               ) ? (
                 <Line
                   type="monotone"
-                  dataKey="circunferenciaTornozelo"
+                  dataKey="circunferenciaDeAbdomen"
                   strokeWidth={2}
-                  name="Tornozelo"
+                  name="Abdomen"
                   stroke={theme.palette.primary.main}
                   hide={hiddenSeries.includes(
-                    'circunferenciaTornozelo',
+                    'circunferenciaDeAbdomen',
                   )}
                   label={(props) => (
                     <CustomizedLabel

@@ -16,16 +16,16 @@ import {
 
 const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
   const theme = useTheme();
-  const [hiddenSeries, setHiddenSeries] = useState([]);
-  const toggleSeries = (dataKey) => {
-    if (hiddenSeries.includes(dataKey)) {
-      setHiddenSeries(
-        hiddenSeries.filter((key) => key !== dataKey),
-      );
-    } else {
-      setHiddenSeries([...hiddenSeries, dataKey]);
-    }
-  };
+  // const [hiddenSeries, setHiddenSeries] = useState([]);
+  // const toggleSeries = (dataKey) => {
+  //   if (hiddenSeries.includes(dataKey)) {
+  //     setHiddenSeries(
+  //       hiddenSeries.filter((key) => key !== dataKey),
+  //     );
+  //   } else {
+  //     setHiddenSeries([...hiddenSeries, dataKey]);
+  //   }
+  // };
 
   const CustomizedLabel = ({ x, y, index, value, color }) => {
     if (index === 0) {
@@ -77,20 +77,7 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   const renderCustomAxisTick = (props) => {
     const { x, y, payload, index } = props;
-    // const dataIndex = dadosManipulados.findIndex(
-    //   (item) => item.data === payload.value,
-    // );
-    // const isPollockEmptyOrNull =
-    //   dataIndex !== -1 &&
-    //   (dadosManipulados[dataIndex].pollock7dobras === '' ||
-    //     dadosManipulados[dataIndex].pollock7dobras === 'hide' ||
-    //     dadosManipulados[dataIndex].pollock7dobras === null);
-
     let textColor = theme.palette.text.primary; // Cor padrão do texto no eixo x
-    // if (isPollockEmptyOrNull) {
-    //   textColor = theme.palette.disabled.main; // Altere para a cor desejada para os rótulos afetados
-    // }
-
     if (index === 0) {
       return (
         <text
@@ -120,37 +107,27 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   const dadosManipulados = dadosDoGrafico.map((item) => ({
     ...item,
-    pollock7dobras:
-      item.pollock7dobras === '' ||
-      item.pollock7dobras === 'hide' ||
-      item.pollock7dobras === null
+    massaMuscularBia:
+      item.massaMuscularBia === '' ||
+      item.massaMuscularBia === 'hide' ||
+      item.massaMuscularBia === null
         ? null
-        : item.pollock7dobras,
-    porcentagemDeGorduraBia:
-      item.porcentagemDeGorduraBia === '' ||
-      item.porcentagemDeGorduraBia === 'hide' ||
-      item.porcentagemDeGorduraBia === null
-        ? null
-        : item.porcentagemDeGorduraBia,
+        : item.massaMuscularBia,
   }));
 
   return (
     <>
       {dadosDoGrafico.some(
         (p) =>
-          p.pollock7dobras &&
-          p.pollock7dobras !== '' &&
-          p.pollock7dobras !== 'hide' &&
-          p.pollock7dobras !== null &&
-          p.porcentagemDeGorduraBia &&
-          p.porcentagemDeGorduraBia !== '' &&
-          p.porcentagemDeGorduraBia !== 'hide' &&
-          p.porcentagemDeGorduraBia !== null,
+          p.massaMuscularBia &&
+          p.massaMuscularBia !== '' &&
+          p.massaMuscularBia !== 'hide' &&
+          p.massaMuscularBia !== null,
       ) ? (
         <>
           <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
           <Title paragraph mt={2}>
-            Gráfico do Percentual de Gordura
+            Gráfico do Percentual de Massa Muscular
           </Title>
           <ResponsiveContainer width="90%" height={400}>
             <LineChart data={dadosManipulados}>
@@ -174,18 +151,18 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
               />
               {dadosDoGrafico.some(
                 (p) =>
-                  p.pollock7dobras &&
-                  p.pollock7dobras !== '' &&
-                  p.pollock7dobras !== 'hide' &&
-                  p.pollock7dobras !== null,
+                  p.massaMuscularBia &&
+                  p.massaMuscularBia !== '' &&
+                  p.massaMuscularBia !== 'hide' &&
+                  p.massaMuscularBia !== null,
               ) ? (
                 <Line
                   type="monotone"
-                  dataKey="pollock7dobras"
+                  dataKey="massaMuscularBia"
                   stroke={theme.palette.success.main}
                   strokeWidth={2}
-                  hide={hiddenSeries.includes('pollock7dobras')}
-                  name="%G Pollock 7 dobras"
+                  // hide={hiddenSeries.includes('massaMuscularBia')}
+                  name="%MM Bioimpedância"
                   label={(props) => (
                     <CustomizedLabel
                       {...props}
@@ -195,37 +172,11 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
                   connectNulls
                 />
               ) : null}
-              {dadosDoGrafico.some(
-                (p) =>
-                  p.porcentagemDeGorduraBia &&
-                  p.porcentagemDeGorduraBia !== '' &&
-                  p.porcentagemDeGorduraBia !== 'hide' &&
-                  p.porcentagemDeGorduraBia !== null,
-              ) ? (
-                <Line
-                  type="monotone"
-                  dataKey="porcentagemDeGorduraBia"
-                  stroke="#8884d8"
-                  strokeWidth={2}
-                  hide={hiddenSeries.includes(
-                    'porcentagemDeGorduraBia',
-                  )}
-                  name="%G Bioimpedância"
-                  label={(props) => (
-                    <CustomizedLabel
-                      {...props}
-                      color={'#8884d8'}
-                    />
-                  )}
-                  connectNulls
-                />
-              ) : null}
-
               <Legend
                 verticalAlign="top"
                 align="left" // Alinhar à direita
                 iconSize={20} // Tamanho do ícone
-                onClick={(e) => toggleSeries(e.dataKey)}
+                // onClick={(e) => toggleSeries(e.dataKey)}
                 wrapperStyle={{
                   paddingLeft: '70px',
                   paddingBottom: '20px',
