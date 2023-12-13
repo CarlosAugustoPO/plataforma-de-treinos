@@ -4,14 +4,14 @@ import dynamic from 'next/dynamic';
 const PageAuthTemplate = dynamic(
   () =>
     import(
-      'src/templates/unauth/AvaliacaoFisicaResultado/0c9fc27f-fea4-44c1-98da-47229da68dc7/index.jsx'
+      'src/templates/unauth/AvaliacaoFisicaResultado/6ed191eb-df06-4c9b-918e-aae367764e19/index.jsx'
     ),
   { loading: () => <LoadingTemplate /> },
 );
 const PageUnauthTemplate = dynamic(
   () =>
     import(
-      'src/templates/unauth/AvaliacaoFisicaResultado/0c9fc27f-fea4-44c1-98da-47229da68dc7/index.jsx'
+      'src/templates/unauth/AvaliacaoFisicaResultado/6ed191eb-df06-4c9b-918e-aae367764e19/index.jsx'
     ),
   { loading: () => <LoadingTemplate /> },
 );
