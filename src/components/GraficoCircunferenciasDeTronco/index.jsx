@@ -135,25 +135,26 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   return (
     <>
-      {dadosDoGrafico.some(
-        (p) =>
-          p.circunferenciaDePescoco &&
-          p.circunferenciaDePescoco !== '' &&
-          p.circunferenciaDePescoco !== 'hide' &&
-          p.circunferenciaDePescoco !== null &&
-          p.circunferenciaTorax &&
-          p.circunferenciaTorax !== '' &&
-          p.circunferenciaTorax !== 'hide' &&
-          p.circunferenciaTorax !== null &&
-          p.circunferenciaDeCintura &&
-          p.circunferenciaDeCintura !== '' &&
-          p.circunferenciaDeCintura !== 'hide' &&
-          p.circunferenciaDeCintura !== null &&
-          p.circunferenciaDeAbdomen &&
-          p.circunferenciaDeAbdomen !== '' &&
-          p.circunferenciaDeAbdomen !== 'hide' &&
-          p.circunferenciaDeAbdomen !== null,
-      ) ? (
+      {
+        //dadosDoGrafico.some(
+        //   (p) =>
+        //     p.circunferenciaDePescoco &&
+        //     p.circunferenciaDePescoco !== '' &&
+        //     p.circunferenciaDePescoco !== 'hide' &&
+        //     p.circunferenciaDePescoco !== null &&
+        //     p.circunferenciaTorax &&
+        //     p.circunferenciaTorax !== '' &&
+        //     p.circunferenciaTorax !== 'hide' &&
+        //     p.circunferenciaTorax !== null &&
+        //     p.circunferenciaDeCintura &&
+        //     p.circunferenciaDeCintura !== '' &&
+        //     p.circunferenciaDeCintura !== 'hide' &&
+        //     p.circunferenciaDeCintura !== null &&
+        //     p.circunferenciaDeAbdomen &&
+        //     p.circunferenciaDeAbdomen !== '' &&
+        //     p.circunferenciaDeAbdomen !== 'hide' &&
+        //     p.circunferenciaDeAbdomen !== null,
+        // ) ? (
         <>
           <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
           <Title paragraph mt={2}>
@@ -296,7 +297,8 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
             </LineChart>
           </ResponsiveContainer>
         </>
-      ) : null}
+        // ) : null}
+      }
     </>
   );
 };

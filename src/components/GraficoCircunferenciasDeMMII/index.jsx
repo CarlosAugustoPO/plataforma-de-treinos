@@ -135,25 +135,22 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   return (
     <>
-      {dadosDoGrafico.some(
-        (p) =>
-          p.circunferenciaDeQuadril &&
-          p.circunferenciaDeQuadril !== '' &&
-          p.circunferenciaDeQuadril !== 'hide' &&
-          p.circunferenciaDeQuadril !== null &&
-          p.circunferenciaCoxa &&
-          p.circunferenciaCoxa !== '' &&
-          p.circunferenciaCoxa !== 'hide' &&
-          p.circunferenciaCoxa !== null &&
-          p.circunferenciaDePanturrilha &&
-          p.circunferenciaDePanturrilha !== '' &&
-          p.circunferenciaDePanturrilha !== 'hide' &&
-          p.circunferenciaDePanturrilha !== null &&
-          p.circunferenciaTornozelo &&
-          p.circunferenciaTornozelo !== '' &&
-          p.circunferenciaTornozelo !== 'hide' &&
-          p.circunferenciaTornozelo !== null,
-      ) ? (
+      {
+        //dadosDoGrafico.some(
+        //   (p) =>
+        //     p.circunferenciaDeQuadril &&
+        //     p.circunferenciaDeQuadril !== '' &&
+        //     p.circunferenciaDeQuadril !== 'hide' &&
+        //     p.circunferenciaDeQuadril !== null &&
+        //     p.circunferenciaCoxa &&
+        //     p.circunferenciaCoxa !== '' &&
+        //     p.circunferenciaCoxa !== 'hide' &&
+        //     p.circunferenciaCoxa !== null &&
+        //     p.circunferenciaDePanturrilha &&
+        //     p.circunferenciaDePanturrilha !== '' &&
+        //     p.circunferenciaDePanturrilha !== 'hide' &&
+        //     p.circunferenciaDePanturrilha !== null &&,
+        // ) ? (
         <>
           <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
           <Title paragraph mt={2}>
@@ -296,7 +293,8 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
             </LineChart>
           </ResponsiveContainer>
         </>
-      ) : null}
+        // ) : null}
+      }
     </>
   );
 };

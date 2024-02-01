@@ -136,105 +136,92 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   return (
     <>
-      {dadosDoGrafico.some(
-        (p) =>
-          p.pollock7dobras &&
-          p.pollock7dobras !== '' &&
-          p.pollock7dobras !== 'hide' &&
-          p.pollock7dobras !== null &&
-          p.porcentagemDeGorduraBia &&
-          p.porcentagemDeGorduraBia !== '' &&
-          p.porcentagemDeGorduraBia !== 'hide' &&
-          p.porcentagemDeGorduraBia !== null,
-      ) ? (
-        <>
-          <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-          <Title paragraph mt={2}>
-            Gráfico do Percentual de Gordura
-          </Title>
-          <ResponsiveContainer width="90%" height={400}>
-            <LineChart data={dadosManipulados}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="data"
-                interval="preserveEnd"
-                stroke={theme.palette.text.primary}
-                tick={renderCustomAxisTick}
+      <>
+        <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+        <Title paragraph mt={2}>
+          Gráfico do Percentual de Gordura
+        </Title>
+        <ResponsiveContainer width="90%" height={400}>
+          <LineChart data={dadosManipulados}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="data"
+              interval="preserveEnd"
+              stroke={theme.palette.text.primary}
+              tick={renderCustomAxisTick}
+            />
+            <YAxis
+              unit="%"
+              stroke={theme.palette.text.primary}
+            />
+            <Tooltip
+              formatter={(value) => `${value}%`}
+              contentStyle={{
+                backgroundColor: theme.palette.background.paper,
+              }} // usando a variável CSS
+            />
+            {dadosDoGrafico.some(
+              (p) =>
+                p.pollock7dobras &&
+                p.pollock7dobras !== '' &&
+                p.pollock7dobras !== 'hide' &&
+                p.pollock7dobras !== null,
+            ) ? (
+              <Line
+                type="monotone"
+                dataKey="pollock7dobras"
+                stroke={theme.palette.success.main}
+                strokeWidth={2}
+                hide={hiddenSeries.includes('pollock7dobras')}
+                name="%G Pollock 7 dobras"
+                label={(props) => (
+                  <CustomizedLabel
+                    {...props}
+                    color={theme.palette.success.main}
+                  />
+                )}
+                connectNulls
               />
-              <YAxis
-                unit="%"
-                stroke={theme.palette.text.primary}
+            ) : null}
+            {dadosDoGrafico.some(
+              (p) =>
+                p.porcentagemDeGorduraBia &&
+                p.porcentagemDeGorduraBia !== '' &&
+                p.porcentagemDeGorduraBia !== 'hide' &&
+                p.porcentagemDeGorduraBia !== null,
+            ) ? (
+              <Line
+                type="monotone"
+                dataKey="porcentagemDeGorduraBia"
+                stroke="#8884d8"
+                strokeWidth={2}
+                hide={hiddenSeries.includes(
+                  'porcentagemDeGorduraBia',
+                )}
+                name="%G Bioimpedância"
+                label={(props) => (
+                  <CustomizedLabel
+                    {...props}
+                    color={'#8884d8'}
+                  />
+                )}
+                connectNulls
               />
-              <Tooltip
-                formatter={(value) => `${value}%`}
-                contentStyle={{
-                  backgroundColor:
-                    theme.palette.background.paper,
-                }} // usando a variável CSS
-              />
-              {dadosDoGrafico.some(
-                (p) =>
-                  p.pollock7dobras &&
-                  p.pollock7dobras !== '' &&
-                  p.pollock7dobras !== 'hide' &&
-                  p.pollock7dobras !== null,
-              ) ? (
-                <Line
-                  type="monotone"
-                  dataKey="pollock7dobras"
-                  stroke={theme.palette.success.main}
-                  strokeWidth={2}
-                  hide={hiddenSeries.includes('pollock7dobras')}
-                  name="%G Pollock 7 dobras"
-                  label={(props) => (
-                    <CustomizedLabel
-                      {...props}
-                      color={theme.palette.success.main}
-                    />
-                  )}
-                  connectNulls
-                />
-              ) : null}
-              {dadosDoGrafico.some(
-                (p) =>
-                  p.porcentagemDeGorduraBia &&
-                  p.porcentagemDeGorduraBia !== '' &&
-                  p.porcentagemDeGorduraBia !== 'hide' &&
-                  p.porcentagemDeGorduraBia !== null,
-              ) ? (
-                <Line
-                  type="monotone"
-                  dataKey="porcentagemDeGorduraBia"
-                  stroke="#8884d8"
-                  strokeWidth={2}
-                  hide={hiddenSeries.includes(
-                    'porcentagemDeGorduraBia',
-                  )}
-                  name="%G Bioimpedância"
-                  label={(props) => (
-                    <CustomizedLabel
-                      {...props}
-                      color={'#8884d8'}
-                    />
-                  )}
-                  connectNulls
-                />
-              ) : null}
+            ) : null}
 
-              <Legend
-                verticalAlign="top"
-                align="left" // Alinhar à direita
-                iconSize={20} // Tamanho do ícone
-                onClick={(e) => toggleSeries(e.dataKey)}
-                wrapperStyle={{
-                  paddingLeft: '70px',
-                  paddingBottom: '20px',
-                }} // Ajuste de espaço à direita
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </>
-      ) : null}
+            <Legend
+              verticalAlign="top"
+              align="left" // Alinhar à direita
+              iconSize={20} // Tamanho do ícone
+              onClick={(e) => toggleSeries(e.dataKey)}
+              wrapperStyle={{
+                paddingLeft: '70px',
+                paddingBottom: '20px',
+              }} // Ajuste de espaço à direita
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </>
     </>
   );
 };

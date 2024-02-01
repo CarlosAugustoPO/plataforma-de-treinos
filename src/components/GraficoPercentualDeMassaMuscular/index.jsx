@@ -117,75 +117,66 @@ const GraficoPesoCorporal = ({ dadosDoGrafico }) => {
 
   return (
     <>
-      {dadosDoGrafico.some(
-        (p) =>
-          p.massaMuscularBia &&
-          p.massaMuscularBia !== '' &&
-          p.massaMuscularBia !== 'hide' &&
-          p.massaMuscularBia !== null,
-      ) ? (
-        <>
-          <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
-          <Title paragraph mt={2}>
-            Gráfico do Percentual de Massa Muscular
-          </Title>
-          <ResponsiveContainer width="90%" height={400}>
-            <LineChart data={dadosManipulados}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="data"
-                interval="preserveEnd"
-                stroke={theme.palette.text.primary}
-                tick={renderCustomAxisTick}
+      <>
+        <Divider sx={{ mt: '2.5%', mb: '2.5%' }} />
+        <Title paragraph mt={2}>
+          Gráfico do Percentual de Massa Muscular
+        </Title>
+        <ResponsiveContainer width="90%" height={400}>
+          <LineChart data={dadosManipulados}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="data"
+              interval="preserveEnd"
+              stroke={theme.palette.text.primary}
+              tick={renderCustomAxisTick}
+            />
+            <YAxis
+              unit="%"
+              stroke={theme.palette.text.primary}
+            />
+            <Tooltip
+              formatter={(value) => `${value}%`}
+              contentStyle={{
+                backgroundColor: theme.palette.background.paper,
+              }} // usando a variável CSS
+            />
+            {dadosDoGrafico.some(
+              (p) =>
+                p.massaMuscularBia &&
+                p.massaMuscularBia !== '' &&
+                p.massaMuscularBia !== 'hide' &&
+                p.massaMuscularBia !== null,
+            ) ? (
+              <Line
+                type="monotone"
+                dataKey="massaMuscularBia"
+                stroke={theme.palette.success.main}
+                strokeWidth={2}
+                // hide={hiddenSeries.includes('massaMuscularBia')}
+                name="%MM Bioimpedância"
+                label={(props) => (
+                  <CustomizedLabel
+                    {...props}
+                    color={theme.palette.success.main}
+                  />
+                )}
+                connectNulls
               />
-              <YAxis
-                unit="%"
-                stroke={theme.palette.text.primary}
-              />
-              <Tooltip
-                formatter={(value) => `${value}%`}
-                contentStyle={{
-                  backgroundColor:
-                    theme.palette.background.paper,
-                }} // usando a variável CSS
-              />
-              {dadosDoGrafico.some(
-                (p) =>
-                  p.massaMuscularBia &&
-                  p.massaMuscularBia !== '' &&
-                  p.massaMuscularBia !== 'hide' &&
-                  p.massaMuscularBia !== null,
-              ) ? (
-                <Line
-                  type="monotone"
-                  dataKey="massaMuscularBia"
-                  stroke={theme.palette.success.main}
-                  strokeWidth={2}
-                  // hide={hiddenSeries.includes('massaMuscularBia')}
-                  name="%MM Bioimpedância"
-                  label={(props) => (
-                    <CustomizedLabel
-                      {...props}
-                      color={theme.palette.success.main}
-                    />
-                  )}
-                  connectNulls
-                />
-              ) : null}
-              <Legend
-                verticalAlign="top"
-                align="left" // Alinhar à direita
-                iconSize={20} // Tamanho do ícone
-                // onClick={(e) => toggleSeries(e.dataKey)}
-                wrapperStyle={{
-                  paddingLeft: '70px',
-                  paddingBottom: '20px',
-                }} // Ajuste de espaço à direita
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </>
-      ) : null}
+            ) : null}
+            <Legend
+              verticalAlign="top"
+              align="left" // Alinhar à direita
+              iconSize={20} // Tamanho do ícone
+              // onClick={(e) => toggleSeries(e.dataKey)}
+              wrapperStyle={{
+                paddingLeft: '70px',
+                paddingBottom: '20px',
+              }} // Ajuste de espaço à direita
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </>
     </>
   );
 };
