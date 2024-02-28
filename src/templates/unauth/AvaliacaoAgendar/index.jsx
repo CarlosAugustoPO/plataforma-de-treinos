@@ -66,13 +66,22 @@ dayjs.updateLocale('pt-br', {
 
 const availability = {
   sunday: ['08:00', '09:00', '10:00', '11:00'],
-  monday: ['11:00'],
-  tuesday: ['11:00'],
-  wednesday: ['08:00', '09:00', '10:00', '11:00'],
-  thursday: ['11:00'],
-  friday: ['08:00', '09:00', '10:00', '11:00'],
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
   saturday: [],
 };
+// const availability = {
+//   sunday: ['08:00', '09:00', '10:00', '11:00'],
+//   monday: ['11:00'],
+//   tuesday: ['11:00'],
+//   wednesday: ['08:00', '09:00', '10:00', '11:00'],
+//   thursday: ['11:00'],
+//   friday: ['08:00', '09:00', '10:00', '11:00'],
+//   saturday: [],
+// };
 
 // const busySlots = {
 //   // yyyy-MM-dd
