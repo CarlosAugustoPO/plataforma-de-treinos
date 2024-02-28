@@ -702,22 +702,8 @@ export default function IndexUnauthTemplate() {
               marginRight: 'auto',
             }}
           >
-            1) Bluefit - Unidade Santos 3: Av. Alm. Cochrane, 187
-            - Embaré, Santos - SP.
-          </Text>
-          <Text
-            align="left"
-            paragraph
-            data-aos="fade-right"
-            data-aos-once="true"
-            sx={{
-              maxWidth: '960px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}
-          >
-            2) Unique Offices: Avenida Conselheiro Nébias, 703 -
-            Boqueirão, Santos - SP.
+            1) Av. Pedro lessa, 1920, cj. 82 - Embaré, Santos -
+            SP.
           </Text>
           <Text
             align="left"
