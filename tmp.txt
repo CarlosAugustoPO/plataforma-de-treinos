@@ -1,5 +1,0 @@
-            {dadosDoGrafico.map((item) => (
-              <TableCell key={item.data} align="left">
-                {item.pollock7dobras} %
-              </TableCell>
-            ))}
