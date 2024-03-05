@@ -38,7 +38,7 @@ function ResultadoAvaliacaoFisica() {
     pontosFracosEsteticos: 'Abdomen e gluteos',
     pretendeCorrer: 'Sim',
     objetivosComCorrida: '5km',
-    pretendeMelhorarFlexibilidade: 'Não',
+    pretendeMelhorarFlexibilidade: '',
     objetivosComFlexibilidade: 'hide',
     comoPossoTeAjudar: 'hide',
     haQuantoTempoTreinaMusculacao: '3 anos',
@@ -150,10 +150,10 @@ function ResultadoAvaliacaoFisica() {
     dataDeNascimento: '20/08/2004',
     genero: 'feminino',
     objetivoEstetico: 'Definição',
-    pontosFracosEsteticos: 'Abdomen e gluteos',
+    pontosFracosEsteticos: 'Abdômen e glúteos',
     pretendeCorrer: 'Sim',
     objetivosComCorrida: '5km',
-    pretendeMelhorarFlexibilidade: 'Não',
+    pretendeMelhorarFlexibilidade: '',
     objetivosComFlexibilidade: 'hide',
     comoPossoTeAjudar: 'hide',
     haQuantoTempoTreinaMusculacao: '3 anos',
@@ -193,7 +193,7 @@ function ResultadoAvaliacaoFisica() {
     frequenciaAlcool: 'ocasionalmente, 1x por mês',
     frequenciaFumo: 'Não fuma',
     lesaoPassada: 'Fratura do dedo mínimo do pé',
-    limitacaoFisica: 'Sem cargas sobre o pescoço',
+    limitacaoFisica: 'Evitar colocar peso sobre a cervical',
     amamentando: '',
     cirurgiaPassada: 'sem cirurgias',
     tempoCirurgiaPassada: '',
@@ -236,8 +236,9 @@ function ResultadoAvaliacaoFisica() {
     idadeCorporal: 28,
     gorduraVisceral: 4,
     tmb: 1316,
-    planejaRefeicoes: 'Sim',
-    preparaRefeicoes: 'Mãe',
+    planejaRefeicoes:
+      'Sim, utiliza um cardápio de cutting de meses atrás',
+    preparaRefeicoes: 'Não, a mãe',
     numeroRefeicoes: '5 - 7 refeições',
     quantidadeAgua: 'quase 2l por dia',
     horarioFome: 'A noite',
@@ -248,13 +249,13 @@ function ResultadoAvaliacaoFisica() {
     usaSuplementos:
       'Creatina, multivitaminico, whey protein e melatonina',
     consumoAlimentarDiario:
-      'Café [ 3 torradas, creme de ricota, supercofe] Colação [1 Banana] Almoço [60g de arroz, 100g de frango, 1 concha de feijão, 24g de cenoura ralada, salada a vontade, 3 rodelas de tomate,] Pre Treino [5 magic toast com creme de ricote, ou 2 fatias de pão integral com creme de ricota ou atum, 2 folhas de alface e 12 gramas de cenour ralada]  Pós treino [1 scoop de whey com yogurt, aveia e morango] Jantar = Almoço',
+      'Café: [3 torradas, creme de ricota, supercofe], Colação: [1 Banana], Almoço: [60g de arroz, 100g de frango, 1 concha de feijão, 24g de cenoura ralada, salada a vontade, 3 rodelas de tomate], Pre Treino: [5 magic toast com creme de ricota, ou 2 fatias de pão integral com creme de ricota ou atum, 2 folhas de alface e 12 gramas de cenour ralada], Pós treino: [1 scoop de whey com yogurt, aveia e morango], Jantar = [60g de arroz, 100g de frango, 1 concha de feijão, 24g de cenoura ralada, salada a vontade, 3 rodelas de tomate]',
     habitosFinaisDeSemana:
-      'as vezes substitui a janta por uma refeiçao fora da dieta',
+      'As vezes substitui a janta por uma refeiçao fora da dieta',
     desvioPostural:
-      'Hipercifose, Hiperlordose e Escoliose corrigida',
+      'Hipercifose, Hiperlordose e Escoliose já corrigida',
     informacoesAdicionais:
-      'O foco principal é corrigir a postura com exercícios corretivos, a ultima vez que fez  dieta tava com 58kg',
+      'O foco principal é corrigir a postura com exercícios corretivos, a ultima vez que fez a atual dieta de cutting estava com 58kg e manteve, perdendo apenas medidas',
   };
 
   const peitoralAnterior =
