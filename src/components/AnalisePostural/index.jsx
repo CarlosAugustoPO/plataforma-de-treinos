@@ -25,10 +25,10 @@ const AnalisePostural = ({ dadosDaAvaliacao }) => {
             <Box component="span" sx={{ fontWeight: 'bold' }}>
               Você possui algum desvio postural diagnosticado?{' '}
             </Box>
-            {dadosDaAvaliacao.desvioPosturala &&
-            dadosDaAvaliacao.desvioPosturala !== '' &&
-            dadosDaAvaliacao.desvioPosturala !== 'hide' &&
-            dadosDaAvaliacao.desvioPosturala !== null
+            {dadosDaAvaliacao.desvioPostural &&
+            dadosDaAvaliacao.desvioPostural !== '' &&
+            dadosDaAvaliacao.desvioPostural !== 'hide' &&
+            dadosDaAvaliacao.desvioPostural !== null
               ? dadosDaAvaliacao.desvioPostural
               : 'Sem desvios posturais informados'}
           </Typography>
