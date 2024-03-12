@@ -76,7 +76,7 @@ function ResultadoAvaliacaoFisica() {
       'Trabalho ativo com caminhadas de a 8km em 12h',
     meioDeTransporteParaTrabalho: 'Fretado',
     problemasDeSaude:
-      'Varizes, apeneia, ansiedade depressiva, gordura no fígado, dislipidemia e obesidade',
+      'Varizes, apneia, ansiedade depressiva, gordura no fígado, dislipidemia e obesidade',
     tomaMedicamento: 'Diosmin SDU',
     usaEsteroides: 'Não',
     frequenciaAlcool: 'Não ingere bebidas alcoólicas',
@@ -132,12 +132,12 @@ function ResultadoAvaliacaoFisica() {
     quantidadeAgua: '4 a 5l por dia',
     horarioFome: 'A noite',
     alimentoBeliscar: 'Carne',
-    alimentosFrequentes: 'Dieta pré líquida',
+    alimentosFrequentes: 'Dieta pré bariátrica líquida',
     restricaoAlimentar: 'Nenhuma',
     velocidadeMastigar: '',
     usaSuplementos: 'Whey',
     consumoAlimentarDiario: 'dieta líquida pré bariatrica',
-    habitosFinaisDeSemana: 'por hora sem refeição',
+    habitosFinaisDeSemana: 'por hora sem refeição lixo',
     desvioPostural: 'Escoliose, pisada pronada',
     informacoesAdicionais:
       'Vai realizar a cirurgia bariátrica em 3 dias e está fazendo uma dieta líquida',
