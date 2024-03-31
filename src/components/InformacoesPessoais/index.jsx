@@ -63,6 +63,20 @@ const InformacoesPessoais = ({ dadosDaAvaliacao }) => {
           </Grid>
         ) : null}
 
+        {dadosDaAvaliacao.celular &&
+        dadosDaAvaliacao.celular !== '' &&
+        dadosDaAvaliacao.celular !== 'hide' &&
+        dadosDaAvaliacao.celular !== null ? (
+          <Grid item xs={12} sm={12}>
+            <Typography align={isSmallScreen ? 'left' : 'left'}>
+              <Box component="span" sx={{ fontWeight: 'bold' }}>
+                Celular:{' '}
+              </Box>
+              {dadosDaAvaliacao.celular}
+            </Typography>
+          </Grid>
+        ) : null}
+
         {dadosDaAvaliacao.genero &&
         dadosDaAvaliacao.genero !== '' &&
         dadosDaAvaliacao.genero !== 'hide' &&

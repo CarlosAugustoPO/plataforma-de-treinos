@@ -182,7 +182,8 @@ const InformacoesSobreOTreino = ({ dadosDaAvaliacao }) => {
           <Grid item xs={12} sm={12}>
             <Typography align={isSmallScreen ? 'left' : 'left'}>
               <Box component="span" sx={{ fontWeight: 'bold' }}>
-                Há quanto tempo você pratica exercícios aeróbios?{' '}
+                Por quanto tempo você prática exercícios
+                aeróbios?{' '}
               </Box>
               {dadosDaAvaliacao.tempoExerciciosAerobios}
             </Typography>
