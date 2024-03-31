@@ -144,10 +144,11 @@ function ResultadoAvaliacaoFisica() {
       'O foco principal é corrigir a postura com exercícios corretivos, a ultima vez que fez a atual dieta de cutting estava com 58kg e manteve, perdendo apenas medidas',
   };
   const dadosDaAvaliacaoAnterior = {
-    nome: 'Beatriz Pimenta',
+    nome: 'Modelo Teste',
     idade: 19,
     altura: 1.63,
-    email: 'beatrizpi20@yahoo.com.br',
+    email: 'teste@gmail.com',
+    celular: '(XX)XXXXXXXXX',
     dataDaAvaliação: '03/03/2024',
     dataDeNascimento: '20/08/2004',
     genero: 'feminino',
