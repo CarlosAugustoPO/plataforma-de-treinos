@@ -4,14 +4,14 @@ import dynamic from 'next/dynamic';
 const PageAuthTemplate = dynamic(
   () =>
     import(
-      'src/templates/unauth/AvaliacaoFisicaResultado/uuid/index.jsx'
+      'src/templates/unauth/AvaliacaoFisicaResultado/modelo/index.jsx'
     ),
   { loading: () => <LoadingTemplate /> },
 );
 const PageUnauthTemplate = dynamic(
   () =>
     import(
-      'src/templates/unauth/AvaliacaoFisicaResultado/uuid/index.jsx'
+      'src/templates/unauth/AvaliacaoFisicaResultado/modelo/index.jsx'
     ),
   { loading: () => <LoadingTemplate /> },
 );
