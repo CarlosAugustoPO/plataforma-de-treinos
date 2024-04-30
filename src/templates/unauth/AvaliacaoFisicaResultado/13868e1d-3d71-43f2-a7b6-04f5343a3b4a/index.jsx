@@ -29,9 +29,10 @@ function ResultadoAvaliacaoFisica() {
   const dadosDaAvaliacaoAtual = {
     nome: 'Marcos Alonso Alves de Oliveira',
     idade: 33,
+    celular: '+55 13 99728-2624',
     altura: 1.83,
     email: 'tecnico.marcos@uol.com.br',
-    dataDaAvaliação: '10/03/2024',
+    dataDaAvaliação: '27/04/2024',
     dataDeNascimento: '22/11/1990',
     genero: 'masculino',
     objetivoEstetico: 'Emagrecimento',
@@ -62,7 +63,7 @@ function ResultadoAvaliacaoFisica() {
     ultimoTreino: '15 horas antes da avaliação física',
     ultimoTreinoDescricao: 'Costas',
     ultimaRefeicao: 'Yogurte e meio misto quente',
-    tempoUltimaRefeicao: '30 minutis',
+    tempoUltimaRefeicao: '30 minutos',
     horaDeDormir: '10h00 ou 22h00',
     horaDeAcordar: '06h00 ou 16h00',
     qualidadeDoSono: 'Boa',
@@ -77,7 +78,7 @@ function ResultadoAvaliacaoFisica() {
     meioDeTransporteParaTrabalho: 'Fretado',
     problemasDeSaude:
       'Varizes, apneia, ansiedade depressiva, gordura no fígado, dislipidemia e obesidade',
-    tomaMedicamento: 'pantoprazol, mobali',
+    tomaMedicamento: 'pantoprazol, mobale',
     usaEsteroides: 'Não',
     frequenciaAlcool: 'Não ingere bebidas alcoólicas',
     frequenciaFumo: 'Não fuma',
@@ -100,7 +101,7 @@ function ResultadoAvaliacaoFisica() {
     peso5Anos: '',
     peso10Anos: 115,
     pesoPretendido: 93,
-    pesoAtual: 160,
+    pesoAtual: 136,
     circunferenciaDePunho: 19,
     circunferenciaDeAbdomen: 131,
     circunferenciaDePescoco: 47,
@@ -121,11 +122,11 @@ function ResultadoAvaliacaoFisica() {
     dobraCutaneaSuprailiaca: 41.5,
     dobraCutaneaCoxa: 38,
     dobraCutaneaPanturrilha: 22.5,
-    porcentagemDeGorduraBia: 41.8,
-    massaMuscularBia: 29.1,
+    porcentagemDeGorduraBia: 38.3,
+    massaMuscularBia: 31.1,
     idadeCorporal: 43,
-    gorduraVisceral: 44,
-    tmb: 2806,
+    gorduraVisceral: 34,
+    tmb: 2497,
     planejaRefeicoes: 'Sim, acompanhamento nutricional',
     preparaRefeicoes: 'cozinheira',
     numeroRefeicoes: '4 refeições',
@@ -147,6 +148,7 @@ function ResultadoAvaliacaoFisica() {
     idade: 33,
     altura: 1.83,
     email: 'tecnico.marcos@uol.com.br',
+    celular: '+55 13 99728-2624',
     dataDaAvaliação: '10/03/2024',
     dataDeNascimento: '22/11/1990',
     genero: 'masculino',
@@ -258,7 +260,6 @@ function ResultadoAvaliacaoFisica() {
     informacoesAdicionais:
       'Vai realizar a cirurgia bariátrica em 3 dias e está fazendo uma dieta líquida',
   };
-
   const peitoralAnterior =
     dadosDaAvaliacaoAnterior.dobraCutaneaPeitoral;
   const abdomenAnterior =
@@ -431,6 +432,64 @@ function ResultadoAvaliacaoFisica() {
   ).toFixed(2);
 
   const dadosDoGrafico = [
+    {
+      data: dadosDaAvaliacaoAnterior.dataDaAvaliação,
+      peso: dadosDaAvaliacaoAnterior.pesoAtual,
+      idade: dadosDaAvaliacaoAnterior.idade,
+      imc: imcAnterior,
+      pollock7dobras: pollock7dobrasAnterior.toFixed(1),
+      pesoMagro: pesoMagroAnterior.toFixed(1),
+      pesoGordo: pesoGordoAnterior.toFixed(1),
+      massaMuscularBia:
+        dadosDaAvaliacaoAnterior.massaMuscularBia,
+      porcentagemDeGorduraBia:
+        dadosDaAvaliacaoAnterior.porcentagemDeGorduraBia,
+      gorduraVisceral: dadosDaAvaliacaoAnterior.gorduraVisceral,
+      idadeCorporal: dadosDaAvaliacaoAnterior.idadeCorporal,
+      circunferenciaDePunho:
+        dadosDaAvaliacaoAnterior.circunferenciaDePunho,
+      circunferenciaDeAbdomen:
+        dadosDaAvaliacaoAnterior.circunferenciaDeAbdomen,
+      circunferenciaDePescoco:
+        dadosDaAvaliacaoAnterior.circunferenciaDePescoco,
+      circunferenciaDeCintura:
+        dadosDaAvaliacaoAnterior.circunferenciaDeCintura,
+      circunferenciaDeQuadril:
+        dadosDaAvaliacaoAnterior.circunferenciaDeQuadril,
+      circunferenciaDePanturrilha:
+        dadosDaAvaliacaoAnterior.circunferenciaDePanturrilha,
+      circunferenciaBracoRelaxado:
+        dadosDaAvaliacaoAnterior.circunferenciaBracoRelaxado,
+      circunferenciaBracoContraido:
+        dadosDaAvaliacaoAnterior.circunferenciaBracoContraido,
+      circunferenciaTorax:
+        dadosDaAvaliacaoAnterior.circunferenciaTorax,
+      circunferenciaAntebraco:
+        dadosDaAvaliacaoAnterior.circunferenciaAntebraco,
+      circunferenciaCoxa:
+        dadosDaAvaliacaoAnterior.circunferenciaCoxa,
+      circunferenciaTornozelo:
+        dadosDaAvaliacaoAnterior.circunferenciaTornozelo,
+      rcq: rcqAnterior,
+      dobraCutaneaAxilarMedia:
+        dadosDaAvaliacaoAnterior.dobraCutaneaAxilarMedia,
+      dobraCutaneaPeitoral:
+        dadosDaAvaliacaoAnterior.dobraCutaneaPeitoral,
+      dobraCutaneaAbdominal:
+        dadosDaAvaliacaoAnterior.dobraCutaneaAbdominal,
+      dobraCutaneaTricipital:
+        dadosDaAvaliacaoAnterior.dobraCutaneaTricipital,
+      dobraCutaneaSubescapular:
+        dadosDaAvaliacaoAnterior.dobraCutaneaSubescapular,
+      dobraCutaneaSuprailiaca:
+        dadosDaAvaliacaoAnterior.dobraCutaneaSuprailiaca,
+      dobraCutaneaCoxa:
+        dadosDaAvaliacaoAnterior.dobraCutaneaCoxa,
+      dobraCutaneaPanturrilha:
+        dadosDaAvaliacaoAnterior.dobraCutaneaPanturrilha,
+      fcRepouso: dadosDaAvaliacaoAnterior.fcRepouso,
+      paRepouso: dadosDaAvaliacaoAnterior.paRepouso,
+    },
     {
       data: dadosDaAvaliacaoAtual.dataDaAvaliação,
       peso: dadosDaAvaliacaoAtual.pesoAtual,
