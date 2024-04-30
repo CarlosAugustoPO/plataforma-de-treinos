@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from "next/image";
+import Image from 'next/image';
 import styles from 'src/templates/Painel/index.module.css';
 import LoadingTemplate from 'src/templates/commons/Loading/index';
 import { useRouter } from 'next/router';
@@ -103,19 +103,6 @@ export default function Painel() {
   return (
     <div className={styles.container}>
       <main>
-        <Link href="/">
-          <a>
-            <Image
-              src="/logo-pdt-blue.png"
-              alt="Vercel Logo"
-              width={75}
-              height={75}
-              style={{
-                maxWidth: "100%",
-                height: "auto"
-              }} />
-          </a>
-        </Link>
         <h1>Painel da Plataforma de treinos</h1>
         <h2>Site em construção</h2>
         <h3>Seja bem vindo {session!.user!.fname}</h3>
