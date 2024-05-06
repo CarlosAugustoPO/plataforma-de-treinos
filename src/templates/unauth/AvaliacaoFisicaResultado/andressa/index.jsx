@@ -37,7 +37,7 @@ function ResultadoAvaliacaoFisica() {
     genero: 'feminino',
     objetivoEstetico: 'Hipertrofia',
     pontosFracosEsteticos:
-      'Dificuldade em ganhar pernas, ombros e bíceps',
+      'Dificuldade em ganhar pernas, omrbos e bíceps',
     pretendeCorrer: 'Não',
     objetivosComCorrida: 'hide',
     pretendeMelhorarFlexibilidade: 'Não',
@@ -76,7 +76,7 @@ function ResultadoAvaliacaoFisica() {
     problemasDeSaude: 'Não possui',
     tomaMedicamento: 'Não',
     usaEsteroides: 'Não',
-    frequenciaAlcool: '1x a cada 2 semanas',
+    frequenciaAlcool: '1x/a cada 2 semanas',
     frequenciaFumo: 'Não fuma',
     lesaoPassada: 'hide',
     limitacaoFisica: 'Dores lombar',
